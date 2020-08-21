@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/atom.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-08-21T16:27:20+08:00</updated><id>http://localhost:4000/atom.xml</id><title type="html">Jinus’s Blog</title><subtitle>某不知名码农，爱好前端、Linux、Shell</subtitle><author><name>Jinus</name></author><entry><title type="html">Vue Router路由权限控制的实现方案</title><link href="http://localhost:4000/2020/08/18/vue-router%E8%B7%AF%E7%94%B1%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%A1%88/" rel="alternate" type="text/html" title="Vue Router路由权限控制的实现方案" /><published>2020-08-18T00:00:00+08:00</published><updated>2020-08-18T00:00:00+08:00</updated><id>http://localhost:4000/2020/08/18/vue-router%E8%B7%AF%E7%94%B1%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%A1%88</id><content type="html" xml:base="http://localhost:4000/2020/08/18/vue-router%E8%B7%AF%E7%94%B1%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%A1%88/">&lt;p&gt;路由配置按用户类型分为&lt;strong&gt;用户路由&lt;/strong&gt;和&lt;strong&gt;基本路由&lt;/strong&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/atom.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-08-21T22:51:52+08:00</updated><id>http://localhost:4000/atom.xml</id><title type="html">Jinus’s Blog</title><subtitle>某不知名码农，爱好前端、Linux、Shell</subtitle><author><name>Jinus</name></author><entry><title type="html">Vue Router路由权限控制的实现方案</title><link href="http://localhost:4000/vue/2020/08/18/vue-router%E8%B7%AF%E7%94%B1%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%A1%88/" rel="alternate" type="text/html" title="Vue Router路由权限控制的实现方案" /><published>2020-08-18T00:00:00+08:00</published><updated>2020-08-18T00:00:00+08:00</updated><id>http://localhost:4000/vue/2020/08/18/vue-router%E8%B7%AF%E7%94%B1%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%A1%88</id><content type="html" xml:base="http://localhost:4000/vue/2020/08/18/vue-router%E8%B7%AF%E7%94%B1%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%A1%88/">&lt;p&gt;路由配置按用户类型分为&lt;strong&gt;用户路由&lt;/strong&gt;和&lt;strong&gt;基本路由&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;用户路由：当前用户所持有的路由&lt;/li&gt;
   &lt;li&gt;基本路由：所有用户均可以访问的路由&lt;/li&gt;
@@ -6,19 +6,21 @@
 
 &lt;p&gt;实现控制方式分两种：&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;addRoutes&lt;/code&gt;方法注入路由实现控制&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;beforeEach&lt;/code&gt;钩子限制路由跳转&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;addRoutes&lt;/code&gt; 方法注入路由实现控制&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;beforeEach&lt;/code&gt; 钩子限制路由跳转&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;addroutes--方式&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;addRoutes&lt;/code&gt;  方式&lt;/h4&gt;
-&lt;p&gt;通过请求服务端获取当前用户路由配置，编码为vue-router所支持的基本格式；然后调用&lt;code class=&quot;highlighter-rouge&quot;&gt;this.$router.addRoutes&lt;/code&gt;方法将编码好的用户路由注入到现有的vue-router实例中去，以实现用户路由。&lt;/p&gt;
+&lt;h4 id=&quot;addroutes-方式&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;addRoutes&lt;/code&gt; 方式&lt;/h4&gt;
+
+&lt;p&gt;通过请求服务端获取当前用户路由配置，编码为vue-router所支持的基本格式；然后调用 &lt;code class=&quot;highlighter-rouge&quot;&gt;this.$router.addRoutes&lt;/code&gt; 方法将编码好的用户路由注入到现有的vue-router实例中去，以实现用户路由。&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;addRoutes&lt;/code&gt;方法仅仅是注入新的路由，但并没有剔除其它路由。所以路由中可能会存在两种用户类型的路由，解决方法是新建一个全新的Router，然后将新的&lt;code class=&quot;highlighter-rouge&quot;&gt;Router.matcher&lt;/code&gt;赋给当前页面的管理Router，从而达到更新路由配置的目的。&lt;/p&gt;
+  &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;addRoutes&lt;/code&gt; 方法仅仅是注入新的路由，但并没有剔除其它路由。所以路由中可能会存在两种用户类型的路由，解决方法是新建一个全新的Router，然后将新的 &lt;code class=&quot;highlighter-rouge&quot;&gt;Router.matcher&lt;/code&gt; 赋给当前页面的管理Router，从而达到更新路由配置的目的。&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;h4 id=&quot;beforeeach-方式&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;beforeEach&lt;/code&gt; 方式&lt;/h4&gt;
-&lt;p&gt;通过请求服务端获取当前用户路由配置，通过注册&lt;code class=&quot;highlighter-rouge&quot;&gt;router.beforeEach&lt;/code&gt;钩子对路由的每次跳转进行管理，每次跳转都进行检查。如果目标路由不存在于基本路由和当前用户的用户路由中，则取消跳转，转为跳转至错误页。&lt;/p&gt;</content><author><name>Jinus</name></author><summary type="html">路由配置按用户类型分为用户路由和基本路由 用户路由：当前用户所持有的路由 基本路由：所有用户均可以访问的路由</summary></entry><entry><title type="html">Vue Router路由模式</title><link href="http://localhost:4000/2020/08/16/vue-router%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%BC%8F/" rel="alternate" type="text/html" title="Vue Router路由模式" /><published>2020-08-16T00:00:00+08:00</published><updated>2020-08-16T00:00:00+08:00</updated><id>http://localhost:4000/2020/08/16/vue-router%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%BC%8F</id><content type="html" xml:base="http://localhost:4000/2020/08/16/vue-router%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%BC%8F/">&lt;p&gt;vue-router的model有两种模式：&lt;strong&gt;hash模式&lt;/strong&gt;和&lt;strong&gt;history模式&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;通过请求服务端获取当前用户路由配置，通过注册 &lt;code class=&quot;highlighter-rouge&quot;&gt;router.beforeEach&lt;/code&gt; 钩子对路由的每次跳转进行管理，每次跳转都进行检查。如果目标路由不存在于基本路由和当前用户的用户路由中，则取消跳转，转为跳转至错误页。&lt;/p&gt;</content><author><name>Jinus</name></author><category term="vue" /><category term="vue-router" /><summary type="html">路由配置按用户类型分为用户路由和基本路由 用户路由：当前用户所持有的路由 基本路由：所有用户均可以访问的路由</summary></entry><entry><title type="html">Vue Router路由模式</title><link href="http://localhost:4000/vue/2020/08/16/vue-router%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%BC%8F/" rel="alternate" type="text/html" title="Vue Router路由模式" /><published>2020-08-16T00:00:00+08:00</published><updated>2020-08-16T00:00:00+08:00</updated><id>http://localhost:4000/vue/2020/08/16/vue-router%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%BC%8F</id><content type="html" xml:base="http://localhost:4000/vue/2020/08/16/vue-router%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%BC%8F/">&lt;p&gt;vue-router的model有两种模式：&lt;strong&gt;hash模式&lt;/strong&gt;和&lt;strong&gt;history模式&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;前端路由的核心就在于改变视图的同时不会向后端发出请求&lt;/li&gt;
@@ -44,7 +46,7 @@
       &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;pushState()&lt;/code&gt;可额外设置title属性供后续使用&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Jinus</name></author><summary type="html">vue-router的model有两种模式：hash模式和history模式</summary></entry><entry><title type="html">Sass</title><link href="http://localhost:4000/2020/08/14/sass/" rel="alternate" type="text/html" title="Sass" /><published>2020-08-14T00:00:00+08:00</published><updated>2020-08-14T00:00:00+08:00</updated><id>http://localhost:4000/2020/08/14/sass</id><content type="html" xml:base="http://localhost:4000/2020/08/14/sass/">&lt;blockquote&gt;
+&lt;/ul&gt;</content><author><name>Jinus</name></author><category term="vue" /><category term="vue-router" /><summary type="html">vue-router的model有两种模式：hash模式和history模式</summary></entry><entry><title type="html">Sass</title><link href="http://localhost:4000/css/2020/08/14/sass/" rel="alternate" type="text/html" title="Sass" /><published>2020-08-14T00:00:00+08:00</published><updated>2020-08-14T00:00:00+08:00</updated><id>http://localhost:4000/css/2020/08/14/sass</id><content type="html" xml:base="http://localhost:4000/css/2020/08/14/sass/">&lt;blockquote&gt;
   &lt;p&gt;Sass是成熟、稳定、强大的CSS预处理器，而SCSS是Sass3版本中引入的新语法特性，完全兼容CSS3的同时继承了Sass强大的动态功能&lt;/p&gt;
 &lt;/blockquote&gt;
 
@@ -69,7 +71,7 @@
   &lt;li&gt;
     &lt;p&gt;操作符&lt;/p&gt;
   &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Jinus</name></author><summary type="html">Sass是成熟、稳定、强大的CSS预处理器，而SCSS是Sass3版本中引入的新语法特性，完全兼容CSS3的同时继承了Sass强大的动态功能</summary></entry><entry><title type="html">Window.onload和$.ready</title><link href="http://localhost:4000/2020/08/10/window.onload%E5%92%8C$.ready/" rel="alternate" type="text/html" title="Window.onload和$.ready" /><published>2020-08-10T00:00:00+08:00</published><updated>2020-08-10T00:00:00+08:00</updated><id>http://localhost:4000/2020/08/10/window.onload%E5%92%8C$.ready</id><content type="html" xml:base="http://localhost:4000/2020/08/10/window.onload%E5%92%8C$.ready/">&lt;h3 id=&quot;windowonload&quot;&gt;window.onload&lt;/h3&gt;
+&lt;/ul&gt;</content><author><name>Jinus</name></author><category term="CSS" /><summary type="html">Sass是成熟、稳定、强大的CSS预处理器，而SCSS是Sass3版本中引入的新语法特性，完全兼容CSS3的同时继承了Sass强大的动态功能</summary></entry><entry><title type="html">Window.onload和$.ready</title><link href="http://localhost:4000/javascript/2020/08/10/window.onload%E5%92%8C$.ready/" rel="alternate" type="text/html" title="Window.onload和$.ready" /><published>2020-08-10T00:00:00+08:00</published><updated>2020-08-10T00:00:00+08:00</updated><id>http://localhost:4000/javascript/2020/08/10/window.onload%E5%92%8C$.ready</id><content type="html" xml:base="http://localhost:4000/javascript/2020/08/10/window.onload%E5%92%8C$.ready/">&lt;h3 id=&quot;windowonload&quot;&gt;window.onload&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;必须等待网页全部加载完毕（包括图片的），然后再执行JS代码&lt;/li&gt;
@@ -81,7 +83,7 @@
 &lt;ul&gt;
   &lt;li&gt;只需等待DOM结构加载完毕就能执行JS代码&lt;/li&gt;
   &lt;li&gt;可以执行多次，且不会覆盖上一次&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Jinus</name></author><summary type="html">window.onload</summary></entry><entry><title type="html">Rxjs observables vs promise比较</title><link href="http://localhost:4000/2020/08/07/RxJS-Observables-vs-Promise%E6%AF%94%E8%BE%83/" rel="alternate" type="text/html" title="Rxjs observables vs promise比较" /><published>2020-08-07T00:00:00+08:00</published><updated>2020-08-07T00:00:00+08:00</updated><id>http://localhost:4000/2020/08/07/RxJS%20Observables%20vs%20Promise%E6%AF%94%E8%BE%83</id><content type="html" xml:base="http://localhost:4000/2020/08/07/RxJS-Observables-vs-Promise%E6%AF%94%E8%BE%83/">&lt;h4 id=&quot;单值与多值&quot;&gt;单值与多值&lt;/h4&gt;
+&lt;/ul&gt;</content><author><name>Jinus</name></author><category term="JavaScript" /><category term="jQuery" /><summary type="html">window.onload</summary></entry><entry><title type="html">Rxjs observables vs promise比较</title><link href="http://localhost:4000/javascript/2020/08/07/RxJS-Observables-vs-Promise%E6%AF%94%E8%BE%83/" rel="alternate" type="text/html" title="Rxjs observables vs promise比较" /><published>2020-08-07T00:00:00+08:00</published><updated>2020-08-07T00:00:00+08:00</updated><id>http://localhost:4000/javascript/2020/08/07/RxJS%20Observables%20vs%20Promise%E6%AF%94%E8%BE%83</id><content type="html" xml:base="http://localhost:4000/javascript/2020/08/07/RxJS-Observables-vs-Promise%E6%AF%94%E8%BE%83/">&lt;h4 id=&quot;单值与多值&quot;&gt;单值与多值&lt;/h4&gt;
 
 &lt;h4 id=&quot;代码执行顺序&quot;&gt;代码执行顺序&lt;/h4&gt;
 
@@ -89,10 +91,10 @@
 
 &lt;h4 id=&quot;单个订阅多个订阅&quot;&gt;单个订阅&amp;amp;多个订阅&lt;/h4&gt;
 
-&lt;h4 id=&quot;一直异步可能是异步&quot;&gt;一直异步&amp;amp;可能是异步&lt;/h4&gt;</content><author><name>Jinus</name></author><summary type="html">单值与多值</summary></entry><entry><title type="html">Ref</title><link href="http://localhost:4000/2020/08/02/ref/" rel="alternate" type="text/html" title="Ref" /><published>2020-08-02T00:00:00+08:00</published><updated>2020-08-02T00:00:00+08:00</updated><id>http://localhost:4000/2020/08/02/ref</id><content type="html" xml:base="http://localhost:4000/2020/08/02/ref/">&lt;blockquote&gt;
-  &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;vm.$refs&lt;/code&gt;:一个对象，持有已注册过&lt;code class=&quot;highlighter-rouge&quot;&gt;ref&lt;/code&gt;的所有子组件
-&lt;code class=&quot;highlighter-rouge&quot;&gt;ref&lt;/code&gt;:被用来给元素或子组件注册引用信息。引用信息将会注册在父组件&lt;code class=&quot;highlighter-rouge&quot;&gt;$refs&lt;/code&gt;对象上。如果在普通的DOM元素上使用，引用指向的就是DOM元素；如果用在子组件上，引用就指向组件实例&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>Jinus</name></author><summary type="html">vm.$refs:一个对象，持有已注册过ref的所有子组件 ref:被用来给元素或子组件注册引用信息。引用信息将会注册在父组件$refs对象上。如果在普通的DOM元素上使用，引用指向的就是DOM元素；如果用在子组件上，引用就指向组件实例</summary></entry><entry><title type="html">Require和import</title><link href="http://localhost:4000/2020/08/01/require%E5%92%8Cimport/" rel="alternate" type="text/html" title="Require和import" /><published>2020-08-01T00:00:00+08:00</published><updated>2020-08-01T00:00:00+08:00</updated><id>http://localhost:4000/2020/08/01/require%E5%92%8Cimport</id><content type="html" xml:base="http://localhost:4000/2020/08/01/require%E5%92%8Cimport/">&lt;h1 id=&quot;import和require的区别&quot;&gt;import和require的区别&lt;/h1&gt;
+&lt;h4 id=&quot;一直异步可能是异步&quot;&gt;一直异步&amp;amp;可能是异步&lt;/h4&gt;</content><author><name>Jinus</name></author><category term="JavaScript" /><summary type="html">单值与多值</summary></entry><entry><title type="html">Ref</title><link href="http://localhost:4000/vue/2020/08/02/ref/" rel="alternate" type="text/html" title="Ref" /><published>2020-08-02T00:00:00+08:00</published><updated>2020-08-02T00:00:00+08:00</updated><id>http://localhost:4000/vue/2020/08/02/ref</id><content type="html" xml:base="http://localhost:4000/vue/2020/08/02/ref/">&lt;blockquote&gt;
+  &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;vm.$refs&lt;/code&gt; : 一个对象，持有已注册过 &lt;code class=&quot;highlighter-rouge&quot;&gt;ref&lt;/code&gt; 的所有子组件
+&lt;code class=&quot;highlighter-rouge&quot;&gt;ref&lt;/code&gt; : 被用来给元素或子组件注册引用信息。引用信息将会注册在父组件 &lt;code class=&quot;highlighter-rouge&quot;&gt;$refs&lt;/code&gt; 对象上。如果在普通的DOM元素上使用，引用指向的就是DOM元素；如果用在子组件上，引用就指向组件实例&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>Jinus</name></author><category term="vue" /><summary type="html">vm.$refs : 一个对象，持有已注册过 ref 的所有子组件 ref : 被用来给元素或子组件注册引用信息。引用信息将会注册在父组件 $refs 对象上。如果在普通的DOM元素上使用，引用指向的就是DOM元素；如果用在子组件上，引用就指向组件实例</summary></entry><entry><title type="html">Require和import</title><link href="http://localhost:4000/javascript/2020/08/01/require%E5%92%8Cimport/" rel="alternate" type="text/html" title="Require和import" /><published>2020-08-01T00:00:00+08:00</published><updated>2020-08-01T00:00:00+08:00</updated><id>http://localhost:4000/javascript/2020/08/01/require%E5%92%8Cimport</id><content type="html" xml:base="http://localhost:4000/javascript/2020/08/01/require%E5%92%8Cimport/">&lt;h1 id=&quot;import和require的区别&quot;&gt;import和require的区别&lt;/h1&gt;
 
 &lt;h3 id=&quot;require&quot;&gt;require&lt;/h3&gt;
 
@@ -100,7 +102,7 @@
 
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;require&lt;/code&gt;是AMD规范引入方式&lt;/p&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;require&lt;/code&gt; 是AMD规范引入方式&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;运行时调用&lt;/p&gt;
@@ -110,39 +112,47 @@
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;写法&lt;/p&gt;
-
-    &lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;     &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;fs&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-     &lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-     &lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;       &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;fs&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+       &lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+       &lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;import&quot;&gt;import&lt;/h3&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;import&lt;/code&gt;是ES6的一个语法标准&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;import&lt;/code&gt; 是ES6的一个语法标准&lt;/li&gt;
   &lt;li&gt;编译时调用&lt;/li&gt;
   &lt;li&gt;解构过程&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;写法&lt;/p&gt;
+  &lt;li&gt;写法&lt;/li&gt;
+&lt;/ul&gt;
 
-    &lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'fs'&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'fs'&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'fs'&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;readFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'fs'&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;readFile&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;read&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'fs'&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;readFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'fs'&lt;/span&gt;
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'fs'&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'fs'&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'fs'&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;readFile&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'fs'&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;readFile&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;read&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'fs'&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;readFile&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'fs'&lt;/span&gt;
 
-&lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;readFile&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;readFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;read&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'fs'&lt;/span&gt;
-  
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Jinus</name></author><summary type="html">import和require的区别</summary></entry><entry><title type="html">React生命周期</title><link href="http://localhost:4000/2020/07/29/React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" rel="alternate" type="text/html" title="React生命周期" /><published>2020-07-29T00:00:00+08:00</published><updated>2020-07-29T00:00:00+08:00</updated><id>http://localhost:4000/2020/07/29/React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F</id><content type="html" xml:base="http://localhost:4000/2020/07/29/React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">&lt;h3 id=&quot;生命周期图示&quot;&gt;生命周期图示&lt;/h3&gt;
+  &lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;readFile&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;readFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;read&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'fs'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Jinus</name></author><category term="JavaScript" /><summary type="html">import和require的区别</summary></entry><entry><title type="html">React生命周期</title><link href="http://localhost:4000/react/2020/07/29/React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" rel="alternate" type="text/html" title="React生命周期" /><published>2020-07-29T00:00:00+08:00</published><updated>2020-07-29T00:00:00+08:00</updated><id>http://localhost:4000/react/2020/07/29/React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F</id><content type="html" xml:base="http://localhost:4000/react/2020/07/29/React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">&lt;h3 id=&quot;生命周期图示&quot;&gt;生命周期图示&lt;/h3&gt;
 
 &lt;p&gt;&lt;img src=&quot;/jinus/img/20200729.webp&quot; alt=&quot;React生命周期&quot; /&gt;&lt;/p&gt;
 
@@ -167,7 +177,7 @@
   &lt;li&gt;新增&lt;/li&gt;
   &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;getDerivedStateFromProps(nextProps,prevState)&lt;/code&gt;&lt;/li&gt;
   &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;getSnapshotBeforeUpdate(prevProps,prevState)&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Jinus</name></author><summary type="html">生命周期图示</summary></entry><entry><title type="html">Promise</title><link href="http://localhost:4000/2020/07/26/promise/" rel="alternate" type="text/html" title="Promise" /><published>2020-07-26T00:00:00+08:00</published><updated>2020-07-26T00:00:00+08:00</updated><id>http://localhost:4000/2020/07/26/promise</id><content type="html" xml:base="http://localhost:4000/2020/07/26/promise/">&lt;h1 id=&quot;异步编程promise&quot;&gt;异步编程：Promise&lt;/h1&gt;
+&lt;/ul&gt;</content><author><name>Jinus</name></author><category term="React" /><summary type="html">生命周期图示</summary></entry><entry><title type="html">Promise</title><link href="http://localhost:4000/javascript/2020/07/26/promise/" rel="alternate" type="text/html" title="Promise" /><published>2020-07-26T00:00:00+08:00</published><updated>2020-07-26T00:00:00+08:00</updated><id>http://localhost:4000/javascript/2020/07/26/promise</id><content type="html" xml:base="http://localhost:4000/javascript/2020/07/26/promise/">&lt;h1 id=&quot;异步编程promise&quot;&gt;异步编程：Promise&lt;/h1&gt;
 
 &lt;p&gt;JavaScript作为浏览器脚本语言，主要用途是响应用户的交互操作DOM，这决定了它只能是&lt;strong&gt;单线程&lt;/strong&gt;&lt;/p&gt;
 
@@ -299,7 +309,7 @@
             &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;reason&lt;/span&gt;
         &lt;span class=&quot;p&quot;&gt;}));&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Jinus</name></author><summary type="html">异步编程：Promise</summary></entry><entry><title type="html">Position</title><link href="http://localhost:4000/2020/07/25/position/" rel="alternate" type="text/html" title="Position" /><published>2020-07-25T00:00:00+08:00</published><updated>2020-07-25T00:00:00+08:00</updated><id>http://localhost:4000/2020/07/25/position</id><content type="html" xml:base="http://localhost:4000/2020/07/25/position/">&lt;h3 id=&quot;常见4种&quot;&gt;常见4种&lt;/h3&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Jinus</name></author><category term="JavaScript" /><summary type="html">异步编程：Promise</summary></entry><entry><title type="html">Position</title><link href="http://localhost:4000/css/2020/07/25/position/" rel="alternate" type="text/html" title="Position" /><published>2020-07-25T00:00:00+08:00</published><updated>2020-07-25T00:00:00+08:00</updated><id>http://localhost:4000/css/2020/07/25/position</id><content type="html" xml:base="http://localhost:4000/css/2020/07/25/position/">&lt;h3 id=&quot;常见4种&quot;&gt;常见4种&lt;/h3&gt;
 
 &lt;h4 id=&quot;1static&quot;&gt;1.static&lt;/h4&gt;
 
@@ -338,4 +348,4 @@
 当父元素是&lt;code class=&quot;highlighter-rouge&quot;&gt;body&lt;/code&gt;时
 a.滚动距离小于屏幕高度或宽度，它会固定在目标位置
 b.滚动距离大于屏幕高度或宽度，它的表现就像&lt;code class=&quot;highlighter-rouge&quot;&gt;position:relative&lt;/code&gt;和1一样
-当父元素不是&lt;code class=&quot;highlighter-rouge&quot;&gt;body&lt;/code&gt;，在父元素高度内滚动时它会固定在目标位置，就像&lt;code class=&quot;highlighter-rouge&quot;&gt;fixed&lt;/code&gt;。在父元素滚动为不可时它的表现就像&lt;code class=&quot;highlighter-rouge&quot;&gt;position:relative&lt;/code&gt;和1一样&lt;/p&gt;</content><author><name>Jinus</name></author><summary type="html">常见4种</summary></entry></feed>
+当父元素不是&lt;code class=&quot;highlighter-rouge&quot;&gt;body&lt;/code&gt;，在父元素高度内滚动时它会固定在目标位置，就像&lt;code class=&quot;highlighter-rouge&quot;&gt;fixed&lt;/code&gt;。在父元素滚动为不可时它的表现就像&lt;code class=&quot;highlighter-rouge&quot;&gt;position:relative&lt;/code&gt;和1一样&lt;/p&gt;</content><author><name>Jinus</name></author><category term="CSS" /><summary type="html">常见4种</summary></entry></feed>

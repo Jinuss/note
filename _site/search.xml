@@ -3,12 +3,18 @@
   
     <entry>
       <title><![CDATA[Vue Router路由权限控制的实现方案]]></title>
-      <url>/2020/08/18/vue-router%E8%B7%AF%E7%94%B1%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%A1%88/</url>
-      <content type="text"><![CDATA[路由配置按用户类型分为用户路由和基本路由  用户路由：当前用户所持有的路由  基本路由：所有用户均可以访问的路由实现控制方式分两种：  addRoutes方法注入路由实现控制  beforeEach钩子限制路由跳转addRoutes  方式通过请求服务端获取当前用户路由配置，编码为vue-router所支持的基本格式；然后调用this.$router.addRoutes方法将编码好的用户路由注入到现有的vue-router实例中去，以实现用户路由。  addRoutes方法仅仅是注入新的路由，但并没有剔除其它路由。所以路由中可能会存在两种用户类型的路由，解决方法是新建一个全新的Router，然后将新的Router.matcher赋给当前页面的管理Router，从而达到更新路由配置的目的。beforeEach 方式通过请求服务端获取当前用户路由配置，通过注册router.beforeEach钩子对路由的每次跳转进行管理，每次跳转都进行检查。如果目标路由不存在于基本路由和当前用户的用户路由中，则取消跳转，转为跳转至错误页。]]></content>
+      <url>/vue/2020/08/18/vue-router%E8%B7%AF%E7%94%B1%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%A1%88/</url>
+      <content type="text"><![CDATA[路由配置按用户类型分为用户路由和基本路由  用户路由：当前用户所持有的路由  基本路由：所有用户均可以访问的路由实现控制方式分两种：  addRoutes 方法注入路由实现控制  beforeEach 钩子限制路由跳转addRoutes 方式通过请求服务端获取当前用户路由配置，编码为vue-router所支持的基本格式；然后调用 this.$router.addRoutes 方法将编码好的用户路由注入到现有的vue-router实例中去，以实现用户路由。  addRoutes 方法仅仅是注入新的路由，但并没有剔除其它路由。所以路由中可能会存在两种用户类型的路由，解决方法是新建一个全新的Router，然后将新的 Router.matcher 赋给当前页面的管理Router，从而达到更新路由配置的目的。beforeEach 方式通过请求服务端获取当前用户路由配置，通过注册 router.beforeEach 钩子对路由的每次跳转进行管理，每次跳转都进行检查。如果目标路由不存在于基本路由和当前用户的用户路由中，则取消跳转，转为跳转至错误页。]]></content>
       <categories>
+        
+          <category> vue </category>
         
       </categories>
       <tags>
+        
+          <tag> vue </tag>
+        
+          <tag> vue-router </tag>
         
       </tags>
       <tags></tags>
@@ -16,12 +22,18 @@
   
     <entry>
       <title><![CDATA[Vue Router路由模式]]></title>
-      <url>/2020/08/16/vue-router%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%BC%8F/</url>
+      <url>/vue/2020/08/16/vue-router%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%BC%8F/</url>
       <content type="text"><![CDATA[vue-router的model有两种模式：hash模式和history模式  前端路由的核心就在于改变视图的同时不会向后端发出请求两种模式的区别  hash模式          即地址栏URL中的#符号。hash虽然出现在URL中，但不会被包括在HTTP请求中，对后端完全没有影响，因此改变hash不会重新加载页面。      只可修改#后面的部分，因此只能设置与当前URL同文档的URL      hash设置的新值必须与原来不一样才会触发动作将记录添加到栈中      只可添加短字符串        history模式          利用HTML5 History Interface中新增的pushState()和replaceState()方法。这两个方法应用于浏览器的历史记录栈，在当前已有的back、forward、go的基础上，它们提供了对历史记录进行修改的功能。只是当它们执行修改时，虽然改变了当前的URL，但浏览器不会立即向后端发送请求。需搭配前端路由的404页面支持。      pushState()设置的新URL可以与当前URL同源的任意URL      pushState()设置的新URL与当前URL一模一样也会将记录添加到栈中      pushState()通过stateObject参数可以添加任意类型的数据到记录中      pushState()可额外设置title属性供后续使用      ]]></content>
       <categories>
         
+          <category> vue </category>
+        
       </categories>
       <tags>
+        
+          <tag> vue </tag>
+        
+          <tag> vue-router </tag>
         
       </tags>
       <tags></tags>
@@ -29,12 +41,16 @@
   
     <entry>
       <title><![CDATA[Sass]]></title>
-      <url>/2020/08/14/sass/</url>
+      <url>/css/2020/08/14/sass/</url>
       <content type="text"><![CDATA[  Sass是成熟、稳定、强大的CSS预处理器，而SCSS是Sass3版本中引入的新语法特性，完全兼容CSS3的同时继承了Sass强大的动态功能Sass的特性      变量        嵌套        引入        混合        继承        操作符  ]]></content>
       <categories>
         
+          <category> CSS </category>
+        
       </categories>
       <tags>
+        
+          <tag> CSS </tag>
         
       </tags>
       <tags></tags>
@@ -42,12 +58,18 @@
   
     <entry>
       <title><![CDATA[Window.onload和$.ready]]></title>
-      <url>/2020/08/10/window.onload%E5%92%8C$.ready/</url>
+      <url>/javascript/2020/08/10/window.onload%E5%92%8C$.ready/</url>
       <content type="text"><![CDATA[window.onload  必须等待网页全部加载完毕（包括图片的），然后再执行JS代码  只能执行一次$(document).ready()  只需等待DOM结构加载完毕就能执行JS代码  可以执行多次，且不会覆盖上一次]]></content>
       <categories>
         
+          <category> JavaScript </category>
+        
       </categories>
       <tags>
+        
+          <tag> JavaScript </tag>
+        
+          <tag> jQuery </tag>
         
       </tags>
       <tags></tags>
@@ -55,12 +77,16 @@
   
     <entry>
       <title><![CDATA[Rxjs observables vs promise比较]]></title>
-      <url>/2020/08/07/RxJS-Observables-vs-Promise%E6%AF%94%E8%BE%83/</url>
+      <url>/javascript/2020/08/07/RxJS-Observables-vs-Promise%E6%AF%94%E8%BE%83/</url>
       <content type="text"><![CDATA[单值与多值代码执行顺序不能取消&amp;能取消单个订阅&amp;多个订阅一直异步&amp;可能是异步]]></content>
       <categories>
         
+          <category> JavaScript </category>
+        
       </categories>
       <tags>
+        
+          <tag> JavaScript </tag>
         
       </tags>
       <tags></tags>
@@ -68,12 +94,16 @@
   
     <entry>
       <title><![CDATA[Ref]]></title>
-      <url>/2020/08/02/ref/</url>
-      <content type="text"><![CDATA[  vm.$refs:一个对象，持有已注册过ref的所有子组件ref:被用来给元素或子组件注册引用信息。引用信息将会注册在父组件$refs对象上。如果在普通的DOM元素上使用，引用指向的就是DOM元素；如果用在子组件上，引用就指向组件实例]]></content>
+      <url>/vue/2020/08/02/ref/</url>
+      <content type="text"><![CDATA[  vm.$refs : 一个对象，持有已注册过 ref 的所有子组件ref : 被用来给元素或子组件注册引用信息。引用信息将会注册在父组件 $refs 对象上。如果在普通的DOM元素上使用，引用指向的就是DOM元素；如果用在子组件上，引用就指向组件实例]]></content>
       <categories>
+        
+          <category> vue </category>
         
       </categories>
       <tags>
+        
+          <tag> vue </tag>
         
       </tags>
       <tags></tags>
@@ -81,12 +111,16 @@
   
     <entry>
       <title><![CDATA[Require和import]]></title>
-      <url>/2020/08/01/require%E5%92%8Cimport/</url>
-      <content type="text"><![CDATA[import和require的区别require只能在运行时确定模块      require是AMD规范引入方式        运行时调用        赋值过程        写法         const fs=require("fs")     exports.fs=fs;     module.exports=fs;        import  import是ES6的一个语法标准  编译时调用  解构过程      写法    import fs from 'fs'import {default as fs} from 'fs'import * as fs from 'fs'import {readFile} from 'fs'import {readFile as read} from 'fs'import fs, {readFile} from 'fs'export default fsexport const fsexport function readFileexport {readFile, read}=fsexport * from 'fs'        ]]></content>
+      <url>/javascript/2020/08/01/require%E5%92%8Cimport/</url>
+      <content type="text"><![CDATA[import和require的区别require只能在运行时确定模块      require 是AMD规范引入方式        运行时调用        赋值过程        写法         const fs = require("fs")       exports.fs = fs;       module.exports = fs;import  import 是ES6的一个语法标准  编译时调用  解构过程  写法  import fs from 'fs'  import {      default as fs  } from 'fs'  import * as fs from 'fs'  import {      readFile  } from 'fs'  import {      readFile as read  } from 'fs'  import fs, {      readFile  } from 'fs'  export default fs  export const fs  export function readFile  export {      readFile,      read  } = fs  export * from 'fs']]></content>
       <categories>
+        
+          <category> JavaScript </category>
         
       </categories>
       <tags>
+        
+          <tag> JavaScript </tag>
         
       </tags>
       <tags></tags>
@@ -94,12 +128,16 @@
   
     <entry>
       <title><![CDATA[React生命周期]]></title>
-      <url>/2020/07/29/React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</url>
+      <url>/react/2020/07/29/React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</url>
       <content type="text"><![CDATA[生命周期图示react的生命周期主要分为两个个过程分别是  挂载卸载过程  constructor()  componentWillMount()  componentDidMount()      componentWillUnmount()    更新过程  componentWillReceiveProps(nextProps)  shouldComponentUpdate(nextProps,nextState)  componentWillUpdate(nextProps,nextState)  componentDidUpdate(prevProps,prevState)      render()    新增  getDerivedStateFromProps(nextProps,prevState)  getSnapshotBeforeUpdate(prevProps,prevState)]]></content>
       <categories>
         
+          <category> React </category>
+        
       </categories>
       <tags>
+        
+          <tag> React </tag>
         
       </tags>
       <tags></tags>
@@ -107,12 +145,16 @@
   
     <entry>
       <title><![CDATA[Promise]]></title>
-      <url>/2020/07/26/promise/</url>
+      <url>/javascript/2020/07/26/promise/</url>
       <content type="text"><![CDATA[异步编程：PromiseJavaScript作为浏览器脚本语言，主要用途是响应用户的交互操作DOM，这决定了它只能是单线程JS的两种编程思想  异步: 不进入主线程，而进入任务队列的任务。当主线程任务执行完毕后，任务队列才通知主线程，请求执行任务，该任务才会进入主线程执行。  同步: 只有前一个任务执行完毕，才能执行后一个任务回调地狱的负面作用：  代码臃肿  可读性差  耦合度过高, 可维护性差  代码复用性差  只能在回调里处理异常Promise 是异步编程解决方案Promise的两个特点  对象的状态不受外界影响。 pending 、 fulfilled 、 rejected  一旦状态改变，就不会再变，任何时候都可以得到这个结果Promise常用方法的polyfill示例ß//构造函数function Promise(executor) {//executor执行器    let that = this;    that.status = "pending";    that.success = undefined;    that.err = undefined;    that.fulFillEventLists = [];    that.rejectEventLists = [];    function resolve(val) {        if (that.status == "pending") {            that.success = val;            that.status = "fulfilled";            setTimeout(() =&gt; {                that.fulFillEventLists.map(fn =&gt; { fn() });            }, 1000)        }    }    function reject(err) {        if (that.status == "pending") {            that.err = err;            that.status = "rejected";            setTimeout(() =&gt; {                that.rejectEventLists.map(fn =&gt; { fn() });            }, 1000)        }    }    try {        executor(resolve, reject);    } catch (e) {        reject(e)    }}then 方法Promise的实例具有 then 方法， then 方法的第一个参数是 resolved 状态的回调函数，第二个参数（可选）是 rejected 状态的回调函数。 then 方法返回一个新的 Promise 实例。//实现then方法Promise.prototype.then = (onFulfilled, onRejected) =&gt; {    //回调函数检测，设置其默认值    onFilfilled = typeof onFulfilled === "function" ? onFulfilled : val =&gt; val;    onRejected = typeof onReject === "function" ? onRejected : err =&gt; { throw err }    const self = this;    return Promise((resolve, reject) =&gt; {        function handle(callback, value) {            try {                const result = callback(value);                if (result instanceof Promise) {                    result.then(resolve, reject);                } else {                    resolve(result);                }            } catch (e) {                reject(e);            }        }        if (self.status == "fulfilled") {            setTimeout(() =&gt; {                handle(onFulfilled, self.success)            }, 1000)        } else if (self.status == "rejected") {            setTimeout(() =&gt; {                handle(onRejected, self.err)            }, 1000)        } else if (self.status == "pending") {            self.fullFillEventLists.push(() =&gt; { handle(onFulfilled, self.success) });            self.rejectEventLists.push(() =&gt; { handle(onFullfilled, self.err) });        }    })}catch 方法catch() 方法用于指定发生错误时的回调函数，返回的还是一个Promise对象。  与 try/catch 代码块不同的是，没有使用 catch 方法指定错误处理的回调函数，Promise对象抛出的错误不会传递到外层代码，不会有任何反应。//实现catch方法Promise.prototype.catch = (onRejected) =&gt; {    return this.then(undefined, onRejected)}finally 方法finally 方法的回调函数不接受任何参数，与前置的Promise状态无关，不依赖Promise的执行结果Promise.prototype.finally = function(callback) {    let P = this.constructor;    return this.then(        value =&gt; P.resolve(callback()).then(() =&gt; value),        reason =&gt; P.resolve(callback()).then(() =&gt; {            throw reason        }));}]]></content>
       <categories>
         
+          <category> JavaScript </category>
+        
       </categories>
       <tags>
+        
+          <tag> JavaScript </tag>
         
       </tags>
       <tags></tags>
@@ -120,12 +162,16 @@
   
     <entry>
       <title><![CDATA[Position]]></title>
-      <url>/2020/07/25/position/</url>
+      <url>/css/2020/07/25/position/</url>
       <content type="text"><![CDATA[常见4种1.staticposition定位的默认值，没有定位2.relative生成相对定位的元素，相对于其正常位置进行定位，一般在子元素设置absolute定位时，给父元素设置relative元素的位置通过top、right、bottom、left控制，其值的定位起点都是父元素的左上角(这点和absolute、fixed不一样)3.absolute生成绝对定位的元素，相对于static定位以外的第一个父元素进行定位元素的位置通过top、right、bottom、left控制，top、left的定位起点是包含块左上角,right、bottom的定位起点是包含块的的右下角4.fixed生成绝对定位的元素，相对于浏览器窗口进行定位，和absolute的区别是fixed不会跟随屏幕滚动元素的位置通过top、right、bottom、left控制，top、left的定位起点是包含块左上角,right、bottom的定位起点是包含块的的右下角不常用4种1.inherit规定应该从父元素继承position属性的值inherit关键字可用于任何HTML元素的任何CSS属性2.inital设置position的值为默认值，可用于任何HTML元素上的任何CSS属性，不是position3.unset设置position的值为不设置：如果该属性的默认属性是继承（例如字体相关的默认属性基本都是继承），该值等同于inherit如果该属性的默认属性不是继承属性（例如position的默认属性为static）,该值等同于initial4.stickyCSS3新属性，它的表现就像position:relative和position:fixed的合体1.在目标区域在屏幕中可见时，它的行为就像position:relative;2.页面滚动时当父元素是body时a.滚动距离小于屏幕高度或宽度，它会固定在目标位置b.滚动距离大于屏幕高度或宽度，它的表现就像position:relative和1一样当父元素不是body，在父元素高度内滚动时它会固定在目标位置，就像fixed。在父元素滚动为不可时它的表现就像position:relative和1一样]]></content>
       <categories>
         
+          <category> CSS </category>
+        
       </categories>
       <tags>
+        
+          <tag> CSS </tag>
         
       </tags>
       <tags></tags>
@@ -133,12 +179,16 @@
   
     <entry>
       <title><![CDATA[Package.json文件说明]]></title>
-      <url>/2020/07/22/package.json%E6%96%87%E4%BB%B6%E8%AF%B4%E6%98%8E/</url>
+      <url>/javascript/2020/07/22/package.json%E6%96%87%E4%BB%B6%E8%AF%B4%E6%98%8E/</url>
       <content type="text"><![CDATA[  模块的描述文件被称为package.json关于版本号的描述  npm模块的完整的版本号一般是【主版本. 次要版本. 补丁版本】      使用 ～ 表示版本范围    补丁版本号缺失，则允许补丁版本号升级      次要版本号+补丁版本号缺失，则允许次要版本号+补丁版本号升级        使用 ^ 表示版本范围    若主版本号不为0，则允许次要版本号+补丁版本号升级  若主版本号为0，次要版本号不为0，则允许补丁版本号升级  若主版本号+次要版本号皆为0，将无法升级模块  若主版本号不为0，补丁版本缺失（将被视作0），那么将允许次要版本+补丁版本升级到最新  若主版本号为0，补丁版本缺失（将被视作0），那么允许补丁版本升级到最新      若次要版本+补丁版本均缺失，此时补丁版本将被视作1，那么将允许次要版本+补丁版本升级到最新        语义版本号          语义版本号分为X. Y. Z，分贝对应主版本号、次版本号、补丁版本号        当代码变更时，按照一下原则更新          如果只是修复bug，需要更新Z为      如果是新增功能，但是向下兼容，需要更新Y位      如果有大变动，向下不兼容，需要更新X位      ]]></content>
       <categories>
         
+          <category> JavaScript </category>
+        
       </categories>
       <tags>
+        
+          <tag> Node </tag>
         
       </tags>
       <tags></tags>
@@ -146,12 +196,16 @@
   
     <entry>
       <title><![CDATA[Nexttick介绍]]></title>
-      <url>/2020/07/18/nextTick%E4%BB%8B%E7%BB%8D/</url>
+      <url>/vue/2020/07/18/nextTick%E4%BB%8B%E7%BB%8D/</url>
       <content type="text"><![CDATA[  vue实现响应式并不是数据发生变化之后DOM立即变化，而是按照一定的策略进行DOM的更新vue.nextTick()使用场景      在Vue生命周期函数 created() 中进行DOM操作时一定要放在 Vue.nextTick() 的回调函数中        在数据变化后要执行的某个操作，而这个操作需要使用随着数据改变而改变的DOM结构的时候，这个操作都应该放进 Vue.nextTick() 的回调函数中  ]]></content>
       <categories>
         
+          <category> vue </category>
+        
       </categories>
       <tags>
+        
+          <tag> vue </tag>
         
       </tags>
       <tags></tags>
@@ -159,12 +213,16 @@
   
     <entry>
       <title><![CDATA[New操作符做了些什么]]></title>
-      <url>/2020/07/14/new%E6%93%8D%E4%BD%9C%E7%AC%A6%E5%81%9A%E4%BA%86%E4%BA%9B%E4%BB%80%E4%B9%88/</url>
-      <content type="text"><![CDATA[  new的定义            创建一个新的对象                  将构造函数的 prototype 赋值给新对象的 _proto_                  构造函数中的 this 指向新对象，并且调用构造函数                  如果构造函数无返回值，或者不是引用类型，返回新对象；否则为构造函数的返回值      function Animal(name) {    this.name = name;}Animal.color = "black";Animal.prototype.say = function() {    console.log( `I'm ${this.name}` )}var cat = new Animal("cat");console.log(cat.name, cat.color); //cat undefinedcat.say(); //I'm cat伪代码模拟new Animal(('cat') =&gt; {    var obj = {};    obj.__proto__ = Animal.prototype;    var result = Animal.call(obj, "cat");    return typeof result === 'object' ? result : obj;})流程解析            创建一个空对象obj                  把obj的 __prototype__ 指向构造函数 Animal 的原型对象 prototype ，此时便建立了obj对象的原型链： obj-&gt;Animal.prototypr-&gt;Object.prototype-&gt;null                  在obj对象的执行环境调用Animal函数并传参                  参考第3步的返回值      ]]></content>
+      <url>/javascript/2020/07/14/new%E6%93%8D%E4%BD%9C%E7%AC%A6%E5%81%9A%E4%BA%86%E4%BA%9B%E4%BB%80%E4%B9%88/</url>
+      <content type="text"><![CDATA[  new() 的定义            创建一个新的对象                  将构造函数的 prototype 赋值给新对象的 _proto_                  构造函数中的 this 指向新对象，并且调用构造函数                  如果构造函数无返回值，或者不是引用类型，返回新对象；否则为构造函数的返回值      function Animal(name) {    this.name = name;}Animal.color = "black";Animal.prototype.say = function() {    console.log( `I'm ${this.name}` )}var cat = new Animal("cat");console.log(cat.name, cat.color); //cat undefinedcat.say(); //I'm cat伪代码模拟new Animal(('cat') =&gt; {    var obj = {};    obj.__proto__ = Animal.prototype;    var result = Animal.call(obj, "cat");    return typeof result === 'object' ? result : obj;})流程解析            创建一个空对象obj                  把obj的 __prototype__ 指向构造函数 Animal 的原型对象 prototype ，此时便建立了obj对象的原型链： obj-&gt;Animal.prototypr-&gt;Object.prototype-&gt;null                  在obj对象的执行环境调用 Animal 函数并传参                  参考第3步的返回值      ]]></content>
       <categories>
+        
+          <category> JavaScript </category>
         
       </categories>
       <tags>
+        
+          <tag> JavaScript </tag>
         
       </tags>
       <tags></tags>
@@ -172,12 +230,16 @@
   
     <entry>
       <title><![CDATA[Linux就该这么学]]></title>
-      <url>/2020/07/13/Linux%E5%B0%B1%E8%AF%A5%E8%BF%99%E4%B9%88%E5%AD%A6/</url>
-      <content type="text"><![CDATA[VT（Virtualization Technology，虚拟化技术）:指的是让单台计算机能够分割出多个独立资源区，并让每个资源区按需模拟出系统的一项技术，其本质就是通过中间层实现计算机资源的管理和再分配，让系统资源的利用率最大化。可以通过BIOS关闭或开启VT  Linux系统内核：由Linus负责维护，提供硬件抽象层、硬盘及文件系统控制及多任务功能的系统核心程序  Linux发行套件系统：即我们通常所说的Linux操作系统，由Linux内核与各种常用软件的集合产品。rpm 红帽软件包管理器：类似于windows操作系统中的控制面板，会建立统一的数据库文件，详细记录软件信息并能够自动分析依赖关系。Yum 软件仓库可以根据用户的要求分析出所需软件包及其相关的依赖关系，然后自动从服务器下载软件包并安装到系统。Linux开机顺序：1.进入BIOS2.进入Boot Loader3.加载系统内核4.内核进行初始化5.启动初始化进程System V init 和 systemdwget命令用于在终端中下载网络文件输入重定向：把文件导入命令中（文件描述符为0）输出重定向：把原本要输出到屏幕的数据信息写入到指定文件中输出重定向分为标准输出重定向（文件描述符为1）和错误输出重定向（文件描述符为2）；另又分为清空写入和追加写入两种模式Ctrl-c 键来强行结束进程普通用户切换至root时，错误为xxx is not the sudoers file… 解决办法：root身份下，运行visudo命令，添加 xxx ALL=(ALL) ALL  chattr  +/-参数  文件或目录 ： 设置/取消隐藏权限lsattr   参数  文件或目录 ： 列出隐藏权限基于普通文件或目录设置ACL(访问控制列表)其实就是针对指定的用户或用户组设置文件或目录的操作权限。另外，如果针对某个目录设置了ACL，则目录中的文件会继承其ACL，若对文件设置了ACL，则文件不再继承其所在目录的ACL。####  常见目录 ####  /boot     开机所需文件 —— 内核、开机菜单以及所需配置文件等  /dev       以文件形式存放任何设备与接口  /etc        配置文件  /home    用户家目录  /bin        存放单用户模式下还可以操作的命令  /lib         开机时用到的函数库，以及/bin与/sbin下面的命令要调用的函数  /sbin       开机过程中的需要的命令  /media    用于挂载设备文件的目录  /opt       放置第三方的软件  /root      系统管理员的家目录  /srv        一些网络服务的数据文件目录  /tmp      任何人均可使用的“共享”的临时目录  /proc      虚拟文件系统，例如系统内核、进程、外部设备及网络状态等  /usr/local 用户自行安装的软件  /usr/sbin  Linux系统开机时不会使用到的软件/命令脚本  /usr/share 帮助与说明文件。也可放置共享文件  /var     主要存放经常变化的文件，如日志  /lost+found   当文件系统发生错误时，将一些丢失的文件片段存放在这里  blkid查看文件系统类型，（ext3、ext4、xfs）挂载：当用户需要使用硬盘设备或分区中的数据时，需要先将其与一个已存在的目录文件进行关联，而这个关联动作就是“挂载”。 永久挂载（重启以后无需再次挂载）需要编辑/etc/fstab文件 #### 硬链接和软链接  文件在Linux中分为两部分：用户数据（user data）和元数据（metadata）。  用户数据：文件数据块（data block），记录文件真实内容的地方  元数据：文件的附加属性，如文件大小、创建时间、所有者等信息。元数据的inode号即索引节点号才是文件的唯一标识而非文件名，且其并不包含文件名。可以用stat或ls -i查看若一个inode号对应多个文件名，则称这些文件为硬链接，换言之，硬链接就是同一个文件使用了多个别名。硬链接的特性：  文件具有相同的inode及data block  只能对已存在的文件进行创建  不能交叉文件系统进行硬链接的创建  不能对目录进行创建，只可对文件创建  删除一个硬链接文件并不影响其它有相同inode号的文件软链接就是一个普通文件，不过是文件用户数据块中存放的内容是另一文件的路径名的指向。软链接有自己的inode号和用户数据块软链接特性：  软链接有自己的文件属性和权限等  可对不存在的文件或目录创建软链接  软链接可交叉系统  软链接可对文件或目录创建  创建软链接时，链接计数i_nlink不会增加  删除软链接并不影响被指向的文件，但若被指向的原文件被删除，则相关软连接被称为死链接（即 dangling link，若被指向路径文件被重新创建，死链接可恢复为正常的软链接）RAID（独立冗余磁盘阵列）：通过把多个硬盘设备组合成一个容量更大、安全性更好的磁盘阵列，并把数据切割成多个区段后分别放在各个不同的物理硬盘设备上，然后利用分散读写技术来提升磁盘阵列整体的性能，同时把多个重要数据的副本同步到不同的物理硬盘设备上，从而起到了非常好的数据冗余备份的效果。]]></content>
+      <url>/linux/2020/07/13/Linux%E5%B0%B1%E8%AF%A5%E8%BF%99%E4%B9%88%E5%AD%A6/</url>
+      <content type="text"><![CDATA[VT（Virtualization Technology，虚拟化技术）: 指的是让单台计算机能够分割出多个独立资源区，并让每个资源区按需模拟出系统的一项技术，其本质就是通过中间层实现计算机资源的管理和再分配，让系统资源的利用率最大化。可以通过BIOS关闭或开启VT  Linux系统内核：由Linus负责维护，提供硬件抽象层、硬盘及文件系统控制及多任务功能的系统核心程序  Linux发行套件系统：即我们通常所说的Linux操作系统，由Linux内核与各种常用软件的集合产品。rpm 红帽软件包管理器：类似于windows操作系统中的控制面板，会建立统一的数据库文件，详细记录软件信息并能够自动分析依赖关系。Yum 软件仓库可以根据用户的要求分析出所需软件包及其相关的依赖关系，然后自动从服务器下载软件包并安装到系统。Linux开机顺序：  进入BIOS  进入Boot Loader  加载系统内核  内核进行初始化  启动初始化进程System V init 和 systemdwget命令用于在终端中下载网络文件输入重定向：把文件导入命令中（文件描述符为0）输出重定向：把原本要输出到屏幕的数据信息写入到指定文件中输出重定向分为标准输出重定向（文件描述符为1）和错误输出重定向（文件描述符为2）；另又分为清空写入和追加写入两种模式Ctrl-c 键来强行结束进程普通用户切换至root时，错误为xxx is not the sudoers file… 解决办法：root身份下，运行visudo命令，添加 xxx ALL=(ALL) ALL  chattr  +/-参数  文件或目录 ： 设置/取消隐藏权限lsattr   参数  文件或目录 ： 列出隐藏权限基于普通文件或目录设置ACL(访问控制列表)其实就是针对指定的用户或用户组设置文件或目录的操作权限。另外，如果针对某个目录设置了ACL，则目录中的文件会继承其ACL，若对文件设置了ACL，则文件不再继承其所在目录的ACL。####  常见目录 ####  /boot     开机所需文件 —— 内核、开机菜单以及所需配置文件等  /dev       以文件形式存放任何设备与接口  /etc        配置文件  /home    用户家目录  /bin        存放单用户模式下还可以操作的命令  /lib         开机时用到的函数库，以及/bin与/sbin下面的命令要调用的函数  /sbin       开机过程中的需要的命令  /media    用于挂载设备文件的目录  /opt       放置第三方的软件  /root      系统管理员的家目录  /srv        一些网络服务的数据文件目录  /tmp      任何人均可使用的“共享”的临时目录  /proc      虚拟文件系统，例如系统内核、进程、外部设备及网络状态等  /usr/local 用户自行安装的软件  /usr/sbin  Linux系统开机时不会使用到的软件/命令脚本  /usr/share 帮助与说明文件。也可放置共享文件  /var     主要存放经常变化的文件，如日志  /lost+found   当文件系统发生错误时，将一些丢失的文件片段存放在这里  blkid查看文件系统类型，（ext3、ext4、xfs）挂载：当用户需要使用硬盘设备或分区中的数据时，需要先将其与一个已存在的目录文件进行关联，而这个关联动作就是“挂载”。 永久挂载（重启以后无需再次挂载）需要编辑/etc/fstab文件 #### 硬链接和软链接  文件在Linux中分为两部分：用户数据（user data）和元数据（metadata）。  用户数据：文件数据块（data block），记录文件真实内容的地方  元数据：文件的附加属性，如文件大小、创建时间、所有者等信息。元数据的inode号即索引节点号才是文件的唯一标识而非文件名，且其并不包含文件名。可以用stat或ls -i查看若一个inode号对应多个文件名，则称这些文件为硬链接，换言之，硬链接就是同一个文件使用了多个别名。硬链接的特性：  文件具有相同的inode及data block  只能对已存在的文件进行创建  不能交叉文件系统进行硬链接的创建  不能对目录进行创建，只可对文件创建  删除一个硬链接文件并不影响其它有相同inode号的文件软链接就是一个普通文件，不过是文件用户数据块中存放的内容是另一文件的路径名的指向。软链接有自己的inode号和用户数据块软链接特性：  软链接有自己的文件属性和权限等  可对不存在的文件或目录创建软链接  软链接可交叉系统  软链接可对文件或目录创建  创建软链接时，链接计数i_nlink不会增加  删除软链接并不影响被指向的文件，但若被指向的原文件被删除，则相关软连接被称为死链接（即 dangling link，若被指向路径文件被重新创建，死链接可恢复为正常的软链接）RAID（独立冗余磁盘阵列）：通过把多个硬盘设备组合成一个容量更大、安全性更好的磁盘阵列，并把数据切割成多个区段后分别放在各个不同的物理硬盘设备上，然后利用分散读写技术来提升磁盘阵列整体的性能，同时把多个重要数据的副本同步到不同的物理硬盘设备上，从而起到了非常好的数据冗余备份的效果。]]></content>
       <categories>
+        
+          <category> Linux </category>
         
       </categories>
       <tags>
+        
+          <tag> Linux </tag>
         
       </tags>
       <tags></tags>
@@ -185,12 +247,16 @@
   
     <entry>
       <title><![CDATA[Iterm使用zsh主题]]></title>
-      <url>/2020/07/01/iterm%E4%BD%BF%E7%94%A8zsh%E4%B8%BB%E9%A2%98/</url>
+      <url>/%E5%B7%A5%E5%85%B7/2020/07/01/iterm%E4%BD%BF%E7%94%A8zsh%E4%B8%BB%E9%A2%98/</url>
       <content type="text"><![CDATA[Iterm2终端zsh插件agnoster主题]]></content>
       <categories>
         
+          <category> 工具 </category>
+        
       </categories>
       <tags>
+        
+          <tag> 工具 </tag>
         
       </tags>
       <tags></tags>
@@ -198,12 +264,16 @@
   
     <entry>
       <title><![CDATA[Http状态码]]></title>
-      <url>/2020/06/24/http%E7%8A%B6%E6%80%81%E7%A0%81/</url>
+      <url>/http/2020/06/24/http%E7%8A%B6%E6%80%81%E7%A0%81/</url>
       <content type="text"><![CDATA[信息状态码 （1XX）  100，继续，初始的请求已经接受，请客户端继续发送剩余部分  101，切换协议，请求这要求服务器切换协议，服务器已确定切换成功状态码 （2XX）  200，成功，服务器已成功处理了请求  201，已创建，请求成功并且服务器创建了新的资源  202，已接受，服务器已接受请求，但尚未处理  203，非授权信息，服务器已成功处理请求，但返回的信息可能来自另一个来源  204，无内容，服务器成功处理了请求，但没有返回任何内容  205，重置内容，服务器处理成功，用户终端应重置文档视图  206，部分内容，服务器成功处理了部分GET请求重定向状态码 （3XX）  300，多种选择，针对请求，服务器可执行多种操作  301，永久移动，请求的页面已永久跳转到新的url  302，临时移动，服务器目前从不同的位置的网页响应请求，但请求仍继续使用原有位置来进行以后的请求  303，查看其他位置，请求者应当对不同的位置使用单独的GET请求来检索响应时，服务器返回此代码  304，未修改，自从上次请求后，请求的网页未修改过  305，使用代理，请求者只能使用代理访问请求的网页  307，临时重定向，服务器目前从不同位置的网页响应请求，但请求者因继续使用原有位置来进行以后的请求客户端错误状态码 （4XX）  400，错误请求，服务器不理解请求的语法  401，未授权，请求用户的身份验证  403，禁止，服务器拒绝请求  404，未找到，服务器找不到请求的页面  405，方法禁用，禁用请求中指定的方法  406，不接受，无法使用请求的内容特性响应请求的页面  407，需要代理授权，请求需要代理的身份认证  408，请求超时，服务器等候请求时发生超时  409，冲突，服务器在完成请求时发生冲突  410，已删除，客户端请求的资源已经不存在  411，需要有效长度，服务器不接受不含有效长度表头字段的请求  412，未满足前提条件，服务器未满足请求者在请求中设置的其中一个前提条件  413，请求实体过大，由于请求实体过大，服务器无法处理，因此拒绝请求  414，请求URL过长，请求的URL过长，服务器无法处理  415，不支持格式，服务器无法处理请求中附带的媒体格式  416，范围无效，客户端请求的范围无效  417，未满足期望，服务器无法满足请求表头字段要求服务器错误状态码 （5XX）  500，服务器错误，服务器内部错误，无法完成请求  501，尚未实施，服务器不具备完成请求的功能  502，错误网关，服务器作为网关或代理出现错误  503，服务不可用，服务器目前无法使用  504，网关超时，网关或代理服务器，未及时获取请求  505，不支持版本，服务器不支持请求中使用的HTTP协议版本]]></content>
       <categories>
         
+          <category> HTTP </category>
+        
       </categories>
       <tags>
+        
+          <tag> HTTP </tag>
         
       </tags>
       <tags></tags>
@@ -211,12 +281,16 @@
   
     <entry>
       <title><![CDATA[Bfc]]></title>
-      <url>/2020/06/20/BFC/</url>
+      <url>/css/2020/06/20/BFC/</url>
       <content type="text"><![CDATA[BFC  BFC(Block formatting context,块级格式化上下文)是一个独立的渲染区域，只有Block-level Box参与，它规定了内部的Block-level Box如何布局，并且与这个区域外部毫不相干。CSS布局的基本单位：BOX      Box是CSS布局的对象和基本单位。元素的类型和display属性，决定了这个Box的类型。不同类型的Box，会参与不同的Formatting Context(一个决定如何渲染文档的容器)        formatting context是页面中的一块渲染区域，并且有一套渲染规则，它决定了其子元素将如何定位，以及和其他元素的关系和相互作用。最常见的如BFC和IFC，如下：          block-level box：display属性为block、list-item、table的元素会生成block-level box。并且参与block formatting context。      inline-level box：display属性为inline、inline-block的元素会生成inline-level box。并且参与inline formatting context。      BFC的布局规则  内部的Box会在垂直方向，一个接一个地放置  Box垂直方向的距离由margin决定。同属于一个BFC的两个相邻的margin会发生重叠。  每个盒子（块盒和行盒）的margin box的左边，与包含块border box的左边相接触，即使存在浮动也是如此。  BFC的区域不会与float box重叠  BFC内外的元素互不影响  计算BFC的高度时，浮动元素也参与计算。如何创建BFC  float的值不是none  position的值不是static或者relative  display的值是inline-block、table-cell、flex、table-caption或者inline-flex  overflow的值不是visible]]></content>
       <categories>
         
+          <category> CSS </category>
+        
       </categories>
       <tags>
+        
+          <tag> CSS </tag>
         
       </tags>
       <tags></tags>
@@ -224,12 +298,16 @@
   
     <entry>
       <title><![CDATA[Axios]]></title>
-      <url>/2020/06/15/axios/</url>
+      <url>/axios/2020/06/15/axios/</url>
       <content type="text"><![CDATA[axios是一个基于promise的HTTP库，可以应用于浏览器和node.js特性  从浏览器中创建XMLHttpRequests  从node.js创建http请求  支持Promsie API  拦截请求和响应  转换请求数据和响应数据  取消请求  自动转换JSON数据  客户端支持防御XSRF]]></content>
       <categories>
         
+          <category> axios </category>
+        
       </categories>
       <tags>
+        
+          <tag> axios </tag>
         
       </tags>
       <tags></tags>
@@ -237,12 +315,16 @@
   
     <entry>
       <title><![CDATA[原型]]></title>
-      <url>/2020/06/13/%E5%8E%9F%E5%9E%8B/</url>
+      <url>/javascript/2020/06/13/%E5%8E%9F%E5%9E%8B/</url>
       <content type="text"><![CDATA[函数都有一个prototype(显式原型属性)和一个__proto__或[[Prototype]](隐式原型属性)实例对象的__proto__指向构造函数的prototype最终prototype指向null]]></content>
       <categories>
         
+          <category> JavaScript </category>
+        
       </categories>
       <tags>
+        
+          <tag> JavaScript </tag>
         
       </tags>
       <tags></tags>
@@ -250,12 +332,16 @@
   
     <entry>
       <title><![CDATA[函数式编程]]></title>
-      <url>/2020/06/09/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/</url>
+      <url>/javascript/2020/06/09/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/</url>
       <content type="text"><![CDATA[函数与方法的区别  函数是一段可以通过其名称被调用的代码，可以传递参数并有返回值。  方法是一段必须通过其名称及其关联对象的名称被调用的代码。引用透明性  所有函数对于相同的输入都将返回相同的值，不依赖于其他全局变量，因此不会产生改变外部环境变量的副作用。声明式编程  函数式编程是声明式编程范式的一部分，会描述一系列的操作，但不会暴露是如何实现的或是数据流如何穿过它们概念函数式编程的目的是使用函数来抽象作用在数据之上的控制流和操作，从而在系统中消除副作用并减少对状态的改变。通过最小化变化使得代码更容易理解，其核心概念一共有四种：不可变性，纯函数，数据转换，高阶函数以及递归##### 不可变性  数据是不可以改变的，他们永远无法修改，其机制就是对原生数据进行拷贝编辑，然后取代使用  ##### 纯函数  一个返回结果只依赖输入参数的函数，它至少需要接受一个参数并且总是返回一个值或者其它函数，它把参数当作不可变数据使用，不做任何修改。  ##### 数据转换  函数式编程中由于数据的不可变性，它会将一种数据转换成另一种数据，使用函数生成转换后的副本进行状态的转换。  ##### 高阶函数  是可以操作其它函数的函数，它们可以将函数当作参数传递，也可以返回一个函数。  ##### 递归  函数调用自身的一种方案链式  函数式编程就是将具体的业务逻辑拆分成一个个小型简单的纯函数，方便进行功能聚集。最终通过串联或者并联的方式将这些函数合成一起调用，]]></content>
       <categories>
         
+          <category> JavaScript </category>
+        
       </categories>
       <tags>
+        
+          <tag> JavaScript </tag>
         
       </tags>
       <tags></tags>
@@ -263,12 +349,16 @@
   
     <entry>
       <title><![CDATA[防抖与节流]]></title>
-      <url>/2020/06/02/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/</url>
+      <url>/javascript/2020/06/02/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/</url>
       <content type="text"><![CDATA[应用场景绑定某些持续触发的事件，如鼠标点击、滚动、放大缩小等，有时候并不希望在事件持续触发的过程中那么频繁地去执行函数。一般来讲，防抖和节流是比较常用的解决方案。防抖（debounce）  指触发事件后在n秒内函数只能执行一次，如果在n秒内又触发了事件，则会重新计算函数执行时间。防抖函数又分为非立即执行和立即执行版。  非立即执行版 触发事件后函数不会立即执行，而是在n秒后执行，如果在n秒内又触发了事件，则会重新计算函数执行时间function debounce(func, wait) {    let timeout;    return () =&gt; {        let args = arguments;        if (timout) {            clearTimeout(timeout);        }        timeout = setTimeout(() =&gt; {            func.apply(context, args);        }, wait)    }}  立即执行版 触发事件后函数会立即执行，然后n秒内不触发事件才能继续执行函数的效果function debounce(func, wait) {    let timeout;    return () =&gt; {        let args = arguments;        if (timeout) {            clearTimeout(timeout);        }        let callNow = !timeout;        timeout = setTimeout(() =&gt; {            timeout = null;        }, wait)        if (callNow) {            func.apply(this, args)        }    }}节流（throttle）  指连续触发事件但是在n秒中只执行一次函数。节流会稀释函数的执行频率。节流方式同样有两种，分为时间戳版和定时器版  时间戳版：在时间段内开始的时候触发函数function throttle(func, wait) {    let previous = 0;    return function() {        let now = Date.now();        let contxt = this;        let args = arguments;        if (now - previous &gt; wait) {            func.apply.(contxt, args);            previous = now;        }    }}  定时器版：在时间段结束时触发function throttle(func, wait) {    let timeout;    return function() {        let context = this;        let args = arguments;        if (!timeout) {            timeout = setTimeout(() =&gt; {                timeout = null;                func.apply.(context, args);            }, wait)        }    }}]]></content>
       <categories>
         
+          <category> JavaScript </category>
+        
       </categories>
       <tags>
+        
+          <tag> JavaScript </tag>
         
       </tags>
       <tags></tags>
@@ -276,12 +366,16 @@
   
     <entry>
       <title><![CDATA[虚拟dom]]></title>
-      <url>/2020/05/27/%E8%99%9A%E6%8B%9FDOM/</url>
+      <url>/vue/2020/05/27/%E8%99%9A%E6%8B%9FDOM/</url>
       <content type="text"><![CDATA[  Vue 2.0中引入了虚拟DOM，初始渲染速度比Vue1.0提升了2～4倍模版转换成视图的过程  Vue.js通过编译complie将模版转换成渲染函数render，执行渲染函数就可以得到一个虚拟DOM  在对模型进行操作时，会触发对应的Dep中的Watcher对象。Watcher对象会调用对应的update来修改视图。这个过程主要是将虚拟DOM进行差异对比，然后根据结果进行对比。即在Vue的实现上，Vue将模版编译成虚拟DOM渲染函数，结合Vue的响应式系统，在状态改变时，Vue能够计算出重新渲染组件的最小代价并应用更新到真实DOM上。Virtual DOMVirtual DOM本质上是一棵以JavaScript对象(VNode节点：标签名、属性、子元素)作为基础的树，用对象属性来描述节点，对真实DOM的抽象。最终可以通过一系列操作使这棵树映射到真实环境上。Virtual DOM提高渲染速度原因在虚拟节点映射到视图的过程中，将虚拟节点与上一次渲染视图所使用的虚拟节点（oldVnode）作对比，找出真正需要更新的节点来进行DOM操作，从而避免操作其它无任何改动的DOM]]></content>
       <categories>
         
+          <category> vue </category>
+        
       </categories>
       <tags>
+        
+          <tag> vue </tag>
         
       </tags>
       <tags></tags>
@@ -289,12 +383,18 @@
   
     <entry>
       <title><![CDATA[协商缓存和强制缓存]]></title>
-      <url>/2020/05/21/%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98%E5%92%8C%E5%BC%BA%E5%88%B6%E7%BC%93%E5%AD%98/</url>
+      <url>/%E6%B5%8F%E8%A7%88%E5%99%A8/2020/05/21/%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98%E5%92%8C%E5%BC%BA%E5%88%B6%E7%BC%93%E5%AD%98/</url>
       <content type="text"><![CDATA[缓存的优点：  减少了不必要的数据传输，节省带宽  减少服务器的负担，提升网站性能  加快了客户端加载网页的速度  用户体验友好缺点：  资源如果有更改但是客户端不及时更新会造成用户获取信息滞后强制缓存cache-control:max-age={过期时间},public,immutable  cache-control表示缓存的时间  public表示可以被浏览器和代理服务器缓存  private表示代理服务器不缓存，只有客户端可以缓存资源  no-cache表示跳过设置强缓存，但是不妨碍设置协商缓存；一般如果做了强缓存，只有在强缓存失效了才走协商缓存  no-store表示不缓存，这个会让客户端、服务器都不缓存，也就没有所谓的强缓存、协商缓存  immutable表示用户刷新页面，浏览器也不会发起请求去调取服务，浏览器会直接从本地磁盘或者内存中读取缓存并返回200状态协商缓存协商缓存就是需要客户端和服务器两端进行交互在response header中设置etag和last-modified  etag:每个文件有一个hash值，改动文件hash就会变动  last-modified：文件修改的时间，精确到秒协商缓存的总结：请求资源时，把用户本地该资源的etag同时带到服务端，服务端和最新资源做对比。  如果资源没更改，返回304，浏览器读取本地缓存  如果资源有更改，返回200，返回最新的资源。HTTP 1.1中新增etag是为了解决之前只有If-Modified的缺点，主要问题如下：  1.某些文件也许会周期性更改，但是内容并不改变，仅仅改变文件的修改时间，这个时候我们并不希望客户端认为这个文件被修改了，而重新get      某些文件修改非常频繁，比如在秒以下的时间内修改N次    某些服务器不能精确地得到文件的最后修改时间]]></content>
       <categories>
         
+          <category> 浏览器 </category>
+        
       </categories>
       <tags>
+        
+          <tag> 浏览器 </tag>
+        
+          <tag> HTTP </tag>
         
       </tags>
       <tags></tags>
@@ -302,12 +402,18 @@
   
     <entry>
       <title><![CDATA[事件循环eventloop]]></title>
-      <url>/2020/05/16/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AFEventLoop/</url>
+      <url>/javascript/2020/05/16/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AFEventLoop/</url>
       <content type="text"><![CDATA[进程、线程  进程是系统分配的独立资源，是CPU资源分配的基本单位。进程是由一个或者多个线程组成  线程是进程的执行流，是CPU调度和分派的基本单位，同个进程之中的多个线程之间是共享该进程的资源。浏览器内核  浏览器是多进程的，每一个tab标签代表一个独立的进程（但是多个空白的tab标签会合并成一个进程）  浏览器内核（浏览器渲染进程）是浏览器多进程中的一种，主要分为：                  GUI渲染线程：                  负责渲染页面，解析Html、CSS构成Render树等。当页面重绘或者回流都会调起该线程。          和JS引擎线程是互斥的。当JS引擎线程在工作的时候，GUI渲染线程会被挂起，GUI更新被放入JS任务队列中，等待JS引擎线程空闲时继续执行。                            JS引擎线程：                  单线程工作，负责解析运行JS脚本。          和GUI渲染线程互斥，JS运行耗时过长会导致页面阻塞。（script标签加 def 和 async ）                            事件触发线程：                  当事件符合触发条件被触发时，该线程会把对应的事件回调函数添加到任务队列的队尾，等待JS引擎处理。                            定时器触发线程：                  浏览器定时计数器并不是由JS引擎技术的，阻塞会导致计时不准确。          开启定时器触发线程来计时并触发计时，计时完成后会被添加到任务队列中，等待JS引擎处理。                            http请求线程：                  http请求的时候会开启一条请求线程          请求完成有了返回结果后，会将请求的回调函数添加到任务队列中，等待JS引擎处理。                    事件循环机制JS事件循环机制分为浏览器和Node事件循环机制，浏览器Event Loop是HTML中定义的规范，后者由libuv库实现。JS有一个主线程（main thread）和调用栈（执行栈，即call-stack），所有的任务都会被放到调用栈中等待主线程执行。  JS调用栈：栈是一种后进先出的数据结构。当函数被调用时，会被添加到栈中的顶部，执行完成之后就从栈顶部移出该函数，直到栈内被清空。  同步任务、异步任务：同步任务会在调用栈中按照顺序排队等待主线程执行，而异步任务则会在异步有了结果后将注册的回调函数添加到任务队列（先进先出的数据结构）中等待主线程空闲，即调用栈被清空时，被调取到栈中等待主线程执行。  事件循环：当调用栈中的同步任务都执行完毕，就会按照顺序去读取任务队列中是否还有任务，有任务就将其读取到调用栈中等待执行，当调用栈再次清空时，会再次读取任务队列是否有任务，这个一直读取-调用执行-读取就形成了事件循环。JS单线程中的任务除了广分为义的同步任务和异步任务，还可分为宏任务和微任务  宏任务(macro-task）：script(全局作用域中的同步代码)、 setTimeout 、 setInterval 、 setImmediate 、 I/O 、 UI rendering微任务(micro-task)： promise 、 process.netTick 、 Object.observe 、 MutainObserver微任务队列的优先级高于宏任务队列]]></content>
       <categories>
         
+          <category> JavaScript </category>
+        
       </categories>
       <tags>
+        
+          <tag> JavaScript </tag>
+        
+          <tag> 浏览器 </tag>
         
       </tags>
       <tags></tags>
@@ -315,12 +421,16 @@
   
     <entry>
       <title><![CDATA[事件代理]]></title>
-      <url>/2020/05/08/%E4%BA%8B%E4%BB%B6%E4%BB%A3%E7%90%86/</url>
+      <url>/javascript/2020/05/08/%E4%BA%8B%E4%BB%B6%E4%BB%A3%E7%90%86/</url>
       <content type="text"><![CDATA[  事件委托就是利用事件冒泡，只指定一个事件处理程序，就可以管理某一类型的所有事件。JS事件流事件流的全过程如下图：  一个完整的事件流是从window开始，最后回到window的一个过程。  事件流被分为3个阶段：1-5 捕获阶段，5-6:目标阶段，6-10:冒泡阶段]]></content>
       <categories>
         
+          <category> JavaScript </category>
+        
       </categories>
       <tags>
+        
+          <tag> JavaScript </tag>
         
       </tags>
       <tags></tags>
@@ -328,12 +438,18 @@
   
     <entry>
       <title><![CDATA[路由守卫]]></title>
-      <url>/2020/05/06/%E8%B7%AF%E7%94%B1%E5%AE%88%E5%8D%AB/</url>
+      <url>/vue/2020/05/06/%E8%B7%AF%E7%94%B1%E5%AE%88%E5%8D%AB/</url>
       <content type="text"><![CDATA[一、全局前置守卫 beforEach  守卫方法接收三个参数  router.beforEach((to,from,next)=&gt;{    //dosomething  })    to：即将要进入的目标路由对象  from：当前导航正要离开的路由  next：执行下一步二、全局后置钩子 afterEach (少用)  全局后置钩子与全局前置守卫类似，然而和守卫不同的是，这些钩子不会接收next函数，也不会改变导航本身三、路由独享的守卫 beforeEnter  使用方法与全局守卫相同  不同的是：全局守卫可以作用于全局，路由独享守卫只作用于被设置守卫的路由四、组件内的守卫      可以在路由组件内直接定义以下路由导航守卫                            beforeRouteEnter                          在渲染该组件的对应路由被confirm调用          不能获取组件实例 this ，因为当守卫执行前，组件实例还没被创建          可以通过next获取data中的数据                    2.beforeRouteUpdate                  在当前路由改变，但是该组件被复用时调用                            3.beforeRouteLeave                  这个离开守卫通常用来禁止用户在还未保存修改前突然离开。该导航可以通过next(false)来取消          可以访问组件实例this                    ]]></content>
       <categories>
         
+          <category> vue </category>
+        
       </categories>
       <tags>
+        
+          <tag> vue </tag>
+        
+          <tag> vue-router </tag>
         
       </tags>
       <tags></tags>
@@ -341,12 +457,16 @@
   
     <entry>
       <title><![CDATA[跨域]]></title>
-      <url>/2020/04/27/%E8%B7%A8%E5%9F%9F/</url>
+      <url>/javascript/2020/04/27/%E8%B7%A8%E5%9F%9F/</url>
       <content type="text"><![CDATA[  协议、IP、端口其中一个不同都会存在跨域情况jsonp  一种轻量级的数据传输格式，允许用户传递一个callback参数给服务端，然后服务端返回数据时会将这个callback参数作为函数名来包裹着JSON数据，由客户端随意定制函数来自动处理返回数据。  本质是动态创建script标签,然后通过src属性发送跨域请求，在发送请求前必须声明一个与参数中传递的名字一致的同名函数  优点          兼容性好        缺点          只支持GET请求，而不支持POST等其它类型的HTTP请求      只支持跨域HTTP请求这种情况，而不能解决不同域的两个页面之间如何进行JavaScript调用的问题。      服务端处理  设置服务器的ResponseHeader,如Access-Control-Allow-]]></content>
       <categories>
         
+          <category> JavaScript </category>
+        
       </categories>
       <tags>
+        
+          <tag> JavaScript </tag>
         
       </tags>
       <tags></tags>
@@ -354,12 +474,16 @@
   
     <entry>
       <title><![CDATA[继承]]></title>
-      <url>/2020/04/23/%E7%BB%A7%E6%89%BF/</url>
+      <url>/javascript/2020/04/23/%E7%BB%A7%E6%89%BF/</url>
       <content type="text"><![CDATA[被继承的父类 Parentfunction Parent(name) {    this.name = name;    this.sum = function() {        console.log(this.name)    }}Parent.prototype.age = 10;原型链继承      实现：新实例的原型等于父类的实例        继承的属性：实例的构造函数的属性、父类构造函数的属性、父类原型的属性    主要缺点：所有新实例都会共享父类实例的属性function Child() {    this.name = "jinus";}Child.prototype = new Person();构造函数继承  实现：用 call 、 apply 将父类构造函数引入子类函数，即在子类函数中做了父类函数的自执行  继承的属性：父类构造函数的属性，可以传参数  主要缺点：无法继承父类原型的属性、无法实现构造函数的复用、每个新实例都有父类构造函数的副本function Child(name) {    Parent.call(this, name);}组合继承  组合原型链继承和构造函数继承function Child(name) {    Parent.call(this, name)}Child.prototype = new Parent();原型式继承  用一个函数包装一个对象，然后返回这个函数的调用，同 object.create() 的原理function Child(obj) {    function F() {};    F.prototype = obj;    return new Fn();}var P = new Parent();var C = Child(P);寄生式继承  包装原型式继承function Child(obj) {    function F() {};    F.prototype = obj;    return new Fn();}function Wrapper(obj) {    var sub = Child(obj);    return sub;}var P = new Parent();var C = Wrapper(P)寄生组合式继承  结合上述方式function Mid(obj) {    function F() {};    F.prototype = obj;    return new F()}var M = Mid(Parent.prototype);function Child() {    Person.call(this);}Child.prototype = M;M.constructor = Child;]]></content>
       <categories>
         
+          <category> JavaScript </category>
+        
       </categories>
       <tags>
+        
+          <tag> JavaScript </tag>
         
       </tags>
       <tags></tags>
@@ -367,12 +491,16 @@
   
     <entry>
       <title><![CDATA[对象拷贝与比较]]></title>
-      <url>/2020/01/12/%E5%AF%B9%E8%B1%A1%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%AF%94%E8%BE%83/</url>
+      <url>/javascript/2020/01/12/%E5%AF%B9%E8%B1%A1%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%AF%94%E8%BE%83/</url>
       <content type="text"><![CDATA[简单来说深拷贝是拷贝储存在栈中的对象，而浅拷贝是从内存中拷贝。基本数据类型存在内存中，另一种引用数据类型如数组和对象是存放在栈中。常用的深拷贝方法：      Jquery 方法, $.extend(targetObj,originObj)        Object.assign({targetObj,originObj})对象深拷贝的pollyfill示例  Object.ptototype.clone = function(obj) {    if (obj === null) {        return null    }    if (typeof obj !== "object") {        return obj;    }    if (obj.constructor === Date) {        return new Date(obj);    }    var newObj = new obj.constructor();    for (var key in obj) {        if (obj.hasOwnProperty(key)) {            var val = obj[key];            newobj[key] = typeof val === "object" ? arguments.callee(val) : val;        }    }    return neeObj;}]]></content>
       <categories>
         
+          <category> JavaScript </category>
+        
       </categories>
       <tags>
+        
+          <tag> JavaScript </tag>
         
       </tags>
       <tags></tags>
@@ -380,12 +508,16 @@
   
     <entry>
       <title><![CDATA[Web安全]]></title>
-      <url>/2019/12/07/web%E5%AE%89%E5%85%A8/</url>
+      <url>/%E6%B5%8F%E8%A7%88%E5%99%A8/2019/12/07/web%E5%AE%89%E5%85%A8/</url>
       <content type="text"><![CDATA[sql注入  后端依赖前端返回的参数直接拼接sql进行查询数据，导致sql不正常的拼接，造成的安全问题  解决方案：层层校验前端传递的信息XSS（Cross Site Scripting，跨站脚本攻击）  注入js代码，常见于表单的提交，伪造上报数据  解决方案：设置 cookie 的 http-only , 对输入的内容进行校对、转义、替换等；建立白名单，如          设置HTTP Header的 Content-Security-Policy      设置 meta 标签的方式 &lt;meta http-equiv="Content-Security-Policy"&gt;      CSRF（Cross-site request forgery，跨站请求伪造）  借助当前操作这的权限来完成某个操作  解决方案          输入校对      GET 请求改为 POST 请求, GET 请求只负责读操作      验证document.refer，判断网页上的页面来源      token时效性机制      验证网络ip      网页嵌套攻击  广告嵌入，诱导或欺骗用户点击  解决方案          header设置不允许嵌套      判断当前界面是否为顶层窗口      中间人攻击  请求被拦截，然后可能被改写，或者被抽取重要信息等  解决方案：升级HTTPS方案]]></content>
       <categories>
         
+          <category> 浏览器 </category>
+        
       </categories>
       <tags>
+        
+          <tag> 浏览器 </tag>
         
       </tags>
       <tags></tags>
@@ -393,12 +525,18 @@
   
     <entry>
       <title><![CDATA[Vuex]]></title>
-      <url>/2019/12/03/vuex/</url>
+      <url>/vue/2019/12/03/vuex/</url>
       <content type="text"><![CDATA[vuex原理vuex实现了一个单向数据流，在全局拥有一个 state 存放数据，当组件要更改 state 中的数据时，必须通过 Mutation 进行， Mutation 同时提供了订阅者模式供外部插件调用获取 state 数据的更新。而当所有异步操作或批量的同步操作则需要走 Action ，但 Action 也是无法直接修改 State ，同样需要通过 Mutation 来修改 State 的数据。vuex中的模块介绍  vue components ：vue组件。HTML页面上，负责接收用户操作等交互行为，执行 dispatch 方法触发对应 action 进行回应。  dispatch ：操作行为触发方法，是唯一能执行 action 的方法。  actions ：操作行为处理模块，通过 $store.dispatch('action名称',data) 来触发。然后由 commit 来触发 mutation 的调用，间接更新 state 。负责处理vue components接收到的所有交互行为：包含同步/异步操作。且支持多个同名方法，按照注册的顺序依次触发。该模块提供了Promise的封装，以支持 action 的链式触发。  commit ：状态改变提交操作方法。对 mutation 进行提交，是唯一能执行 mutation 的方法。  mutations : 状态改变操作方法。是vuex修改 state 的唯一推荐方法。该方法只能进行同步操作，且方法名只能全局唯一。  state ：页面状态管理容器对象。集中存储vue components中data对象的零散数据，全局唯一，以进行统一的状态管理。页面显示所需的数据从该对象中进行读取，利用vue的细粒度数据响应机制来进行高效的状态更新。  getters ： state 对象读取方法。]]></content>
       <categories>
         
+          <category> vue </category>
+        
       </categories>
       <tags>
+        
+          <tag> vuex </tag>
+        
+          <tag> vue </tag>
         
       </tags>
       <tags></tags>
@@ -406,12 +544,18 @@
   
     <entry>
       <title><![CDATA[Vue组件间通信的六种方式]]></title>
-      <url>/2019/11/20/vue%E7%BB%84%E4%BB%B6%E9%97%B4%E9%80%9A%E4%BF%A1%E7%9A%84%E5%85%AD%E7%A7%8D%E6%96%B9%E5%BC%8F/</url>
+      <url>/vue/2019/11/20/vue%E7%BB%84%E4%BB%B6%E9%97%B4%E9%80%9A%E4%BF%A1%E7%9A%84%E5%85%AD%E7%A7%8D%E6%96%B9%E5%BC%8F/</url>
       <content type="text"><![CDATA[组件是vue最强大的功能之一，但组件实例的作用域是相互独立的，所以不同组件之间的数据无法相互引用。针对不同的场景应该选择不同的方案实现组件之间的通信props/($emit和v-on)  父组件P通过``props的方式向子组件C传递，C to P 通过在C组件中$emit,P组件中v-on`的方式实现。$emit/$on  通过一个空的vue实例作为中央事件总线（事件中心），用它来触发事件和监听事件，实现任何组件间的通信。包括父子、兄弟、跨级。vuex详见vuex介绍$attrs/$listeners  $attrs:包含了父作用域中不被prop所识别（且获取）的特性绑定（class和style除外）。当一个组件没有声明任何prop时，这里会包含所有父作用域的绑定，并且可以通过v-bind="$attrs"传入内部组件。通常配合interitAttrs选项一起使用。  $listeners:包含了父作用域中的（不含.native修饰器）的v-on事件监听器。它可以通过v-on="$liteners"传入内部组件。provide/inject这对选项需要一起使用，以允许一个祖先组件向其所有子孙后代注入一个依赖，无论层次有多深，并在其上下游关系成立的时间里始终生效。一言以蔽之：祖先组件中通过provide来提供变量。然后在子孙组件中通过inject来注入变量。这主要解决了跨级组件间的通信问题，不过使用场景主要是子组件获取上级组件的状态，跨级组件间建立了一种主动提供与依赖注入的关系。provide和inject并不是响应式的，如果传入了一个可监听的对象，那么其对象的属性还是可响应的。可以通过vue.observable实现优化响应式#parent/$children与ref  ref:如果在普通的DOM元素上使用，引用指向的就是DOM元素；如果用在子组件上，引用就指向组件实例  $parent/$children:访问父/子实例这种无法实现跨级或兄弟组件进行通信]]></content>
       <categories>
         
+          <category> vue </category>
+        
       </categories>
       <tags>
+        
+          <tag> vuex </tag>
+        
+          <tag> vue </tag>
         
       </tags>
       <tags></tags>
@@ -419,12 +563,16 @@
   
     <entry>
       <title><![CDATA[Vue生命周期]]></title>
-      <url>/2019/11/15/vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</url>
+      <url>/vue/2019/11/15/vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</url>
       <content type="text"><![CDATA[生命周期图示vue的生命周期里有8个钩子函数分别是  beforeCreate()  created()  beforeMount()  mounted()  beforeUpdate()  updated()  beforeDestroy()  destroyed()]]></content>
       <categories>
         
+          <category> vue </category>
+        
       </categories>
       <tags>
+        
+          <tag> vue </tag>
         
       </tags>
       <tags></tags>
@@ -432,12 +580,16 @@
   
     <entry>
       <title><![CDATA[闭包]]></title>
-      <url>/2019/10/20/%E9%97%AD%E5%8C%85/</url>
+      <url>/javascript/2019/10/20/%E9%97%AD%E5%8C%85/</url>
       <content type="text"><![CDATA[闭包从函数A里返回函数B，函数B使用函数A中的变量，会引起内存泄露问题]]></content>
       <categories>
         
+          <category> JavaScript </category>
+        
       </categories>
       <tags>
+        
+          <tag> JavaScript </tag>
         
       </tags>
       <tags></tags>
@@ -445,12 +597,16 @@
   
     <entry>
       <title><![CDATA[如何编写油猴脚本]]></title>
-      <url>/2019/10/09/%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99%E6%B2%B9%E7%8C%B4%E8%84%9A%E6%9C%AC/</url>
+      <url>/javascript/2019/10/09/%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99%E6%B2%B9%E7%8C%B4%E8%84%9A%E6%9C%AC/</url>
       <content type="text"><![CDATA[油猴（Tampermonkey）是一个用户脚本管理器。所谓的用户脚本实际上就是一段代码，它能够优化用户网页浏览体验，安装之后，脚本能为网站添加新的功能或者使网站的界面更加易用。]]></content>
       <categories>
         
+          <category> JavaScript </category>
+        
       </categories>
       <tags>
+        
+          <tag> 工具 </tag>
         
       </tags>
       <tags></tags>
@@ -458,12 +614,16 @@
   
     <entry>
       <title><![CDATA[Transform引发的stacking context问题]]></title>
-      <url>/2019/09/29/transform%E5%BC%95%E5%8F%91%E7%9A%84stacking-context%E9%97%AE%E9%A2%98/</url>
+      <url>/css/2019/09/29/transform%E5%BC%95%E5%8F%91%E7%9A%84stacking-context%E9%97%AE%E9%A2%98/</url>
       <content type="text"><![CDATA[transform会为DOM创建一个新的层级]]></content>
       <categories>
         
+          <category> CSS </category>
+        
       </categories>
       <tags>
+        
+          <tag> CSS </tag>
         
       </tags>
       <tags></tags>
@@ -471,38 +631,16 @@
   
     <entry>
       <title><![CDATA[前端题集]]></title>
-      <url>/2019/09/26/%E5%89%8D%E7%AB%AF%E9%A2%98%E9%9B%86/</url>
+      <url>/%E9%9D%A2%E8%AF%95/2019/09/26/%E5%89%8D%E7%AB%AF%E9%A2%98%E9%9B%86/</url>
       <content type="text"><![CDATA[HTML篇  DOCTYPE作用？严格模式与混杂模式如何区分？它们有何意义？  行内元素有哪些？块级元素有哪些？空（void）元素有哪些？  页面导入样式时，使用link和@import有什么区别？  介绍一下你对浏览器内核的理解？  常见的浏览器内核有哪些？  html5有哪些新特性？移除了哪些元素？如何处理HTML5新标签的浏览器兼容问题？如何区分HTML和HTML5？  简述下对HTML语义化的理解？  HTML5的离线存储怎么使用、工作原理解释下？  浏览器是怎么对HTML5的离线储存资源进行管理和加载的？  描述下cookie、sessionStorage、localStorage的区别？  iframe有哪些缺点？  label的作用是什么？是怎么使用的？  如何实现浏览器内多个标签页之间的通信？  websocket如何兼容低版本浏览器？  页面可见性（Page Visibility）API可以有哪些用途？  如何在页面上实现一个圆形的可点击区域？  实现不适用border画出1px高的线，在不同浏览器的Quirksmode和CSSCompat模式下都能保持统一效果？  网页验证码是干嘛的？是为了解决什么安全问题？  tite与h1的区别、b与strong的区别、i与em的区别  li 和 li之间看不见的空白间隔是什么原因引起的？有什么解决办法？CSS篇  介绍下标准的CSS的盒子模型？与低版本IE的盒子模型有什么不同？  CSS选择符有哪些？哪些属性可以继承？  CSS优先级算法如何计算？  CSS3新增伪类有哪些？  如何居中div？如何居中一个浮动元素？如何让绝对定位的div居中？  display有哪些值？说明它们的作用？  position的值relative和absolute定位原点是？  CSS3有哪些新特性？  解释下CSS3的flexBox（弹性盒布局模型），以及其适用场景？  用CSS创建一个三角形的原理是什么？  absolute的containg block计算方式与正常流有什么不同？  CSS里的visibility属性有个collapse属性值是干嘛用的？在不同浏览器下使用有什么区别？  position跟display、margin collapse、overflow、float这些特性相互叠加后会怎样？  对BFC规范（块级格式上下文：block formatting context）的相互理解？  CSS权重优先级是如何计算的？  请解释下为什么会出现浮动盒什么时候需要清除浮动？以及有哪些清除浮动的方式？  CSS优化提高性能的方法有哪些？  margin和padding分别适合什么场景使用？  抽离样式模块怎么写，说出思路。  元素竖向的百分比设定是相对于容器的高度吗？  全屏滚动的原理是什么？用到了CSS的哪些属性？  什么是响应式设计？响应式设计的基本原理是什么？如何兼容低版本的IE？  视差滚动效果，如何给每页做不同的动画？  ::before和	:after`中双冒号和单冒号有什么区别？解释下这两个伪元素的作用。  如何修改chrome记住密码后自动填充表单的黄色背景？  谈谈对line-height是如何理解的？  设置元素浮动后，该元素的display的值是多少？  怎么让chrome支持小于12px的文字？  让页面里的字体变清晰，变细，用CSS怎么做？  font-style属性可以让它赋值为oblique,这个属性值的含义是什么？  display:inline-block什么时候会显示间隙？  overflow:scroll时不能平滑滚动的问题怎么处理？  有一个高度自适应的div，里面有两个div，一个高度100px，如何让另一个填满剩下的高度？  png、jpg、gif、webp这些图片格式解释下，分别什么时候使用？  style标签写在body后与body前有什么区别？浏览器  浏览器是怎样解析CSS选择器的？  在网页中应该使用奇数还是偶数的字体？请说出原因。兼容性问题  常见的浏览器兼容性有哪些？原因以及解决方法是什么？常用的hack的技巧？  为什么要初始化CSS样式？JavaScript篇  介绍下JavaScript的基本数据类型。  说说写JavaScript的基本规范。  解释JavaScript原型、原型链的含义和特点。  JavaScript有几种类型的值？以及其内存图是怎样的？  JavaScript如何实现继承？  JavaScript创建对象的几种方式？  JavaScript作用链域？  谈谈对this对象的理解  eval是做什么的？  什么是window对象？什么是document对象？  null、undefined的区别  写一个通用的事件侦听器函数  ["1","2","3"].map(parseInt)的值是多少  关于事件，IE与火狐的事件机制有什么区别？如何阻止冒泡？  什么是闭包（closure），其适用场景是什么？  JavaScript代码中的use strict是什么意思？使用它区别是什么？  如何判断一个对象是否属于某个类？  new操作符具体干了什么？  JavaScript中，有一个函数，执行对象查找时，永远不会去查找原型，这个函数是什么？  谈谈JSON  [].forEach.call($$("*"),function(a){a.style.outline="1px solid #"+(~~(Math.random()*(1&lt;&lt;24))).toString(16)})能解释下这段代码的意思吗？  JS延迟加载的方式有哪些？  Ajax是什么？如何创建一个Ajax？  同步和异步的区别？  如何解决跨域问题？  页面编码和被请求的资源编码如果不一致如何处理？  模块化开发怎么做？  AMD(Modules/Asynchronous-Definition)、CMD(Common Module Definition)规范区别？  requireJS的核心原理是什么？（如何动态加载的？如何避免多次加载的？如何缓存的？）  谈一谈对ES6的了解  ES6怎么写class么，为什么会出现class这种东西？  异步加载的方式有哪些？  document.write和innerHTML的区别？  DOM操作-怎样添加、移除、移动、复制、创建和查找节点？  .call()和.apply()的含义和区别？用原生JS实现这两个方法。  数组和对象有哪些原生方法？列举一下？  JS怎么实现一个类？怎么实例化这个类？  JavaScript中的作用域与变量声明提升？  如何编写高性能的JAvaScript？  哪些操作会造成内存泄漏？  谈谈jQuery大致的实现原理。  JQuery.fn的init方法返回的this指的是什么对象？为什么要返回this？  jQuery中如何将数组转换为json字符串，然后再转换回来？  jQuery的属性拷贝（extend）的实现原理是什么？如何实现深拷贝？  jquery.extend和jquery.fn.extend的区别？  jQuery的队列是如何实现的？队列可以用在哪些地方？  谈一下jQuery中的bind()、live()、delegrate()、on()的区别。  jQuery一个对象可以同时绑定多个事件，这是如何实现的？  是否知道自定义事件。jQuery里的fire函数是什么意思，什么时候用？  jQuery是通过哪个方法和Sizzle选择器结合的？  针对jQuery性能的优化方法？  实现一个页面操作不会操作整页刷新的网站，并且能在浏览器前进、后退时正确响应。  如何判断当前脚本运行在浏览器还是node环境中？  把script标签放在body标签封闭之前和之后有什么区别？浏览器会如何解析它们？  解释JavaScript中的作用域与变量声明提升？  解释下Backbone的MVC实现方式  什么是前端路由？什么时候适合使用前端路由？前端路由有哪些优点和缺点？  知道什么是webkit么？  用JS实现千位分隔符？  检测浏览器版本有哪些方式？  假设一个DOM同时绑定两个点击事件，一个用捕获，一个用冒泡。那么会执行几次事件？执行顺序是怎样的？]]></content>
       <categories>
         
-      </categories>
-      <tags>
-        
-      </tags>
-      <tags></tags>
-    </entry>
-  
-    <entry>
-      <title><![CDATA[初探rollup]]></title>
-      <url>/2019/09/13/%E5%88%9D%E6%8E%A2Rollup/</url>
-      <content type="text"><![CDATA[  ora包用于显示加载中的效果  rimraf包的作用：以包的形式包装rm -rf命令，用来删除文件和文件夹  chalk包的作用：修改控制台中字符的样式（加粗/字体颜色/背景颜色）]]></content>
-      <categories>
+          <category> 面试 </category>
         
       </categories>
       <tags>
         
-      </tags>
-      <tags></tags>
-    </entry>
-  
-    <entry>
-      <title><![CDATA[Diy瀑布流插件]]></title>
-      <url>/2019/09/12/DIY%E7%80%91%E5%B8%83%E6%B5%81%E6%8F%92%E4%BB%B6/</url>
-      <content type="text"><![CDATA[瀑布流布局在网页布局中非常常见]]></content>
-      <categories>
-        
-      </categories>
-      <tags>
+          <tag> 面试 </tag>
         
       </tags>
       <tags></tags>
@@ -510,12 +648,16 @@
   
     <entry>
       <title><![CDATA[Zoom和scale]]></title>
-      <url>/2019/08/26/Zoom%E5%92%8CScale/</url>
+      <url>/css/2019/08/26/Zoom%E5%92%8CScale/</url>
       <content type="text"><![CDATA[zoom和scale都可以用于DOM元素在视觉显示效果上放大或缩小。zoom当设置 1.0 或 100% 时表示不缩放。更大的值放大，更小的值缩小取值  auto 根据viewport来既定当前标签的缩放  &lt;number&gt; 必须是一个非负数，1表示没有缩放，大于1表示放大的倍数，小于1表示缩小的倍数  &lt;percenttage&gt; 必须是一个非负的百分比，以100%为基础进行缩放scalescale 可用于独立地指定css属性 transform 缩放的比例取值  单一数值 指定了一个缩放系数，同时作用于X轴和Y轴让该元素进行缩放  两个长度/百分比值 分别指定了2D比例的X轴和Y轴的缩放系数  三个长度/百分比值 分别指定了3D比例的X轴、Y轴和Z轴的缩放系数  none 指定不进行缩放兼容性]]></content>
       <categories>
         
+          <category> CSS </category>
+        
       </categories>
       <tags>
+        
+          <tag> CSS </tag>
         
       </tags>
       <tags></tags>
@@ -523,12 +665,16 @@
   
     <entry>
       <title><![CDATA[浏览器原理]]></title>
-      <url>/2019/08/05/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8E%9F%E7%90%86/</url>
+      <url>/%E6%B5%8F%E8%A7%88%E5%99%A8/2019/08/05/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8E%9F%E7%90%86/</url>
       <content type="text"><![CDATA[宏观视角下的浏览器Chrome架构  仅打开了1个页面，为什么有4个进程？TCP协议  如何保证页面文件能被完整送达浏览器？HTTP请求流程  为什么很多站点第二次打开速度很快？导航流程  从输入URL到页面展示，这中间发生了什么？渲染流程  HTML、CSS、JS文件是如何变成页面的？浏览器中的JavaScript执行机制变量提升  JavaScript代码是按顺序执行的吗？调用栈  为什么JavaScript代码会出现栈溢出？块级作用域  var 缺陷以及为什么要引入let和const？词法环境和闭包  代码中出现相同的变量，JavaScript引擎是如何选择？This  从JavaScript执行上下文的视角讲清楚thisV8工作原理栈空间和堆空间  数据是如何存储的？垃圾回收  垃圾数据是如何自动回收的编译器和解释器  V8是如何执行一段JavaScript代码浏览器中的页面循环系统消息队列和事件循环  页面是怎么活起来的WebAPI  setTimeout是如何实现的  XMLHttpRequest是怎么实现的宏任务和微任务  不是所有的任务都是一个待遇Promise  使用Promise，告别回调函数async/await  使用同步的方法写异步代码浏览器中的页面页面性能分析  利用Chrome做web性能分析DOM树  JavaScript是如何影响DOM树构建的样式选择  渲染引擎是如何为DOM节点选择样式属性的分层和合成机制  为什么CSS动画比JavaScript动画高效页面性能  如何系统地优化页面虚拟DOM  虚拟DOM和实际的DOM有何不同渐进式网页应用（PWA）  它究竟解决了Web应用的哪些问题WebComponent  像搭积木一样构建web应用浏览器中的网络HTTP/1  HTTP性能优化HTTP/2  如何提升网络速度HTTP3/3  甩掉TCP、TLS的包袱，构建高效网络浏览器安全同源策略  为什么XMLHttpRequest不能跨域请求资源跨站脚本攻击（XSS）  为什么Cookie中有HttpOnly属性跨站点请求伪造（CSRF）  Chrome为什么要让iframe运行在单独的渲染进程中？沙盒  页面和系统之间的隔离墙HTTPS  让数据传输更安全]]></content>
       <categories>
         
+          <category> 浏览器 </category>
+        
       </categories>
       <tags>
+        
+          <tag> 浏览器 </tag>
         
       </tags>
       <tags></tags>
@@ -536,12 +682,16 @@
   
     <entry>
       <title><![CDATA[Http]]></title>
-      <url>/2019/05/07/HTTP/</url>
-      <content type="text"><![CDATA[内容协商含义：是指客户端和服务器端就响应的资源内容进行交涉，然后提供给客户端最为合适的资源。基准：内容协商会以响应资源的语言、字符集、编码方式等（Accept、Accept-Charset、Accept-Encoding、Accept-Language、Content-Language）作为判断的基准。类型：  服务器驱动协商：服务器以请求的首部字段为参考，在服务器端自动处理。  客户端驱动协商：用户从浏览器显示的可选项列表中手动选择或利用JS选择。  透明协商：上述两种类型的结合。HTTP 状态码状态码状态码的职责是表示客户端HTTP请求的返回结果、标记服务器端的处理是否正常、通知出现的错误等。类别（常用14个，REC2616上40个，附加一起60多个）            状态码      类别      说明                  1XX      信息性      接收的请求正在处理              2XX      成功      请求正常处理完毕              3XX      重定向      需要进行附加操作以完成请求              4XX      客户端错误      服务器无法处理请求              5XX      服务器错误      服务器处理请求出错      2XX            状态码      含义                  200   OK      服务器端正常处理客户端的请求              204   No content      请求被成功处理，但是不含也不允许返回任何实体的主体              206   Partial Content      客户端进行了范围请求，服务器正常处理，响应报文包含由Content-Range指定范围的实体内容      3XX            状态码      含义                  301 Move Permanently      永久性重定向，表示请求的资源已被分配新的URI              302 Found      临时性重定向，已移动的资源对应的URI将来可能还会发生改变              303 See Other      明确表示客户端应采用GET方式获取资源              304 Not Modify      表示客户端发送附带条件的请求，但未满足条件。不包含任何响应的主体              307 Temporary Redirect      临时重定向，遵照浏览器标准，同302      4XX            状态码      含义                  400 Bad Request      请求报文中存在语法错误              401 Unauthorized      表示发送的请求需要通过HTTP认证的认证信息              403 Forbidden      表明队请求资源的访问被服务器拒绝了              404 Not Found      表明服务器上无法找到请求的资源      5XX            状态      含义                  500 Internal Server Error      表明服务器在执行请求时发生错误              503 Service Unavailable      表明服务器暂时处于超负载或正在停机维护      Web服务器通信数据转发程序      代理    作用：接收由客户端发送的请求并转发给服务器，同时也接收服务器返回的响应并转发给客户端。    转发时需要附加Via首部字段以标记经过的主机信息。    优点：利用缓存技术减少网络带宽的流量，阻止内部针对特定网站的访问控制、以获取访问日志等。    l两种基准分类：          是否使用缓存（缓存代理和非缓存代理）      是否会修改报文（透明代理和非透明代理）            网关        隧道  ]]></content>
+      <url>/http/2019/05/07/HTTP/</url>
+      <content type="text"><![CDATA[内容协商含义：是指客户端和服务器端就响应的资源内容进行交涉，然后提供给客户端最为合适的资源。基准：内容协商会以响应资源的语言、字符集、编码方式等（ Accept 、 Accept-Charset 、 Accept-Encoding 、 Accept-Language 、 Content-Language ）作为判断的基准。类型：  服务器驱动协商：服务器以请求的首部字段为参考，在服务器端自动处理。  客户端驱动协商：用户从浏览器显示的可选项列表中手动选择或利用JS选择。  透明协商：上述两种类型的结合。HTTP 状态码状态码状态码的职责是表示客户端HTTP请求的返回结果、标记服务器端的处理是否正常、通知出现的错误等。类别（常用14个，REC2616上40个，附加一起60多个）            状态码      类别      说明                  1XX      信息性      接收的请求正在处理              2XX      成功      请求正常处理完毕              3XX      重定向      需要进行附加操作以完成请求              4XX      客户端错误      服务器无法处理请求              5XX      服务器错误      服务器处理请求出错      2XX            状态码      含义                  200   OK      服务器端正常处理客户端的请求              204   No content      请求被成功处理，但是不含也不允许返回任何实体的主体              206   Partial Content      客户端进行了范围请求，服务器正常处理，响应报文包含由Content-Range指定范围的实体内容      3XX            状态码      含义                  301 Move Permanently      永久性重定向，表示请求的资源已被分配新的URI              302 Found      临时性重定向，已移动的资源对应的URI将来可能还会发生改变              303 See Other      明确表示客户端应采用GET方式获取资源              304 Not Modify      表示客户端发送附带条件的请求，但未满足条件。不包含任何响应的主体              307 Temporary Redirect      临时重定向，遵照浏览器标准，同302      4XX            状态码      含义                  400 Bad Request      请求报文中存在语法错误              401 Unauthorized      表示发送的请求需要通过HTTP认证的认证信息              403 Forbidden      表明队请求资源的访问被服务器拒绝了              404 Not Found      表明服务器上无法找到请求的资源      5XX            状态      含义                  500 Internal Server Error      表明服务器在执行请求时发生错误              503 Service Unavailable      表明服务器暂时处于超负载或正在停机维护      Web服务器通信数据转发程序      代理    作用：接收由客户端发送的请求并转发给服务器，同时也接收服务器返回的响应并转发给客户端。    转发时需要附加Via首部字段以标记经过的主机信息。    优点：利用缓存技术减少网络带宽的流量，阻止内部针对特定网站的访问控制、以获取访问日志等。    两种基准分类：          是否使用缓存（缓存代理和非缓存代理）      是否会修改报文（透明代理和非透明代理）            网关        隧道  ]]></content>
       <categories>
+        
+          <category> HTTP </category>
         
       </categories>
       <tags>
+        
+          <tag> HTTP </tag>
         
       </tags>
       <tags></tags>
@@ -549,12 +699,16 @@
   
     <entry>
       <title><![CDATA[Linux]]></title>
-      <url>/2019/03/11/Linux/</url>
-      <content type="text"><![CDATA[zombie 僵死的进程命令      grep [-c , -f file, -i -n , -A num , -B num]  字符串  文件名 : 在指定文件中查找字符串        rm [-r, -f, -i] 文件或目录：删除文件或目录        touch 文件名：创建文件        ln：在文件或目录之间创建链接，默认产生硬链接          硬链接：是指通过文件的inode来进行链接。在Linux的文件系统中，保存在磁盘的所有类型的文件都会分配一个编号，这个编号称为inode号（Inode Index）。多个文件指向同一个inode在Linux系统中是允许的，这就是所谓的硬链接。硬链接的作用是允许一个文件拥有多个有效的路径名，这样用户就可以对一些重要文件建立硬链接，以防止误删除操作。因为对应该文件的inode有一个以上的链接，所以只删除一个链接并不影像inode本身和其他链接，只有当最后一个链接被删除后，文件的数据块及目录的链接才会释放，也就是说，此时文件才会被真正删除。      符号链接：也叫软链接，软链接类似于Windows中的快捷方式，因此软链接是一个指向真正的文件或者目录位置的符号连接。            file [-b, -L, -z, -i] 文件名：显示文件的类型，长度为0的文件识别为空文件        cp [-a, -r, -d, -p, i] 源文件或目录 目标文件或目录        find：在指定的路径下查找指定的文件        split：用于分割文档，将一个文件分成数个        mv：移动文件  ]]></content>
+      <url>/linux/2019/03/11/Linux/</url>
+      <content type="text"><![CDATA[zombie 僵死的进程命令      grep [-c , -f file, -i -n , -A num , -B num]  字符串  文件名 : 在指定文件中查找字符串        rm [-r, -f, -i] 文件或目录：删除文件或目录        touch 文件名：创建文件        ln：在文件或目录之间创建链接，默认产生硬链接  硬链接是指通过文件的inode来进行链接。在Linux的文件系统中，保存在磁盘的所有类型的文件都会分配一个编号，这个编号称为inode号（Inode Index）。多个文件指向同一个inode在Linux系统中是允许的，这就是所谓的硬链接。硬链接的作用是允许一个文件拥有多个有效的路径名，这样用户就可以对一些重要文件建立硬链接，以防止误删除操作。因为对应该文件的inode有一个以上的链接，所以只删除一个链接并不影像inode本身和其他链接，只有当最后一个链接被删除后，文件的数据块及目录的链接才会释放，也就是说，此时文件才会被真正删除。符号链接也叫软链接，软链接类似于Windows中的快捷方式，因此软链接是一个指向真正的文件或者目录位置的符号连接。      file [-b, -L, -z, -i] 文件名：显示文件的类型，长度为0的文件识别为空文件        cp [-a, -r, -d, -p, i] 源文件或目录 目标文件或目录        find：在指定的路径下查找指定的文件        split：用于分割文档，将一个文件分成数个        mv：移动文件  ]]></content>
       <categories>
+        
+          <category> Linux </category>
         
       </categories>
       <tags>
+        
+          <tag> Linux </tag>
         
       </tags>
       <tags></tags>
@@ -562,12 +716,16 @@
   
     <entry>
       <title><![CDATA[小程序笔记]]></title>
-      <url>/2018/11/07/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%AC%94%E8%AE%B0/</url>
-      <content type="text"><![CDATA[文件类型小程序包含一个描述整体程序的app和多个描述各自页面的page.json 配置文件.wxml 模板文件.wxss  样式文件.js        脚本逻辑文件app.json的pages字段包含小程序的所有页面路径数组的第一项表示小程序的初始页面即首页]]></content>
+      <url>/%E5%B0%8F%E7%A8%8B%E5%BA%8F/2018/11/07/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%AC%94%E8%AE%B0/</url>
+      <content type="text"><![CDATA[文件类型介绍小程序包含一个描述整体程序的app和多个描述各自页面的 page.json 配置文件.wxml 模板文件.wxss 样式文件.js 脚本逻辑文件app.json 的 pages 字段包含小程序的所有页面路径数组的第一项表示小程序的初始页面即首页]]></content>
       <categories>
+        
+          <category> 小程序 </category>
         
       </categories>
       <tags>
+        
+          <tag> 小程序 </tag>
         
       </tags>
       <tags></tags>
@@ -674,7 +832,7 @@
     <entry>
       <title><![CDATA[Js常用的技术]]></title>
       <url>/javascript/2018/05/20/JS%E5%B8%B8%E7%94%A8%E7%9A%84%E6%8A%80%E6%9C%AF/</url>
-      <content type="text"><![CDATA[1.模块化曾看到某大牛说：模块化和组件化是前端开发的一大趋势。所谓的模块化一般是指为了实现一个特定的功能而将所有的代码（对象）封装成一个模块。而AMD就是requireJS为指定模块规范化的一个产出，它具有异步加载、依赖前置、提前执行的特点。CMD则是针对淘宝技术团队开发sea.js提出的一个规范，它具有同步加载、依赖就近、延迟执行的特点。commonJS在后端Node.js就比较常见，以require(module路径)常见、2.数据推送websocket结合socket.io开发在实时通讯方面是非常强大，可以详见前面的博客内容。即基于Node.js的聊天室3.高级函数      惰性函数主要用于第一次调用函数后第二次调用才生效，可以类比XMLHttpRequest，先判断浏览器对其的兼容性，再赋值，此后调用父函数即访问新的值，特点是：一次更改，此后生效。        函数柯里化：主要是合并参数        级联函数：类比jQuery的链式调用。  4.高级技巧      变量作用域以及闭包，这部分主要是理解变量的声明提升，js预处理环境和执行环境。        this：可以使用apply和call方法改变this的指向，apply和call的唯一区别是传参的形式不同。        传递类型分为按值传递和按引用传递。侧重理解按引用传递，包括数组和对象。  5.面向切面编程Aspect Oriented Programming(AOP），即面向切面编程，主要实现的目的是针对业务处理过程中的切面进行提取，它所面对的是处理过程中的某个步骤或阶段，以获得逻辑过程中各部分之间的低耦合性的隔离效果。6.JS多线程记得浏览器有个GUI线程]]></content>
+      <content type="text"><![CDATA[1. 模块化曾看到某大牛说：模块化和组件化是前端开发的一大趋势。所谓的模块化一般是指为了实现一个特定的功能而将所有的代码（对象）封装成一个模块。而 AMD 就是 requireJS 为指定模块规范化的一个产出，它具有异步加载、依赖前置、提前执行的特点。 CMD 则是针对淘宝技术团队开发 sea.js 提出的一个规范，它具有同步加载、依赖就近、延迟执行的特点。 commonJS 在后端 Node.js 就比较常见，以 require(module路径) 常见、2. 数据推送websocket 结合 socket.io 开发在实时通讯方面是非常强大，可以详见前面的博客内容。即基于 Node.js 的聊天室3. 高级函数      惰性函数主要用于第一次调用函数后第二次调用才生效，可以类比 XMLHttpRequest ，先判断浏览器对其的兼容性，再赋值，此后调用父函数即访问新的值，特点是：一次更改，此后生效。        函数柯里化：主要是合并参数        级联函数：类比 jQuery 的链式调用。  4. 高级技巧      变量作用域以及闭包，这部分主要是理解变量的声明提升，js预处理环境和执行环境。        this ：可以使用 apply 和 call 方法改变 this 的指向， apply 和 call 的唯一区别是传参的形式不同。        传递类型分为按值传递和按引用传递。侧重理解按引用传递，包括数组和对象。  5. 面向切面编程Aspect Oriented Programming(AOP），即面向切面编程，主要实现的目的是针对业务处理过程中的切面进行提取，它所面对的是处理过程中的某个步骤或阶段，以获得逻辑过程中各部分之间的低耦合性的隔离效果。6. JS多线程记得浏览器有个GUI线程]]></content>
       <categories>
         
           <category> JavaScript </category>
@@ -689,7 +847,7 @@
     <entry>
       <title><![CDATA[高性能javascript总结]]></title>
       <url>/javascript/2018/05/12/%E9%AB%98%E6%80%A7%E8%83%BDJavascript%E6%80%BB%E7%BB%93/</url>
-      <content type="text"><![CDATA[一、加载和运行Javascript代码执行会阻塞其他浏览器处理过程、充分利用webpack或gulp工具对文件打包压缩，减少js文件的数量，从而减少http请求的次数，以提高网页应用的实际性能。二、数据访问经典计算机科学的一个问题是确定数据应当存放在什么地方、以实现最佳的读写效率。数据存储在哪里会关系到代码运行期间数据被检索到的速度。JS中的四种基本的数据存储位置：直接量（字符串、数字、布尔值、对象、数组、函数、正则、null、undefind）、变量、数组项、对象成员。每一种数据存储位置都具有特定的读写操作负担。直接量和局部变量的访问速度要快于数组项和对象成员的访问速度。因此尽量使用直接量和局部变量，限制数组项和对象成员的使用。对所有的浏览器来说，一个标识符所处的位置越深，读写它的速度就越慢。在函数体内中，如果对于使用多于一次的变量值，就尽量用局部变量存储本地范围之外的变量值。局部变量比域外变量快，是因为他位于作用域链的第一个对象中。变量在作用域链的位置越深，访问的实际就越长。全局变量总是最慢的，因为它们总是位于作用域链的最后一环。嵌套对象成员会造成重大性能影响，应尽量少用。三、DOM编程文档对象模型（DOM）是一个独立于语言的，使用XML和HTML文档操作的应用程序接口。DOM和JS（ECMAScript）相互独立并以功能接口连接，因此每次通过js访问或修改DOM就会带来性能损耗。一般而言，对于任何类型的DOM访问，假如同一个DOM属性或方法被访问一次以上，最好使用一个局部变量缓存此DOM成员。重绘和重排：当DOM改变影响到元素的几何属性（宽高）或其内部内容时，浏览器需要重新计算元素的几何属性，而且其他元素的几何属性和位置也会因此改变受到影响。浏览器使渲染树上受到的部分失效，然后重构渲染树。这个过程被称作重排。重排版完成时，浏览器会在一个重绘进程中重新绘制屏幕上受影响的部分。引发重排的几个原因：  1、添加或删除可见的DOM元素  2、元素位置改变  3、元素尺寸改变（盒子模型）  4、内容改变  5、最初的页面渲染  6、浏览器窗口尺寸的改变针对重排和重绘引发的性能问题可以通过批量修改、离线操作DOM树、缓存并减少对布局信息的访问来降低其带来的影响。事件托管技术可以最小化事件句柄数量。四、算法和流程控制JS中的for-in循环可枚举任何对象的命名属性（包括对象的实例属性和继承而来的属性），一般不推荐使用。JavaScript引擎所支持的递归数量与JavaScript调用栈的大小直接相关。五、响应接口大多数浏览器有一个单独的处理进程，它由两个任务所共享：JavaScript任何和用户界面更新任务（UI线程）。一个单一的JavaScript操作应当使用的总时间（最大）是100毫秒。当多个重复的定时器被同事创建会产生性能问题。因为只有一个UI线程，所有定时器竞争运行时间。六、Ajax  异步JavaScript和XMLajax是一种与服务器通讯而不重载当前页面的方法。Beacons（灯标）：JS用于创建一个新的Image对象，将src设置为服务器上一个脚本文件的url，该url包含希望通过get格式传回的键值对数据。作为数据格式，纯文本和HTML是高度限制的，但其可以节省客户端的CPU周期。XML应用广泛但非常冗长且解析缓慢。json是轻量级、解析迅速，交互性和XML相当。自定义格式非常轻量。总而言之，越轻量级的格式越好，最好是json和字符分割的自定义格式。七、编程实践eval()、Function()构造器、定时器（setTimeout()和setInterval()）四种函数可以允许在程序中获取一个包含代码的字符串然后运行它。但此时会付出二次评估的代价，与直接包含相应代码相比将占用更长的时间。定时器建议第一个参数传入一个函数而不是一个字符串，否则会造成内存泄漏。JS的原生部分一般是用低级语言写的，如C++，所以无论怎样优化JS代码，永远不会比JS引擎提供的原生方法更快，比如内置的Math对象提供的诸多方法]]></content>
+      <content type="text"><![CDATA[一、加载和运行Javascript代码执行会阻塞其他浏览器处理过程、充分利用 webpack 或 gulp 工具对文件打包压缩，减少js文件的数量，从而减少 http 请求的次数，以提高网页应用的实际性能。二、数据访问经典计算机科学的一个问题是确定数据应当存放在什么地方、以实现最佳的读写效率。数据存储在哪里会关系到代码运行期间数据被检索到的速度。JS中的四种基本的数据存储位置：直接量（字符串、数字、布尔值、对象、数组、函数、正则、 null 、 undefind ）、变量、数组项、对象成员。每一种数据存储位置都具有特定的读写操作负担。直接量和局部变量的访问速度要快于数组项和对象成员的访问速度。因此尽量使用直接量和局部变量，限制数组项和对象成员的使用。对所有的浏览器来说，一个标识符所处的位置越深，读写它的速度就越慢。在函数体内中，如果对于使用多于一次的变量值，就尽量用局部变量存储本地范围之外的变量值。局部变量比域外变量快，是因为他位于作用域链的第一个对象中。变量在作用域链的位置越深，访问的实际就越长。全局变量总是最慢的，因为它们总是位于作用域链的最后一环。嵌套对象成员会造成重大性能影响，应尽量少用。三、DOM编程文档对象模型（DOM）是一个独立于语言的，使用XML和HTML文档操作的应用程序接口。DOM和JS（ECMAScript）相互独立并以功能接口连接，因此每次通过js访问或修改DOM就会带来性能损耗。一般而言，对于任何类型的DOM访问，假如同一个DOM属性或方法被访问一次以上，最好使用一个局部变量缓存此DOM成员。重绘和重排：当DOM改变影响到元素的几何属性（宽高）或其内部内容时，浏览器需要重新计算元素的几何属性，而且其他元素的几何属性和位置也会因此改变受到影响。浏览器使渲染树上受到的部分失效，然后重构渲染树。这个过程被称作重排。重排版完成时，浏览器会在一个重绘进程中重新绘制屏幕上受影响的部分。引发重排的几个原因：  1、添加或删除可见的DOM元素  2、元素位置改变  3、元素尺寸改变（盒子模型）  4、内容改变  5、最初的页面渲染  6、浏览器窗口尺寸的改变针对重排和重绘引发的性能问题可以通过批量修改、离线操作DOM树、缓存并减少对布局信息的访问来降低其带来的影响。事件托管技术可以最小化事件句柄数量。四、算法和流程控制JS中的 for-in 循环可枚举任何对象的命名属性（包括对象的实例属性和继承而来的属性），一般不推荐使用。JavaScript引擎所支持的递归数量与JavaScript调用栈的大小直接相关。五、响应接口大多数浏览器有一个单独的处理进程，它由两个任务所共享：JavaScript任何和用户界面更新任务（UI线程）。一个单一的JavaScript操作应当使用的总时间（最大）是100毫秒。当多个重复的定时器被同事创建会产生性能问题。因为只有一个UI线程，所有定时器竞争运行时间。六、Ajax  异步JavaScript和XMLajax是一种与服务器通讯而不重载当前页面的方法。Beacons（灯标）：JS用于创建一个新的 Image 对象，将 src 设置为服务器上一个脚本文件的 url ，该 url 包含希望通过 get 格式传回的键值对数据。作为数据格式，纯文本和HTML是高度限制的，但其可以节省客户端的CPU周期。XML应用广泛但非常冗长且解析缓慢。json是轻量级、解析迅速，交互性和XML相当。自定义格式非常轻量。总而言之，越轻量级的格式越好，最好是json和字符分割的自定义格式。七、编程实践eval() 、 Function() 构造器、定时器（ setTimeout() 和 setInterval() ）四种函数可以允许在程序中获取一个包含代码的字符串然后运行它。但此时会付出二次评估的代价，与直接包含相应代码相比将占用更长的时间。定时器建议第一个参数传入一个函数而不是一个字符串，否则会造成内存泄漏。JS的原生部分一般是用低级语言写的，如C++，所以无论怎样优化JS代码，永远不会比JS引擎提供的原生方法更快，比如内置的 Math 对象提供的诸多方法]]></content>
       <categories>
         
           <category> JavaScript </category>
@@ -704,7 +862,7 @@
     <entry>
       <title><![CDATA[一行js搞定快速关机]]></title>
       <url>/javascript/2018/04/30/%E4%B8%80%E8%A1%8CJS%E6%90%9E%E5%AE%9A%E5%BF%AB%E9%80%9F%E5%85%B3%E6%9C%BA/</url>
-      <content type="text"><![CDATA[在本地新建一个文件js文件Js Code:(new ActiveXObject("Shell.Application")).ShutdownWindows();设置快捷键将上述js文件设置一个快捷键到桌面，然后点击文件属性设置快捷键，你可以使用任何和其他快捷键不同的组合键。如下图：效果在桌面按下方才设置的快捷键，如同时按下Ctrl、Alt和left键，效果如下：按回车即可进行电脑的快速关机。总结AxtiveXObject对象在JS中是启用并返回Automation对象的引用，使用方法：  var newObj = new ActiveXObject( servername.typename[, location])参数（变量说明）：其中newObj是必选项。要赋值为 ActiveXObject 的变量名。      servername是必选项。提供该对象的应用程序的名称。        typename是必选项。要创建的对象的类型或类。        location是可选项。创建该对象的网络服务器的名称。  Automation服务器至少提供一类对象，例如字处理应用程序可能提供应用程序对象、文档对象和工具栏对象。Demo中就是通过ActiveXObject启用电脑的shell脚本程序并执行关机命令。]]></content>
+      <content type="text"><![CDATA[在本地新建一个文件js文件Js Code:(new ActiveXObject("Shell.Application")).ShutdownWindows();设置快捷键将上述js文件设置一个快捷键到桌面，然后点击文件属性设置快捷键，你可以使用任何和其他快捷键不同的组合键。如下图：效果在桌面按下方才设置的快捷键，如同时按下Ctrl+Alt+left，效果如下：按回车即可进行电脑的快速关机。总结AxtiveXObject对象在JS中是启用并返回Automation对象的引用，使用方法：  var newObj = new ActiveXObject( servername.typename[, location])参数（变量说明）：其中newObj是必选项。要赋值为 ActiveXObject 的变量名。      servername是必选项。提供该对象的应用程序的名称。        typename是必选项。要创建的对象的类型或类。        location是可选项。创建该对象的网络服务器的名称。  Automation服务器至少提供一类对象，例如字处理应用程序可能提供应用程序对象、文档对象和工具栏对象。Demo中就是通过ActiveXObject启用电脑的shell脚本程序并执行关机命令。]]></content>
       <categories>
         
           <category> JavaScript </category>
@@ -721,7 +879,7 @@
     <entry>
       <title><![CDATA[Js如何调用电脑的摄像头]]></title>
       <url>/javascript/2018/04/18/Js%E5%A6%82%E4%BD%95%E8%B0%83%E7%94%A8%E7%94%B5%E8%84%91%E7%9A%84%E6%91%84%E5%83%8F%E5%A4%B4/</url>
-      <content type="text"><![CDATA[用js写了一个调用摄像头的demo，并用canvas显示保存。这个功能很实用，比如上传用户的头像，即时拍照及时上传。html Code:  &lt;video width="200px" height="150px"&gt;&lt;/video&gt;  &lt;canvas width="200px" height="150px"&gt;&lt;/canvas&gt;  &lt;p&gt;  &lt;button id="start"&gt;打开摄像头&lt;/button&gt;  &lt;button id="snap"&gt;截取图像&lt;/button&gt;  &lt;button id="close"&gt;关闭摄像头&lt;/button&gt;  &lt;/p&gt;js Code: window.onload = function () {       var canvas = document.getElementsByTagName('canvas')[0],           context = canvas.getContext('2d'),           video = document.getElementsByTagName("video")[0],           snap = document.getElementById("snap"),           close = document.getElementById("close"),           start = document.getElementById("start"),           MediaStreamTrack;       start.addEventListener('click', function () {           if (navigator.mediaDevices &amp;&amp; navigator.mediaDevices.getUserMedia) {               navigator.mediaDevices.getUserMedia({                   video: true,                   audio: true               }).then(function (stream) {                   console.log(stream);                   MediaStreamTrack=typeof stream.stop==='function'?stream:stream.getTracks()[1];                   video.src=(window.URL).createObjectURL(stream);                   video.play();               }).catch(function(err){                   console.log(err);               });           }else if(navigator.getMedia){               navigator.getMedia({                   video: true               }).then(function (stream) {                   console.log(stream);                   MediaStreamTrack=stream.getTracks()[1];                   video.src=(window.webkitURL).createObjectURL(stream);                   video.play();               }).catch(function(err){                   console.log(err);               });           }       });       snap.addEventListener('click', function () {           context.drawImage(video, 0, 0,200,150);       });       close.addEventListener('click', function () {           MediaStreamTrack &amp;&amp; MediaStreamTrack.stop();       });   }总结：上面这个Demo主要用到浏览器的摄像头组件，然后再将图片源赋给canvas。其中遇到一个坑：代码需要托管到服务器端，即在客户端访问才能调用浏览器成功。这种禁止本地调用的做法可能是出于浏览器的安全性和用户的隐私考虑。]]></content>
+      <content type="text"><![CDATA[用js写了一个调用摄像头的demo，并用 canvas 显示保存。这个功能很实用，比如上传用户的头像，即时拍照及时上传。html Code:      &lt;video width="200px" height="150px"&gt;&lt;/video&gt;      &lt;canvas width="200px" height="150px"&gt;&lt;/canvas&gt;      &lt;p&gt;      &lt;button id="start"&gt;打开摄像头&lt;/button&gt;      &lt;button id="snap"&gt;截取图像&lt;/button&gt;      &lt;button id="close"&gt;关闭摄像头&lt;/button&gt;      &lt;/p&gt;js Code:     window.onload = function () {           var canvas = document.getElementsByTagName('canvas')[0],               context = canvas.getContext('2d'),               video = document.getElementsByTagName("video")[0],               snap = document.getElementById("snap"),               close = document.getElementById("close"),               start = document.getElementById("start"),               MediaStreamTrack;           start.addEventListener('click', function () {               if (navigator.mediaDevices &amp;&amp; navigator.mediaDevices.getUserMedia) {                   navigator.mediaDevices.getUserMedia({                       video: true,                       audio: true                   }).then(function (stream) {                       console.log(stream);                       MediaStreamTrack=typeof stream.stop==='function'?stream:stream.getTracks()[1];                       video.src=(window.URL).createObjectURL(stream);                       video.play();                   }).catch(function(err){                       console.log(err);                   });               }else if(navigator.getMedia){                   navigator.getMedia({                       video: true                   }).then(function (stream) {                       console.log(stream);                       MediaStreamTrack=stream.getTracks()[1];                       video.src=(window.webkitURL).createObjectURL(stream);                       video.play();                   }).catch(function(err){                       console.log(err);                   });               }           });           snap.addEventListener('click', function () {               context.drawImage(video, 0, 0,200,150);           });           close.addEventListener('click', function () {               MediaStreamTrack &amp;&amp; MediaStreamTrack.stop();           });       }总结：上面这个Demo主要用到浏览器的摄像头组件，然后再将图片源赋给 canvas 。其中遇到一个坑：代码需要托管到服务器端，即在客户端访问才能调用浏览器成功。这种禁止本地调用的做法可能是出于浏览器的安全性和用户的隐私考虑。]]></content>
       <categories>
         
           <category> JavaScript </category>
@@ -738,7 +896,7 @@
     <entry>
       <title><![CDATA[Jquery.qrcode.min.js生成二维码]]></title>
       <url>/javascript/2018/02/25/jquery.qrcode.min.js%E7%94%9F%E6%88%90%E4%BA%8C%E7%BB%B4%E7%A0%81/</url>
-      <content type="text"><![CDATA[query.qrcode.min.js是一款可以生成二维码的插件，使用前提是先引入jquery，因为jquery.qrcode.min.js依赖jquery。基本用法      引入js     &lt;script src="js/jquery-3.1.1.min.js"&gt;&lt;/script&gt; &lt;script src="js/jquery.qrcode.min.js"&gt;&lt;/script&gt;            构建容器     &lt;div class="app"&gt;&lt;/div&gt;            生成二维码      $(".app").qrcode({    render:"canvas",    width:400,    height:400,    text:"http://www.cnblogs.com/jiangcheng-langzi/"  }); 　　 这样，一个二维码就生成了，通过扫二维码，可以方便的访问本博客。      拓展讲解      qrcode生成二维码有两种方式：table和canvas。    table方式：会生成许多代码，黑白相间的是一个个td，总共是37 x 37个格子，一般选择这种方式是为了兼容不支持canvas的浏览器    canvas方式：生成的二维码其实使用的是canvas绘图，可以另存为图片格式        qrcode默认的宽高均为256px        qrcode采用的是charCodeAt() 进行编码转换，而这个方法默认会获取它的Unicode编码，所以如果text包含中文，需要使用encodeURI()转码。        此外，可以通过属性foreground和background指定二维码的前景色和背景色  ]]></content>
+      <content type="text"><![CDATA[query.qrcode.min.js是一款可以生成二维码的插件，使用前提是先引入jquery，因为jquery.qrcode.min.js依赖jquery。基本用法      引入js     &lt;script src="js/jquery-3.1.1.min.js"&gt;&lt;/script&gt; &lt;script src="js/jquery.qrcode.min.js"&gt;&lt;/script&gt;            构建容器     &lt;div class="app"&gt;&lt;/div&gt;            生成二维码      $(".app").qrcode({    render:"canvas",    width:400,    height:400,    text:"http://www.cnblogs.com/jiangcheng-langzi/"  });      　　这样，一个二维码就生成了，通过扫二维码，可以方便的访问本博客。拓展讲解      qrcode生成二维码有两种方式：table和canvas。    table方式：会生成许多代码，黑白相间的是一个个td，总共是37 x 37个格子，一般选择这种方式是为了兼容不支持canvas的浏览器    canvas方式：生成的二维码其实使用的是canvas绘图，可以另存为图片格式        qrcode默认的宽高均为256px        qrcode采用的是charCodeAt() 进行编码转换，而这个方法默认会获取它的Unicode编码，所以如果text包含中文，需要使用encodeURI()转码。        此外，可以通过属性foreground和background指定二维码的前景色和背景色  ]]></content>
       <categories>
         
           <category> JavaScript </category>
@@ -755,7 +913,7 @@
     <entry>
       <title><![CDATA[Python批量修改文件名]]></title>
       <url>/python/2018/01/19/Python%E6%89%B9%E9%87%8F%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6%E5%90%8D/</url>
-      <content type="text"><![CDATA[最近从百度云盘上下载了一批视频，然而这些视频的文件名都带有广告。有洁癖的我看着感觉难受，于是想修改过来。但是一个个的修改文件名又嫌麻烦，联想到业余时看过的python，于是用python写了几行代码轻松地批量修改了文件名称。code：#coding:utf-8import os,sys  #获取目录下所有的文件名# videos_name=os.listdir('D:\\videos')  #循环遍历文件名#for temp in videos_name:print tempnew_name=temp[0:6]+'.flv'print new_nameos.rename('D:\\videos\\'+temp,'D:\\videos\\'+new_name)]]></content>
+      <content type="text"><![CDATA[最近从百度云盘上下载了一批视频，然而这些视频的文件名都带有广告。有洁癖的我看着感觉难受，于是想修改过来。但是一个个的修改文件名又嫌麻烦，联想到业余时看过的python，于是用python写了几行代码轻松地批量修改了文件名称。    #coding:utf-8    import os,sys      #获取目录下所有的文件名#     videos_name=os.listdir('D:\\videos')      #循环遍历文件名#    for temp in videos_name:    print temp    new_name=temp[0:6]+'.flv'    print new_name    os.rename('D:\\videos\\'+temp,'D:\\videos\\'+new_name)]]></content>
       <categories>
         
           <category> Python </category>
@@ -772,7 +930,7 @@
     <entry>
       <title><![CDATA[第5章 引用类型   Js红宝书书摘系列笔记]]></title>
       <url>/javascript/2018/01/11/%E7%AC%AC5%E7%AB%A0-%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B-JS%E7%BA%A2%E5%AE%9D%E4%B9%A6%E4%B9%A6%E6%91%98%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0/</url>
-      <content type="text"><![CDATA[在ECMAScript中，引用类型是一种数据结构，用于将数据和功能组织在一起，描述的是一类对象所具有的属性和方法。而对象是某个特定引用类型的实例。Object类型可以通过Object构造函数创建一个创建Object实例，但常用方式是使用对象字面量表示法，这种方式可以简化创建包含大量属性的对象的过程，需要注意的是数值属性名会自动转换为字符串。访问对象属性有两种方法：点表示法和方括号表示法。方括号的优点体现在1.可以通过变量来访问属性、2.如果属性名包括导致语法错误的字符或者保留字以及关键字，点表示法不太合适。但是一般建议使用点表示法访问对象的属性。Array类型ECMAScript数组的每一项可以保存任何类型的数据，而且数组的大小是可以动态调整的，即可以随着数据的添加自动增长以容纳新的数据。同Object类型可以通过Object构造函数创建一个Object对象实例，我们也可以通过Array构造函数创建数组。也可以通过数组字面量表示法创建。访问数组的元素时可以通过索引访问，索引从0开始。如果要改变数组的元素也可以通过索引设置。通过数组的length属性可以动态改变数组的大小。数组的最大长度是2的32次方-1.检测数组的方法：Array.isArray(value)。  转换方法 数组继承的toLocaleString()、toString()、valueOf()方法，在默认情况下都会以逗号分隔的字符返回所有数组的元素。alert数组名也可以输出数组的所有的数组项，但是这一操作还是调用了数组的toString()方法。 数组的join()方法重现了toString()方法，但是它还可以改变分隔符。  栈方法 &gt;  pop()方法：移出数组的最后一项，返回删除项  &gt; push()方法：添加某变量到数组的末尾，返回新数组的长度  队列方法 &gt;  shift()方法：移出数组的第一项，返回删除项  &gt; unshift()方法：添加某变量到数组的开头，返回新数组的长度  重排序方法 &gt;  reverse()方法：将数组反序    &gt; sort()方法：按升序排列数组项，(机制是调用每个数组项的toString()方法，然后比较进行排序),此方法可以接收一个函数（称为比较函数），比较函数可以通过一个&lt;0、&gt;0或者=0的值来影响排序的结果。   上述两种方法均返回新数组。  操作方法  &gt; concat()方法：基于当前数组的所有项创建一个新数组，此外，这个方法还可以用于引用类型数组类型的深拷贝，就是拷贝后的数组与原来的数组完全独立。  &gt; slice()方法：能够基于当前数组中的一或多个项创建一个新数组，其操作不影响原数组。接收两个参数，表示起始和结束（不包括结束位置的项），若参数为一个，则结束默认到数组最后一位。该方法主要用于向数组的中部插入项，同时也可以利用此方法对数组                                    进行删除、插入或者替换等操作。  &gt; splice()方法：用于截取数组，返回一个截取下来的数组。这个方法会改变原数组。      位置方法          indexOf()和lastIndexOf()方法，查找时是使用全等操作符比较。            迭代方法    ECMAScript5定义了5种迭代方法，且这5种方法不会改变原数组。          every():对数组的每一项运行函数，如果该函数对每一项都返回true，则该方法返回true。              filter():对数组中的每一项运行函数，返回由该函数会返回true的项组成的数组。              forEach:本质上与使用for循环迭代数组一样，没有返回值。              map:对数组中的每一项运行函数，返回由函数返回结果组成的数组。              some:对数组中的每一项运行函数,若函数对任意一项返回true，则返回true。            归并方法   &gt;  reduce()方法和reduceRight()方法，迭代数组，接收四个参数：前一项、后一项、索引、数组对象Date类型日期类型在实际生产开发中很常用。mark几个概念。默认从1970年1月1日零时开始计算。  Date.parse()方法：接收一个表示日期的字符串参数，返回该日期到默认的毫秒数  Date.UTC()方法：返回结果同Date.parse()方法，它接收的参数分别是年月日时分秒毫秒，年月是必须的参数。  Date.now()方法：返回表示调用这个方法时的日期和时间的毫秒数。如果浏览器不支持该方法，可以利用+操作符，即+Date.now()关于Date类型的方法，书上介绍很详细，有很多，可以参考JS红宝书P100-P102RegExp类型即正则表达式、俗称火星文。初学JS，我是拒绝学习这个的，但是实际开发中，由于数据的复杂性，也遇到很多需要利用正则的地方。            模式+标志：模式由元字符组成，包括：([{\^$      )?*+.]}  标志包括：g(全局)、i(不区分大小写)、m(多行模式)      Function类型JS中每个函数都是Function类型的实例，作为引用类型同样具有属性和方法。函数名可以看做是一个指向函数对象的指针。注意：使用不带圆括号的函数名是访问函数指针，而非调用函数。1.函数声明与函数表达式解析器在向执行环境中加载数据时，会率先读取函数声明，并使其在执行任何代码之前可以访问。而对于函数表达式，则必须等到解析器执行到函数表达式所在的位置，它才会被解释执行。2.函数作为值在JS中，函数名本身是变量，因此，函数可以作为值使用。这一点在回调函数callBack中经常使用到。3.函数内部属性  arguments：类数组对象，包含传入函数中的所有参数，其属性callee是一个指针，指向包含这个arguments对象的函数。  this：它引用的是函数据以执行的环境对象。  caller：保存着调用当前函数的函数的引用，如果是在全局作用域中调用当前函数，则其值为null。另外，其不能被赋值。4.函数属性和方法  length：表示函数希望接收的命名参数的个数。  prototype：保存ECMAScript中引用类型的所有实例方法。函数的方法主要包括apply()和call(),它们二者的区别就是传参的方式不同。前者接收一个运行函数的作用域和一个参数数组；后者的第二个参数则需要注意列举参数。它们的主要作用是改变函数赖以运行的作用域。基本包装类型基本包装类型的存在意义就是为了便于操作基本类型值，在ECMAScript中，基本包装类型主要包括：Boolean、Number、String。引用类型和基本包装类型的主要区别是对象的生存期不同。由于这个区别，不能给基本包装类型值添加属性和方法。1.Number类型  toFixed():指定保留几位小数  toExponential():指数表示法  toPrecision():指定有效数字的位数2.String类型鉴于String类型的许多方法与Array类型的方法有很多相似的，所以就不详细介绍了，前面也有一篇关于JS字符串方法的归纳总结：JS字符串方法单体内置对象      Global对象    不属于任何其他对象的属性和方法，最终都属于它的属性和方法。    1.URI编码方法    encodeURI()：主要用于整个URI，只对空格进行编码替换    encodeURIComponent()：主要用于对URI中的某一片段进行编码，对所有非字母数字字符进行编码替换    对应的解码方法：decodeURI()和decodeURIComponent()    2.eval()方法    eval()方法不推荐使用，因为容易引起恶意用户的代码注入。lue。    3.Global对象的属性    见JS红宝书P133表格    4.window对象    全局对象以访问window对象实现。        Math对象    Math对象的方法十分强大和实用。    常用的如下：          min()和max()方法：确定一组数值中的最小值和最大值              Math.ceil():向上舍入              Math.floor():向下舍入              Math.round():四舍五入              Math.random():返回大于等于0小于1的一个随机数。求区间[min，max]的随机数：Math.random()*max+min              Math.abs():返回绝对值              Math.sqrt():求平方根      ]]></content>
+      <content type="text"><![CDATA[在ECMAScript中，引用类型是一种数据结构，用于将数据和功能组织在一起，描述的是一类对象所具有的属性和方法。而对象是某个特定引用类型的实例。Object类型可以通过Object构造函数创建一个创建Object实例，但常用方式是使用对象字面量表示法，这种方式可以简化创建包含大量属性的对象的过程，需要注意的是数值属性名会自动转换为字符串。访问对象属性有两种方法：点表示法和方括号表示法。方括号的优点体现在1. 可以通过变量来访问属性、2. 如果属性名包括导致语法错误的字符或者保留字以及关键字，点表示法不太合适。但是一般建议使用点表示法访问对象的属性。Array类型ECMAScript数组的每一项可以保存任何类型的数据，而且数组的大小是可以动态调整的，即可以随着数据的添加自动增长以容纳新的数据。同Object类型可以通过Object构造函数创建一个Object对象实例，我们也可以通过Array构造函数创建数组。也可以通过数组字面量表示法创建。访问数组的元素时可以通过索引访问，索引从0开始。如果要改变数组的元素也可以通过索引设置。通过数组的length属性可以动态改变数组的大小。数组的最大长度是2的32次方-1.检测数组的方法：Array.isArray(value)。  转换方法 数组继承的toLocaleString()、toString()、valueOf()方法，在默认情况下都会以逗号分隔的字符返回所有数组的元素。alert数组名也可以输出数组的所有的数组项，但是这一操作还是调用了数组的toString()方法。 数组的join()方法重现了toString()方法，但是它还可以改变分隔符。  栈方法 &gt;  pop()方法：移出数组的最后一项，返回删除项  &gt; push()方法：添加某变量到数组的末尾，返回新数组的长度  队列方法 &gt;  shift()方法：移出数组的第一项，返回删除项  &gt; unshift()方法：添加某变量到数组的开头，返回新数组的长度  重排序方法 &gt;  reverse()方法：将数组反序    &gt; sort()方法：按升序排列数组项，(机制是调用每个数组项的toString()方法，然后比较进行排序),此方法可以接收一个函数（称为比较函数），比较函数可以通过一个&lt;0、&gt;0或者=0的值来影响排序的结果。   上述两种方法均返回新数组。  操作方法  &gt; concat()方法：基于当前数组的所有项创建一个新数组，此外，这个方法还可以用于引用类型数组类型的深拷贝，就是拷贝后的数组与原来的数组完全独立。  &gt; slice()方法：能够基于当前数组中的一或多个项创建一个新数组，其操作不影响原数组。接收两个参数，表示起始和结束（不包括结束位置的项），若参数为一个，则结束默认到数组最后一位。该方法主要用于向数组的中部插入项，同时也可以利用此方法对数组                                    进行删除、插入或者替换等操作。  &gt; splice()方法：用于截取数组，返回一个截取下来的数组。这个方法会改变原数组。      位置方法          indexOf()和lastIndexOf()方法，查找时是使用全等操作符比较。            迭代方法    ECMAScript5定义了5种迭代方法，且这5种方法不会改变原数组。          every():对数组的每一项运行函数，如果该函数对每一项都返回true，则该方法返回true。              filter():对数组中的每一项运行函数，返回由该函数会返回true的项组成的数组。              forEach:本质上与使用for循环迭代数组一样，没有返回值。              map:对数组中的每一项运行函数，返回由函数返回结果组成的数组。              some:对数组中的每一项运行函数,若函数对任意一项返回true，则返回true。            归并方法   &gt;  reduce()方法和reduceRight()方法，迭代数组，接收四个参数：前一项、后一项、索引、数组对象Date类型日期类型在实际生产开发中很常用。mark几个概念。默认从1970年1月1日零时开始计算。  Date.parse()方法：接收一个表示日期的字符串参数，返回该日期到默认的毫秒数  Date. UTC()方法：返回结果同Date.parse()方法，它接收的参数分别是年月日时分秒毫秒，年月是必须的参数。  Date.now()方法：返回表示调用这个方法时的日期和时间的毫秒数。如果浏览器不支持该方法，可以利用+操作符，即+Date.now()关于Date类型的方法，书上介绍很详细，有很多，可以参考JS红宝书P100-P102RegExp类型即正则表达式、俗称火星文。初学JS，我是拒绝学习这个的，但是实际开发中，由于数据的复杂性，也遇到很多需要利用正则的地方。            模式+标志：模式由元字符组成，包括：([{\^$      )?*+.]}  标志包括：g(全局)、i(不区分大小写)、m(多行模式)      Function类型JS中每个函数都是Function类型的实例，作为引用类型同样具有属性和方法。函数名可以看做是一个指向函数对象的指针。注意：使用不带圆括号的函数名是访问函数指针，而非调用函数。1. 函数声明与函数表达式解析器在向执行环境中加载数据时，会率先读取函数声明，并使其在执行任何代码之前可以访问。而对于函数表达式，则必须等到解析器执行到函数表达式所在的位置，它才会被解释执行。2. 函数作为值在JS中，函数名本身是变量，因此，函数可以作为值使用。这一点在回调函数callBack中经常使用到。3. 函数内部属性  arguments：类数组对象，包含传入函数中的所有参数，其属性callee是一个指针，指向包含这个arguments对象的函数。  this：它引用的是函数据以执行的环境对象。  caller：保存着调用当前函数的函数的引用，如果是在全局作用域中调用当前函数，则其值为null。另外，其不能被赋值。4. 函数属性和方法  length：表示函数希望接收的命名参数的个数。  prototype：保存ECMAScript中引用类型的所有实例方法。函数的方法主要包括apply()和call(), 它们二者的区别就是传参的方式不同。前者接收一个运行函数的作用域和一个参数数组；后者的第二个参数则需要注意列举参数。它们的主要作用是改变函数赖以运行的作用域。基本包装类型基本包装类型的存在意义就是为了便于操作基本类型值，在ECMAScript中，基本包装类型主要包括：Boolean、Number、String。引用类型和基本包装类型的主要区别是对象的生存期不同。由于这个区别，不能给基本包装类型值添加属性和方法。1. Number类型  toFixed(): 指定保留几位小数  toExponential(): 指数表示法  toPrecision(): 指定有效数字的位数2. String类型鉴于String类型的许多方法与Array类型的方法有很多相似的，所以就不详细介绍了，前面也有一篇关于JS字符串方法的归纳总结：JS字符串方法单体内置对象      Global对象    不属于任何其他对象的属性和方法，最终都属于它的属性和方法。    1.URI编码方法    encodeURI()：主要用于整个URI，只对空格进行编码替换    encodeURIComponent()：主要用于对URI中的某一片段进行编码，对所有非字母数字字符进行编码替换    对应的解码方法：decodeURI()和decodeURIComponent()    2.eval()方法    eval()方法不推荐使用，因为容易引起恶意用户的代码注入。lue。    3.Global对象的属性    见JS红宝书P133表格    4.window对象    全局对象以访问window对象实现。        Math对象    Math对象的方法十分强大和实用。    常用的如下：          min()和max()方法：确定一组数值中的最小值和最大值              Math.ceil():向上舍入              Math.floor():向下舍入              Math.round():四舍五入              Math.random():返回大于等于0小于1的一个随机数。求区间[min，max]的随机数：Math.random()*max+min              Math.abs():返回绝对值              Math.sqrt():求平方根      ]]></content>
       <categories>
         
           <category> JavaScript </category>
@@ -785,24 +943,9 @@
     </entry>
   
     <entry>
-      <title><![CDATA[2017年个人工作总结]]></title>
-      <url>/%E7%94%9F%E6%B4%BB/2017/12/29/2017%E5%B9%B4%E4%B8%AA%E4%BA%BA%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/</url>
-      <content type="text"><![CDATA[  序言2017年，是我人生中比较重要的一年。这一年，走出象牙塔步入社会；这一年，尚未佩妥剑，出门便是江湖；这一年，酒尚有余温，入口不识乾坤。总之，这一年，我开始参加工作。年轻人忌感慨，特别是任何领域都毫无建树的年轻人。废话不多说，开始总结这一年的工作。2017年的工作主要分为两个阶段实习期和正式工作。实习期从2017年2月末至2017年5月初，正式工作从6月毕业至今。      实习期    实习期主要是熟悉部门的业务，了解工作的流程。起初，老大给我们讲了部门主要是做管网、燃气方面的系统，然后告诉需要安装的软件有哪些以及环境配置的流程。服务器采用微软的IIS，数据库采用SQL Server 2008,代码管理工具采用SVN。由于服务端代码采用C#编写，所以采用微软的VS编译。当时听到这么多软件都是微软的，我纳闷是不是还要兼容微软IE的6/7/8。然而，直到现在我还很少几乎没有写过兼容各浏览器的代码，只要谷歌chrome支持就ok了。对于前端开发人员来说，这无疑是福音！这样的弊端是导致当初死记硬背的那些主流浏览器兼容性问题遗忘的所剩无几。另外，工作任务的分配是采用tower，感觉这是一个非常棒的产品。    部门的主要产品是结合GIS（Geographic Information System，即地理信息系统）为水司或者燃气企业提供解决方案，属于构建智慧城市的范畴。实习期间并没有接触到地图的配置，甚至是运维（后台管理）都几乎没有打开过。对于系统的整体框架也没有一个全局的认识，只是老大和师兄吩咐做什么，就做什么，缺什么工具或组件就寻求help。实习期间的前半部分是自己在现有的框架里搭一个学生表，实现增删改查，目的是了解Backbone的mvc思想。Backbone是mvc框架的鼻祖，mvc即model（模型）-view（视图）-control（控制器）。尽管现在前端流行mvvm,mv*框架，Backbone渐行渐远，但是Backbone的思想确实挺有意思的。实习之前没有什么项目经验，这个学生表捣鼓了差不多两个星期，没有后台，用localstorage存储数据，而且没有体现出spa单页应用的特点。后来，科长把他入职时做的学生表给我们展示了一番，其实当时很纳闷不就一个学生表的增删改查吗，干嘛还要用到路由，弄这么复杂。当时的自己很无知也很可笑吧。程序实质上是有思想的，如果程序单纯地只是为了实现功能，而不考虑可读性可维护性可扩展性，那就是一个码农而不是一个工程师。程序是一种艺术，原先将它写成了一坨shi，现在以后我想将它写成一首诗。    学生表还没有来得及优化，就被分派到做实际的项目开发中，webgis3升级到webgis4。拿到任务的时候内心是很惶恐的，和另外一个前端实习生都很质疑就这么放心地把任务交给我们吗。事实证明，只要有大佬在，技术问题根本是不存在的。尽管其中也碰到一些坑，但是感觉得到上手项目是提高能力最直接最有效的途径。在功能做完后，原以为会有专门的测试人员，然而并没有。功能做出来后，研发和项目经理依次测试，项目经理测完就给客户部署更新。这样做方便研发人员对系统的整体把控更加到位，考虑更加周全。        正式工作    正式入职后，每天到公司工作的第一件事情就是用svn更新代码，再用vs编译服务端代码，然后打开tower查看昨天遗留未解决的问题和今天待完成的任务。任务按照紧急程度次序做，优化任务研发需求可以延后，客户线上的bug优先解决。    起初，拿到一个功能需求，我会立马就键盘啪啪的敲起来，在之后的工作中就反复地改代码。这是一种很愚蠢的做法。绍兴燃气项目的气量周报就是一个很典型的例子。正确的做法是首先要弄清楚业务流程，预想功能做好应该是什么样的，开发过程中要解决哪些技术难点。这种类似于写伪代码的思维模式对工作是很有帮助的。在那一次不断地挖坑填坑后，意识到这点后，这种错误明显地减少了。    在老大帮我写过几个服务后，以后的服务都是自己参照别人的代码写。复制粘贴也是一种很好的学习方式。之前没有接触过c#,但是你会发现代码都是有套路的，只要遵循程序语言的语法，其他的无非就是对数据库进行读写（curd）。因为我们的客户是针对特定的水司部门和燃气企业，用户有限日活不多，所以不需要做压力测试，反正目前就我接触到的项目数据不是很大。编写c#的工作会用断点调试，crtl+alt+p附加进程就基本可以满足工作一般的服务开发。当然这是在框架搭建好的前提下。    现在来说说前端这块。在我的理解中所谓的前端主要是负责渲染模板和注册事件。从服务接口传递参数获取到数据，将数据填充到页面中去；监听用户的操作（键盘和鼠标操作），仍然是去请求服务，返回数据。然而这个看起来很简单的道理，如果要结合实际的工作就不那么简单了，形形色色的前端框架做的大多是这个工作，但是殊途同归。考虑到工作的效率，项目的需求，在系统升级到web4的过程中，我们前端主要框架依旧沿用Backbone。关于业务系统，我画了张流程图，链接 部门的系统（产品）有很多，业务系统、巡检系统、工单产品等。但是多个系统应用的是同一套基础框架，然后在主页框架上做各项目的扩展和配置。还有一件印象比较深的事是在翻新旧产品时，需要一个富文本编辑器。在网上找了好久没有发现一款自己想要的合适插件，于是自己动手写了一个，算是真正意义上属于自己造的第一个轮子。        思考与展望    业余的时候，也研究过node.js,vue以及python、把这三者的基础知识过了一遍，也从github上克隆过相关代码，但是没有足够的动力坚持下来，浅尝辄止的后果就是花费了时间依旧感到很迷茫。js红宝书也过了一遍，还是很有收获的，emmm打算再把重要的章节详细的过一遍。   从事自己喜欢的工作是一件幸福的事，把喜欢的事做的最好才能说明发自内心的热爱。无论怎样或好或败，2017都已经成为了过去时，2018要更努力。  ]]></content>
-      <categories>
-        
-          <category> 生活 </category>
-        
-      </categories>
-      <tags>
-        
-      </tags>
-      <tags></tags>
-    </entry>
-  
-    <entry>
       <title><![CDATA[Sql server 2008添加字段成功，但提示列名无效]]></title>
       <url>/%E6%95%B0%E6%8D%AE%E5%BA%93/2017/12/13/SQL-Server-2008%E6%B7%BB%E5%8A%A0%E5%AD%97%E6%AE%B5%E6%88%90%E5%8A%9F-%E4%BD%86%E6%8F%90%E7%A4%BA%E5%88%97%E5%90%8D%E6%97%A0%E6%95%88/</url>
-      <content type="text"><![CDATA[在sql后查询，给现有表添加一个字段，即执行sql语句：  alter table [sxrq_1108].[dbo].[公司周报表详情] add 总计 int default 0然后在上述sql查语句增加字段‘总计’，显示总计是无效列名，更为严重的是无法向表中insert或者update含有新增列名的数据。但是更改后的sql语句依旧可以执行成功。这是由于SQL Server的intellisense的引起的。intellisense是SQL Server的智能记录智能感知功能，即当给sql表名加上”.”符号后会并弹出字段名，表名，数据库名。类似于编辑器的智能提示。上述问题的解决办法是：按下快捷键ctrl+shift+r，重新整理运行SQL Server的intellisense。]]></content>
+      <content type="text"><![CDATA[在sql后查询，给现有表添加一个字段，即执行sql语句：  alter table [sxrq_1108].[dbo].[公司周报表详情] add 总计 int default 0然后在上述sql查语句增加字段‘总计’，显示总计是无效列名，更为严重的是无法向表中insert或者update含有新增列名的数据。但是更改后的sql语句依旧可以执行成功。这是由于SQL Server的intellisense的引起的。intellisense是SQL Server的智能记录智能感知功能，即当给sql表名加上.符号后会并弹出字段名，表名，数据库名。类似于编辑器的智能提示。上述问题的解决办法是：按下快捷键ctrl+shift+r，重新整理运行SQL Server的intellisense。]]></content>
       <categories>
         
           <category> 数据库 </category>
@@ -851,7 +994,7 @@
     <entry>
       <title><![CDATA[Js编写自己的富文本编辑器]]></title>
       <url>/javascript/2017/11/19/JS%E7%BC%96%E5%86%99%E8%87%AA%E5%B7%B1%E7%9A%84%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8/</url>
-      <content type="text"><![CDATA[富文本编辑器，网上有很多功能齐全种类丰富的如百度的Ueditor，简单适用型的如WangEditor等等。在经过一番挑选后，我发现都不适用现在的项目，然后决定自己造轮子玩玩。富文本编辑器中主要涉及到Jascript中一个原生的方法：execCommand。execCommand方法是一个对当前文档、当前选择或给出范围的命令。简单来讲，我们可以利用execCommand方法对输入的文本内容进行编辑，处理html数据（即给文本内容（图片）附加响应的html标签及样式）。execCommand方法常用到的格式是：document.execCommand(参数1,参数2,参数3)。  参数1：指令参数（详见后面的说明）  参数2：交互方式，为布尔值（当设为true时，将显示对话框；当为false时，不显示对话框）  参数3：动态参数，一般为可用值或属性值在项目中我构建富文本编辑器的控件效果如下:上图中的富文本编辑器包括是11个常用功能，依次分别是：回退、前进、加粗、斜体、下划线、删除线、颜色、左缩进、右缩进、无序列表、有序列表。因为代码是在Backbone框架下建构的，富文本编辑器做成控件需要设置成可配置的，以满足复杂程度不同的需求。控件中做了15个功能js:    Commoncontrols: function (e) {        document.execCommand($(e.currentTarget).data('role'), false, null);    },    ColorControls: function (e) {        var me = this;        $(me.el).find("#colorSelect").show();        $(document).click(function (e) {            e.stopPropagation();            var colorType = $(e.target).attr('data-type')            switch (colorType) {                case '0': document.execCommand("ForeColor", false, '#e33737'); break;                case '1': document.execCommand("ForeColor", false, '#e28b41'); break;                case '2': document.execCommand("ForeColor", false, '#c8a732'); break;                case '3': document.execCommand("ForeColor", false, '#209361'); break;                case '4': document.execCommand("ForeColor", false, '#418caf'); break;                case '5': document.execCommand("ForeColor", false, '#aa8773'); break;                case '6': document.execCommand("ForeColor", false, '#999'); break;                case '7': document.execCommand("ForeColor", false, '#333'); break;            }            $(me.el).find("#colorSelect").hide();        });        e.stopPropagation();    }引用Editor控件如下：    var EditorComponents = new EditorComponent();        EditorComponents.setElement(me.$el.find("#editorMenu")).render(            {                editorModels: ['undo', 'redo', 'bold', 'italic', 'underline', 'strikeThrough', 'colors', 'indent', 'outdent', 'insertUnorderedList', 'insertOrderedList']            }        );editorModels–属性，用来配置编辑器的选项。选项由指令参数构成。针对不同的指令参数需要做特殊的处理，例如上图控件中的颜色，可选颜色有8种，效果如下：如果需要配置更多的颜色，可以在上述的html文件中进行补充修改，当然别忘了样式。指令集如下：2D-Position 允许通过拖曳移动绝对定位的对象。AbsolutePosition 设定元素的 position 属性为“absolute”(绝对)。BackColor 设置或获取当前选中区的背景颜色。Bold 切换当前选中区的粗体显示与否。Copy 将当前选中区复制到剪贴板。CreateBookmark 创建一个书签锚或获取当前选中区或插入点的书签锚的名称。CreateLink 在当前选中区上插入超级链接，或显示一个对话框允许用户指定要为当前选中区插入的超级链接的 URL。Cut 将当前选中区复制到剪贴板并删除之。Delete 删除当前选中区。FontName 设置或获取当前选中区的字体。FontSize 设置或获取当前选中区的字体大小。ForeColor 设置或获取当前选中区的前景(文本)颜色。FormatBlock 设置当前块格式化标签。Indent 增加选中文本的缩进。InsertButton 用按钮控件覆盖当前选中区。InsertFieldset 用方框覆盖当前选中区。InsertHorizontalRule 用水平线覆盖当前选中区。InsertIFrame 用内嵌框架覆盖当前选中区。InsertImage 用图像覆盖当前选中区。InsertInputButton 用按钮控件覆盖当前选中区。InsertInputCheckbox 用复选框控件覆盖当前选中区。InsertInputFileUpload 用文件上载控件覆盖当前选中区。InsertInputHidden 插入隐藏控件覆盖当前选中区。InsertInputImage 用图像控件覆盖当前选中区。InsertInputPassword 用密码控件覆盖当前选中区。InsertInputRadio 用单选钮控件覆盖当前选中区。InsertInputReset 用重置控件覆盖当前选中区。InsertInputSubmit 用提交控件覆盖当前选中区。InsertInputText 用文本控件覆盖当前选中区。InsertMarquee 用空字幕覆盖当前选中区。InsertOrderedList 切换当前选中区是编号列表还是常规格式化块。InsertParagraph 用换行覆盖当前选中区。InsertSelectDropdown 用下拉框控件覆盖当前选中区。InsertSelectListbox 用列表框控件覆盖当前选中区。InsertTextArea 用多行文本输入控件覆盖当前选中区。InsertUnorderedList 切换当前选中区是项目符号列表还是常规格式化块。Italic 切换当前选中区斜体显示与否。JustifyCenter 将当前选中区在所在格式化块置中。JustifyFull  将当前选中区在所在格式化块两端对齐。JustifyLeft 将当前选中区所在格式化块左对齐。 JustifyRight 将当前选中区所在格式化块右对齐。 LiveResize 迫使 MSHTML 编辑器在缩放或移动过程中持续更新元素外观，而不是只在移动或缩放完成后更新。MultipleSelection 允许当用户按住 Shift 或 Ctrl 键时一次选中多于一个站点可选元素。 Outdent 减少选中区所在格式化块的缩进。 OverWrite 切换文本状态的插入和覆盖。 Paste 用剪贴板内容覆盖当前选中区。  Print 打开打印对话框以便用户可以打印当前页。 Redo 重复操作。 Refresh 刷新当前文档。 RemoveFormat 从当前选中区中删除格式化标签。 SaveAs 将当前 Web 页面保存为文件。 SelectAll 选中整个文档。 StrikeThrough 添加删除线。 UnBookmark 从当前选中区中删除全部书签。 Underline 切换当前选中区的下划线显示与否。 Undo 回退操作。 Unlink 从当前选中区中删除全部超级链接。 Unselect 清除当前选中区的选中状态。]]></content>
+      <content type="text"><![CDATA[富文本编辑器，网上有很多功能齐全种类丰富的如百度的Ueditor，简单适用型的如WangEditor等等。在经过一番挑选后，我发现都不适用现在的项目，然后决定自己造轮子玩玩。富文本编辑器中主要涉及到Jascript中一个原生的方法：execCommand。它是一个对当前文档、当前选择或给出范围的命令。简单来讲，我们可以利用execCommand方法对输入的文本内容进行编辑，处理html数据（即给文本内容（图片）附加响应的html标签及样式）。execCommand方法常用到的格式是：document.execCommand(参数1,参数2,参数3)。  参数1：指令参数（详见后面的说明）  参数2：交互方式，为布尔值（当设为true时，将显示对话框；当为false时，不显示对话框）  参数3：动态参数，一般为可用值或属性值在项目中我构建富文本编辑器的控件效果如下:上图中的富文本编辑器包括是11个常用功能，依次分别是：回退、前进、加粗、斜体、下划线、删除线、颜色、左缩进、右缩进、无序列表、有序列表。因为代码是在Backbone框架下建构的，富文本编辑器做成控件需要设置成可配置的，以满足复杂程度不同的需求。控件中做了15个功能js:    Commoncontrols: function (e) {        document.execCommand($(e.currentTarget).data('role'), false, null);    },    ColorControls: function (e) {        var me = this;        $(me.el).find("#colorSelect").show();        $(document).click(function (e) {            e.stopPropagation();            var colorType = $(e.target).attr('data-type')            switch (colorType) {                case '0': document.execCommand("ForeColor", false, '#e33737'); break;                case '1': document.execCommand("ForeColor", false, '#e28b41'); break;                case '2': document.execCommand("ForeColor", false, '#c8a732'); break;                case '3': document.execCommand("ForeColor", false, '#209361'); break;                case '4': document.execCommand("ForeColor", false, '#418caf'); break;                case '5': document.execCommand("ForeColor", false, '#aa8773'); break;                case '6': document.execCommand("ForeColor", false, '#999'); break;                case '7': document.execCommand("ForeColor", false, '#333'); break;            }            $(me.el).find("#colorSelect").hide();        });        e.stopPropagation();    }引用Editor控件如下：    var EditorComponents = new EditorComponent();        EditorComponents.setElement(me.$el.find("#editorMenu")).render(            {                editorModels: ['undo', 'redo', 'bold', 'italic', 'underline', 'strikeThrough', 'colors', 'indent', 'outdent', 'insertUnorderedList', 'insertOrderedList']            }        );editorModels–属性，用来配置编辑器的选项。选项由指令参数构成。针对不同的指令参数需要做特殊的处理，例如上图控件中的颜色，可选颜色有8种，效果如下：如果需要配置更多的颜色，可以在上述的html文件中进行补充修改，当然别忘了样式。指令集如下：2D-Position 允许通过拖曳移动绝对定位的对象。AbsolutePosition 设定元素的 position 属性为“absolute”(绝对)。BackColor 设置或获取当前选中区的背景颜色。Bold 切换当前选中区的粗体显示与否。Copy 将当前选中区复制到剪贴板。CreateBookmark 创建一个书签锚或获取当前选中区或插入点的书签锚的名称。CreateLink 在当前选中区上插入超级链接，或显示一个对话框允许用户指定要为当前选中区插入的超级链接的 URL。Cut 将当前选中区复制到剪贴板并删除之。Delete 删除当前选中区。FontName 设置或获取当前选中区的字体。FontSize 设置或获取当前选中区的字体大小。ForeColor 设置或获取当前选中区的前景(文本)颜色。FormatBlock 设置当前块格式化标签。Indent 增加选中文本的缩进。InsertButton 用按钮控件覆盖当前选中区。InsertFieldset 用方框覆盖当前选中区。InsertHorizontalRule 用水平线覆盖当前选中区。InsertIFrame 用内嵌框架覆盖当前选中区。InsertImage 用图像覆盖当前选中区。InsertInputButton 用按钮控件覆盖当前选中区。InsertInputCheckbox 用复选框控件覆盖当前选中区。InsertInputFileUpload 用文件上载控件覆盖当前选中区。InsertInputHidden 插入隐藏控件覆盖当前选中区。InsertInputImage 用图像控件覆盖当前选中区。InsertInputPassword 用密码控件覆盖当前选中区。InsertInputRadio 用单选钮控件覆盖当前选中区。InsertInputReset 用重置控件覆盖当前选中区。InsertInputSubmit 用提交控件覆盖当前选中区。InsertInputText 用文本控件覆盖当前选中区。InsertMarquee 用空字幕覆盖当前选中区。InsertOrderedList 切换当前选中区是编号列表还是常规格式化块。InsertParagraph 用换行覆盖当前选中区。InsertSelectDropdown 用下拉框控件覆盖当前选中区。InsertSelectListbox 用列表框控件覆盖当前选中区。InsertTextArea 用多行文本输入控件覆盖当前选中区。InsertUnorderedList 切换当前选中区是项目符号列表还是常规格式化块。Italic 切换当前选中区斜体显示与否。JustifyCenter 将当前选中区在所在格式化块置中。JustifyFull  将当前选中区在所在格式化块两端对齐。JustifyLeft 将当前选中区所在格式化块左对齐。 JustifyRight 将当前选中区所在格式化块右对齐。 LiveResize 迫使 MSHTML 编辑器在缩放或移动过程中持续更新元素外观，而不是只在移动或缩放完成后更新。MultipleSelection 允许当用户按住 Shift 或 Ctrl 键时一次选中多于一个站点可选元素。 Outdent 减少选中区所在格式化块的缩进。 OverWrite 切换文本状态的插入和覆盖。 Paste 用剪贴板内容覆盖当前选中区。  Print 打开打印对话框以便用户可以打印当前页。 Redo 重复操作。 Refresh 刷新当前文档。 RemoveFormat 从当前选中区中删除格式化标签。 SaveAs 将当前 Web 页面保存为文件。 SelectAll 选中整个文档。 StrikeThrough 添加删除线。 UnBookmark 从当前选中区中删除全部书签。 Underline 切换当前选中区的下划线显示与否。 Undo 回退操作。 Unlink 从当前选中区中删除全部超级链接。 Unselect 清除当前选中区的选中状态。]]></content>
       <categories>
         
           <category> JavaScript </category>
@@ -885,7 +1028,7 @@
     <entry>
       <title><![CDATA[Sql异常为当identity_insert设置为off时的解决]]></title>
       <url>/%E6%95%B0%E6%8D%AE%E5%BA%93/2017/10/26/SQL%E5%BC%82%E5%B8%B8%E4%B8%BA%E5%BD%93IDENTITY_INSERT%E8%AE%BE%E7%BD%AE%E4%B8%BAOFF%E6%97%B6%E7%9A%84%E8%A7%A3%E5%86%B3/</url>
-      <content type="text"><![CDATA[误删数据库时，可以利用insert插入删除的数据，但是有时表可能有自增字段如id。这是插入数据如果包含自增字段就会出现错误，提示”IDENTITY_INSERT设置为OFF,插入失败”。所以我们将其设置为on即可，sql语句：  set IDENTITY_INSERT 表名 on完美地解决了问题，当插入数据后，记得重置数据库设置  IDENTITY_INSERT为off]]></content>
+      <content type="text"><![CDATA[误删数据库时，可以利用insert插入删除的数据，但是有时表可能有自增字段如id。这是插入数据如果包含自增字段就会出现错误，提示”IDENTITY_INSERT设置为OFF,插入失败”。所以我们将其设置为on即可，sql语句： set IDENTITY_INSERT 表名 on完美地解决了问题，当插入数据后，记得重置数据库设置  IDENTITY_INSERT为off]]></content>
       <categories>
         
           <category> 数据库 </category>
@@ -902,7 +1045,7 @@
     <entry>
       <title><![CDATA[Vue 2.0入门基础知识]]></title>
       <url>/vue/2017/09/21/Vue-2.0%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>
-      <content type="text"><![CDATA[序言当前前端三大主流框架：Angular、React、Vue。React前段时间由于许可证风波，使得Vue的热度蹭蹭地上升。另外，Vue友好的API文档更是一大特色。Vue.js是一个非常轻量级的工具，与其说是一个MVVM框架，不如说是一个js库。Vue.js具有响应式编程和组件化的特点。响应式编程，即保持状态和视图的同步，状态也可以说是数据吧；而其组件化的理念与React则一样，即“一切都是组件，组件化思想方便于模块化的开发，是前端领域的一大趋势。  本文主要从VueJS 2.0的内部指令与全局API入门方面内部指令  v-if v-else v-show前两者一般配合使用，v-show的效果类似于v-if。     &lt;body&gt;     &lt;div id="app"&gt;     &lt;p v-if="flag"&gt;if&lt;/p&gt;     &lt;p v-else&gt;else&lt;/p&gt;      &lt;p v-show="flag"&gt;show&lt;/p&gt;     &lt;/div&gt;     &lt;/body&gt;     &lt;script&gt;     var vm= new Vue({       el:"#app",       data:{         flag:true       }     });     &lt;/script&gt;DOM结构中，三个p标签中的内容是否显示在页面中取决于flag的布尔值属性。当flag为true时，if和show都会显示，else也不会存在于DOM结构中。v-if和v-show的不同体现在：v-if是根据条件的值判断是否加载，可以减轻服务器的压力，但是缺点是当改变条件的值，页面又要加载一次；v-show则无论条件的值是否为true，都会加载（若条件为true，则display属性设置为其默认属性，反之，设置为none）  v-for 循环指令code :&lt;body&gt;&lt;div id="app"&gt;&lt;ol&gt;&lt;li v-for="b in b"&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;&lt;/body&gt;&lt;script&gt;var vm= new Vue({   el:"#app",     data:{     b:['a','b','c',1,2]    } });&lt;/script&gt;页面会显示5个li，插值的效果是li会显示与数组b一 一对应的元素，v-for有点类似于for in循环  v-text v-html 文本（html字符串）指令code:&lt;body&gt;&lt;div id="app"&gt;&lt;p v-text="msgText"&gt;&lt;/p&gt;  &lt;p v-html="msgHtml"&gt;&lt;/p&gt; &lt;/div&gt;&lt;/body&gt;&lt;script&gt; var vm= new Vue({     el:"#app",   data:{      msgText:"China",      msgHtml:"&lt;span&gt;中国&lt;/span&gt;"    }});&lt;/script&gt;可以联想到jquery的text()、html()。到现在，你会发现前面都是利用插值操作，即，这种做法会在一定程度上影响性能。  v-on 绑定事件监听器code: &lt;body&gt; &lt;div id="app"&gt; &lt;button v-on:click="Hi()"&gt;Button&lt;/button&gt; &lt;/div&gt; &lt;/body&gt; &lt;script&gt; var vm= new Vue({      el:"#app",      methods:{         Hi:function(){             alert("Hello World!")         }     } });&lt;/script&gt;同理，类比jquery的on()方法，绑定事件用的，实例中v-on:click可以简写为@click。click可以替换成鼠标的其他操作，如mouseout、mouseover等等。  v-bind 指令code:&lt;body&gt;&lt;div id="app"&gt;    &lt;a v-bind:style="{color:'red'}" :src="message"&gt;&lt;/a&gt;&lt;/div&gt;&lt;/body&gt;&lt;script&gt;var vm = new Vue({    el: "#app",    data: {        message: "前端工程师"    }});&lt;/script&gt;效果为a标签显示红色，且其src属性为vm.message。v-bind指令主要用于设置html标签的属性，其简写形式为 v-bind：——&gt;：  v-model 数据双向绑定指令code: &lt;body&gt; &lt;div id="app"&gt;    &lt;p&gt;&lt;/p&gt;    &lt;input type="text" v-model="message"&gt; &lt;/div&gt; &lt;/body&gt; &lt;script&gt;  var vm = new Vue({      el: "#app",      data: {          message: "前端工程师"      }  }); &lt;/script&gt;当input输入的值发生变化时，p标签包含的内容也会随之变化，且与前者保持一致。  v-pre 指令code:&lt;body&gt;&lt;div id="app"&gt;      &lt;p&gt;&lt;/p&gt;      &lt;p v-pre&gt;&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;&lt;script&gt;  var vm = new Vue({      el: "#app",      data: {          message: "前端工程师"      }  });&lt;/script&gt;第一个p标签输出“前端工程师”，而第二个p标签则会跳过vue编译，输出原始值，即。      v-cloak 指令    v-cloak指令的作用是当DOM树构建好完成页面的渲染后才执行，且其须要与css一起使用        v-once 指令    v-once指令的作用是只有当DOM树第一次渲染时起作用。  全局API  Vue.directive 自定义指令Vue.directive用于自定义全局的指令code:&lt;body&gt;&lt;div id="app"&gt;    &lt;p v-sq="color"&gt;&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;&lt;script&gt; Vue.directive('sq', function (el, binding, vnode) {      el.style.color = binding.value;  });var vm = new Vue({     el: "#app",     data: {         message: "前端工程师",         color: "red"     } });&lt;/script&gt;效果为p标签显示为红色，directive指令中的参数1（实例中的‘sq’）可以类比前篇文章内部指令的bind、on；参数2是一个回调函数，这个回调函数包含三个参数（el:即指令绑定的元素，实例中的el即为p元素；binding:包含指令的相关信息，可以通过console.log打印出来；vnode:即Vue编译生成的虚拟节点。虚拟节点即vue2.0中引入的新功能，用js对象替代DOM节点，改进直接操作DOM代价大引发的性能问题）。指令都是有生命周期的，同样地，自定义指令有5个生命周期，分别是：bind、inserted、update、componentUpdated、unbind  Vue.extend 构造器的延伸extend中文即延伸、扩展的意思。Vue.extend返回的即是一个“扩展实例构造器，并挂载到自定义元素上。code:&lt;body&gt;&lt;div id="app"&gt;   &lt;p class="gz"&gt;&lt;/p&gt;&lt;/div&gt;&lt;p class="gz"&gt;&lt;/p&gt;&lt;/body&gt;&lt;script&gt; var author=Vue.extend({     template:"&lt;a&gt;最终解释权归作者所有&lt;/a&gt;" }) new author().$mount('.gz');&lt;/script&gt;p标签会替换成template的值，但仅限于第一个p标签，因为只挂载了一次，实例中用的是class，将其换成id或标签同样适用。  Vue.set全局操作Vue.set的作用就是在构造器外部操作构造器内部的数据、属性或者方法。Vue.set存在的意义是弥补js语言的缺陷，因为Vue不能自动检测数组的两种变动：1.利用索引设置一个元素；2.修改数组的长度。用Vue.set更新数据时，依次传入三个参数①数组名称②索引③元素  Vue的生命周期Vue的生命周期即钩子函数。包括10共，按照顺序依次为：beforeCreate、created、beforeMount、mounted、beforeUpdate、updated、activated、deactivated、beforeDastroy、destroyed。详细的结构图可参考vue官网的图例介绍。  Template模板Template模板大致有三种写法：      类似前面讲到Vue.extend挂载时的template写法，但不是双引号包括内容，而是``（英文tab键）        利用template模板：。这个类似于Backbone中模板的写法        在script标签中写入模板内容，不过此时type为”x-tempate”.。这种写法可以将模板从外部导入。  另外需要强调一点、vue2.0中规定模板内容必须要要有一个根元素，一般地用div包裹住整个模板内容。  component组件component组件本质上就是自定义的标签。component组件分为全局化注册组件和局部注册组件，两者的不同之处在于使用的范围（类比于全局变量和局部变量）。  component组件的注册1.1全局化注册组件code:&lt;body&gt;&lt;div id="app"&gt;     &lt;plp&gt;&lt;/plp&gt;&lt;/div&gt;&lt;/body&gt;&lt;script&gt; Vue.component('plp', {       template: `&lt;a&gt;最终解释权归作者所有&lt;/a&gt;`   })  var vm = new Vue({     el: "#app"  })&lt;/script&gt;1.2局部注册组件code:&lt;body&gt;&lt;div id="app"&gt;     &lt;plp&gt;&lt;/plp&gt; &lt;/div&gt;&lt;/body&gt;&lt;script&gt; var vm = new Vue({       el: "#app",       components: {          'plp': {              template: `&lt;p&gt;最终解释权归作者所有&lt;/p&gt;`         }     } })&lt;/script&gt;  component组件的props属性component组件的props属性就是用来设置和获取标签上的属性值。code :&lt;body&gt;&lt;div id="app"&gt;     &lt;plp city="YiChang"&gt;&lt;/plp&gt;&lt;/div&gt;&lt;/body&gt;&lt;script&gt;var vm = new Vue({      el: "#app",      components: {         'plp': {             props:['city'],             template: `&lt;p&gt;I like &lt;/p&gt;`         }     } })&lt;/script&gt;首先component组件的props选项通过[‘city’]获取自定义标签该属性的值，然后在tepmlate中通过插值的方法设置属性值。需要注意的一点是自定义标签的属性取值尽量避免使用’-‘,如有必要使用小驼峰命名，可以联想到通过原生JS设置元素的颜色;elements.style.backgroundColor,而不是element.style.background-colorcomponent组件传值，使用:bind绑定即可。  component父子组件component父子组件就是在一个component组件里再写一个component组件。code: &lt;body&gt; &lt;div id="app"&gt;     &lt;plp :city="like"&gt;&lt;/plp&gt; &lt;/div&gt; &lt;/body&gt; &lt;script&gt;  var vm = new Vue({     el: "#app",     data: {         like: 'YiChang'     },     components: {         'plp': {             props: ['city'],             template: `&lt;p&gt;I like  &lt;ppl&gt;&lt;/ppl&gt;&lt;/p&gt;`,             components: {                 'ppl': {                     template: `&lt;span style="color:red"&gt;very much!&lt;/span&gt;`                 }             }         }     } })&lt;/script&gt;实例中涉及到component组件嵌套，在plp组件中嵌套组件ppl。当然实际开发中组件的嵌套远比这个复杂，必要的时候可以在构造器外部定义声明局部component组件。  component标签标签是Vue框架自定义的标签，它的用途就是可以动态绑定我们的组件，根据数据的不同更换不同的组件。]]></content>
+      <content type="text"><![CDATA[序言当前前端三大主流框架：Angular、React、Vue。React前段时间由于许可证风波，使得Vue的热度蹭蹭地上升。另外，Vue友好的API文档更是一大特色。Vue.js是一个非常轻量级的工具，与其说是一个MVVM框架，不如说是一个js库。Vue.js具有响应式编程和组件化的特点。响应式编程，即保持状态和视图的同步，状态也可以说是数据吧；而其组件化的理念与React则一样，即“一切都是组件，组件化思想方便于模块化的开发，是前端领域的一大趋势。  本文主要从VueJS 2.0的内部指令与全局API入门方面内部指令  v-if v-else v-show前两者一般配合使用，v-show的效果类似于v-if。     &lt;body&gt;     &lt;div id="app"&gt;     &lt;p v-if="flag"&gt;if&lt;/p&gt;     &lt;p v-else&gt;else&lt;/p&gt;      &lt;p v-show="flag"&gt;show&lt;/p&gt;     &lt;/div&gt;     &lt;/body&gt;     &lt;script&gt;     var vm= new Vue({       el:"#app",       data:{         flag:true       }     });     &lt;/script&gt;DOM结构中，三个p标签中的内容是否显示在页面中取决于flag的布尔值属性。当flag为true时，if和show都会显示，else也不会存在于DOM结构中。v-if和v-show的不同体现在：v-if是根据条件的值判断是否加载，可以减轻服务器的压力，但是缺点是当改变条件的值，页面又要加载一次；v-show则无论条件的值是否为true，都会加载（若条件为true，则display属性设置为其默认属性，反之，设置为none）  v-for 循环指令       &lt;body&gt;    &lt;div id="app"&gt;    &lt;ol&gt;    &lt;li v-for="b in b"&gt;&lt;/li&gt;    &lt;/ol&gt;    &lt;/div&gt;    &lt;/body&gt;    &lt;script&gt;    var vm= new Vue({       el:"#app",         data:{         b:['a','b','c',1,2]        }     });    &lt;/script&gt;页面会显示5个li，插值的效果是li会显示与数组b一 一对应的元素，v-for有点类似于for in循环  v-text v-html 文本（html字符串）指令code:&lt;body&gt;&lt;div id="app"&gt;&lt;p v-text="msgText"&gt;&lt;/p&gt;  &lt;p v-html="msgHtml"&gt;&lt;/p&gt; &lt;/div&gt;&lt;/body&gt;&lt;script&gt; var vm= new Vue({     el:"#app",   data:{      msgText:"China",      msgHtml:"&lt;span&gt;中国&lt;/span&gt;"    }});&lt;/script&gt;可以联想到jquery的text()、html()。到现在，你会发现前面都是利用插值操作，即，这种做法会在一定程度上影响性能。  v-on 绑定事件监听器code: &lt;body&gt; &lt;div id="app"&gt; &lt;button v-on:click="Hi()"&gt;Button&lt;/button&gt; &lt;/div&gt; &lt;/body&gt; &lt;script&gt; var vm= new Vue({      el:"#app",      methods:{         Hi:function(){             alert("Hello World!")         }     } });&lt;/script&gt;同理，类比jquery的on()方法，绑定事件用的，实例中v-on:click可以简写为@click。click可以替换成鼠标的其他操作，如mouseout、mouseover等等。  v-bind 指令code:&lt;body&gt;&lt;div id="app"&gt;    &lt;a v-bind:style="{color:'red'}" :src="message"&gt;&lt;/a&gt;&lt;/div&gt;&lt;/body&gt;&lt;script&gt;var vm = new Vue({    el: "#app",    data: {        message: "前端工程师"    }});&lt;/script&gt;效果为a标签显示红色，且其src属性为vm.message。v-bind指令主要用于设置html标签的属性，其简写形式为 v-bind：——&gt;：  v-model 数据双向绑定指令code: &lt;body&gt; &lt;div id="app"&gt;    &lt;p&gt;&lt;/p&gt;    &lt;input type="text" v-model="message"&gt; &lt;/div&gt; &lt;/body&gt; &lt;script&gt;  var vm = new Vue({      el: "#app",      data: {          message: "前端工程师"      }  }); &lt;/script&gt;当input输入的值发生变化时，p标签包含的内容也会随之变化，且与前者保持一致。  v-pre 指令code:    &lt;body&gt;    &lt;div id="app"&gt;          &lt;p&gt;&lt;/p&gt;          &lt;p v-pre&gt;&lt;/p&gt;    &lt;/div&gt;    &lt;/body&gt;    &lt;script&gt;      var vm = new Vue({          el: "#app",          data: {              message: "前端工程师"          }      });    &lt;/script&gt;第一个p标签输出“前端工程师”，而第二个p标签则会跳过vue编译，输出原始值，即。      v-cloak 指令    v-cloak指令的作用是当DOM树构建好完成页面的渲染后才执行，且其须要与css一起使用        v-once 指令    v-once指令的作用是只有当DOM树第一次渲染时起作用。  全局API  Vue.directive 自定义指令Vue.directive用于自定义全局的指令code:&lt;body&gt;&lt;div id="app"&gt;    &lt;p v-sq="color"&gt;&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;&lt;script&gt; Vue.directive('sq', function (el, binding, vnode) {      el.style.color = binding.value;  });var vm = new Vue({     el: "#app",     data: {         message: "前端工程师",         color: "red"     } });&lt;/script&gt;效果为p标签显示为红色，directive指令中的参数1（实例中的‘sq’）可以类比前篇文章内部指令的bind、on；参数2是一个回调函数，这个回调函数包含三个参数（el:即指令绑定的元素，实例中的el即为p元素；binding:包含指令的相关信息，可以通过console.log打印出来；vnode:即Vue编译生成的虚拟节点。虚拟节点即vue2.0中引入的新功能，用js对象替代DOM节点，改进直接操作DOM代价大引发的性能问题）。指令都是有生命周期的，同样地，自定义指令有5个生命周期，分别是：bind、inserted、update、componentUpdated、unbind  Vue.extend 构造器的延伸extend中文即延伸、扩展的意思。Vue.extend返回的即是一个“扩展实例构造器，并挂载到自定义元素上。code:&lt;body&gt;&lt;div id="app"&gt;   &lt;p class="gz"&gt;&lt;/p&gt;&lt;/div&gt;&lt;p class="gz"&gt;&lt;/p&gt;&lt;/body&gt;&lt;script&gt; var author=Vue.extend({     template:"&lt;a&gt;最终解释权归作者所有&lt;/a&gt;" }) new author().$mount('.gz');&lt;/script&gt;p标签会替换成template的值，但仅限于第一个p标签，因为只挂载了一次，实例中用的是class，将其换成id或标签同样适用。  Vue.set全局操作Vue.set的作用就是在构造器外部操作构造器内部的数据、属性或者方法。Vue.set存在的意义是弥补js语言的缺陷，因为Vue不能自动检测数组的两种变动：1.利用索引设置一个元素；2.修改数组的长度。用Vue.set更新数据时，依次传入三个参数①数组名称②索引③元素  Vue的生命周期Vue的生命周期即钩子函数。包括10共，按照顺序依次为：beforeCreate、created、beforeMount、mounted、beforeUpdate、updated、activated、deactivated、beforeDastroy、destroyed。详细的结构图可参考vue官网的图例介绍。  Template模板Template模板大致有三种写法：      类似前面讲到Vue.extend挂载时的template写法，但不是双引号包括内容，而是``（英文tab键）        利用template模板：。这个类似于Backbone中模板的写法        在script标签中写入模板内容，不过此时type为”x-tempate”.。这种写法可以将模板从外部导入。  另外需要强调一点、vue2.0中规定模板内容必须要要有一个根元素，一般地用div包裹住整个模板内容。  component组件component组件本质上就是自定义的标签。component组件分为全局化注册组件和局部注册组件，两者的不同之处在于使用的范围（类比于全局变量和局部变量）。  component组件的注册1.1全局化注册组件code:&lt;body&gt;&lt;div id="app"&gt;     &lt;plp&gt;&lt;/plp&gt;&lt;/div&gt;&lt;/body&gt;&lt;script&gt; Vue.component('plp', {       template: `&lt;a&gt;最终解释权归作者所有&lt;/a&gt;`   })  var vm = new Vue({     el: "#app"  })&lt;/script&gt;1.2局部注册组件code:&lt;body&gt;&lt;div id="app"&gt;     &lt;plp&gt;&lt;/plp&gt; &lt;/div&gt;&lt;/body&gt;&lt;script&gt; var vm = new Vue({       el: "#app",       components: {          'plp': {              template: `&lt;p&gt;最终解释权归作者所有&lt;/p&gt;`         }     } })&lt;/script&gt;  component组件的props属性component组件的props属性就是用来设置和获取标签上的属性值。code :&lt;body&gt;&lt;div id="app"&gt;     &lt;plp city="YiChang"&gt;&lt;/plp&gt;&lt;/div&gt;&lt;/body&gt;&lt;script&gt;var vm = new Vue({      el: "#app",      components: {         'plp': {             props:['city'],             template: `&lt;p&gt;I like &lt;/p&gt;`         }     } })&lt;/script&gt;首先component组件的props选项通过[‘city’]获取自定义标签该属性的值，然后在tepmlate中通过插值的方法设置属性值。需要注意的一点是自定义标签的属性取值尽量避免使用’-‘,如有必要使用小驼峰命名，可以联想到通过原生JS设置元素的颜色;elements.style.backgroundColor,而不是element.style.background-colorcomponent组件传值，使用:bind绑定即可。  component父子组件component父子组件就是在一个component组件里再写一个component组件。code: &lt;body&gt; &lt;div id="app"&gt;     &lt;plp :city="like"&gt;&lt;/plp&gt; &lt;/div&gt; &lt;/body&gt; &lt;script&gt;  var vm = new Vue({     el: "#app",     data: {         like: 'YiChang'     },     components: {         'plp': {             props: ['city'],             template: `&lt;p&gt;I like  &lt;ppl&gt;&lt;/ppl&gt;&lt;/p&gt;`,             components: {                 'ppl': {                     template: `&lt;span style="color:red"&gt;very much!&lt;/span&gt;`                 }             }         }     } })&lt;/script&gt;实例中涉及到component组件嵌套，在plp组件中嵌套组件ppl。当然实际开发中组件的嵌套远比这个复杂，必要的时候可以在构造器外部定义声明局部component组件。  component标签标签是Vue框架自定义的标签，它的用途就是可以动态绑定我们的组件，根据数据的不同更换不同的组件。]]></content>
       <categories>
         
           <category> vue </category>
@@ -910,7 +1053,7 @@
       </categories>
       <tags>
         
-          <tag> VUE </tag>
+          <tag> vue </tag>
         
       </tags>
       <tags></tags>
@@ -952,14 +1095,16 @@
   
     <entry>
       <title><![CDATA[前端基础知识有问有答100题]]></title>
-      <url>/javascript/2017/07/15/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%9C%89%E9%97%AE%E6%9C%89%E7%AD%94100%E9%A2%98/</url>
-      <content type="text"><![CDATA[第1期：JS中关闭当前的窗口的方法是：_____。答案：window.close();第2期：js中使字符串中的字符变为小写的方法是：___。答案：toLowerCase方法；第3期：在js中，让浏览器弹出确认框的语句是：___。答案：confirm；例如：window.confirm("我就是确认框");运行结果是浏览器弹出信息确认框，点击确定，返回true，反之返回false。第4期：把 7.25 四舍五入为最接近的整数的方式是：____？答案：Math.round()；例如：round() 方法的定义是把一个数字舍入为最接近的整数。Math.round(7.25)结果为7，Math.round(7.75)结果为8.第5期：在html5中，实现输入框占位符的属性是：___?答案：placeholder属性；它提供可描述输入字段预期值的提示信息，该提示会在输入字段为空时显示，并会在字段获得焦点时消失。第6期：在css3中，能够实现背景裁剪的新特性是：_____?答案：background-clip。background-clip 属性规定背景的绘制区域。它对应的值有3个：border-box（背景被裁剪到边框盒） 、padding-box （背景被裁剪到内边距框） content-box（背景被裁剪到内容框）。 第7期：在html5的新特性中，拥有多种绘制路径、矩形、圆形、字符以及添加图像的方法，结合JavaScript实现绘制图像的元素是_______?答案：canvas；注意：canvas 元素本身是没有绘图能力的。所有的绘制工作必须在 JavaScript 内部完成。 第8期：javascript语句，var a=10,b=20;    alert(“a+b=”+a+b);执行结果是在浏览器窗口弹出：___?答案： 在js中，字符串与数字相加，数字会被强制转成字符串类型，在进行相加，也就是变成两个字符串的链接，所以结果是字符串“a+b=”+“10”+“20”= “a+b=1020”。第9期：javascript习题，var a=5,b=6;alert(a+b+”10”); 执行结果是在浏览器窗口弹出：____?答案：1110；与第8期不同的是，本题中先进行的是数字5与数字6的相加操作，等到的结果是11，再进行数字11与字符串“11”的相加，此时数字11会被转换成字符串“11”再进行两个字符串的连接，所以结果是1110。第10期：在html5新特性中，用于定义文档页脚的标签是：____?答案：&lt;footer&gt;。&lt;footer&gt; 标签定义document 的页脚。第11期：在css3中，实现给元素添加圆角边框的属性是：____?答案：border-radius属性；border-radius属性十分常用，让过去要切图才能实现圆角边框，现在只要一句css代码即可实现，并且对浏览器兼容性也很友好。第12期：JavaScript由3部分组成，分别是：ECMAScript，BOM和____?答案：DOM；文档对象模型(DOM)描述了处理网页内容的方法和接口。第13期：在jquery中，实现动画的函数是：___?答案：animate()函数；animate() 方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。第14期：在css中，能够使文本水平居中的css属性是：____?答案：text-align属性，当其值为center的时候，文本内容就会水平居中；它的值还有可能是：left（居左），right（居右），justify（实现两端对齐文本效果），inherit（继承父元素的text-align属性值）。第15期：在html中的a标签中，实现在新窗口中打开链接的标签属性是：___?答案：target属性。当它的值为_blank的时候就会实现在新窗口中打开，它的值还可以是：_self（当前窗口中打开），_parent(父frame中打开），_top（整个窗口中打开）。第16期：var a=999;  a++;  alert(++a);  请问执行后弹出的结果是：___?答案：1001；执行a++后的结果是1000，然后执行++a，得到的结果是1001，再执行alert()函数，所以弹出的结果是1001。第17期：与16期的代码稍有不同，请仔细阅读，var a=888;  ++a;  alert(a++);  运行后弹出的结果是:__？答案：889，执行到++a后的结果是889，alert(a++)的时候，先执行弹出，再执行a++，所以弹出的是889，而不是900。第18期：在img标签中，当图像加载失败，会用替换文本来显示相关信息，那么，定义替换文本的属性是：___?答案：alt属性，用来为图像定义一串预备的可替换的文本。替换文本属性的值是用户定义的。第19期：在CSS3中，实现文本阴影效果的新属性是：__?答案：text-shadow；我们能够规定水平阴影、垂直阴影、模糊距离，以及阴影的颜色。第20期：在html标签中，定义最小的标题的是：__?答案：&lt;h6&gt;标签。&lt;h1&gt; 定义最大的标题。&lt;h6&gt; 定义最小的标题。第21期：用于播放 HTML5 音频文件的元素是：_____?    答案：元素，还可以通过它的属性，来控制音频的自动播放，循环播放，暂停等操作。第22期：var a;    alert(a);   执行后弹出的结果是：_____?答案：undefined。如果变量通过var声明，但是并未初始化的时候，变量的值为undefined。第23期：在jquery中，想要移除指定的DOM节点元素，使用的方法是：__?答案：remove()函数，该方法移除被选元素，包括所有文本和子节点。第24期：在ECMAScript6中，定义一个变量只在所处的代码块起作用的关键字是：_____?答案： 关键字let，ES6 新增了 let 命令，用来声明变量。它的用法类似于 var，但是所声明的变量，只在 let 命令所在的代码块内有效。第25期：console.log(typeof null);  运行的结果是在控制台输出：__?答案：输出object；在javascript中，null值表示一个空对象指针，而这正是使用typeof操作符检测null值时会返回“object”的原因。第26期：console.log(typeof  “3”);  运行的结果是在控制套输出：__?答案："string"，因为"3"就是一个字符串String类型。第27期：与26期稍有不同，仔细阅读，console.log(typeof +’3’);  运行结果是：_____?答案：“number”，数字在字符串之前存在数字中的正负号(+/-)时，会被转换成数字。第28期：在 HTML5 中，哪个元素用于组合标题元素？答案：&lt;hgroup&gt;元素，用于对网页或区段的标题进行组合。第29期：在HTML5中，哪个属性用于规定输入字段是必填的？答案：required属性， 属性规定必需在提交之前填写输入字段。如果使用该属性，则字段是必填的。第30期：哪种输入类型定义滑块控件？答案：range，定义带有 slider 控件的数字字段。第31期：在html5中，实现元素可拖动的标签属性是：__?答案：draggable属性，为了使元素可拖动，可以把 draggable 属性设置为 true。第32期：在html5中，实现本地存储，且存储数据不受时间限制的方式是：__?答案：localStorage存储，使用localStorage可以简单地记录当前客户端用户对网站的访问次数。第33期：在html5中，用于定义页面内容之外的内容标签是：_____?答案：&lt;aside&gt;标签，定义其所处内容之外的内容，aside 的内容应该与附近的内容相关。比如：可用作文章的侧栏。第34期：在html5中，用于描述文档或文档某个部分的细节的新标签是：__？答案：&lt;details&gt;标签，不过，目前只有chrome和safari浏览器支持此元素。第35期：在CSS3中，可以规定背景图片的定位区域的属性是：_____?答案：background-origin属性，它的值可以是： content-box、padding-box 或 border-box 。第36期：单词太长的话就超出某个区域，在CSS3中，实现文本强制文本进行换行的属性是：__?答案：word-wrap属性，当它的值等于break-word的时候，就可以实现文本强制换行，可以对单个单词进行拆分。第37期：在CSS中，用于定义单词间距的属性是：_____?答案：word-spacing属性，它可以增加或减少单词间的空白。第38期：在CSS中，规定文本段落首行的缩进的属性是：_____?答案：text-indent属性，如果要实现首行空两个字符的话，text-indent:2em即可。 第39期：在js中，’1555’+3的运行结果是：__?答案：15553，字符串与数字相加，数字会被转换成字符串，最后变成两个字符串拼接。第40期：在javascript中，’1205’-3的运行结果是：__?答案：1202。字符串与数字相减，字符串会被转换成数字再相减，等到的结果是1202。第41期：在js中，if( [ ] instanceof Array) {  alert(‘yes’)  } else {  alert(‘no’)  } 的运行结果是弹出：__?答案：“yes“，通过字面量方式创建的数组对象是属于Array类的一个实例，所以返回true。故弹出”yes“。 第42期：与41期稍有不同，仔细阅读，if( [ ] instanceof Object ){  alert(‘hello’);  }  else  {  alert(‘world’)  }; 运行后结果是弹出：__?答案：弹出”hello“，之所以[ ] instanceof Object返回true，是因为Array是object的子类。第43期：console.log(‘hello’+(1&lt;2)?”world”:”me”);  运行后的结果是在控制台输出：__?答案：输出world，因为+操作符的优先级高于三元操作符，执行顺序分别是：（1&lt;2）得到 true，然后"hello"+true = "hellotrue",最后进行三元操作符，得到”world“。第44期：在html5中，用于定义导航链接的新元素是：_____?答案：&lt;nav&gt;标签，它是 HTML 5 中的新标签。定义导航链接的部分。第45期：在HTML5 Geolocation API ，实现获取用户位置的方法是:_____?答案：getCurrentPosition()方法，注意：鉴于该特性可能侵犯用户的隐私，除非用户同意，否则用户位置信息是不可用的。第46期：在html5中，input元素用于定义数值的输入与的属性是：_____?答案：number类型，number 类型用于应该包含数值的输入域，您还能够设定对所接受的数字的限定。第47期：在html5中，定义选取时间（小时和分钟）的类型是：_____?答案：time类型。type="time"，现在大部分浏览器都支持此属性值。第48期：在html5中，input元素中定义邮件的输入域类型的是：_____?答案：email类型。在提交表单时，会自动验证 email 域的值。第49期： var a = [33, 2, 123]; console.log(a.sort());运行后输出的结果是：_____？答案：[123, 2, 33]，当不带参数调用sort()时，数组元素以字母表顺序排序输出。第50期：   var a = [1, 2, 3]; console.log(a.join());运行后的结果是输出：_____?答案：1,2,3；数组的操作方法join是用来将数组中所有元素都转化为字符串并连接在一起，返回最后生成的字符串的。不指定分隔符，默认的是逗号分隔。所以是：1,2,3。第51期：var a = [1, 2, 3];console.log(a.join(“-“));运行后输出的结果是：__？答案：1-2-3；与上一期一样，但是这一期输出语句指定空格为“-”，所以输出：1-2-3。 第52期：代码运行的结果是输出：__?var str1=str2=’web’;(function(){var str1=str2=’前端教程’;})();console.log(str2);答案：“前端教程”，虽然str2是匿名函数内部，但是并没有被var定义，所以会往上一级去寻找，找到并重新赋值成“前端教程”。第53期：代码运行的结果是输出：__?var str1=str2=’web’;(function(){var str1=str2=’前端教程’;})();console.log(str1);答案：输出“web”，代码中有两个str1，但是他们的都用var定义，处在不同的作用域，不会被覆盖，所以输出的str1是同一个作用域下的str1，所以是：“web”。第54期：代码运行的结果是输出：__?var str1=str2=’web’;(function(){var str1=str2=’课堂’;console.log(str2);})();答案：输出“课堂”，因为str2没有被var定义，所以找到上一级的作用域下的str2，并把它的值覆盖了，所以输出的str2是“课堂”。第55期：代码运行的结果是输出：__?if(10&gt;9&gt;8==true){console.log(‘html5’);}else{console.log(‘css3’);}答案：css3；先比较10和9，10 &gt; 9是成立的，此时返回的是true。true和8进行比较运算，此时会出现数据类型的转换，true会转换成数字1，再与8进行比较，1自然是小于8的，因此此处返回的是false。最后比较false和true，这两者自然是不等的，执行else里面的语句，输出：css3。第56期：代码运行的结果是输出：__?var obj={};pbj.name=’first’;var peo=obj;peo.name=’second’;console.log(obj.name);答案：输出second；关于变量类型，分为了两大类，一种是引用类型，一种是值类型，值类型相当于是重新创建了一个空间，然后将内容复制了一份放置到了空间当中。引用类型相当于是重新创建了一份地址，两个地址（obj和peo）都是指向一个存储空间的，那么此时修改任意一个都会对另一个造成影响。第57期：在DOM对象中，获取元素的开始和结束标签之间的 HTML的属性是：__?答案：innerHTML属性，该属性可以设置或返回元素之间的 HTML。第58期：在DOM对象中，可返回带有指定标签名的对象集合的方法是：_____?答案：getElementsByTagName()，返回元素的顺序也是是它们在文档中的顺序。第59期：在DOM对象中，可以设置元素属性的方法是：__?答案：setAttribute() 方法；该方法添加指定的属性，并为其赋指定的值。如果这个指定的属性已存在，则仅设置/更改值。第60期：在DOM对象中，实现创建元素节点的方法是：_____?答案：createElement()方法，用于创建一个指定元素，所有主要浏览器都支持此方法。第61期：在DOM对象中，实现把新的节点添加到指定节点的方法是：__?答案：appendChild()方法；此方法向节点添加最后一个子节点。第62期：在DOM对象中，实现删除子节点的方法是：_____?答案：removeChild()方法；此方法指定元素的某个指定的子节点。以 Node 对象返回被删除的节点，如果节点不存在则返回 null。第63期：在BOM对象中，能够获取浏览器信息的对象是：__?答案：Navigator对象，Navigator 对象包含有关浏览器的信息，所有浏览器都支持该对象。第64期：在BOM对象中，能获取客户端显示屏的信息的对象是：_____?答案：Screen对象，Screen 对象包含有关客户端显示屏幕的信息。第65期：在BOM对象中，能获取浏览器当前URL信息的对象是：_____?答案：Location对象，Location 对象是 Window 对象的一个部分，可通过 window.location 属性来访问。第66期：在JavaScript数组中，实现向数组末尾添加一个元素的方法是：__?答案：push( )；此方法可向数组的末尾添加一个或多个元素，并返回新的长度。第67期：在JavaScript数组中，实现对数组的元素进行排序的方法是：_____?答案：sort( )；方法，注意，数组在原数组上进行排序，不生成副本。第68期：在JavsScript数组中，实现把数组的元素转成字符串，并且用指定的字符分隔开，默认是逗号的方法是：__?答案：join( )；此方法返回一个字符串。该字符串是通过把数组的每个元素转换为字符串，然后把这些字符串连接起来。第69期：在事件对象中，表示对象被双击时发生的事件：_____?答案：ondblclick；ondblclick 事件会在对象被双击时发生。第70期：在事件对象中，当对象失去焦点时会发生的事件是：_____?答案：onblur ；onblur 事件会在对象失去焦点时发生，常用在输入域里面。第71期：在事件对象中，当在域的内容发生改变的时候会触发的事件是：__?答案：onchange，onchange 事件会在域的内容改变时发生。常用在输入域，下拉选择，单选多选组件中。第72期：在事件对象中，表示监听键盘按键松开的是事件是：_____?答案：onkeyup事件，onkeyup 事件会在键盘按键被松开时发生。第73期：在事件对象中，表示网页被加载完成的事件是：__?答案：onload事件；onload 事件会在页面或图像加载完成后立即发生。第74期：在事件对象中，监听鼠标移动的事件是：__?答案：onmousemove事件，每当用户把鼠标移动一个像素，就会发生一个 mousemove 事件。第75期：代码：console.log([] + [] + “foo”.split(“”)); 运行后，控制台输出的结果是：__?答案：f,o,o；在[] + []的运算过程中，由于使用到了+号，两个数组对象均调用了自己自带的toString()方法，将[]转换成了字符串，两个字符串相加还是一个字符串。"foo".split("")，将字符串分割成字符串数组，为["f", "o", "o"]。最后一步，"" + ["f", "o", "o"]，这时候 + 左侧是字符串，右侧是数组对象，数组对象依旧会调用自身的原型方法，将数组转换为字符串。第76期：在HTML5的鼠标事件中，监听元素被拖动的事件是：__?答案：ondrag。第77期：在html5的新事件中，当浏览器窗口被调整大小的时候会触发的事件是：_____?答案：onresize事件，在制作响应式的页面时候十分有用。第78期：在input元素中，如果是隐藏域类型，type的值是：__?答案：type="hidden"，这种类型的输入元素实际上是隐藏的。这个不可见的表单元素的 value 属性保存了一个要提交给 Web 服务器的任意字符串。第79期：在css中，表示鼠标悬浮在a标签上方的伪类是：_____?答案：hover伪类，常用于修改链接文字的样式。第80期：在css中，实现把元素设置为固定定位，position的值应该是：__?答案：fixed；固定定位后，元素相对浏览器窗口来定位，在移动端布局十分常用。第81期：在W3C标准中，实现元素半透明的css属性是：_____?答案：opacity；opacity 属性能够设置的值从 0.0 到 1.0。值越小，越透明。第82期：css盒子模型包括了：内容，边框，内边距和_____?答案：外边距margin；我们可以把这4个属性转移到我们日常生活中的盒子（箱子）上来理解，日常生活中所见的盒子也就是能装东西的一种箱子，也具有这些属性，所以叫它盒子模式。第83期：如果要去除a标签下面的默认下划线，可以给a标签添加css属性text-decoration，并把值设置为：__?答案：none；text-decoration 属性大多用于去掉链接中的下划线。第84期：在css属性中，规定字体的粗细的属性是：__?答案：font-weight；默认值：normal。第85期：在css属性中，设置元素的最大宽度的属性是：__?答案：max-width；该属性值会对元素的宽度设置一个最高限制。因此，元素可以比指定值窄，但不能比其宽。不允许指定负值。第86期：在css属性中，用于清除元素浮动效果的属性是：_____?答案：clear；属性值可以是：left（清除左浮动）、right（清除右浮动） 、both（清除左右浮动）、none（取消清除）、inherit（继承父元素的clear值）。第87期：在html的input元素中，用于表单文件上传的类型是：_____?答案：file类型；第88期：在javascript字符串对象中，用于定位字符串中某一个指定的字符首次出现的位置的方法是：_____?答案：indexOf()方法。如果指定字符串存在，就返回它首次出现的位置，反之返回：-1。第89期：在字符串String对象中，实现字符串替换的方法是：_____?答案：replace()方法，使用此方法在字符串中用某些字符替换另一些字符。第90期：在JavaScript Number 对象中，可以四舍五入为指定小数位的数字的方法是：_____?答案：toFixed()方法；可以传入一个参数作为规定小数的位数，是 0 ~ 20 之间的值。第91期：在JavaScript Date对象中，能够获取今天是星期几的方法是：__?答案：getDay()方法；第92期：在JavaScript Math对象中，实现生成一个0~1之间的随机数的方法是：__?答案：random( )方法；第93期：在javascript的全局函数中， 把字符串作为脚本代码来执行的方法是：_____?答案：eval( ) ; eval() 函数计算 JavaScript 字符串，并把它作为脚本代码来执行。如果参数是一个表达式，eval() 函数将执行表达式。第94期：在javascript全局函数中，解析一个字符串并返回一个整数的方法是：__?答案：parseInt(); parseInt() 函数可解析一个字符串，并返回一个整数。注意： 只有字符串中的第一个数字会被返回。第95期：在JavaScript 全局函数中，检测某个值是否是数字的函数是：__?答案：isNaN()；如果参数值为 NaN 或字符串、对象、undefined等非数字值则返回 true, 否则返回 false。第96期：在JavaScript 算术运算符中，代表求余数的运算法是：_____?答案：% 运算法。第97期： 在JavaScript 算术运算符，表示自增的运算法是：__?答案： ++ 运算符。第98期：在JavaScript 比较运算符，表示恒等于（值和类型均相等）的运算符是：_____?答案：=== 运算符。第99期：在JavaScript 比较运算符中，表示值与类型均不等（不恒等于）的运算符是：_____?答案：！== 运算符。第100期：var a=999;  a++;  alert(++a);  请问执行后弹出的结果是：___?答案：1001；执行a++后的结果是1000，然后执行++a，得到的结果是1001，再执行alert()函数，所以结果是1001。]]></content>
+      <url>/%E9%9D%A2%E8%AF%95/2017/07/15/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%9C%89%E9%97%AE%E6%9C%89%E7%AD%94100%E9%A2%98/</url>
+      <content type="text"><![CDATA[第1期：JS中关闭当前的窗口的方法是：_____。答案：window.close();第2期：js中使字符串中的字符变为小写的方法是：___。答案：toLowerCase方法；第3期：在js中，让浏览器弹出确认框的语句是：___。答案：confirm；例如：window.confirm("我就是确认框");运行结果是浏览器弹出信息确认框，点击确定，返回true，反之返回false。第4期：把 7.25 四舍五入为最接近的整数的方式是：____？答案：Math.round()；例如：round() 方法的定义是把一个数字舍入为最接近的整数。Math.round(7.25)结果为7，Math.round(7.75)结果为8.第5期：在html5中，实现输入框占位符的属性是：___?答案：placeholder属性；它提供可描述输入字段预期值的提示信息，该提示会在输入字段为空时显示，并会在字段获得焦点时消失。第6期：在css3中，能够实现背景裁剪的新特性是：_____?答案：background-clip。background-clip 属性规定背景的绘制区域。它对应的值有3个：border-box（背景被裁剪到边框盒） 、padding-box （背景被裁剪到内边距框） content-box（背景被裁剪到内容框）。 第7期：在html5的新特性中，拥有多种绘制路径、矩形、圆形、字符以及添加图像的方法，结合JavaScript实现绘制图像的元素是_______?答案：canvas；注意：canvas 元素本身是没有绘图能力的。所有的绘制工作必须在 JavaScript 内部完成。 第8期：javascript语句，var a=10, b=20; alert(“a+b=”+a+b); 执行结果是在浏览器窗口弹出：___?答案： 在js中，字符串与数字相加，数字会被强制转成字符串类型，在进行相加，也就是变成两个字符串的链接，所以结果是字符串“a+b=”+“10”+“20”= “a+b=1020”。第9期：javascript习题，var a=5, b=6; alert(a+b+”10”); 执行结果是在浏览器窗口弹出：____?答案：1110；与第8期不同的是，本题中先进行的是数字5与数字6的相加操作，等到的结果是11，再进行数字11与字符串“11”的相加，此时数字11会被转换成字符串“11”再进行两个字符串的连接，所以结果是1110。第10期：在html5新特性中，用于定义文档页脚的标签是：____?答案：&lt;footer&gt;。&lt;footer&gt; 标签定义document 的页脚。第11期：在css3中，实现给元素添加圆角边框的属性是：____?答案：border-radius属性；border-radius属性十分常用，让过去要切图才能实现圆角边框，现在只要一句css代码即可实现，并且对浏览器兼容性也很友好。第12期：JavaScript由3部分组成，分别是：ECMAScript，BOM和____?答案：DOM；文档对象模型(DOM)描述了处理网页内容的方法和接口。第13期：在jquery中，实现动画的函数是：___?答案：animate()函数；animate() 方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。第14期：在css中，能够使文本水平居中的css属性是：____?答案：text-align属性，当其值为center的时候，文本内容就会水平居中；它的值还有可能是：left（居左），right（居右），justify（实现两端对齐文本效果），inherit（继承父元素的text-align属性值）。第15期：在html中的a标签中，实现在新窗口中打开链接的标签属性是：___?答案：target属性。当它的值为_blank的时候就会实现在新窗口中打开，它的值还可以是：_self（当前窗口中打开），_parent(父frame中打开），_top（整个窗口中打开）。第16期：var a=999; a++; alert(++a); 请问执行后弹出的结果是：___?答案：1001；执行a++后的结果是1000，然后执行++a，得到的结果是1001，再执行alert()函数，所以弹出的结果是1001。第17期：与16期的代码稍有不同，请仔细阅读，var a=888; ++a; alert(a++); 运行后弹出的结果是:__？答案：889，执行到++a后的结果是889，alert(a++)的时候，先执行弹出，再执行a++，所以弹出的是889，而不是900。第18期：在img标签中，当图像加载失败，会用替换文本来显示相关信息，那么，定义替换文本的属性是：___?答案：alt属性，用来为图像定义一串预备的可替换的文本。替换文本属性的值是用户定义的。第19期：在CSS3中，实现文本阴影效果的新属性是：__?答案：text-shadow；我们能够规定水平阴影、垂直阴影、模糊距离，以及阴影的颜色。第20期：在html标签中，定义最小的标题的是：__?答案：&lt;h6&gt;标签。&lt;h1&gt; 定义最大的标题。&lt;h6&gt; 定义最小的标题。第21期：用于播放 HTML5 音频文件的元素是：_____?答案：&lt;audio&gt;元素，还可以通过它的属性，来控制音频的自动播放，循环播放，暂停等操作。第22期：var a; alert(a); 执行后弹出的结果是：_____?答案：undefined。如果变量通过var声明，但是并未初始化的时候，变量的值为undefined。第23期：在jquery中，想要移除指定的DOM节点元素，使用的方法是：__?答案：remove()函数，该方法移除被选元素，包括所有文本和子节点。第24期：在ECMAScript6中，定义一个变量只在所处的代码块起作用的关键字是：_____?答案： 关键字let，ES6 新增了 let 命令，用来声明变量。它的用法类似于 var，但是所声明的变量，只在 let 命令所在的代码块内有效。第25期：console.log(typeof null); 运行的结果是在控制台输出：__?答案：输出object；在javascript中，null值表示一个空对象指针，而这正是使用typeof操作符检测null值时会返回“object”的原因。第26期：console.log(typeof  “3”); 运行的结果是在控制套输出：__?答案："string"，因为"3"就是一个字符串String类型。第27期：与26期稍有不同，仔细阅读，console.log(typeof +’3’); 运行结果是：_____?答案：“number”，数字在字符串之前存在数字中的正负号(+/-)时，会被转换成数字。第28期：在 HTML5 中，哪个元素用于组合标题元素？答案：&lt;hgroup&gt;元素，用于对网页或区段的标题进行组合。第29期：在HTML5中，哪个属性用于规定输入字段是必填的？答案：required属性， 属性规定必需在提交之前填写输入字段。如果使用该属性，则字段是必填的。第30期：哪种输入类型定义滑块控件？答案：range，定义带有 slider 控件的数字字段。第31期：在html5中，实现元素可拖动的标签属性是：__?答案：draggable属性，为了使元素可拖动，可以把 draggable 属性设置为 true。第32期：在html5中，实现本地存储，且存储数据不受时间限制的方式是：__?答案：localStorage存储，使用localStorage可以简单地记录当前客户端用户对网站的访问次数。第33期：在html5中，用于定义页面内容之外的内容标签是：_____?答案：&lt;aside&gt;标签，定义其所处内容之外的内容，aside 的内容应该与附近的内容相关。比如：可用作文章的侧栏。第34期：在html5中，用于描述文档或文档某个部分的细节的新标签是：__？答案：&lt;details&gt;标签，不过，目前只有chrome和safari浏览器支持此元素。第35期：在CSS3中，可以规定背景图片的定位区域的属性是：_____?答案：background-origin属性，它的值可以是： content-box、padding-box 或 border-box 。第36期：单词太长的话就超出某个区域，在CSS3中，实现文本强制文本进行换行的属性是：__?答案：word-wrap属性，当它的值等于break-word的时候，就可以实现文本强制换行，可以对单个单词进行拆分。第37期：在CSS中，用于定义单词间距的属性是：_____?答案：word-spacing属性，它可以增加或减少单词间的空白。第38期：在CSS中，规定文本段落首行的缩进的属性是：_____?答案：text-indent属性，如果要实现首行空两个字符的话，text-indent:2em即可。 第39期：在js中，’1555’+3的运行结果是：__?答案：15553，字符串与数字相加，数字会被转换成字符串，最后变成两个字符串拼接。第40期：在javascript中，’1205’-3的运行结果是：__?答案：1202。字符串与数字相减，字符串会被转换成数字再相减，等到的结果是1202。第41期：在js中，if( [ ] instanceof Array) {  alert(‘yes’)  } else {  alert(‘no’)  } 的运行结果是弹出：__?答案：“yes“，通过字面量方式创建的数组对象是属于Array类的一个实例，所以返回true。故弹出”yes“。 第42期：与41期稍有不同，仔细阅读，if( [ ] instanceof Object ){  alert(‘hello’); }  else  {  alert(‘world’)  }; 运行后结果是弹出：__?答案：弹出”hello“，之所以[ ] instanceof Object返回true，是因为Array是object的子类。第43期：console.log(‘hello’+(1&lt;2)?”world”:”me”); 运行后的结果是在控制台输出：__?答案：输出world，因为+操作符的优先级高于三元操作符，执行顺序分别是：（1&lt;2）得到 true，然后"hello"+true = "hellotrue",最后进行三元操作符，得到”world“。第44期：在html5中，用于定义导航链接的新元素是：_____?答案：&lt;nav&gt;标签，它是 HTML 5 中的新标签。定义导航链接的部分。第45期：在HTML5 Geolocation API ，实现获取用户位置的方法是:_____?答案：getCurrentPosition()方法，注意：鉴于该特性可能侵犯用户的隐私，除非用户同意，否则用户位置信息是不可用的。第46期：在html5中，input元素用于定义数值的输入与的属性是：_____?答案：number类型，number 类型用于应该包含数值的输入域，您还能够设定对所接受的数字的限定。第47期：在html5中，定义选取时间（小时和分钟）的类型是：_____?答案：time类型。type="time"，现在大部分浏览器都支持此属性值。第48期：在html5中，input元素中定义邮件的输入域类型的是：_____?答案：email类型。在提交表单时，会自动验证 email 域的值。第49期： var a = [33, 2, 123]; console.log(a.sort()); 运行后输出的结果是：_____？答案：[123, 2, 33]，当不带参数调用sort()时，数组元素以字母表顺序排序输出。第50期：   var a = [1, 2, 3]; console.log(a.join()); 运行后的结果是输出：_____?答案：1,2,3；数组的操作方法join是用来将数组中所有元素都转化为字符串并连接在一起，返回最后生成的字符串的。不指定分隔符，默认的是逗号分隔。所以是：1,2,3。第51期：var a = [1, 2, 3]; console.log(a.join(“-“)); 运行后输出的结果是：__？答案：1-2-3；与上一期一样，但是这一期输出语句指定空格为“-”，所以输出：1-2-3。 第52期：代码运行的结果是输出：__?var str1 = str2 = ’web’;(function() {    var str1 = str2 = ’前端教程’;})();console.log(str2);答案：“前端教程”，虽然str2是匿名函数内部，但是并没有被var定义，所以会往上一级去寻找，找到并重新赋值成“前端教程”。第53期：代码运行的结果是输出：__?var str1 = str2 = ’web’;(function() {    var str1 = str2 = ’前端教程’;})();console.log(str1);答案：输出“web”，代码中有两个str1，但是他们的都用var定义，处在不同的作用域，不会被覆盖，所以输出的str1是同一个作用域下的str1，所以是：“web”。第54期：代码运行的结果是输出：__?var str1 = str2 = ’web’;(function() {    var str1 = str2 = ’课堂’;    console.log(str2);})();答案：输出“课堂”，因为str2没有被var定义，所以找到上一级的作用域下的str2，并把它的值覆盖了，所以输出的str2是“课堂”。第55期：代码运行的结果是输出：__?if(10&gt;9&gt;8==true){console.log(‘html5’); }else{console.log(‘css3’);}答案：css3；先比较10和9，10 &gt; 9是成立的，此时返回的是true。true和8进行比较运算，此时会出现数据类型的转换，true会转换成数字1，再与8进行比较，1自然是小于8的，因此此处返回的是false。最后比较false和true，这两者自然是不等的，执行else里面的语句，输出：css3。第56期：代码运行的结果是输出：__?var obj = {};pbj.name = ’first’;var peo = obj;peo.name = ’second’;console.log(obj.name);答案：输出second；关于变量类型，分为了两大类，一种是引用类型，一种是值类型，值类型相当于是重新创建了一个空间，然后将内容复制了一份放置到了空间当中。引用类型相当于是重新创建了一份地址，两个地址（obj和peo）都是指向一个存储空间的，那么此时修改任意一个都会对另一个造成影响。第57期：在DOM对象中，获取元素的开始和结束标签之间的 HTML的属性是：__?答案：innerHTML属性，该属性可以设置或返回元素之间的 HTML。第58期：在DOM对象中，可返回带有指定标签名的对象集合的方法是：_____?答案：getElementsByTagName()，返回元素的顺序也是是它们在文档中的顺序。第59期：在DOM对象中，可以设置元素属性的方法是：__?答案：setAttribute() 方法；该方法添加指定的属性，并为其赋指定的值。如果这个指定的属性已存在，则仅设置/更改值。第60期：在DOM对象中，实现创建元素节点的方法是：_____?答案：createElement()方法，用于创建一个指定元素，所有主要浏览器都支持此方法。第61期：在DOM对象中，实现把新的节点添加到指定节点的方法是：__?答案：appendChild()方法；此方法向节点添加最后一个子节点。第62期：在DOM对象中，实现删除子节点的方法是：_____?答案：removeChild()方法；此方法指定元素的某个指定的子节点。以 Node 对象返回被删除的节点，如果节点不存在则返回 null。第63期：在BOM对象中，能够获取浏览器信息的对象是：__?答案：Navigator对象，Navigator 对象包含有关浏览器的信息，所有浏览器都支持该对象。第64期：在BOM对象中，能获取客户端显示屏的信息的对象是：_____?答案：Screen对象，Screen 对象包含有关客户端显示屏幕的信息。第65期：在BOM对象中，能获取浏览器当前URL信息的对象是：_____?答案：Location对象，Location 对象是 Window 对象的一个部分，可通过 window.location 属性来访问。第66期：在JavaScript数组中，实现向数组末尾添加一个元素的方法是：__?答案：push( )；此方法可向数组的末尾添加一个或多个元素，并返回新的长度。第67期：在JavaScript数组中，实现对数组的元素进行排序的方法是：_____?答案：sort( )；方法，注意，数组在原数组上进行排序，不生成副本。第68期：在JavsScript数组中，实现把数组的元素转成字符串，并且用指定的字符分隔开，默认是逗号的方法是：__?答案：join( )；此方法返回一个字符串。该字符串是通过把数组的每个元素转换为字符串，然后把这些字符串连接起来。第69期：在事件对象中，表示对象被双击时发生的事件：_____?答案：ondblclick；ondblclick 事件会在对象被双击时发生。第70期：在事件对象中，当对象失去焦点时会发生的事件是：_____?答案：onblur ；onblur 事件会在对象失去焦点时发生，常用在输入域里面。第71期：在事件对象中，当在域的内容发生改变的时候会触发的事件是：__?答案：onchange，onchange 事件会在域的内容改变时发生。常用在输入域，下拉选择，单选多选组件中。第72期：在事件对象中，表示监听键盘按键松开的是事件是：_____?答案：onkeyup事件，onkeyup 事件会在键盘按键被松开时发生。第73期：在事件对象中，表示网页被加载完成的事件是：__?答案：onload事件；onload 事件会在页面或图像加载完成后立即发生。第74期：在事件对象中，监听鼠标移动的事件是：__?答案：onmousemove事件，每当用户把鼠标移动一个像素，就会发生一个 mousemove 事件。第75期：代码：console.log([] + [] + “foo”.split(“”)); 运行后，控制台输出的结果是：__?答案：f,o,o；在[] + []的运算过程中，由于使用到了+号，两个数组对象均调用了自己自带的toString()方法，将[]转换成了字符串，两个字符串相加还是一个字符串。"foo".split("")，将字符串分割成字符串数组，为["f", "o", "o"]。最后一步，"" + ["f", "o", "o"]，这时候 + 左侧是字符串，右侧是数组对象，数组对象依旧会调用自身的原型方法，将数组转换为字符串。第76期：在HTML5的鼠标事件中，监听元素被拖动的事件是：__?答案：ondrag。第77期：在html5的新事件中，当浏览器窗口被调整大小的时候会触发的事件是：_____?答案：onresize事件，在制作响应式的页面时候十分有用。第78期：在input元素中，如果是隐藏域类型，type的值是：__?答案：type="hidden"，这种类型的输入元素实际上是隐藏的。这个不可见的表单元素的 value 属性保存了一个要提交给 Web 服务器的任意字符串。第79期：在css中，表示鼠标悬浮在a标签上方的伪类是：_____?答案：hover伪类，常用于修改链接文字的样式。第80期：在css中，实现把元素设置为固定定位，position的值应该是：__?答案：fixed；固定定位后，元素相对浏览器窗口来定位，在移动端布局十分常用。第81期：在W3C标准中，实现元素半透明的css属性是：_____?答案：opacity；opacity 属性能够设置的值从 0.0 到 1.0。值越小，越透明。第82期：css盒子模型包括了：内容，边框，内边距和_____?答案：外边距margin；我们可以把这4个属性转移到我们日常生活中的盒子（箱子）上来理解，日常生活中所见的盒子也就是能装东西的一种箱子，也具有这些属性，所以叫它盒子模式。第83期：如果要去除a标签下面的默认下划线，可以给a标签添加css属性text-decoration，并把值设置为：__?答案：none；text-decoration 属性大多用于去掉链接中的下划线。第84期：在css属性中，规定字体的粗细的属性是：__?答案：font-weight；默认值：normal。第85期：在css属性中，设置元素的最大宽度的属性是：__?答案：max-width；该属性值会对元素的宽度设置一个最高限制。因此，元素可以比指定值窄，但不能比其宽。不允许指定负值。第86期：在css属性中，用于清除元素浮动效果的属性是：_____?答案：clear；属性值可以是：left（清除左浮动）、right（清除右浮动） 、both（清除左右浮动）、none（取消清除）、inherit（继承父元素的clear值）。第87期：在html的input元素中，用于表单文件上传的类型是：_____?答案：file类型；第88期：在javascript字符串对象中，用于定位字符串中某一个指定的字符首次出现的位置的方法是：_____?答案：indexOf()方法。如果指定字符串存在，就返回它首次出现的位置，反之返回：-1。第89期：在字符串String对象中，实现字符串替换的方法是：_____?答案：replace()方法，使用此方法在字符串中用某些字符替换另一些字符。第90期：在JavaScript Number 对象中，可以四舍五入为指定小数位的数字的方法是：_____?答案：toFixed()方法；可以传入一个参数作为规定小数的位数，是 0 ~ 20 之间的值。第91期：在JavaScript Date对象中，能够获取今天是星期几的方法是：__?答案：getDay()方法；第92期：在JavaScript Math对象中，实现生成一个0~1之间的随机数的方法是：__?答案：random( )方法；第93期：在javascript的全局函数中， 把字符串作为脚本代码来执行的方法是：_____?答案：eval( ) ; eval() 函数计算 JavaScript 字符串，并把它作为脚本代码来执行。如果参数是一个表达式，eval() 函数将执行表达式。第94期：在javascript全局函数中，解析一个字符串并返回一个整数的方法是：__?答案：parseInt(); parseInt() 函数可解析一个字符串，并返回一个整数。注意： 只有字符串中的第一个数字会被返回。第95期：在JavaScript 全局函数中，检测某个值是否是数字的函数是：__?答案：isNaN()；如果参数值为 NaN 或字符串、对象、undefined等非数字值则返回 true, 否则返回 false。第96期：在JavaScript 算术运算符中，代表求余数的运算法是：_____?答案：% 运算法。第97期： 在JavaScript 算术运算符，表示自增的运算法是：__?答案： ++ 运算符。第98期：在JavaScript 比较运算符，表示恒等于（值和类型均相等）的运算符是：_____?答案：=== 运算符。第99期：在JavaScript 比较运算符中，表示值与类型均不等（不恒等于）的运算符是：_____?答案：！== 运算符。第100期：var a=999; a++; alert(++a); 请问执行后弹出的结果是：___?答案：1001；执行a++后的结果是1000，然后执行++a，得到的结果是1001，再执行alert()函数，所以结果是1001。]]></content>
       <categories>
         
-          <category> JavaScript </category>
+          <category> 面试 </category>
         
       </categories>
       <tags>
+        
+          <tag> 面试 </tag>
         
       </tags>
       <tags></tags>
@@ -968,7 +1113,7 @@
     <entry>
       <title><![CDATA[Js操作数组和字符串的那些事儿（方法）]]></title>
       <url>/javascript/2017/04/21/JS%E6%93%8D%E4%BD%9C%E6%95%B0%E7%BB%84%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF-%E6%96%B9%E6%B3%95/</url>
-      <content type="text"><![CDATA[数组  方法及说明  concat(arr1, arr2, …)：  连接数组indexOf(value)：  返回数组中value的第一个索引  join(separator)：  将数组中所有的元素连接由separator分割的字符串，默认为逗号  lastIndexOf(value)：  返回数组中value的最后一个索引  pop()：  删除数组最后一个元素，并将其返回  push()：  将参数添加至数组的末尾，并返回数组的新长度  reverse()：  反转数组中所有元素的顺序  shift()：  删除数组的第一个元素，并将其返回  slice(start, end)：  返回start和end索引之间的元素  sort()：  排序, 注意其参数可以为函数用来规定排序规则  splice(index, count, item1, item2, ..)：  在index指定的索引处，删除count个条目，然后在index处插入item等  toString()：  返回数组的字符串形式  unshift()：  将新元素添加到数组的开头，并返回数组的新长度  valueOf()：  返回一个数组对象的原始值  示例字符串  方法及说明  charAt(index):  返回指定索引处的字符串  charCodeAt(index):  返回指定索引处的字符的Unicode的值  concat(str1, str2, …):  连接多个字符串，返回连接后的字符串的副本  fromCharCode():  将Unicode值转换成实际的字符串  indexOf(str):  返回str在父串中第一次出现的位置，若没有则返回-1  lastIndexOf(str):  返回str在父串中最后一次出现的位置，若没有则返回-1  match(regex):  搜索字符串，并返回正则表达式的所有匹配  replace(str1, str2):  str1也可以为正则表达式，用str2替换str1  search(regex):  基于正则表达式搜索字符串，并返回第一个匹配的位置  slice(start, end)：  返回字符索引在start和end（不含）之间的子串  split(sep，limit)：  将字符串分割为字符数组，limit为从头开始执行分割的最大数量  substr(start，length)：  从字符索引start的位置开始，返回长度为length的子串  substring(from, to)：  返回字符索引在from和to（不含）之间的子串  toLowerCase()：  将字符串转换为小写  toUpperCase()：  将字符串转换为大写  valueOf()：  返回原始字符串值  示例]]></content>
+      <content type="text"><![CDATA[数组  方法及说明  concat(arr1, arr2, ...)：  连接数组indexOf(value)：  返回数组中value的第一个索引  join(separator)：  将数组中所有的元素连接由separator分割的字符串，默认为逗号  lastIndexOf(value)：  返回数组中value的最后一个索引  pop()：  删除数组最后一个元素，并将其返回  push()：  将参数添加至数组的末尾，并返回数组的新长度  reverse()：  反转数组中所有元素的顺序  shift()：  删除数组的第一个元素，并将其返回  slice(start, end)：  返回start和end索引之间的元素  sort()：  排序, 注意其参数可以为函数用来规定排序规则  splice(index, count, item1, item2, ..)：  在index指定的索引处，删除count个条目，然后在index处插入item等  toString()：  返回数组的字符串形式  unshift()：  将新元素添加到数组的开头，并返回数组的新长度  valueOf()：  返回一个数组对象的原始值  示例字符串  方法及说明  charAt(index):  返回指定索引处的字符串  charCodeAt(index):  返回指定索引处的字符的Unicode的值  concat(str1, str2, ...):  连接多个字符串，返回连接后的字符串的副本  fromCharCode():  将Unicode值转换成实际的字符串  indexOf(str):  返回str在父串中第一次出现的位置，若没有则返回-1  lastIndexOf(str):  返回str在父串中最后一次出现的位置，若没有则返回-1  match(regex):  搜索字符串，并返回正则表达式的所有匹配  replace(str1, str2):  str1也可以为正则表达式，用str2替换str1  search(regex):  基于正则表达式搜索字符串，并返回第一个匹配的位置  slice(start, end)：  返回字符索引在start和end（不含）之间的子串  split(sep，limit)：  将字符串分割为字符数组，limit为从头开始执行分割的最大数量  substr(start，length)：  从字符索引start的位置开始，返回长度为length的子串  substring(from, to)：  返回字符索引在from和to（不含）之间的子串  toLowerCase()：  将字符串转换为小写  toUpperCase()：  将字符串转换为大写  valueOf()：  返回原始字符串值  示例]]></content>
       <categories>
         
           <category> JavaScript </category>
@@ -983,26 +1128,9 @@
     </entry>
   
     <entry>
-      <title><![CDATA[自定义服务返回的状态码]]></title>
-      <url>/c%23/2017/04/10/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%9C%8D%E5%8A%A1%E8%BF%94%E5%9B%9E%E7%9A%84%E7%8A%B6%E6%80%81%E7%A0%81/</url>
-      <content type="text"><![CDATA[http状态码有很多，列如_200–成功、304–从缓存加载、404-页面不存在、500-服务器错误_ 等。但是有时当我们写后台服务时，仅仅是发送请求时，涉及到对数据库的CURD操作时，显然这些状态码并不是很合适，这时候需要我们自定义response的错误状态。我们可以定义错误状态status为‘false’或者‘错误提示信息’等等，但是这样并不容易区分是什么类型的错误。为了提高我们的开发效率，我们可以自定义一套服务错误状态规则。规则如下：      4位二进制，只出现0和1        4位二进制对应对数据库的CURD操作，全0表示操作成功，若操作出现错误则对应地位置‘0’变为‘1’。如1000表示增错误，0100表示改错误。  这样以来，我们可以很方便地知道错误的类型，方便debug，再则也可以养好的编码习惯，提高开发效率]]></content>
-      <categories>
-        
-          <category> C# </category>
-        
-      </categories>
-      <tags>
-        
-          <tag> C# </tag>
-        
-      </tags>
-      <tags></tags>
-    </entry>
-  
-    <entry>
       <title><![CDATA[Backbonejs中父子view之间的值传递]]></title>
       <url>/backbone/2017/04/06/BackboneJS%E4%B8%AD%E7%88%B6%E5%AD%90View%E4%B9%8B%E9%97%B4%E7%9A%84%E5%80%BC%E4%BC%A0%E9%80%92/</url>
-      <content type="text"><![CDATA[Backbone中，使用最多的莫过于在 view 中进行操作，如模板的渲染以及事件函数的定义。为了提高代码的可维护性，一般地我们会写多个视图( view )，将界面按照功能的不同进行模块化划分，模块与 view 一一对应。首先，我们会定义一个父 view ，在view中控制不同子 view 的渲染，子 view 之间尽量不产生联系。这样，代码之间的耦合度会降低很多，模块的功能明确化，同时降低了开发的难度。最近在项目中遇到父子view传值问题，学习到了一个知识点，比较简单易懂。主要想分享两个内容：父子view是如何传值的和它们之间传值要注意什么。以我实际的项目为例进行说明。  如何传值  项目中利用requireJs按需加载js文件，大大地节约了资源。首先在 global.js 中申明子 view 的路径，方便在父 view 中进行引用。requireJs是通过 define 进行函数的定义以及相关依赖模块的引入，这里不必细说，假设参数定义为 childrenView 。在父 view 中new一个_childrenView_ 对象，这样我们通过自定义事件进行操作就行。此时new的对象包含_view_的_render_方法等。如果在_new childrenView_ (参数1)时，参数1可以为空，此时父子 view 之间没有值传递；当参数2存在时，父子 view 存在值传递，参数1是父 view 传递给子 view 的。在子 view 的 initialize (参数2)中可以接收参数1，即参数1和参数2是对等的。 此外，因为是在父 view 中new的子 view，可以在父 view 可以对子 view 进行操作。  细节问题  通过一我们可以很方便在子 view 中接收父 view 的数据，但是这里有个细节问题。我曾在这里困惑好久。参数最好不要传父 view，即父 view_的this或者 _view 默认的事件函数等。因为这样做，参数会将子_view_默认的事件函数给覆盖，导致子 view 相同的事件函数失效。简单来讲，如果父子 view 都存在的，比如 render ，events 或者其他定义相同的值或者是自定义函数不能作为参数传递]]></content>
+      <content type="text"><![CDATA[Backbone中，使用最多的莫过于在 view 中进行操作，如模板的渲染以及事件函数的定义。为了提高代码的可维护性，一般地我们会写多个视图( view )，将界面按照功能的不同进行模块化划分，模块与 view 一一对应。首先，我们会定义一个父 view ，在view中控制不同子 view 的渲染，子 view 之间尽量不产生联系。这样，代码之间的耦合度会降低很多，模块的功能明确化，同时降低了开发的难度。最近在项目中遇到父子view传值问题，学习到了一个知识点，比较简单易懂。主要想分享两个内容：父子view是如何传值的和它们之间传值要注意什么。以我实际的项目为例进行说明。  如何传值  项目中利用requireJs按需加载js文件，大大地节约了资源。首先在 global.js 中申明子 view 的路径，方便在父 view 中进行引用。requireJs是通过 define 进行函数的定义以及相关依赖模块的引入，这里不必细说，假设参数定义为 childrenView 。在父 view 中new一个childrenView 对象，这样我们通过自定义事件进行操作就行。此时new的对象包含view的render方法等。如果在new childrenView (参数1)时，参数1可以为空，此时父子 view 之间没有值传递；当参数2存在时，父子 view 存在值传递，参数1是父 view 传递给子 view 的。在子 view 的 initialize (参数2)中可以接收参数1，即参数1和参数2是对等的。 此外，因为是在父 view 中new的子 view，可以在父 view 可以对子 view 进行操作。  细节问题  通过一我们可以很方便在子 view 中接收父 view 的数据，但是这里有个细节问题。我曾在这里困惑好久。参数最好不要传父 view，即父 view的this或者 view 默认的事件函数等。因为这样做，参数会将子view默认的事件函数给覆盖，导致子 view 相同的事件函数失效。简单来讲，如果父子 view 都存在的，比如 render ，events 或者其他定义相同的值或者是自定义函数不能作为参数传递]]></content>
       <categories>
         
           <category> Backbone </category>
@@ -1036,7 +1164,7 @@
     <entry>
       <title><![CDATA[Backbonejs中的where和findwhere]]></title>
       <url>/backbone/2017/03/20/BackboneJS%E4%B8%AD%E7%9A%84where%E5%92%8CfindWhere/</url>
-      <content type="text"><![CDATA[BackboneJS算是前端MVC框架的鼻祖，虽已过时，但其思想还是值得研究学习。where 和 findWhere 是该框架中经常用到的两个方法，下面做下笔记予以说明：  where 返回的是一个数组，取值时需要指定 model (模型)的索引号，适用于查找具有相同属性值的多个 model  findWhere 返回的是匹配到的第一个 model ，适用于查找 collection 中某一属性值唯一的集合示例：    (function($) {        var stuModel = Backbone.Model.extend({            defaults: {                name: "",                age: ""            }        });        var collection = Backbone.Collection.extend({            model: stuModel        });        var stu = [{            name: "lihua",            age: 18        }, {            name: "wangming",            age: 19        }, {            name: "sunwei",            age: 18        }]        var s1 = Stu.where({            age: 18        });        var s2 = Stu.findWhere({            age: 18        });        conosle.log(s1);        console.log(s2)    })(jQuery);输出]]></content>
+      <content type="text"><![CDATA[BackboneJS 算是前端MVC框架的鼻祖，虽已过时，但其思想还是值得研究学习。where 和 findWhere 是该框架中经常用到的两个方法，下面做下笔记予以说明：  where 返回的是一个数组，取值时需要指定 model (模型)的索引号，适用于查找具有相同属性值的多个 model  findWhere 返回的是匹配到的第一个 model ，适用于查找 collection 中某一属性值唯一的集合示例：    (function($) {        var stuModel = Backbone.Model.extend({            defaults: {                name: "",                age: ""            }        });        var collection = Backbone.Collection.extend({            model: stuModel        });        var stu = [{            name: "lihua",            age: 18        }, {            name: "wangming",            age: 19        }, {            name: "sunwei",            age: 18        }]        var s1 = Stu.where({            age: 18        });        var s2 = Stu.findWhere({            age: 18        });        conosle.log(s1);        console.log(s2)    })(jQuery);输出]]></content>
       <categories>
         
           <category> Backbone </category>
@@ -1053,7 +1181,7 @@
     <entry>
       <title><![CDATA[谈谈backbonejs中的el]]></title>
       <url>/backbone/2017/03/18/%E8%B0%88%E8%B0%88BackboneJS%E4%B8%AD%E7%9A%84el/</url>
-      <content type="text"><![CDATA[最近开始接触Backbone.js, 这个曾经非常优秀的一款MVC前端框架，在学习的过程中，遇到下图的这样一个问题代码如下：     searchView = Backbone.View.extend({         initialzie: function() {             this.render()         },         render: function() {             var template = _.template($("#search_template").html(), {});             this.el.html(template);         }     })只是view了一个实例，然后在 initalize 中调用了 render 方法，再通过 jquery 获取到的内容作为模板 template ，将此模板填充到 view 中绑定 el 属性的容器上，然而浏览器显示 this.el.html 不是一个函数. 试着通过 typeof  this.el , 输出的是 object ，所以这个 el 是个对象，但不是一个 jquery 对象。后来查阅官方文档看到有个 el ，它是视图元素的缓存 jQuery 对像，主要是简单的引用；而el属性则是所有的视图都拥有的一个 DOM 元素，所以二者的用法还是有区别的。 el 属性可以指定容器与哪个元素绑定，而绑定过后，视图就通过 el 来进行接下来的操作。当将 this.el.html替换成 this.$el.html 时，出现如期效果，无报错，如下图]]></content>
+      <content type="text"><![CDATA[最近开始接触 Backbone.js , 这个曾经非常优秀的一款MVC前端框架，在学习的过程中，遇到下图的这样一个问题代码如下：     searchView = Backbone.View.extend({         initialzie: function() {             this.render()         },         render: function() {             var template = _.template($("#search_template").html(), {});             this.el.html(template);         }     })只是 view 了一个实例，然后在 initalize 中调用了 render 方法，再通过 jquery 获取到的内容作为模板 template ，将此模板填充到 view 中绑定 el 属性的容器上，然而浏览器显示 this.el.html 不是一个函数. 试着通过 typeof  this.el , 输出的是 object ，所以这个 el 是个对象，但不是一个 jquery 对象。后来查阅官方文档看到有个 el ，它是视图元素的缓存 jQuery 对像，主要是简单的引用；而el属性则是所有的视图都拥有的一个 DOM 元素，所以二者的用法还是有区别的。 el 属性可以指定容器与哪个元素绑定，而绑定过后，视图就通过 el 来进行接下来的操作。当将 this.el.html 替换成 this.$el.html 时，出现如期效果，无报错，如下图]]></content>
       <categories>
         
           <category> Backbone </category>
@@ -1070,7 +1198,7 @@
     <entry>
       <title><![CDATA[模拟机械时钟]]></title>
       <url>/javascript/2017/03/13/%E6%A8%A1%E6%8B%9F%E6%9C%BA%E6%A2%B0%E6%97%B6%E9%92%9F/</url>
-      <content type="text"><![CDATA[Javascript提供了一个对象 Date(), 通过这个内置的对象，可以很容易地获取当前系统或设备的时间。此外还可以利用它的许多方法获取到具体的年月日时分秒，甚至是时间累计的字符串，时间戳是距离1970年1月1日00:00:00换算。那么我们如何利用这点模拟机械时钟转动呢？主要分为以下4个步骤：  首先，利用html5的canvas画钟盘，需要画三个半径不等的圆，分别为r1 5px, r2 145px 150px。或许你会疑惑，一个钟盘顶多两个圆足够，一个圆心，一个圆边，另一个圆有何用？山人自有妙计，且往下看。接下来，我们画指针，我们有两种常规的方法，一是用hr，另一个是用div，我们采用第二种，因为hr存在兼容性问题，在不同的浏览器中，上下边距有差异。此时，钟盘和指针都有了，当我们标注上数字，机械钟就有九分像了。//时针ctx.save();ctx.rotate((Math.PI / 6) * hr + (Math.PI / 360) * min + (Math.PI / 21600) * sec);ctx.lineWidth = 14;//分针ctx.save();ctx.rotate((Math.PI / 30) * min + (Math.PI / 1800) * sec);ctx.lineWidth = 10;//秒针ctx.save();ctx.rotate(sec * Math.PI / 30);ctx.strokeStyle = "#D40000";ctx.fillStyle = "#D40000";ctx.lineWidth = 6;      接下来，我们利用定时器setInterval()让指针转动起来，这里就要用到小学的数学知识了，每秒钟时针分针秒针各转多少度，当然指针的旋转我们用到了css3的新属性translate。        百里，我们已行九十。我们看界面上的钟还是少了点什么。没错，这个钟没有刻度，不太直观，于是可以for一个旋转的刻度，此时钟盘五花八门，上面那个看似没用的圆此时就派上了用场。利用层级z-index优先级可以达到目的。    总结:至此一个clock就完成了，演示链接]]></content>
+      <content type="text"><![CDATA[Javascript提供了一个对象 Date() , 通过这个内置的对象，可以很容易地获取当前系统或设备的时间。此外还可以利用它的许多方法获取到具体的年月日时分秒，甚至是时间累计的字符串，时间戳是距离1970年1月1日00:00:00换算。那么我们如何利用这点模拟机械时钟转动呢？主要分为以下4个步骤：  首先，利用html5的 canvas 画钟盘，需要画三个半径不等的圆，分别为r1 5px, r2 145px 150px。或许你会疑惑，一个钟盘顶多两个圆足够，一个圆心，一个圆边，另一个圆有何用？山人自有妙计，且往下看。接下来，我们画指针，我们有两种常规的方法，一是用hr，另一个是用div，我们采用第二种，因为hr存在兼容性问题，在不同的浏览器中，上下边距有差异。此时，钟盘和指针都有了，当我们标注上数字，机械钟就有九分像了。//时针ctx.save();ctx.rotate((Math.PI / 6) * hr + (Math.PI / 360) * min + (Math.PI / 21600) * sec);ctx.lineWidth = 14;//分针ctx.save();ctx.rotate((Math.PI / 30) * min + (Math.PI / 1800) * sec);ctx.lineWidth = 10;//秒针ctx.save();ctx.rotate(sec * Math.PI / 30);ctx.strokeStyle = "#D40000";ctx.fillStyle = "#D40000";ctx.lineWidth = 6;      接下来，我们利用定时器 setInterval() 让指针转动起来，这里就要用到小学的数学知识了，每秒钟时针分针秒针各转多少度，当然指针的旋转我们用到了css3的新属性 translate 。        百里，我们已行九十。我们看界面上的钟还是少了点什么。没错，这个钟没有刻度，不太直观，于是可以for一个旋转的刻度，此时钟盘五花八门，上面那个看似没用的圆此时就派上了用场。利用层级 z-index 优先级可以达到目的。    至此一个clock就完成了，演示链接  ]]></content>
       <categories>
         
           <category> JavaScript </category>

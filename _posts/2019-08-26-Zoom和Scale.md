@@ -1,4 +1,10 @@
-zoom和scale都可以用于DOM元素在视觉显示效果上放大或缩小。
+---
+categories:
+ - CSS
+tags:
+ - CSS
+---
+`zoom`和`scale`都可以用于DOM元素在视觉显示效果上放大或缩小。
 
 ##### zoom
 

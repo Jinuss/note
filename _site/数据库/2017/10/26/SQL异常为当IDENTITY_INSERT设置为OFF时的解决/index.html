@@ -490,13 +490,11 @@
 
 
 
-  <p>误删数据库时，可以利用insert插入删除的数据，但是有时表可能有自增字段如id。这是插入数据如果包含自增字段就会出现错误，提示”IDENTITY_INSERT设置为OFF,插入失败”。</p>
+  <p>误删数据库时，可以利用<code class="highlighter-rouge">insert</code>插入删除的数据，但是有时表可能有自增字段如id。这是插入数据如果包含自增字段就会出现错误，提示”IDENTITY_INSERT设置为OFF,插入失败”。</p>
 
 <p>所以我们将其设置为on即可，sql语句：</p>
-<blockquote>
-  <p>set IDENTITY_INSERT 表名 on</p>
-</blockquote>
-
+<pre><code class="language-SQL"> set IDENTITY_INSERT 表名 on
+</code></pre>
 <p>完美地解决了问题，当插入数据后，记得重置数据库设置</p>
 <blockquote>
   <p>IDENTITY_INSERT为off</p>
@@ -632,7 +630,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">75</span>
+                <span class="site-state-item-count">71</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -643,7 +641,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -654,7 +652,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

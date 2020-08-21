@@ -1,3 +1,10 @@
+---
+categories:
+ - vue
+tags:
+ - vue 
+ - vue-router
+---
 vue-router的model有两种模式：**hash模式**和**history模式**
 
 - 前端路由的核心就在于改变视图的同时不会向后端发出请求

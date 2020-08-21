@@ -111,17 +111,17 @@
 
 
 
-<meta name="description" content="用js写了一个调用摄像头的demo，并用canvas显示保存。这个功能很实用，比如上传用户的头像，即时拍照及时上传。">
+<meta name="description" content="用js写了一个调用摄像头的demo，并用 canvas 显示保存。这个功能很实用，比如上传用户的头像，即时拍照及时上传。">
 <meta name="keywords" content="工具">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Js如何调用电脑的摄像头">
 <meta property="og:url" content="http://localhost:4000/javascript/2018/04/18/Js%E5%A6%82%E4%BD%95%E8%B0%83%E7%94%A8%E7%94%B5%E8%84%91%E7%9A%84%E6%91%84%E5%83%8F%E5%A4%B4/">
 <meta property="og:site_name" content="Jinus's Blog">
-<meta property="og:description" content="用js写了一个调用摄像头的demo，并用canvas显示保存。这个功能很实用，比如上传用户的头像，即时拍照及时上传。">
+<meta property="og:description" content="用js写了一个调用摄像头的demo，并用 canvas 显示保存。这个功能很实用，比如上传用户的头像，即时拍照及时上传。">
 <meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Js如何调用电脑的摄像头">
-<meta name="twitter:description" content="用js写了一个调用摄像头的demo，并用canvas显示保存。这个功能很实用，比如上传用户的头像，即时拍照及时上传。">
+<meta name="twitter:description" content="用js写了一个调用摄像头的demo，并用 canvas 显示保存。这个功能很实用，比如上传用户的头像，即时拍照及时上传。">
 
 
 <script type="text/javascript" id="hexo.configurations">
@@ -435,7 +435,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  327
+                  331
                 </span>
               
 
@@ -490,65 +490,65 @@
 
 
 
-  <p>用js写了一个调用摄像头的demo，并用canvas显示保存。这个功能很实用，比如上传用户的头像，即时拍照及时上传。</p>
+  <p>用js写了一个调用摄像头的demo，并用 <code class="highlighter-rouge">canvas</code> 显示保存。这个功能很实用，比如上传用户的头像，即时拍照及时上传。</p>
 
 <p>html Code:</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9</pre></td><td class="code"><pre class="highlight"><code>
+      <span class="nt">&lt;video</span> <span class="na">width=</span><span class="s">"200px"</span> <span class="na">height=</span><span class="s">"150px"</span><span class="nt">&gt;&lt;/video&gt;</span>
+      <span class="nt">&lt;canvas</span> <span class="na">width=</span><span class="s">"200px"</span> <span class="na">height=</span><span class="s">"150px"</span><span class="nt">&gt;&lt;/canvas&gt;</span>
+      <span class="nt">&lt;p&gt;</span>
+      <span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"start"</span><span class="nt">&gt;</span>打开摄像头<span class="nt">&lt;/button&gt;</span>
+      <span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"snap"</span><span class="nt">&gt;</span>截取图像<span class="nt">&lt;/button&gt;</span>
+      <span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"close"</span><span class="nt">&gt;</span>关闭摄像头<span class="nt">&lt;/button&gt;</span>
+      <span class="nt">&lt;/p&gt;</span>
 
-<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7</pre></td><td class="code"><pre class="highlight"><code>  &lt;video width="200px" height="150px"&gt;&lt;/video&gt;
-  &lt;canvas width="200px" height="150px"&gt;&lt;/canvas&gt;
-  &lt;p&gt;
-  &lt;button id="start"&gt;打开摄像头&lt;/button&gt;
-  &lt;button id="snap"&gt;截取图像&lt;/button&gt;
-  &lt;button id="close"&gt;关闭摄像头&lt;/button&gt;
-  &lt;/p&gt;
 </code></pre></td></tr></tbody></table></div></div>
-
 <p>js Code:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25<br/>26<br/>27<br/>28<br/>29<br/>30<br/>31<br/>32<br/>33<br/>34<br/>35<br/>36<br/>37<br/>38<br/>39<br/>40<br/>41</pre></td><td class="code"><pre class="highlight"><code> window.onload = function () {
-       var canvas = document.getElementsByTagName('canvas')[0],
-           context = canvas.getContext('2d'),
-           video = document.getElementsByTagName("video")[0],
-           snap = document.getElementById("snap"),
-           close = document.getElementById("close"),
-           start = document.getElementById("start"),
-           MediaStreamTrack;
-       start.addEventListener('click', function () {
-           if (navigator.mediaDevices &amp;&amp; navigator.mediaDevices.getUserMedia) {
-               navigator.mediaDevices.getUserMedia({
-                   video: true,
-                   audio: true
-               }).then(function (stream) {
-                   console.log(stream);
-                   MediaStreamTrack=typeof stream.stop==='function'?stream:stream.getTracks()[1];
-                   video.src=(window.URL).createObjectURL(stream);
-                   video.play();
-               }).catch(function(err){
-                   console.log(err);
-               });
-           }else if(navigator.getMedia){
-               navigator.getMedia({
-                   video: true
-               }).then(function (stream) {
-                   console.log(stream);
-                   MediaStreamTrack=stream.getTracks()[1];
-                   video.src=(window.webkitURL).createObjectURL(stream);
-                   video.play();
-               }).catch(function(err){
-                   console.log(err);
-               });
-           }
-       });
-       snap.addEventListener('click', function () {
-           context.drawImage(video, 0, 0,200,150);
-       });
-       close.addEventListener('click', function () {
-           MediaStreamTrack &amp;&amp; MediaStreamTrack.stop();
-       });
-   }
-</code></pre></td></tr></tbody></table></div></div>
+<pre><code class="language-JavaScript">     window.onload = function () {
+           var canvas = document.getElementsByTagName('canvas')[0],
+               context = canvas.getContext('2d'),
+               video = document.getElementsByTagName("video")[0],
+               snap = document.getElementById("snap"),
+               close = document.getElementById("close"),
+               start = document.getElementById("start"),
+               MediaStreamTrack;
+           start.addEventListener('click', function () {
+               if (navigator.mediaDevices &amp;&amp; navigator.mediaDevices.getUserMedia) {
+                   navigator.mediaDevices.getUserMedia({
+                       video: true,
+                       audio: true
+                   }).then(function (stream) {
+                       console.log(stream);
+                       MediaStreamTrack=typeof stream.stop==='function'?stream:stream.getTracks()[1];
+                       video.src=(window.URL).createObjectURL(stream);
+                       video.play();
+                   }).catch(function(err){
+                       console.log(err);
+                   });
+               }else if(navigator.getMedia){
+                   navigator.getMedia({
+                       video: true
+                   }).then(function (stream) {
+                       console.log(stream);
+                       MediaStreamTrack=stream.getTracks()[1];
+                       video.src=(window.webkitURL).createObjectURL(stream);
+                       video.play();
+                   }).catch(function(err){
+                       console.log(err);
+                   });
+               }
+           });
+           snap.addEventListener('click', function () {
+               context.drawImage(video, 0, 0,200,150);
+           });
+           close.addEventListener('click', function () {
+               MediaStreamTrack &amp;&amp; MediaStreamTrack.stop();
+           });
+       }
+</code></pre>
 
-<p>总结：上面这个Demo主要用到浏览器的摄像头组件，然后再将图片源赋给canvas。其中遇到一个坑：<strong>代码需要托管到服务器端，即在客户端访问才能调用浏览器成功。</strong>这种禁止本地调用的做法可能是出于浏览器的安全性和用户的隐私考虑。</p>
+<p>总结：上面这个Demo主要用到浏览器的摄像头组件，然后再将图片源赋给 <code class="highlighter-rouge">canvas</code> 。其中遇到一个坑：<strong>代码需要托管到服务器端，即在客户端访问才能调用浏览器成功。</strong>这种禁止本地调用的做法可能是出于浏览器的安全性和用户的隐私考虑。</p>
 
 
       
@@ -680,7 +680,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">75</span>
+                <span class="site-state-item-count">71</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -691,7 +691,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -702,7 +702,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

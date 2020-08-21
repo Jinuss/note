@@ -1,3 +1,10 @@
+---
+categories:
+ - JavaScript
+tags:
+ - JavaScript 
+ - 浏览器
+---
 ### 进程、线程
 
  - 进程是系统分配的独立资源，是CPU资源分配的基本单位。进程是由一个或者多个线程组成

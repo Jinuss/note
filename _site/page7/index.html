@@ -317,530 +317,6 @@
   
 
   <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://localhost:4000/linux/2018/08/27/Linux%E5%AD%A6%E4%B9%A0%E4%BA%8C/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jinus">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="assets/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jinus's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-          
-          
-            
-                
-                <a class="post-title-link" href="/linux/2018/08/27/Linux%E5%AD%A6%E4%B9%A0%E4%BA%8C/" itemprop="url">
-                Linux学习二
-              </a>
-            
-          
-        </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-27T00:00:00+08:00">
-                2018-08-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/category/#/Linux" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            <div class="post-wordcount">
-              
-                
-                  <span class="post-meta-divider">|</span>
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  342
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-  
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  <h4 id="shell-壳">shell 壳</h4>
-
-<ul>
-  <li>
-    <p>$ 指令 选项 参数1 参数2</p>
-  </li>
-  <li>
-    <p>通常选项前会加-号，选项的完整全名，前加–</p>
-  </li>
-  <li>
-    <p>无论空几格，shell都视为一格</p>
-  </li>
-  <li>
-    <p>指令太长可以使用反斜线来使指令连续到下一行，</p>
-  </li>
-</ul>
-
-<blockquote>
-  <p>date  显示日期   date +%d/%m/%Y 格式化输出</p>
-
-  <p>cal [month] [year] 显示日历</p>
-
-  <p>bc   小算盘</p>
-</blockquote>
-
-<p>【tab】键 命令补全与文件补齐</p>
-
-<p>【ctrl】-c 终止当前指令</p>
-
-<p>【ctrl】-d 离开命令行</p>
-
-<p>【shift】+方向键  翻页</p>
-
-<h4 id="man-page">man page</h4>
-
-<p>man page 以NAME作为开始介绍，以SEE ALSO作为结束
-图片1
-图片2
-图片3</p>
-
-<p>/etc/man_db.conf 中配置man的搜索顺序，一般而言man 1在man 7之前</p>
-
-<h4 id="info-page">info page</h4>
-
-<blockquote>
-  <p>info和man都是用来查询指令的用法或者是文件的格式。区别在于man page 会一下子输出一堆信息，而info page 则是将文件数据拆成一个一个的段落，每个段落用自己的页面来撰写，并且在各个页面中还有链接跳至各个不同的页面中，每个独立的页面也被称为一个节点，info page可以理解成文字模式的网页显示数据</p>
-</blockquote>
-
-<p>/usr/share/info中配置</p>
-
-<p>who 查看谁在线上</p>
-
-<p>sync 数据同步写入磁盘</p>
-
-<p>惯用的开机指令 shutdown</p>
-
-<p>重启 reboot halt poweroff</p>
-
-<p>su 转变root身份</p>
-
-
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/linux/2018/08/27/Linux%E5%AD%A6%E4%B9%A0%E4%BA%8C/#" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-        
-        
-        
-        
-          <div class="post-eof"></div>
-        
-      
-    </footer>
-  </article>
-
-  
-    
-    
-
-  
-
-  
-  
-  
-
-  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://localhost:4000/linux/2018/08/21/Linux%E5%AD%A6%E4%B9%A0%E4%B8%80/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jinus">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="assets/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jinus's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-          
-          
-            
-                
-                <a class="post-title-link" href="/linux/2018/08/21/Linux%E5%AD%A6%E4%B9%A0%E4%B8%80/" itemprop="url">
-                Linux学习一
-              </a>
-            
-          
-        </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-21T00:00:00+08:00">
-                2018-08-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/category/#/Linux" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            <div class="post-wordcount">
-              
-                
-                  <span class="post-meta-divider">|</span>
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  651
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  3
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-  
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  <ul>
-  <li>Linux 的强项在于网络，而window则赢在使用接口友好</li>
-  <li>在/var/log 这个目录中的错误讯息常常提供大量的解决方案</li>
-</ul>
-
-
-
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/linux/2018/08/21/Linux%E5%AD%A6%E4%B9%A0%E4%B8%80/#" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-        
-        
-        
-        
-          <div class="post-eof"></div>
-        
-      
-    </footer>
-  </article>
-
-  
-    
-    
-
-  
-
-  
-  
-  
-
-  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://localhost:4000/javascript/2018/05/20/JS%E5%B8%B8%E7%94%A8%E7%9A%84%E6%8A%80%E6%9C%AF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -967,7 +443,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  487
+                  527
                 </span>
               
 
@@ -1017,7 +493,7 @@
 
 
 
-  <p><img src="https://jinuss.github.io/blog/jinus/img/2018052001.png" alt="01" /></p>
+  <p><img src="/jinus/img/2018052001.png" alt="01" /></p>
 
 
 
@@ -1199,7 +675,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  1305
+                  1336
                 </span>
               
 
@@ -1663,7 +1139,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  327
+                  331
                 </span>
               
 
@@ -1713,7 +1189,7 @@
 
 
 
-  <p>用js写了一个调用摄像头的demo，并用canvas显示保存。这个功能很实用，比如上传用户的头像，即时拍照及时上传。</p>
+  <p>用js写了一个调用摄像头的demo，并用 <code class="highlighter-rouge">canvas</code> 显示保存。这个功能很实用，比如上传用户的头像，即时拍照及时上传。</p>
 
 
 
@@ -1895,7 +1371,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  280
+                  278
                 </span>
               
 
@@ -1945,7 +1421,7 @@
 
 
 
-  <p>query.qrcode.min.js是一款可以生成二维码的插件，使用前提是先引入jquery，因为jquery.qrcode.min.js依赖jquery。</p>
+  <p>query.qrcode.min.js是一款可以生成二维码的插件，使用前提是先引入<code class="highlighter-rouge">jquery</code>，因为jquery.qrcode.min.js依赖<code class="highlighter-rouge">jquery</code>。</p>
 
 
 
@@ -2127,7 +1603,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  140
+                  147
                 </span>
               
 
@@ -2216,6 +1692,470 @@
         
         
         
+          <div class="post-eof"></div>
+        
+      
+    </footer>
+  </article>
+
+  
+    
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/javascript/2018/01/11/%E7%AC%AC5%E7%AB%A0-%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B-JS%E7%BA%A2%E5%AE%9D%E4%B9%A6%E4%B9%A6%E6%91%98%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jinus">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="assets/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jinus's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+          
+          
+            
+                
+                <a class="post-title-link" href="/javascript/2018/01/11/%E7%AC%AC5%E7%AB%A0-%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B-JS%E7%BA%A2%E5%AE%9D%E4%B9%A6%E4%B9%A6%E6%91%98%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0/" itemprop="url">
+                第5章 引用类型   Js红宝书书摘系列笔记
+              </a>
+            
+          
+        </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-11T00:00:00+08:00">
+                2018-01-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/JavaScript" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  2298
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  11
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <p>在ECMAScript中，引用类型是一种数据结构，用于将数据和功能组织在一起，描述的是一类对象所具有的属性和方法。而对象是某个特定引用类型的实例。</p>
+
+
+
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/javascript/2018/01/11/%E7%AC%AC5%E7%AB%A0-%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B-JS%E7%BA%A2%E5%AE%9D%E4%B9%A6%E4%B9%A6%E6%91%98%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0/#" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+        
+        
+        
+        
+          <div class="post-eof"></div>
+        
+      
+    </footer>
+  </article>
+
+  
+    
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/%E6%95%B0%E6%8D%AE%E5%BA%93/2017/12/13/SQL-Server-2008%E6%B7%BB%E5%8A%A0%E5%AD%97%E6%AE%B5%E6%88%90%E5%8A%9F-%E4%BD%86%E6%8F%90%E7%A4%BA%E5%88%97%E5%90%8D%E6%97%A0%E6%95%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jinus">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="assets/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jinus's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+          
+          
+            
+                
+                <a class="post-title-link" href="/%E6%95%B0%E6%8D%AE%E5%BA%93/2017/12/13/SQL-Server-2008%E6%B7%BB%E5%8A%A0%E5%AD%97%E6%AE%B5%E6%88%90%E5%8A%9F-%E4%BD%86%E6%8F%90%E7%A4%BA%E5%88%97%E5%90%8D%E6%97%A0%E6%95%88/" itemprop="url">
+                Sql server 2008添加字段成功，但提示列名无效
+              </a>
+            
+          
+        </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-13T00:00:00+08:00">
+                2017-12-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/%E6%95%B0%E6%8D%AE%E5%BA%93" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  189
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  0
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <p>在sql后查询，给现有表添加一个字段，即执行sql语句：</p>
+
+
+
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/%E6%95%B0%E6%8D%AE%E5%BA%93/2017/12/13/SQL-Server-2008%E6%B7%BB%E5%8A%A0%E5%AD%97%E6%AE%B5%E6%88%90%E5%8A%9F-%E4%BD%86%E6%8F%90%E7%A4%BA%E5%88%97%E5%90%8D%E6%97%A0%E6%95%88/#" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+        
+        
+        
+        
       
     </footer>
   </article>
@@ -2231,7 +2171,7 @@
 
 
 
-    <a class="extend prev" rel="prev" href="/page6/"><i class="fa fa-angle-left"></i></a> <a class="page-number" href="/">1</a> <span class="space">&hellip;</span> <a class="page-number" href="/page6/">6</a> <span class="page-number current">7</span> <a class="page-number" href="/page8/">8</a> <span class="space">&hellip;</span> <a class="page-number" href="/page10/">10</a> <a class="extend prev" rel="next" href="/page8/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page6/"><i class="fa fa-angle-left"></i></a> <a class="page-number" href="/">1</a> <span class="space">&hellip;</span> <a class="page-number" href="/page6/">6</a> <span class="page-number current">7</span> <a class="page-number" href="/page8/">8</a> <a class="page-number" href="/page9/">9</a> <a class="extend prev" rel="next" href="/page8/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2277,7 +2217,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">75</span>
+                <span class="site-state-item-count">71</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2288,7 +2228,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -2299,7 +2239,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

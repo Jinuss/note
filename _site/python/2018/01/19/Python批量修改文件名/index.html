@@ -435,7 +435,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  140
+                  147
                 </span>
               
 
@@ -492,20 +492,17 @@
 
   <p>最近从百度云盘上下载了一批视频，然而这些视频的文件名都带有广告。有洁癖的我看着感觉难受，于是想修改过来。但是一个个的修改文件名又嫌麻烦，联想到业余时看过的python，于是用python写了几行代码轻松地批量修改了文件名称。</p>
 
-<p>code：</p>
-
-<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10</pre></td><td class="code"><pre class="highlight"><code>#coding:utf-8
-import os,sys
-  #获取目录下所有的文件名# 
-videos_name=os.listdir('D:\videos')
-  #循环遍历文件名#
-for temp in videos_name:
-print temp
-new_name=temp[0:6]+'.flv'
-print new_name
-os.rename('D:\videos\'+temp,'D:\videos\'+new_name)
-</code></pre></td></tr></tbody></table></div></div>
-
+<pre><code class="language-Python">    #coding:utf-8
+    import os,sys
+      #获取目录下所有的文件名# 
+    videos_name=os.listdir('D:\\videos')
+      #循环遍历文件名#
+    for temp in videos_name:
+    print temp
+    new_name=temp[0:6]+'.flv'
+    print new_name
+    os.rename('D:\\videos\\'+temp,'D:\\videos\\'+new_name)
+</code></pre>
 
 
       
@@ -637,7 +634,7 @@ os.rename('D:\videos\'+temp,'D:\videos\'+new_name)
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">75</span>
+                <span class="site-state-item-count">71</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -648,7 +645,7 @@ os.rename('D:\videos\'+temp,'D:\videos\'+new_name)
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -659,7 +656,7 @@ os.rename('D:\videos\'+temp,'D:\videos\'+new_name)
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

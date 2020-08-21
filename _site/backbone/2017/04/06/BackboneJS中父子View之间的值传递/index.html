@@ -435,7 +435,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  632
+                  620
                 </span>
               
 
@@ -490,17 +490,17 @@
 
 
 
-  <p><strong>Backbone</strong>中，使用最多的莫过于在 <em>view</em> 中进行操作，如模板的渲染以及事件函数的定义。为了提高代码的可维护性，一般地我们会写多个视图( <em>view</em> )，将界面按照功能的不同进行模块化划分，模块与 <em>view</em> 一一对应。</p>
+  <p><code class="highlighter-rouge">Backbone</code>中，使用最多的莫过于在 <code class="highlighter-rouge">view</code> 中进行操作，如模板的渲染以及事件函数的定义。为了提高代码的可维护性，一般地我们会写多个视图( <code class="highlighter-rouge">view</code> )，将界面按照功能的不同进行模块化划分，模块与 <code class="highlighter-rouge">view</code> 一一对应。</p>
 
-<p>首先，我们会定义一个父 <em>view</em> ，在view中控制不同子 <em>view</em> 的渲染，子 <em>view</em> 之间尽量不产生联系。这样，代码之间的耦合度会降低很多，模块的功能明确化，同时降低了开发的难度。最近在项目中遇到父子view传值问题，学习到了一个知识点，比较简单易懂。主要想分享两个内容：父子view是如何传值的和它们之间传值要注意什么。以我实际的项目为例进行说明。</p>
+<p>首先，我们会定义一个父 <code class="highlighter-rouge">view</code> ，在view中控制不同子 <code class="highlighter-rouge">view</code> 的渲染，子 <code class="highlighter-rouge">view</code> 之间尽量不产生联系。这样，代码之间的耦合度会降低很多，模块的功能明确化，同时降低了开发的难度。最近在项目中遇到父子view传值问题，学习到了一个知识点，比较简单易懂。主要想分享两个内容：父子view是如何传值的和它们之间传值要注意什么。以我实际的项目为例进行说明。</p>
 
 <ul>
   <li>如何传值</li>
 </ul>
 
 <blockquote>
-  <p>项目中利用<strong>requireJs</strong>按需加载js文件，大大地节约了资源。首先在 <em>global.js</em> 中申明子 <em>view</em> 的路径，方便在父 <em>view</em> 中进行引用。<strong>requireJs</strong>是通过 <em>define</em> 进行函数的定义以及相关依赖模块的引入，这里不必细说，假设参数定义为 <em>childrenView</em> 。在父 <em>view</em> 中new一个_childrenView_ 对象，这样我们通过自定义事件进行操作就行。此时new的对象包含_view_的_render_方法等。如果在_new childrenView_ (参数1)时，参数1可以为空，此时父子 <em>view</em> 之间没有值传递；当参数2存在时，父子 <em>view</em> 存在值传递，参数1是父 <em>view</em> 传递给子 <em>view</em> 的。在子 <em>view</em> 的 <em>initialize</em> (参数2)中可以接收参数1，即参数1和参数2是对等的。
- 此外，因为是在父 <em>view</em> 中new的子 <em>view</em>，可以在父 <em>view</em> 可以对子 <em>view</em> 进行操作。</p>
+  <p>项目中利用<code class="highlighter-rouge">requireJs</code>按需加载js文件，大大地节约了资源。首先在 <code class="highlighter-rouge">global.js</code> 中申明子 <code class="highlighter-rouge">view</code> 的路径，方便在父 <code class="highlighter-rouge">view</code> 中进行引用。<code class="highlighter-rouge">requireJs</code>是通过 <code class="highlighter-rouge">define</code> 进行函数的定义以及相关依赖模块的引入，这里不必细说，假设参数定义为 <code class="highlighter-rouge">childrenView</code> 。在父 <code class="highlighter-rouge">view</code> 中new一个<code class="highlighter-rouge">childrenView</code> 对象，这样我们通过自定义事件进行操作就行。此时new的对象包含<code class="highlighter-rouge">view</code>的<code class="highlighter-rouge">render</code>方法等。如果在<code class="highlighter-rouge">new childrenView</code> (参数1)时，参数1可以为空，此时父子 <code class="highlighter-rouge">view</code> 之间没有值传递；当参数2存在时，父子 <code class="highlighter-rouge">view</code> 存在值传递，参数1是父 <code class="highlighter-rouge">view</code> 传递给子 <code class="highlighter-rouge">view</code> 的。在子 <code class="highlighter-rouge">view</code> 的 <code class="highlighter-rouge">initialize</code> (参数2)中可以接收参数1，即参数1和参数2是对等的。
+ 此外，因为是在父 <code class="highlighter-rouge">view</code> 中new的子 <code class="highlighter-rouge">view</code>，可以在父 <code class="highlighter-rouge">view</code> 可以对子 <code class="highlighter-rouge">view</code> 进行操作。</p>
 </blockquote>
 
 <ul>
@@ -508,7 +508,7 @@
 </ul>
 
 <blockquote>
-  <p>通过一我们可以很方便在子 <em>view</em> 中接收父 <em>view</em> 的数据，但是这里有个细节问题。我曾在这里困惑好久。参数最好不要传父 <em>view</em>，即父 <em>view_的this或者 _view</em> 默认的事件函数等。因为这样做，参数会将子_view_默认的事件函数给覆盖，导致子 <em>view</em> 相同的事件函数失效。简单来讲，如果父子 <em>view</em> 都存在的，比如 <em>render</em> ，<em>events</em> 或者其他定义相同的值或者是自定义函数不能作为参数传递</p>
+  <p>通过一我们可以很方便在子 <code class="highlighter-rouge">view</code> 中接收父 <code class="highlighter-rouge">view</code> 的数据，但是这里有个细节问题。我曾在这里困惑好久。参数最好不要传父 <code class="highlighter-rouge">view</code>，即父 <code class="highlighter-rouge">view</code>的this或者 <code class="highlighter-rouge">view</code> 默认的事件函数等。因为这样做，参数会将子<code class="highlighter-rouge">view</code>默认的事件函数给覆盖，导致子 <code class="highlighter-rouge">view</code> 相同的事件函数失效。简单来讲，如果父子 <code class="highlighter-rouge">view</code> 都存在的，比如 <code class="highlighter-rouge">render</code> ，<code class="highlighter-rouge">events</code> 或者其他定义相同的值或者是自定义函数不能作为参数传递</p>
 </blockquote>
 
 
@@ -557,8 +557,8 @@
         <div class="post-nav" id="post-nav-id">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/c%23/2017/04/10/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%9C%8D%E5%8A%A1%E8%BF%94%E5%9B%9E%E7%9A%84%E7%8A%B6%E6%80%81%E7%A0%81/" rel="next" title="自定义服务返回的状态码">
-                <i class="fa fa-chevron-left"></i> 自定义服务返回的状态码
+              <a href="/javascript/2017/04/21/JS%E6%93%8D%E4%BD%9C%E6%95%B0%E7%BB%84%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF-%E6%96%B9%E6%B3%95/" rel="next" title="Js操作数组和字符串的那些事儿（方法）">
+                <i class="fa fa-chevron-left"></i> Js操作数组和字符串的那些事儿（方法）
               </a>
             
           </div>
@@ -641,7 +641,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">75</span>
+                <span class="site-state-item-count">71</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -652,7 +652,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -663,7 +663,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

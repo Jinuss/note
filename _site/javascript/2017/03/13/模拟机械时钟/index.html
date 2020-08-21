@@ -111,18 +111,18 @@
 
 
 
-<meta name="description" content="Javascript提供了一个对象 Date(), 通过这个内置的对象，可以很容易地获取当前系统或设备的时间。此外还可以利用它的许多方法获取到具体的年月日时分秒，甚至是时间累计的字符串，时间戳是距离1970年1月1日00:00:00换算。">
+<meta name="description" content="Javascript提供了一个对象 Date() , 通过这个内置的对象，可以很容易地获取当前系统或设备的时间。此外还可以利用它的许多方法获取到具体的年月日时分秒，甚至是时间累计的字符串，时间戳是距离1970年1月1日00:00:00换算。">
 <meta name="keywords" content="工具">
 <meta property="og:type" content="article">
 <meta property="og:title" content="模拟机械时钟">
 <meta property="og:url" content="http://localhost:4000/javascript/2017/03/13/%E6%A8%A1%E6%8B%9F%E6%9C%BA%E6%A2%B0%E6%97%B6%E9%92%9F/">
 <meta property="og:site_name" content="Jinus's Blog">
-<meta property="og:description" content="Javascript提供了一个对象 Date(), 通过这个内置的对象，可以很容易地获取当前系统或设备的时间。此外还可以利用它的许多方法获取到具体的年月日时分秒，甚至是时间累计的字符串，时间戳是距离1970年1月1日00:00:00换算。">
+<meta property="og:description" content="Javascript提供了一个对象 Date() , 通过这个内置的对象，可以很容易地获取当前系统或设备的时间。此外还可以利用它的许多方法获取到具体的年月日时分秒，甚至是时间累计的字符串，时间戳是距离1970年1月1日00:00:00换算。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="/jinus/img/2017031301.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="模拟机械时钟">
-<meta name="twitter:description" content="Javascript提供了一个对象 Date(), 通过这个内置的对象，可以很容易地获取当前系统或设备的时间。此外还可以利用它的许多方法获取到具体的年月日时分秒，甚至是时间累计的字符串，时间戳是距离1970年1月1日00:00:00换算。">
+<meta name="twitter:description" content="Javascript提供了一个对象 Date() , 通过这个内置的对象，可以很容易地获取当前系统或设备的时间。此外还可以利用它的许多方法获取到具体的年月日时分秒，甚至是时间累计的字符串，时间戳是距离1970年1月1日00:00:00换算。">
 <meta name="twitter:image" content="/jinus/img/2017031301.png">
 
 
@@ -437,7 +437,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  547
+                  554
                 </span>
               
 
@@ -492,12 +492,12 @@
 
 
 
-  <p>Javascript提供了一个对象 <strong>Date()</strong>, 通过这个内置的对象，可以很容易地获取当前系统或设备的时间。此外还可以利用它的许多方法获取到具体的年月日时分秒，甚至是时间累计的字符串，<a href="https://baike.baidu.com/item/%E6%97%B6%E9%97%B4%E6%88%B3/6439235">时间戳</a>是距离1970年1月1日00:00:00换算。</p>
+  <p>Javascript提供了一个对象 <code class="highlighter-rouge">Date()</code> , 通过这个内置的对象，可以很容易地获取当前系统或设备的时间。此外还可以利用它的许多方法获取到具体的年月日时分秒，甚至是时间累计的字符串，<a href="https://baike.baidu.com/item/%E6%97%B6%E9%97%B4%E6%88%B3/6439235">时间戳</a>是距离1970年1月1日00:00:00换算。</p>
 
 <p>那么我们如何利用这点模拟机械时钟转动呢？主要分为以下4个步骤：</p>
 
 <ol>
-  <li>首先，利用html5的<em>canvas</em>画钟盘，需要画三个半径不等的圆，分别为r1 5px, r2 145px 150px。或许你会疑惑，一个钟盘顶多两个圆足够，一个圆心，一个圆边，另一个圆有何用？山人自有妙计，且往下看。接下来，我们画指针，我们有两种常规的方法，一是用hr，另一个是用div，我们采用第二种，因为hr存在兼容性问题，在不同的浏览器中，上下边距有差异。此时，钟盘和指针都有了，当我们标注上数字，机械钟就有九分像了。</li>
+  <li>首先，利用html5的 <code class="highlighter-rouge">canvas</code> 画钟盘，需要画三个半径不等的圆，分别为r1 5px, r2 145px 150px。或许你会疑惑，一个钟盘顶多两个圆足够，一个圆心，一个圆边，另一个圆有何用？山人自有妙计，且往下看。接下来，我们画指针，我们有两种常规的方法，一是用hr，另一个是用div，我们采用第二种，因为hr存在兼容性问题，在不同的浏览器中，上下边距有差异。此时，钟盘和指针都有了，当我们标注上数字，机械钟就有九分像了。</li>
 </ol>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14</pre></td><td class="code"><pre class="highlight"><code><span class="c1">//时针</span>
@@ -518,18 +518,14 @@
 
 <ol>
   <li>
-    <p>接下来，我们利用定时器<code>setInterval()</code>让指针转动起来，这里就要用到小学的数学知识了，每秒钟时针分针秒针各转多少度，当然指针的旋转我们用到了css3的新属性<em>translate</em>。</p>
+    <p>接下来，我们利用定时器 <code class="highlighter-rouge">setInterval()</code> 让指针转动起来，这里就要用到小学的数学知识了，每秒钟时针分针秒针各转多少度，当然指针的旋转我们用到了css3的新属性 <code class="highlighter-rouge">translate</code> 。</p>
   </li>
   <li>
-    <p>百里，我们已行九十。我们看界面上的钟还是少了点什么。没错，这个钟没有刻度，不太直观，于是可以for一个旋转的刻度，此时钟盘五花八门，上面那个看似没用的圆此时就派上了用场。利用层级<em>z-index</em>优先级可以达到目的。</p>
+    <p>百里，我们已行九十。我们看界面上的钟还是少了点什么。没错，这个钟没有刻度，不太直观，于是可以for一个旋转的刻度，此时钟盘五花八门，上面那个看似没用的圆此时就派上了用场。利用层级 <code class="highlighter-rouge">z-index</code> 优先级可以达到目的。</p>
+
+    <p>至此一个clock就完成了，<a href="https://jinuss.github.io/note/jinus/demos/clock.html">演示链接</a></p>
   </li>
 </ol>
-
-<blockquote>
-  <p>总结:</p>
-</blockquote>
-
-<p>至此一个clock就完成了，<a href="https://jinuss.github.io/note/jinus/demos/clock.html">演示链接</a></p>
 
 <p><img src="/jinus/img/2017031301.png" alt="clock效果图" /></p>
 
@@ -659,7 +655,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">75</span>
+                <span class="site-state-item-count">71</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -670,7 +666,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -681,7 +677,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -494,17 +494,17 @@
 
   <p><code class="highlighter-rouge">原文出处：https://blazingedge.io/blog/my-serverless-adventure</code></p>
 
-<p>在<em>React Native</em>的几篇文章后，我想谈谈我构建无服务应用的经历，通过<em>Express/Koa</em>的<em>laaS/PaaS</em>构建标准APIs的经历或者是利用<em>Fass</em>服务模型的不同。</p>
+<p>在<code class="highlighter-rouge">React Native</code>的几篇文章后，我想谈谈我构建无服务应用的经历，通过<code class="highlighter-rouge">Express/Koa</code>的<code class="highlighter-rouge">laaS/PaaS</code>构建标准APIs的经历或者是利用<code class="highlighter-rouge">Fass</code>服务模型的不同。</p>
 
 <p>如果你想构建一个==lambda==函数，你不需要任何特殊的工具。但是如果你想构建一个真实的应用程序，你可以通过使用工具更容易地管理代码、打包和部署。我们选择的工具是无服务器框架。</p>
 
 <h4 id="faas-服务模型">FaaS 服务模型</h4>
 
-<p>在了解如何使用无服务器技术前，我们首先需要知道<em>FaaS</em>的含义。<em>FaaS</em>（功能是服务）是一种云计算服务模型（诸如<em>lass，Pass，Saas</em>等等）的方式，它让我们无需担心代码在运行时服务器的基础设施和硬件是否满足条件，一切都在我们的掌控之内。你仅仅是需要支付一笔你函数计算的费用，当需要充值时。它允许我们创建项目，并且无需考虑闲置服务器的成本，如果我们使用其他的服务器模型。</p>
+<p>在了解如何使用无服务器技术前，我们首先需要知道<code class="highlighter-rouge">FaaS</code>的含义。<code class="highlighter-rouge">FaaS</code>（功能是服务）是一种云计算服务模型（诸如<code class="highlighter-rouge">lass，Pass，Saas</code>等等）的方式，它让我们无需担心代码在运行时服务器的基础设施和硬件是否满足条件，一切都在我们的掌控之内。你仅仅是需要支付一笔你函数计算的费用，当需要充值时。它允许我们创建项目，并且无需考虑闲置服务器的成本，如果我们使用其他的服务器模型。</p>
 
 <h4 id="aws-lamba">AWS Lamba</h4>
 
-<p><em>AWS Lamba</em> 是亚马逊在2014年发布的一款<em>FaaS</em>产品，7月份的一篇文章中提到，如今它占据着FaaS市场的三分之二。亚马逊凭借早期的策略、免费月度免费计划（价值约6-7美元）以及近乎无敌的价格优势，它将会继续占据着<em>Fass market</em>的霸主地位。免费月度计划允许100万次的请求（调用）和400，000GB秒级的计算时间。例如，如果你使用128MB内存的==Lamba==函数，那就意味着你将拥有大约33天的计算时间。对于你而言，这值得试一试，甚至你可以免费的跑一个或者两个项目。</p>
+<p><code class="highlighter-rouge">AWS Lamba</code> 是亚马逊在2014年发布的一款<code class="highlighter-rouge">FaaS</code>产品，7月份的一篇文章中提到，如今它占据着FaaS市场的三分之二。亚马逊凭借早期的策略、免费月度免费计划（价值约6-7美元）以及近乎无敌的价格优势，它将会继续占据着<code class="highlighter-rouge">Fass market</code>的霸主地位。免费月度计划允许100万次的请求（调用）和400，000GB秒级的计算时间。例如，如果你使用128MB内存的==Lamba==函数，那就意味着你将拥有大约33天的计算时间。对于你而言，这值得试一试，甚至你可以免费的跑一个或者两个项目。</p>
 
 <p>一旦你使用完免费的资源，你需要为每GB秒支付0.00001667美元。</p>
 
@@ -531,7 +531,7 @@ callback(null, response)
 
 <h4 id="超时">超时</h4>
 
-<p>默认情况下<em>，AWS Lambda</em>有15分钟的超时限制（每次请求最大的持续时间）。这是超时的最高值，作为开发者，如果某个函数由于某些原因而失败并决定继续运行直到超时，我们可以分配较低的超市值来减少潜在的成本。如果你有一个函数运行的时间超过15分钟（或者接近），你应该考虑将它分解成几个可以分步执行的不同函数。如果你不分割函数，你可以为它寻找一个可以提供更长运行时间的供货商或者选择不同的服务器模型。这是AWS Lambda的一份清单。</p>
+<p>默认情况下<code class="highlighter-rouge">，AWS Lambda</code>有15分钟的超时限制（每次请求最大的持续时间）。这是超时的最高值，作为开发者，如果某个函数由于某些原因而失败并决定继续运行直到超时，我们可以分配较低的超市值来减少潜在的成本。如果你有一个函数运行的时间超过15分钟（或者接近），你应该考虑将它分解成几个可以分步执行的不同函数。如果你不分割函数，你可以为它寻找一个可以提供更长运行时间的供货商或者选择不同的服务器模型。这是AWS Lambda的一份清单。</p>
 
 <p>更新：最大持续运行时间过去是5分钟，最近调整为15分钟。</p>
 
@@ -682,7 +682,7 @@ callback(null, response)
         <div class="post-nav" id="post-nav-id">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/07/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%AC%94%E8%AE%B0/" rel="next" title="小程序笔记">
+              <a href="/%E5%B0%8F%E7%A8%8B%E5%BA%8F/2018/11/07/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%AC%94%E8%AE%B0/" rel="next" title="小程序笔记">
                 <i class="fa fa-chevron-left"></i> 小程序笔记
               </a>
             
@@ -775,7 +775,7 @@ callback(null, response)
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">75</span>
+                <span class="site-state-item-count">71</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -786,7 +786,7 @@ callback(null, response)
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -797,7 +797,7 @@ callback(null, response)
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

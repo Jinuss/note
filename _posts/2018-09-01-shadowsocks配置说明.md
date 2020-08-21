@@ -8,9 +8,9 @@ tags:
 
 ##### 下载及介绍 #####
   适用于PC端
-  首先点击链接：[电脑端软件包下载](https://jinuss.github.io/blog/jinus/soft/shadowsocks_for_pc.rar)，下载后解压至D盘或其他盘下，文件夹结构如下：
+  首先点击链接：[电脑端软件包下载](/jinus/soft/shadowsocks_for_pc.rar)，下载后解压至D盘或其他盘下，文件夹结构如下：
 
-![文件结构](https://jinuss.github.io/blog/jinus/img/2018090101.png)
+![文件结构](/jinus/img/2018090101.png)
 
 -  文件介绍
 
@@ -24,11 +24,11 @@ tags:
 
    点击 **Shadowsocks.exe**  启动软件，并双击小图标,出现如下图
    
-   ![服务器配置](https://jinuss.github.io/blog/jinus/img/2018090102.png)
+   ![服务器配置](/jinus/img/2018090102.png)
    
    依次填写，最后点击确定，连接服务器的信息会添加到右侧，如图。
    
-   ![文件结构](https://jinuss.github.io/blog/jinus/img/2018090104.png)
+   ![文件结构](/jinus/img/2018090104.png)
    
    
   <!--more-->
@@ -38,9 +38,9 @@ tags:
 
 鼠标移到服务器选项上，如下图
 
- ![文件结构](https://jinuss.github.io/blog/jinus/img/2018090105.png)
+ ![文件结构](/jinus/img/2018090105.png)
 
- ![文件结构](https://jinuss.github.io/blog/jinus/img/2018090106.png)
+ ![文件结构](/jinus/img/2018090106.png)
  
   - 右侧面板
 

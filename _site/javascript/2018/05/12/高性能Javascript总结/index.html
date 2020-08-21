@@ -435,7 +435,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  1305
+                  1336
                 </span>
               
 
@@ -492,13 +492,13 @@
 
   <h3 id="一加载和运行">一、加载和运行</h3>
 
-<p>Javascript代码执行会阻塞其他浏览器处理过程、充分利用webpack或gulp工具对文件打包压缩，减少js文件的数量，从而减少http请求的次数，以提高网页应用的实际性能。</p>
+<p>Javascript代码执行会阻塞其他浏览器处理过程、充分利用 <code class="highlighter-rouge">webpack</code> 或 <code class="highlighter-rouge">gulp</code> 工具对文件打包压缩，减少js文件的数量，从而减少 http 请求的次数，以提高网页应用的实际性能。</p>
 
 <h3 id="二数据访问">二、数据访问</h3>
 
 <p>经典计算机科学的一个问题是确定数据应当存放在什么地方、以实现最佳的读写效率。数据存储在哪里会关系到代码运行期间数据被检索到的速度。</p>
 
-<p>JS中的四种基本的数据存储位置：直接量（字符串、数字、布尔值、对象、数组、函数、正则、null、undefind）、变量、数组项、对象成员。</p>
+<p>JS中的四种基本的数据存储位置：直接量（字符串、数字、布尔值、对象、数组、函数、正则、 <code class="highlighter-rouge">null</code> 、 <code class="highlighter-rouge">undefind</code> ）、变量、数组项、对象成员。</p>
 
 <p>每一种数据存储位置都具有特定的读写操作负担。<strong>直接量和局部变量的访问速度要快于数组项和对象成员的访问速度。</strong>因此尽量使用直接量和局部变量，限制数组项和对象成员的使用。</p>
 
@@ -548,7 +548,7 @@
 
 <h3 id="四算法和流程控制">四、算法和流程控制</h3>
 
-<p>JS中的for-in循环可枚举任何对象的命名属性（包括对象的实例属性和继承而来的属性），一般不推荐使用。</p>
+<p>JS中的 <code class="highlighter-rouge">for-in</code> 循环可枚举任何对象的命名属性（包括对象的实例属性和继承而来的属性），一般不推荐使用。</p>
 
 <p>JavaScript引擎所支持的递归数量与JavaScript调用栈的大小直接相关。</p>
 
@@ -564,17 +564,17 @@
 
 <p>ajax是一种与服务器通讯而不重载当前页面的方法。</p>
 
-<p><strong>Beacons（灯标）：JS用于创建一个新的Image对象，将src设置为服务器上一个脚本文件的url，该url包含希望通过get格式传回的键值对数据。</strong></p>
+<p><strong>Beacons（灯标）：JS用于创建一个新的 <code class="highlighter-rouge">Image</code> 对象，将 <code class="highlighter-rouge">src</code> 设置为服务器上一个脚本文件的 <code class="highlighter-rouge">url</code> ，该 <code class="highlighter-rouge">url</code> 包含希望通过 <code class="highlighter-rouge">get</code> 格式传回的键值对数据。</strong></p>
 
 <p>作为数据格式，纯文本和HTML是高度限制的，但其可以节省客户端的CPU周期。XML应用广泛但非常冗长且解析缓慢。json是轻量级、解析迅速，交互性和XML相当。自定义格式非常轻量。总而言之，越轻量级的格式越好，最好是json和字符分割的自定义格式。</p>
 
 <h3 id="七编程实践">七、编程实践</h3>
 
-<p>eval()、Function()构造器、定时器（setTimeout()和setInterval()）四种函数可以允许在程序中获取一个包含代码的字符串然后运行它。但此时会付出二次评估的代价，与直接包含相应代码相比将占用更长的时间。</p>
+<p><code class="highlighter-rouge">eval()</code> 、 <code class="highlighter-rouge">Function()</code> 构造器、定时器（ <code class="highlighter-rouge">setTimeout()</code> 和 <code class="highlighter-rouge">setInterval()</code> ）四种函数可以允许在程序中获取一个包含代码的字符串然后运行它。但此时会付出二次评估的代价，与直接包含相应代码相比将占用更长的时间。</p>
 
 <p>定时器建议第一个参数传入一个函数而不是一个字符串，否则会造成内存泄漏。</p>
 
-<p>JS的原生部分一般是用低级语言写的，如C++，所以无论怎样优化JS代码，永远不会比JS引擎提供的原生方法更快，比如内置的Math对象提供的诸多方法</p>
+<p>JS的原生部分一般是用低级语言写的，如C++，所以无论怎样优化JS代码，永远不会比JS引擎提供的原生方法更快，比如内置的 <code class="highlighter-rouge">Math</code> 对象提供的诸多方法</p>
 
 
       
@@ -708,7 +708,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">75</span>
+                <span class="site-state-item-count">71</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -719,7 +719,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -730,7 +730,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
