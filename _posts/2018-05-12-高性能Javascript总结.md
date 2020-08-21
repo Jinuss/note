@@ -1,8 +1,6 @@
 ---
 categories:
-- JavaScript
-tags:
-- 性能
+- JavaScript 
 ---
 ### 一、加载和运行 ###
 

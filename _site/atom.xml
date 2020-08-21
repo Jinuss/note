@@ -1,399 +1,341 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/atom.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-08-20T20:14:47+08:00</updated><id>http://localhost:4000/atom.xml</id><title type="html">Jinus’s Blog</title><subtitle>某国企不知名码农</subtitle><author><name>Jinus</name></author><entry><title type="html">Bfc</title><link href="http://localhost:4000/2020/08/20/BFC/" rel="alternate" type="text/html" title="Bfc" /><published>2020-08-20T00:00:00+08:00</published><updated>2020-08-20T00:00:00+08:00</updated><id>http://localhost:4000/2020/08/20/BFC</id><content type="html" xml:base="http://localhost:4000/2020/08/20/BFC/">&lt;h3 id=&quot;bfc&quot;&gt;BFC&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/atom.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-08-21T16:27:20+08:00</updated><id>http://localhost:4000/atom.xml</id><title type="html">Jinus’s Blog</title><subtitle>某不知名码农，爱好前端、Linux、Shell</subtitle><author><name>Jinus</name></author><entry><title type="html">Vue Router路由权限控制的实现方案</title><link href="http://localhost:4000/2020/08/18/vue-router%E8%B7%AF%E7%94%B1%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%A1%88/" rel="alternate" type="text/html" title="Vue Router路由权限控制的实现方案" /><published>2020-08-18T00:00:00+08:00</published><updated>2020-08-18T00:00:00+08:00</updated><id>http://localhost:4000/2020/08/18/vue-router%E8%B7%AF%E7%94%B1%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%A1%88</id><content type="html" xml:base="http://localhost:4000/2020/08/18/vue-router%E8%B7%AF%E7%94%B1%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%A1%88/">&lt;p&gt;路由配置按用户类型分为&lt;strong&gt;用户路由&lt;/strong&gt;和&lt;strong&gt;基本路由&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;用户路由：当前用户所持有的路由&lt;/li&gt;
+  &lt;li&gt;基本路由：所有用户均可以访问的路由&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;实现控制方式分两种：&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;addRoutes&lt;/code&gt;方法注入路由实现控制&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;beforeEach&lt;/code&gt;钩子限制路由跳转&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;addroutes--方式&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;addRoutes&lt;/code&gt;  方式&lt;/h4&gt;
+&lt;p&gt;通过请求服务端获取当前用户路由配置，编码为vue-router所支持的基本格式；然后调用&lt;code class=&quot;highlighter-rouge&quot;&gt;this.$router.addRoutes&lt;/code&gt;方法将编码好的用户路由注入到现有的vue-router实例中去，以实现用户路由。&lt;/p&gt;
+
 &lt;blockquote&gt;
-  &lt;p&gt;BFC(Block formatting context,块级格式化上下文)是一个独立的渲染区域，只有Block-level Box参与，它规定了内部的Block-level Box如何布局，并且与这个区域外部毫不相干。&lt;/p&gt;
+  &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;addRoutes&lt;/code&gt;方法仅仅是注入新的路由，但并没有剔除其它路由。所以路由中可能会存在两种用户类型的路由，解决方法是新建一个全新的Router，然后将新的&lt;code class=&quot;highlighter-rouge&quot;&gt;Router.matcher&lt;/code&gt;赋给当前页面的管理Router，从而达到更新路由配置的目的。&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h4 id=&quot;css布局的基本单位box&quot;&gt;CSS布局的基本单位：BOX&lt;/h4&gt;
+&lt;h4 id=&quot;beforeeach-方式&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;beforeEach&lt;/code&gt; 方式&lt;/h4&gt;
+&lt;p&gt;通过请求服务端获取当前用户路由配置，通过注册&lt;code class=&quot;highlighter-rouge&quot;&gt;router.beforeEach&lt;/code&gt;钩子对路由的每次跳转进行管理，每次跳转都进行检查。如果目标路由不存在于基本路由和当前用户的用户路由中，则取消跳转，转为跳转至错误页。&lt;/p&gt;</content><author><name>Jinus</name></author><summary type="html">路由配置按用户类型分为用户路由和基本路由 用户路由：当前用户所持有的路由 基本路由：所有用户均可以访问的路由</summary></entry><entry><title type="html">Vue Router路由模式</title><link href="http://localhost:4000/2020/08/16/vue-router%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%BC%8F/" rel="alternate" type="text/html" title="Vue Router路由模式" /><published>2020-08-16T00:00:00+08:00</published><updated>2020-08-16T00:00:00+08:00</updated><id>http://localhost:4000/2020/08/16/vue-router%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%BC%8F</id><content type="html" xml:base="http://localhost:4000/2020/08/16/vue-router%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%BC%8F/">&lt;p&gt;vue-router的model有两种模式：&lt;strong&gt;hash模式&lt;/strong&gt;和&lt;strong&gt;history模式&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Box是CSS布局的对象和基本单位。元素的类型和&lt;code class=&quot;highlighter-rouge&quot;&gt;display&lt;/code&gt;属性，决定了这个Box的类型。不同类型的Box，会参与不同的Formatting Context(一个决定如何渲染文档的容器)&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;formatting context是页面中的一块渲染区域，并且有一套渲染规则，它决定了其子元素将如何定位，以及和其他元素的关系和相互作用。最常见的如BFC和IFC，如下：&lt;/p&gt;
+  &lt;li&gt;前端路由的核心就在于改变视图的同时不会向后端发出请求&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;两种模式的区别&quot;&gt;两种模式的区别&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;hash模式
     &lt;ul&gt;
-      &lt;li&gt;block-level box：&lt;code class=&quot;highlighter-rouge&quot;&gt;display&lt;/code&gt;属性为&lt;code class=&quot;highlighter-rouge&quot;&gt;block&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;list-item&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;table&lt;/code&gt;的元素会生成block-level box。并且参与block formatting context。&lt;/li&gt;
-      &lt;li&gt;inline-level box：display属性为&lt;code class=&quot;highlighter-rouge&quot;&gt;inline&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;inline-block&lt;/code&gt;的元素会生成inline-level box。并且参与inline formatting context。&lt;/li&gt;
+      &lt;li&gt;即地址栏URL中的#符号。hash虽然出现在URL中，但不会被包括在HTTP请求中，对后端完全没有影响，因此改变hash不会重新加载页面。&lt;/li&gt;
+      &lt;li&gt;只可修改#后面的部分，因此只能设置与当前URL同文档的URL&lt;/li&gt;
+      &lt;li&gt;hash设置的新值必须与原来不一样才会触发动作将记录添加到栈中&lt;/li&gt;
+      &lt;li&gt;只可添加短字符串&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;bfc的布局规则&quot;&gt;BFC的布局规则&lt;/h4&gt;
-&lt;ul&gt;
-  &lt;li&gt;内部的Box会在垂直方向，一个接一个地放置&lt;/li&gt;
-  &lt;li&gt;Box垂直方向的距离由margin决定。同属于一个BFC的两个相邻的margin会发生重叠。&lt;/li&gt;
-  &lt;li&gt;每个盒子（块盒和行盒）的margin box的左边，与包含块border box的左边相接触，即使存在浮动也是如此。&lt;/li&gt;
-  &lt;li&gt;BFC的区域不会与float box重叠&lt;/li&gt;
-  &lt;li&gt;BFC内外的元素互不影响&lt;/li&gt;
-  &lt;li&gt;计算BFC的高度时，浮动元素也参与计算。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;如何创建bfc&quot;&gt;如何创建BFC&lt;/h4&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;float&lt;/code&gt;的值不是&lt;code class=&quot;highlighter-rouge&quot;&gt;none&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;position&lt;/code&gt;的值不是&lt;code class=&quot;highlighter-rouge&quot;&gt;static&lt;/code&gt;或者&lt;code class=&quot;highlighter-rouge&quot;&gt;relative&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;display&lt;/code&gt;的值是&lt;code class=&quot;highlighter-rouge&quot;&gt;inline-block&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;table-cell&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;flex&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;table-caption&lt;/code&gt;或者&lt;code class=&quot;highlighter-rouge&quot;&gt;inline-flex&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;overflow&lt;/code&gt;的值不是&lt;code class=&quot;highlighter-rouge&quot;&gt;visible&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Jinus</name></author><summary type="html">BFC BFC(Block formatting context,块级格式化上下文)是一个独立的渲染区域，只有Block-level Box参与，它规定了内部的Block-level Box如何布局，并且与这个区域外部毫不相干。</summary></entry><entry><title type="html">防抖与节流</title><link href="http://localhost:4000/2020/08/20/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/" rel="alternate" type="text/html" title="防抖与节流" /><published>2020-08-20T00:00:00+08:00</published><updated>2020-08-20T00:00:00+08:00</updated><id>http://localhost:4000/2020/08/20/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81</id><content type="html" xml:base="http://localhost:4000/2020/08/20/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/">&lt;h1 id=&quot;防抖与节流&quot;&gt;防抖与节流&lt;/h1&gt;
-&lt;h4 id=&quot;应用场景&quot;&gt;应用场景&lt;/h4&gt;
-&lt;p&gt;绑定某些持续触发的事件，如鼠标点击、滚动、放大缩小等，有时候并不希望在事件持续触发的过程中那么频繁地去执行函数。一般来讲，防抖和节流是比较常用的解决方案。&lt;/p&gt;
-
-&lt;h4 id=&quot;防抖debounce&quot;&gt;防抖（debounce）&lt;/h4&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;指触发事件后在n秒内函数只能执行一次，如果在n秒内又触发了事件，则会重新计算函数执行时间。&lt;/p&gt;
+  &lt;li&gt;history模式
+    &lt;ul&gt;
+      &lt;li&gt;利用&lt;code class=&quot;highlighter-rouge&quot;&gt;HTML5 History Interface&lt;/code&gt;中新增的&lt;code class=&quot;highlighter-rouge&quot;&gt;pushState()&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;replaceState()&lt;/code&gt;方法。这两个方法应用于浏览器的历史记录栈，在当前已有的back、forward、go的基础上，它们提供了对历史记录进行修改的功能。只是当它们执行修改时，虽然改变了当前的URL，但浏览器不会立即向后端发送请求。需搭配前端路由的404页面支持。&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;pushState()&lt;/code&gt;设置的新URL可以与当前URL同源的任意URL&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;pushState()&lt;/code&gt;设置的新URL与当前URL一模一样也会将记录添加到栈中&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;pushState()&lt;/code&gt;通过&lt;code class=&quot;highlighter-rouge&quot;&gt;stateObject&lt;/code&gt;参数可以添加任意类型的数据到记录中&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;pushState()&lt;/code&gt;可额外设置title属性供后续使用&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Jinus</name></author><summary type="html">vue-router的model有两种模式：hash模式和history模式</summary></entry><entry><title type="html">Sass</title><link href="http://localhost:4000/2020/08/14/sass/" rel="alternate" type="text/html" title="Sass" /><published>2020-08-14T00:00:00+08:00</published><updated>2020-08-14T00:00:00+08:00</updated><id>http://localhost:4000/2020/08/14/sass</id><content type="html" xml:base="http://localhost:4000/2020/08/14/sass/">&lt;blockquote&gt;
+  &lt;p&gt;Sass是成熟、稳定、强大的CSS预处理器，而SCSS是Sass3版本中引入的新语法特性，完全兼容CSS3的同时继承了Sass强大的动态功能&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;防抖函数又分为非立即执行和立即执行版。&lt;/p&gt;
+&lt;h4 id=&quot;sass的特性&quot;&gt;Sass的特性&lt;/h4&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;非立即执行版 触发事件后函数不会立即执行，而是在n秒后执行，如果在n秒内又触发了事件，则会重新计算函数执行时间&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;变量&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;嵌套&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;引入&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;混合&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;继承&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;操作符&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Jinus</name></author><summary type="html">Sass是成熟、稳定、强大的CSS预处理器，而SCSS是Sass3版本中引入的新语法特性，完全兼容CSS3的同时继承了Sass强大的动态功能</summary></entry><entry><title type="html">Window.onload和$.ready</title><link href="http://localhost:4000/2020/08/10/window.onload%E5%92%8C$.ready/" rel="alternate" type="text/html" title="Window.onload和$.ready" /><published>2020-08-10T00:00:00+08:00</published><updated>2020-08-10T00:00:00+08:00</updated><id>http://localhost:4000/2020/08/10/window.onload%E5%92%8C$.ready</id><content type="html" xml:base="http://localhost:4000/2020/08/10/window.onload%E5%92%8C$.ready/">&lt;h3 id=&quot;windowonload&quot;&gt;window.onload&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;必须等待网页全部加载完毕（包括图片的），然后再执行JS代码&lt;/li&gt;
+  &lt;li&gt;只能执行一次&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;debounce&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;func&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;wait&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-   &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;timeout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-   &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-       &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;arguments&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-       &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;timout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-           &lt;span class=&quot;nx&quot;&gt;clearTimeout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;timeout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-       &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-       &lt;span class=&quot;nx&quot;&gt;timeout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setTimeout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-           &lt;span class=&quot;nx&quot;&gt;func&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;apply&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-       &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;wait&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-   &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h3 id=&quot;documentready&quot;&gt;$(document).ready()&lt;/h3&gt;
+
 &lt;ul&gt;
-  &lt;li&gt;立即执行版 触发事件后函数会立即执行，然后n秒内不触发事件才能继续执行函数的效果&lt;/li&gt;
+  &lt;li&gt;只需等待DOM结构加载完毕就能执行JS代码&lt;/li&gt;
+  &lt;li&gt;可以执行多次，且不会覆盖上一次&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Jinus</name></author><summary type="html">window.onload</summary></entry><entry><title type="html">Rxjs observables vs promise比较</title><link href="http://localhost:4000/2020/08/07/RxJS-Observables-vs-Promise%E6%AF%94%E8%BE%83/" rel="alternate" type="text/html" title="Rxjs observables vs promise比较" /><published>2020-08-07T00:00:00+08:00</published><updated>2020-08-07T00:00:00+08:00</updated><id>http://localhost:4000/2020/08/07/RxJS%20Observables%20vs%20Promise%E6%AF%94%E8%BE%83</id><content type="html" xml:base="http://localhost:4000/2020/08/07/RxJS-Observables-vs-Promise%E6%AF%94%E8%BE%83/">&lt;h4 id=&quot;单值与多值&quot;&gt;单值与多值&lt;/h4&gt;
+
+&lt;h4 id=&quot;代码执行顺序&quot;&gt;代码执行顺序&lt;/h4&gt;
+
+&lt;h4 id=&quot;不能取消能取消&quot;&gt;不能取消&amp;amp;能取消&lt;/h4&gt;
+
+&lt;h4 id=&quot;单个订阅多个订阅&quot;&gt;单个订阅&amp;amp;多个订阅&lt;/h4&gt;
+
+&lt;h4 id=&quot;一直异步可能是异步&quot;&gt;一直异步&amp;amp;可能是异步&lt;/h4&gt;</content><author><name>Jinus</name></author><summary type="html">单值与多值</summary></entry><entry><title type="html">Ref</title><link href="http://localhost:4000/2020/08/02/ref/" rel="alternate" type="text/html" title="Ref" /><published>2020-08-02T00:00:00+08:00</published><updated>2020-08-02T00:00:00+08:00</updated><id>http://localhost:4000/2020/08/02/ref</id><content type="html" xml:base="http://localhost:4000/2020/08/02/ref/">&lt;blockquote&gt;
+  &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;vm.$refs&lt;/code&gt;:一个对象，持有已注册过&lt;code class=&quot;highlighter-rouge&quot;&gt;ref&lt;/code&gt;的所有子组件
+&lt;code class=&quot;highlighter-rouge&quot;&gt;ref&lt;/code&gt;:被用来给元素或子组件注册引用信息。引用信息将会注册在父组件&lt;code class=&quot;highlighter-rouge&quot;&gt;$refs&lt;/code&gt;对象上。如果在普通的DOM元素上使用，引用指向的就是DOM元素；如果用在子组件上，引用就指向组件实例&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>Jinus</name></author><summary type="html">vm.$refs:一个对象，持有已注册过ref的所有子组件 ref:被用来给元素或子组件注册引用信息。引用信息将会注册在父组件$refs对象上。如果在普通的DOM元素上使用，引用指向的就是DOM元素；如果用在子组件上，引用就指向组件实例</summary></entry><entry><title type="html">Require和import</title><link href="http://localhost:4000/2020/08/01/require%E5%92%8Cimport/" rel="alternate" type="text/html" title="Require和import" /><published>2020-08-01T00:00:00+08:00</published><updated>2020-08-01T00:00:00+08:00</updated><id>http://localhost:4000/2020/08/01/require%E5%92%8Cimport</id><content type="html" xml:base="http://localhost:4000/2020/08/01/require%E5%92%8Cimport/">&lt;h1 id=&quot;import和require的区别&quot;&gt;import和require的区别&lt;/h1&gt;
+
+&lt;h3 id=&quot;require&quot;&gt;require&lt;/h3&gt;
+
+&lt;p&gt;只能在运行时确定模块&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;require&lt;/code&gt;是AMD规范引入方式&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;运行时调用&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;赋值过程&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;写法&lt;/p&gt;
+
+    &lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;     &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;fs&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+     &lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+     &lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;debounce&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;func&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;wait&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-   &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;timeout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-   &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-       &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;arguments&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-       &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;timeout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-          &lt;span class=&quot;nx&quot;&gt;clearTimeout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;timeout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-       &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-       &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;callNow&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=!&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;timeout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-       &lt;span class=&quot;nx&quot;&gt;timeout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setTimeout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-           &lt;span class=&quot;nx&quot;&gt;timeout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-       &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;wait&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-       &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;callNow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-         &lt;span class=&quot;nx&quot;&gt;func&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;apply&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-       &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-   &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;节流throttle&quot;&gt;节流（throttle）&lt;/h4&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;指连续触发事件但是在n秒中只执行一次函数。节流会稀释函数的执行频率。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;节流方式同样有两种，分为时间戳版和定时器版&lt;/p&gt;
+&lt;h3 id=&quot;import&quot;&gt;import&lt;/h3&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;时间戳版：在时间段内开始的时候触发函数&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;throttle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;func&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;wait&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;previous&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;contxt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;arguments&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;previous&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;wait&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-           &lt;span class=&quot;nx&quot;&gt;func&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;apply&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;contxt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-           &lt;span class=&quot;nx&quot;&gt;previous&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;定时器版：在时间段结束时触发&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;throttle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;func&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;wait&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;timeout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;arguments&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;timeout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-            &lt;span class=&quot;nx&quot;&gt;timeout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setTimeout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-              &lt;span class=&quot;nx&quot;&gt;timeout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-             &lt;span class=&quot;nx&quot;&gt;func&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;apply&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;wait&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Jinus</name></author><summary type="html">防抖与节流 应用场景 绑定某些持续触发的事件，如鼠标点击、滚动、放大缩小等，有时候并不希望在事件持续触发的过程中那么频繁地去执行函数。一般来讲，防抖和节流是比较常用的解决方案。</summary></entry><entry><title type="html">面试经验</title><link href="http://localhost:4000/2020/08/20/%E9%9D%A2%E8%AF%95%E7%BB%8F%E9%AA%8C/" rel="alternate" type="text/html" title="面试经验" /><published>2020-08-20T00:00:00+08:00</published><updated>2020-08-20T00:00:00+08:00</updated><id>http://localhost:4000/2020/08/20/%E9%9D%A2%E8%AF%95%E7%BB%8F%E9%AA%8C</id><content type="html" xml:base="http://localhost:4000/2020/08/20/%E9%9D%A2%E8%AF%95%E7%BB%8F%E9%AA%8C/">&lt;p&gt;【云粒智慧】&lt;/p&gt;
-
-&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;import&lt;/code&gt;是ES6的一个语法标准&lt;/li&gt;
+  &lt;li&gt;编译时调用&lt;/li&gt;
+  &lt;li&gt;解构过程&lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;http协商缓存和强制缓存&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;cookie、seesion&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;js异步&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;promise、promise.all&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;js变量提升&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;js继承的几种方式&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Jinus</name></author><summary type="html">【云粒智慧】</summary></entry><entry><title type="html">闭包</title><link href="http://localhost:4000/2020/08/20/%E9%97%AD%E5%8C%85/" rel="alternate" type="text/html" title="闭包" /><published>2020-08-20T00:00:00+08:00</published><updated>2020-08-20T00:00:00+08:00</updated><id>http://localhost:4000/2020/08/20/%E9%97%AD%E5%8C%85</id><content type="html" xml:base="http://localhost:4000/2020/08/20/%E9%97%AD%E5%8C%85/">&lt;h1 id=&quot;闭包&quot;&gt;闭包&lt;/h1&gt;
+    &lt;p&gt;写法&lt;/p&gt;
 
-&lt;p&gt;从函数A里返回函数B，函数B使用函数A中的变量，会引起内存泄露问题&lt;/p&gt;</content><author><name>Jinus</name></author><summary type="html">闭包</summary></entry><entry><title type="html">路由守卫</title><link href="http://localhost:4000/2020/08/20/%E8%B7%AF%E7%94%B1%E5%AE%88%E5%8D%AB/" rel="alternate" type="text/html" title="路由守卫" /><published>2020-08-20T00:00:00+08:00</published><updated>2020-08-20T00:00:00+08:00</updated><id>http://localhost:4000/2020/08/20/%E8%B7%AF%E7%94%B1%E5%AE%88%E5%8D%AB</id><content type="html" xml:base="http://localhost:4000/2020/08/20/%E8%B7%AF%E7%94%B1%E5%AE%88%E5%8D%AB/">&lt;h3 id=&quot;一全局前置守卫-beforeach&quot;&gt;一、全局前置守卫 &lt;code class=&quot;highlighter-rouge&quot;&gt;beforEach&lt;/code&gt;&lt;/h3&gt;
+    &lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'fs'&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'fs'&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'fs'&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;readFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'fs'&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;readFile&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;read&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'fs'&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;readFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'fs'&lt;/span&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;守卫方法接收三个参数&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-  &lt;span class=&quot;nx&quot;&gt;router&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;beforEach&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;//dosomething&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;readFile&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;readFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;read&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'fs'&lt;/span&gt;
   
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;to：即将要进入的目标路由对象&lt;/li&gt;
-  &lt;li&gt;from：当前导航正要离开的路由&lt;/li&gt;
-  &lt;li&gt;next：执行下一步&lt;/li&gt;
-&lt;/ul&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Jinus</name></author><summary type="html">import和require的区别</summary></entry><entry><title type="html">React生命周期</title><link href="http://localhost:4000/2020/07/29/React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" rel="alternate" type="text/html" title="React生命周期" /><published>2020-07-29T00:00:00+08:00</published><updated>2020-07-29T00:00:00+08:00</updated><id>http://localhost:4000/2020/07/29/React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F</id><content type="html" xml:base="http://localhost:4000/2020/07/29/React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">&lt;h3 id=&quot;生命周期图示&quot;&gt;生命周期图示&lt;/h3&gt;
 
-&lt;h3 id=&quot;二全局后置钩子-aftereach-少用&quot;&gt;二、全局后置钩子 &lt;code class=&quot;highlighter-rouge&quot;&gt;afterEach&lt;/code&gt; (少用)&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;/jinus/img/20200729.webp&quot; alt=&quot;React生命周期&quot; /&gt;&lt;/p&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;全局后置钩子与全局前置守卫类似，然而和守卫不同的是，这些钩子不会接收&lt;code class=&quot;highlighter-rouge&quot;&gt;next&lt;/code&gt;函数，也不会改变导航本身&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;三路由独享的守卫-beforeenter&quot;&gt;三、路由独享的守卫 &lt;code class=&quot;highlighter-rouge&quot;&gt;beforeEnter&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;react的生命周期主要分为两个个过程分别是&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;使用方法与全局守卫相同&lt;/li&gt;
-  &lt;li&gt;不同的是：全局守卫可以作用于全局，路由独享守卫只作用于被设置守卫的路由&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;四组件内的守卫&quot;&gt;四、组件内的守卫&lt;/h3&gt;
-
-&lt;ul&gt;
+  &lt;li&gt;挂载卸载过程&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;constructor()&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;componentWillMount()&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;componentDidMount()&lt;/code&gt;&lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;可以在路由组件内直接定义以下路由导航守卫&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;ol&gt;
-          &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;beforeRouteEnter&lt;/code&gt;&lt;/li&gt;
-        &lt;/ol&gt;
-
-        &lt;ul&gt;
-          &lt;li&gt;在渲染该组件的对应路由被confirm调用&lt;/li&gt;
-          &lt;li&gt;不能获取组件实例 &lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt; ，因为当守卫执行前，组件实例还没被创建&lt;/li&gt;
-          &lt;li&gt;可以通过&lt;code class=&quot;highlighter-rouge&quot;&gt;next&lt;/code&gt;获取data中的数据&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;2.&lt;code class=&quot;highlighter-rouge&quot;&gt;beforeRouteUpdate&lt;/code&gt;
-        &lt;ul&gt;
-          &lt;li&gt;在当前路由改变，但是该组件被复用时调用&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;3.&lt;code class=&quot;highlighter-rouge&quot;&gt;beforeRouteLeave&lt;/code&gt;&lt;/p&gt;
-
-        &lt;ul&gt;
-          &lt;li&gt;这个离开守卫通常用来禁止用户在还未保存修改前突然离开。该导航可以通过&lt;code class=&quot;highlighter-rouge&quot;&gt;next(false)&lt;/code&gt;来取消&lt;/li&gt;
-          &lt;li&gt;可以访问组件实例&lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;componentWillUnmount()&lt;/code&gt;&lt;/p&gt;
   &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Jinus</name></author><summary type="html">一、全局前置守卫 beforEach</summary></entry><entry><title type="html">跨域</title><link href="http://localhost:4000/2020/08/20/%E8%B7%A8%E5%9F%9F/" rel="alternate" type="text/html" title="跨域" /><published>2020-08-20T00:00:00+08:00</published><updated>2020-08-20T00:00:00+08:00</updated><id>http://localhost:4000/2020/08/20/%E8%B7%A8%E5%9F%9F</id><content type="html" xml:base="http://localhost:4000/2020/08/20/%E8%B7%A8%E5%9F%9F/">&lt;blockquote&gt;
-  &lt;p&gt;协议、IP、端口其中一个不同都会存在跨域情况&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;jsonp&quot;&gt;jsonp&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;一种轻量级的数据传输格式，允许用户传递一个callback参数给服务端，然后服务端返回数据时会将这个callback参数作为函数名来包裹着JSON数据，由客户端随意定制函数来自动处理返回数据。&lt;/li&gt;
-  &lt;li&gt;本质是动态创建&lt;code class=&quot;highlighter-rouge&quot;&gt;script&lt;/code&gt;标签,然后通过src属性发送跨域请求，在发送请求前必须声明一个与参数中传递的名字一致的同名函数&lt;/li&gt;
-  &lt;li&gt;优点
-    &lt;ul&gt;
-      &lt;li&gt;兼容性好&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;缺点
-    &lt;ul&gt;
-      &lt;li&gt;只支持GET请求，而不支持POST等其它类型的HTTP请求&lt;/li&gt;
-      &lt;li&gt;只支持跨域HTTP请求这种情况，而不能解决不同域的两个页面之间如何进行JavaScript调用的问题。&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;服务端处理&quot;&gt;服务端处理&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;设置服务器的ResponseHeader,如&lt;code class=&quot;highlighter-rouge&quot;&gt;Access-Control-Allow-&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Jinus</name></author><summary type="html">协议、IP、端口其中一个不同都会存在跨域情况</summary></entry><entry><title type="html">虚拟dom</title><link href="http://localhost:4000/2020/08/20/%E8%99%9A%E6%8B%9FDOM/" rel="alternate" type="text/html" title="虚拟dom" /><published>2020-08-20T00:00:00+08:00</published><updated>2020-08-20T00:00:00+08:00</updated><id>http://localhost:4000/2020/08/20/%E8%99%9A%E6%8B%9FDOM</id><content type="html" xml:base="http://localhost:4000/2020/08/20/%E8%99%9A%E6%8B%9FDOM/">&lt;ul&gt;
-  &lt;li&gt;Vue 2.0中引入了虚拟DOM，初始渲染速度比Vue1.0提升了2～4倍&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;模版转换成视图的过程&quot;&gt;模版转换成视图的过程&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Vue.js通过编译&lt;strong&gt;complie&lt;/strong&gt;将模版转换成渲染函数&lt;strong&gt;render&lt;/strong&gt;，执行渲染函数就可以得到一个虚拟DOM&lt;/li&gt;
-  &lt;li&gt;在对模型进行操作时，会触发对应的&lt;strong&gt;Dep&lt;/strong&gt;中的&lt;strong&gt;Watcher&lt;/strong&gt;对象。&lt;strong&gt;Watcher&lt;/strong&gt;对象会调用对应的update来修改视图。这个过程主要是将虚拟DOM进行差异对比，然后根据结果进行对比。
-即在Vue的实现上，Vue将模版编译成虚拟DOM渲染函数，结合Vue的响应式系统，在状态改变时，Vue能够计算出重新渲染组件的最小代价并应用更新到真实DOM上。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;virtual-dom&quot;&gt;Virtual DOM&lt;/h3&gt;
-&lt;p&gt;Virtual DOM本质上是一棵以JavaScript对象(VNode节点：标签名、属性、子元素)作为基础的树，用对象属性来描述节点，对真实DOM的抽象。最终可以通过一系列操作使这棵树映射到真实环境上。&lt;/p&gt;
-
-&lt;h3 id=&quot;virtual-dom提高渲染速度原因&quot;&gt;Virtual DOM提高渲染速度原因&lt;/h3&gt;
-&lt;p&gt;在虚拟节点映射到视图的过程中，将虚拟节点与上一次渲染视图所使用的虚拟节点（oldVnode）作对比，找出真正需要更新的节点来进行DOM操作，从而避免操作其它无任何改动的DOM&lt;/p&gt;</content><author><name>Jinus</name></author><summary type="html">Vue 2.0中引入了虚拟DOM，初始渲染速度比Vue1.0提升了2～4倍</summary></entry><entry><title type="html">继承</title><link href="http://localhost:4000/2020/08/20/%E7%BB%A7%E6%89%BF/" rel="alternate" type="text/html" title="继承" /><published>2020-08-20T00:00:00+08:00</published><updated>2020-08-20T00:00:00+08:00</updated><id>http://localhost:4000/2020/08/20/%E7%BB%A7%E6%89%BF</id><content type="html" xml:base="http://localhost:4000/2020/08/20/%E7%BB%A7%E6%89%BF/">&lt;h1 id=&quot;js继承&quot;&gt;JS继承&lt;/h1&gt;
-
-&lt;p&gt;被继承的父类&lt;code class=&quot;highlighter-rouge&quot;&gt;Parent&lt;/code&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Parent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-   &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-   &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;sum&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
-       &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-   &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;Parent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prototype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
+  &lt;li&gt;更新过程&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;componentWillReceiveProps(nextProps)&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;shouldComponentUpdate(nextProps,nextState)&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;componentWillUpdate(nextProps,nextState)&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;componentDidUpdate(prevProps,prevState)&lt;/code&gt;&lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;原型链继承&lt;/p&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;render()&lt;/code&gt;&lt;/p&gt;
   &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;实现：新实例的原型等于父类的实例&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;继承的属性：实例的构造函数的属性、父类构造函数的属性、父类原型的属性&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
+  &lt;li&gt;新增&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;getDerivedStateFromProps(nextProps,prevState)&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;getSnapshotBeforeUpdate(prevProps,prevState)&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Jinus</name></author><summary type="html">生命周期图示</summary></entry><entry><title type="html">Promise</title><link href="http://localhost:4000/2020/07/26/promise/" rel="alternate" type="text/html" title="Promise" /><published>2020-07-26T00:00:00+08:00</published><updated>2020-07-26T00:00:00+08:00</updated><id>http://localhost:4000/2020/07/26/promise</id><content type="html" xml:base="http://localhost:4000/2020/07/26/promise/">&lt;h1 id=&quot;异步编程promise&quot;&gt;异步编程：Promise&lt;/h1&gt;
 
-&lt;blockquote&gt;
-  &lt;p&gt;主要缺点：所有新实例都会共享父类实例的属性&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;JavaScript作为浏览器脚本语言，主要用途是响应用户的交互操作DOM，这决定了它只能是&lt;strong&gt;单线程&lt;/strong&gt;&lt;/p&gt;
 
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Child&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;jinus&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;Child&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prototype&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Person&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h2 id=&quot;js的两种编程思想&quot;&gt;JS的两种编程思想&lt;/h2&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;构造函数继承：&lt;/p&gt;
-
-    &lt;blockquote&gt;
-      &lt;p&gt;实现：用&lt;code class=&quot;highlighter-rouge&quot;&gt;call&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;apply&lt;/code&gt;将父类构造函数引入子类函数，即在子类函数中做了父类函数的自执行&lt;/p&gt;
-    &lt;/blockquote&gt;
-
-    &lt;blockquote&gt;
-      &lt;p&gt;继承的属性：父类构造函数的属性，可以传参数&lt;/p&gt;
-    &lt;/blockquote&gt;
-
-    &lt;blockquote&gt;
-      &lt;p&gt;主要缺点：无法继承父类原型的属性、无法实现构造函数的复用、每个新实例都有父类构造函数的副本&lt;/p&gt;
-    &lt;/blockquote&gt;
-  &lt;/li&gt;
+  &lt;li&gt;异步: 不进入主线程，而进入任务队列的任务。当主线程任务执行完毕后，任务队列才通知主线程，请求执行任务，该任务才会进入主线程执行。&lt;/li&gt;
+  &lt;li&gt;同步: 只有前一个任务执行完毕，才能执行后一个任务&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Child&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-   &lt;span class=&quot;nx&quot;&gt;Parent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;回调地狱的负面作用：&lt;/p&gt;
 
-&lt;blockquote&gt;
-  &lt;p&gt;组合继承：组合原型链继承和构造函数继承&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;ul&gt;
+  &lt;li&gt;代码臃肿&lt;/li&gt;
+  &lt;li&gt;可读性差&lt;/li&gt;
+  &lt;li&gt;耦合度过高, 可维护性差&lt;/li&gt;
+  &lt;li&gt;代码复用性差&lt;/li&gt;
+  &lt;li&gt;只能在回调里处理异常&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Child&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;Parent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; 
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;Child&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prototype&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Parent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h2 id=&quot;promise-是异步编程解决方案&quot;&gt;Promise 是异步编程解决方案&lt;/h2&gt;
 
-&lt;blockquote&gt;
-  &lt;p&gt;原型式继承：用一个函数包装一个对象，然后返回这个函数的调用，同&lt;code class=&quot;highlighter-rouge&quot;&gt;object.create()&lt;/code&gt;的原理&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;Promise的两个特点&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;对象的状态不受外界影响。 &lt;code class=&quot;highlighter-rouge&quot;&gt;pending&lt;/code&gt; 、 &lt;code class=&quot;highlighter-rouge&quot;&gt;fulfilled&lt;/code&gt; 、 &lt;code class=&quot;highlighter-rouge&quot;&gt;rejected&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;一旦状态改变，就不会再变，任何时候都可以得到这个结果&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Child&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;F&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){};&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;F&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prototype&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Fn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;P&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Parent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Child&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;P&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Promise常用方法的polyfill示例ß&lt;/p&gt;
 
-&lt;blockquote&gt;
-  &lt;p&gt;寄生式继承：包装原型式继承&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//构造函数&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Promise&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;executor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//executor执行器&lt;/span&gt;
 
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Child&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;F&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){};&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;F&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prototype&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Fn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Wrapper&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;sub&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Child&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;sub&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;P&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Parent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Wrapper&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;P&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;寄生组合式继承：结合上述方式&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Mid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;F&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){};&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;F&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prototype&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;F&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;M&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Mid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Parent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prototype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Child&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;Person&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;Child&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prototype&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;M&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;M&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Child&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Jinus</name></author><summary type="html">JS继承</summary></entry><entry><title type="html">常见的浏览器兼容性问题</title><link href="http://localhost:4000/2020/08/20/%E5%B8%B8%E8%A7%81%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E6%80%A7%E9%97%AE%E9%A2%98/" rel="alternate" type="text/html" title="常见的浏览器兼容性问题" /><published>2020-08-20T00:00:00+08:00</published><updated>2020-08-20T00:00:00+08:00</updated><id>http://localhost:4000/2020/08/20/%E5%B8%B8%E8%A7%81%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E6%80%A7%E9%97%AE%E9%A2%98</id><content type="html" xml:base="http://localhost:4000/2020/08/20/%E5%B8%B8%E8%A7%81%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E6%80%A7%E9%97%AE%E9%A2%98/">&lt;h4 id=&quot;常见的浏览器兼容性问题&quot;&gt;常见的浏览器兼容性问题&lt;/h4&gt;</content><author><name>Jinus</name></author><summary type="html">常见的浏览器兼容性问题</summary></entry><entry><title type="html">对象拷贝与比较</title><link href="http://localhost:4000/2020/08/20/%E5%AF%B9%E8%B1%A1%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%AF%94%E8%BE%83/" rel="alternate" type="text/html" title="对象拷贝与比较" /><published>2020-08-20T00:00:00+08:00</published><updated>2020-08-20T00:00:00+08:00</updated><id>http://localhost:4000/2020/08/20/%E5%AF%B9%E8%B1%A1%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%AF%94%E8%BE%83</id><content type="html" xml:base="http://localhost:4000/2020/08/20/%E5%AF%B9%E8%B1%A1%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%AF%94%E8%BE%83/">&lt;h1 id=&quot;对象拷贝&quot;&gt;对象拷贝&lt;/h1&gt;
-
-&lt;p&gt;简单来说深拷贝是拷贝储存在栈中的对象，而浅拷贝是从内存中拷贝。基本数据类型存在内存中，另一种引用数据类型如数组和对象是存放在栈中。&lt;/p&gt;
-
-&lt;p&gt;常用的深拷贝方法：&lt;/p&gt;
-
-&lt;p&gt;1.&lt;code class=&quot;highlighter-rouge&quot;&gt;Jquery&lt;/code&gt;方法,&lt;code class=&quot;highlighter-rouge&quot;&gt;$.extend(targetObj,originObj)&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;2.&lt;code class=&quot;highlighter-rouge&quot;&gt;Object.assign({targetObj,originObj})&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;对象深拷贝的pollyfill示例&lt;/p&gt;
-
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ptototype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;clone&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;===&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typeof&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!==&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;object&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;that&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;that&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;status&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;pending&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;that&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;success&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;undefined&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;that&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;undefined&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;that&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;fulFillEventLists&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[];&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;that&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;rejectEventLists&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[];&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;resolve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;val&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;that&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;status&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;pending&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;that&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;success&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;val&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;that&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;status&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;fulfilled&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;setTimeout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;nx&quot;&gt;that&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;fulFillEventLists&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;fn&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;===&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;reject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;that&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;status&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;pending&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;that&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;that&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;status&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;rejected&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;setTimeout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;nx&quot;&gt;that&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;rejectEventLists&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;fn&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;newObj&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;key&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-       &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;hasOwnProperty&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)){&lt;/span&gt;
-          &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;val&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-          &lt;span class=&quot;nx&quot;&gt;newobj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typeof&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;object&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?&lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;arguments&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;callee&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;val&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;val&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-       &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;executor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;resolve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;reject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;reject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;neeObj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Jinus</name></author><summary type="html">对象拷贝</summary></entry></feed>
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;then-方法&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;then&lt;/code&gt; 方法&lt;/h4&gt;
+
+&lt;p&gt;Promise的实例具有 &lt;code class=&quot;highlighter-rouge&quot;&gt;then&lt;/code&gt; 方法， &lt;code class=&quot;highlighter-rouge&quot;&gt;then&lt;/code&gt; 方法的第一个参数是 &lt;code class=&quot;highlighter-rouge&quot;&gt;resolved&lt;/code&gt; 状态的回调函数，第二个参数（可选）是 &lt;code class=&quot;highlighter-rouge&quot;&gt;rejected&lt;/code&gt; 状态的回调函数。 &lt;code class=&quot;highlighter-rouge&quot;&gt;then&lt;/code&gt; 方法返回一个新的 &lt;code class=&quot;highlighter-rouge&quot;&gt;Promise&lt;/code&gt; 实例。&lt;/p&gt;
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//实现then方法&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;Promise&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prototype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;onFulfilled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;onRejected&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;//回调函数检测，设置其默认值&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;onFilfilled&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;typeof&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;onFulfilled&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;function&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;onFulfilled&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;val&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;onRejected&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;typeof&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;onReject&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;function&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;onRejected&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Promise&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;resolve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;reject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;handle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;callback&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;callback&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;instanceof&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Promise&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                    &lt;span class=&quot;nx&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;resolve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;reject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+                &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                    &lt;span class=&quot;nx&quot;&gt;resolve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+                &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;nx&quot;&gt;reject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;status&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;fulfilled&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;setTimeout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;nx&quot;&gt;handle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;onFulfilled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;success&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;status&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;rejected&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;setTimeout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;nx&quot;&gt;handle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;onRejected&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;status&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;pending&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;fullFillEventLists&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;handle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;onFulfilled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;success&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+            &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;rejectEventLists&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;handle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;onFullfilled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;catch-方法&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;catch&lt;/code&gt; 方法&lt;/h4&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;catch()&lt;/code&gt; 方法用于指定发生错误时的回调函数，返回的还是一个Promise对象。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;与 &lt;code class=&quot;highlighter-rouge&quot;&gt;try/catch&lt;/code&gt; 代码块不同的是，没有使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;catch&lt;/code&gt; 方法指定错误处理的回调函数，Promise对象抛出的错误不会传递到外层代码，不会有任何反应。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//实现catch方法&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;Promise&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prototype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;onRejected&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;undefined&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;onRejected&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;finally-方法&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;finally&lt;/code&gt; 方法&lt;/h4&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;finally&lt;/code&gt; 方法的回调函数不接受任何参数，与前置的Promise状态无关，不依赖Promise的执行结果&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;Promise&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prototype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;finally&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;callback&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;P&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;P&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;resolve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;callback&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;reason&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;P&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;resolve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;callback&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;reason&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}));&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Jinus</name></author><summary type="html">异步编程：Promise</summary></entry><entry><title type="html">Position</title><link href="http://localhost:4000/2020/07/25/position/" rel="alternate" type="text/html" title="Position" /><published>2020-07-25T00:00:00+08:00</published><updated>2020-07-25T00:00:00+08:00</updated><id>http://localhost:4000/2020/07/25/position</id><content type="html" xml:base="http://localhost:4000/2020/07/25/position/">&lt;h3 id=&quot;常见4种&quot;&gt;常见4种&lt;/h3&gt;
+
+&lt;h4 id=&quot;1static&quot;&gt;1.static&lt;/h4&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;position&lt;/code&gt;定位的默认值，没有定位&lt;/p&gt;
+
+&lt;h4 id=&quot;2relative&quot;&gt;2.relative&lt;/h4&gt;
+&lt;p&gt;生成相对定位的元素，相对于其正常位置进行定位，一般在子元素设置&lt;code class=&quot;highlighter-rouge&quot;&gt;absolute&lt;/code&gt;定位时，给父元素设置&lt;code class=&quot;highlighter-rouge&quot;&gt;relative&lt;/code&gt;
+元素的位置通过&lt;code class=&quot;highlighter-rouge&quot;&gt;top&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;right&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;bottom&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;left&lt;/code&gt;控制，其值的定位起点都是父元素的左上角(这点和&lt;code class=&quot;highlighter-rouge&quot;&gt;absolute&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;fixed&lt;/code&gt;不一样)&lt;/p&gt;
+
+&lt;h4 id=&quot;3absolute&quot;&gt;3.absolute&lt;/h4&gt;
+&lt;p&gt;生成绝对定位的元素，相对于&lt;code class=&quot;highlighter-rouge&quot;&gt;static&lt;/code&gt;定位以外的第一个父元素进行定位
+元素的位置通过&lt;code class=&quot;highlighter-rouge&quot;&gt;top&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;right&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;bottom&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;left&lt;/code&gt;控制，&lt;code class=&quot;highlighter-rouge&quot;&gt;top&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;left&lt;/code&gt;的定位起点是包含块左上角,&lt;code class=&quot;highlighter-rouge&quot;&gt;right&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;bottom&lt;/code&gt;的定位起点是包含块的的右下角&lt;/p&gt;
+
+&lt;h4 id=&quot;4fixed&quot;&gt;4.fixed&lt;/h4&gt;
+&lt;p&gt;生成绝对定位的元素，相对于浏览器窗口进行定位，和&lt;code class=&quot;highlighter-rouge&quot;&gt;absolute&lt;/code&gt;的区别是&lt;code class=&quot;highlighter-rouge&quot;&gt;fixed&lt;/code&gt;不会跟随屏幕滚动
+元素的位置通过&lt;code class=&quot;highlighter-rouge&quot;&gt;top&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;right&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;bottom&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;left&lt;/code&gt;控制，&lt;code class=&quot;highlighter-rouge&quot;&gt;top&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;left&lt;/code&gt;的定位起点是包含块左上角,&lt;code class=&quot;highlighter-rouge&quot;&gt;right&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;bottom&lt;/code&gt;的定位起点是包含块的的右下角&lt;/p&gt;
+
+&lt;h3 id=&quot;不常用4种&quot;&gt;不常用4种&lt;/h3&gt;
+
+&lt;h4 id=&quot;1inherit&quot;&gt;1.inherit&lt;/h4&gt;
+&lt;p&gt;规定应该从父元素继承&lt;code class=&quot;highlighter-rouge&quot;&gt;position&lt;/code&gt;属性的值
+&lt;code class=&quot;highlighter-rouge&quot;&gt;inherit&lt;/code&gt;关键字可用于任何HTML元素的任何CSS属性&lt;/p&gt;
+
+&lt;h4 id=&quot;2inital&quot;&gt;2.inital&lt;/h4&gt;
+&lt;p&gt;设置&lt;code class=&quot;highlighter-rouge&quot;&gt;position&lt;/code&gt;的值为默认值，可用于任何HTML元素上的任何CSS属性，不是&lt;code class=&quot;highlighter-rouge&quot;&gt;position&lt;/code&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;3unset&quot;&gt;3.unset&lt;/h4&gt;
+&lt;p&gt;设置&lt;code class=&quot;highlighter-rouge&quot;&gt;position&lt;/code&gt;的值为不设置：
+如果该属性的默认属性是继承（例如字体相关的默认属性基本都是继承），该值等同于&lt;code class=&quot;highlighter-rouge&quot;&gt;inherit&lt;/code&gt;
+如果该属性的默认属性不是继承属性（例如&lt;code class=&quot;highlighter-rouge&quot;&gt;position&lt;/code&gt;的默认属性为&lt;code class=&quot;highlighter-rouge&quot;&gt;static&lt;/code&gt;）,该值等同于&lt;code class=&quot;highlighter-rouge&quot;&gt;initial&lt;/code&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;4sticky&quot;&gt;4.sticky&lt;/h4&gt;
+&lt;p&gt;CSS3新属性，它的表现就像&lt;code class=&quot;highlighter-rouge&quot;&gt;position:relative&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;position:fixed&lt;/code&gt;的合体
+1.在目标区域在屏幕中可见时，它的行为就像&lt;code class=&quot;highlighter-rouge&quot;&gt;position:relative&lt;/code&gt;;
+2.页面滚动时
+当父元素是&lt;code class=&quot;highlighter-rouge&quot;&gt;body&lt;/code&gt;时
+a.滚动距离小于屏幕高度或宽度，它会固定在目标位置
+b.滚动距离大于屏幕高度或宽度，它的表现就像&lt;code class=&quot;highlighter-rouge&quot;&gt;position:relative&lt;/code&gt;和1一样
+当父元素不是&lt;code class=&quot;highlighter-rouge&quot;&gt;body&lt;/code&gt;，在父元素高度内滚动时它会固定在目标位置，就像&lt;code class=&quot;highlighter-rouge&quot;&gt;fixed&lt;/code&gt;。在父元素滚动为不可时它的表现就像&lt;code class=&quot;highlighter-rouge&quot;&gt;position:relative&lt;/code&gt;和1一样&lt;/p&gt;</content><author><name>Jinus</name></author><summary type="html">常见4种</summary></entry></feed>

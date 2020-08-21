@@ -1,6 +1,6 @@
 ---
 categories:
-- 学习
+- 其它
 tags:
 - 工具
 ---

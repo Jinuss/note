@@ -111,20 +111,20 @@
 
 
 
-<meta name="description" content="最近开始接触Backbone.js,这个曾经非常优秀的一款MVC前端框架，在学习的过程中，遇到下图的这样一个问题">
+<meta name="description" content="最近开始接触Backbone.js, 这个曾经非常优秀的一款MVC前端框架，在学习的过程中，遇到下图的这样一个问题">
 <meta name="keywords" content="Backbone">
 <meta property="og:type" content="article">
 <meta property="og:title" content="谈谈backbonejs中的el">
 <meta property="og:url" content="http://localhost:4000/backbone/2017/03/18/%E8%B0%88%E8%B0%88BackboneJS%E4%B8%AD%E7%9A%84el/">
 <meta property="og:site_name" content="Jinus's Blog">
-<meta property="og:description" content="最近开始接触Backbone.js,这个曾经非常优秀的一款MVC前端框架，在学习的过程中，遇到下图的这样一个问题">
+<meta property="og:description" content="最近开始接触Backbone.js, 这个曾经非常优秀的一款MVC前端框架，在学习的过程中，遇到下图的这样一个问题">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://jinuss.github.io/blog/jinus/img/2017031801.png">
-<meta property="og:image" content="https://jinuss.github.io/blog/jinus/img/2017031802.png">
+<meta property="og:image" content="https://jinuss.github.io/note/jinus/img/2017031801.png">
+<meta property="og:image" content="https://jinuss.github.io/note/jinus/img/2017031802.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="谈谈backbonejs中的el">
-<meta name="twitter:description" content="最近开始接触Backbone.js,这个曾经非常优秀的一款MVC前端框架，在学习的过程中，遇到下图的这样一个问题">
-<meta name="twitter:image" content="https://jinuss.github.io/blog/jinus/img/2017031801.png">
+<meta name="twitter:description" content="最近开始接触Backbone.js, 这个曾经非常优秀的一款MVC前端框架，在学习的过程中，遇到下图的这样一个问题">
+<meta name="twitter:image" content="https://jinuss.github.io/note/jinus/img/2017031801.png">
 
 
 <script type="text/javascript" id="hexo.configurations">
@@ -438,7 +438,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  293
+                  304
                 </span>
               
 
@@ -493,28 +493,30 @@
 
 
 
-  <p>最近开始接触<strong>Backbone.js</strong>,这个曾经非常优秀的一款MVC前端框架，在学习的过程中，遇到下图的这样一个问题
-<img src="https://jinuss.github.io/blog/jinus/img/2017031801.png" alt="Error" /></p>
+  <p>最近开始接触<strong>Backbone.js</strong>, 这个曾经非常优秀的一款MVC前端框架，在学习的过程中，遇到下图的这样一个问题</p>
+
+<p><img src="https://jinuss.github.io/note/jinus/img/2017031801.png" alt="Error" /></p>
 
 <p>代码如下：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9</pre></td><td class="code"><pre class="highlight"><code> searchView=Backbone.View.extend({   
-      initialzie:function(){
-          this.render()
-      },
-      render:function(){
-          var template=_.template($("#search_template").html(),{});
-          this.el.html(template);
-      }  
- })
+<div class="language-js highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9</pre></td><td class="code"><pre class="highlight"><code>     <span class="nx">searchView</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+         <span class="na">initialzie</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+             <span class="k">this</span><span class="p">.</span><span class="nx">render</span><span class="p">()</span>
+         <span class="p">},</span>
+         <span class="na">render</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+             <span class="kd">var</span> <span class="nx">template</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s2">"#search_template"</span><span class="p">).</span><span class="nx">html</span><span class="p">(),</span> <span class="p">{});</span>
+             <span class="k">this</span><span class="p">.</span><span class="nx">el</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span><span class="nx">template</span><span class="p">);</span>
+         <span class="p">}</span>
+     <span class="p">})</span>
 </code></pre></td></tr></tbody></table></div></div>
 
-<p>只是view了一个实例，然后在 <em>initalize</em> 中调用了 <em>render</em> 方法，再通过 <strong>jquery</strong> 获取到的内容作为模板 <em>template</em> ，将此模板填充到 <em>view</em> 中绑定 <em>el</em> 属性的容器上，然而浏览器显示 <em>this.el.html</em> 不是一个函数.试着通过 <em>typeof</em>  <em>this.el</em> ,输出的是 <em>object</em> ，所以这个 <em>el</em> 是个对象，但不是一个 <strong>jquery</strong> 对象。</p>
+<p>只是view了一个实例，然后在 <em>initalize</em> 中调用了 <em>render</em> 方法，再通过 <strong>jquery</strong> 获取到的内容作为模板 <em>template</em> ，将此模板填充到 <em>view</em> 中绑定 <em>el</em> 属性的容器上，然而浏览器显示 <em>this.el.html</em> 不是一个函数. 试着通过 <em>typeof</em>  <em>this.el</em> , 输出的是 <em>object</em> ，所以这个 <em>el</em> 是个对象，但不是一个 <strong>jquery</strong> 对象。</p>
 
 <p>后来查阅官方文档看到有个 <em>el</em> ，它是视图元素的缓存 <strong>jQuery</strong> 对像，主要是简单的引用；而el属性则是所有的视图都拥有的一个 <em>DOM</em> 元素，所以二者的用法还是有区别的。 <em>el</em> 属性可以指定容器与哪个元素绑定，而绑定过后，视图就通过 <em>el</em> 来进行接下来的操作。</p>
 
-<p>当将 <em>this.el.html</em> 替换成 <em>this.$el.html</em> 时，出现如期效果，无报错，如下图
-<img src="https://jinuss.github.io/blog/jinus/img/2017031802.png" alt="Success" /></p>
+<p>当将 <code class="highlighter-rouge">this.el.html</code>替换成 <em>this.$el.html</em> 时，出现如期效果，无报错，如下图</p>
+
+<p><img src="https://jinuss.github.io/note/jinus/img/2017031802.png" alt="Success" /></p>
 
 
       
@@ -646,7 +648,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">82</span>
+                <span class="site-state-item-count">75</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -657,7 +659,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -668,7 +670,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

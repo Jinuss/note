@@ -1,39 +1,39 @@
 ---
 categories:
-- C#
+ - C#
 tags:
-- C#
+ - C#
 ---
 目前我只接触过两种模板导出的方式：
 
--  C#利用NPOI接口制作Excel模板，在服务端用数据渲染模板
+*  C#利用NPOI接口制作Excel模板，在服务端用数据渲染模板
 
--  在前端利用前人搭建好的框架，利用office编写xml制作模板，在客户端进行数据的渲染，导出的格式是word。
+*  在前端利用前人搭建好的框架，利用office编写xml制作模板，在客户端进行数据的渲染，导出的格式是word。
 
 在制作报表时两种方式都可以满足的基本需求，但excel模板更加强大，因为xml模板的布局大体在事先就要确定好，扩展性不高，而excel模板就可以根据数据的特点进行自定义布局，拓展性更强。下面介绍如何在服务端利用NPOI构建excel模板。
 
 简单来讲，NPOI是一个库，它可以处理多种文件格式如xls、xlsx、doc、ppt、vsd等。除了制作excel模板，也可以读取excel中的数据。本文具体介绍制作excel模板。
 
 添加引用NPOI后，在文件的头部引入如下几个接口
->using NPOI.HSSF.UserModel;
+```C#
+using NPOI. HSSF. UserModel; 
+using NPOI. HSSF; 
+using NPOI. SS. UserModel
+using NPOI. SS. Util
 
->using NPOI.HSSF;
-
->using NPOI.SS.UserModel
-
->using NPOI.SS.Util
-
-HSSF使用于2007之前的xls版本，XSSF适用于2007及其之后的xlsx版本，它们是excel/doc格式读写库。NPOI.SS是Excel公用接口及Excel公式计算引擎。更多具体的功能以及接口可以自行百度。
+``` 
+HSSF使用于2007之前的xls版本，XSSF适用于2007及其之后的xlsx版本，它们是excel/doc格式读写库。NPOI. SS是Excel公用接口及Excel公式计算引擎。更多具体的功能以及接口可以自行百度。
 
 具体实现(code)如下：
-       
-         public List<string> GetExcel(string year, string month, string type, out string statusCode, out string errMsg){
-            statusCode = "0000";
-            errMsg = "";
-            List<string> response = new List<string>();
-            string strFilePath = "";
-            string strGuid = Guid.NewGuid().ToString();
-            string FilePath = "\\BufFile\\OutFiles\\DownLoadFiles\\ExportExcel\\" + strGuid;
+
+```C# 
+public List<string> GetExcel(string year, string month, string type, out string statusCode, out string errMsg){
+    statusCode = "0000";
+    errMsg = "";
+    List<string> response = new List<string>();
+    string strFilePath = "";
+    string strGuid = Guid.NewGuid().ToString();
+    string FilePath = "\\BufFile\\OutFiles\\DownLoadFiles\\ExportExcel\\" + strGuid;
                 //构建文件缓存目录
             strFilePath = System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.AppDomain.CurrentDomain.BaseDirectory).FullName).FullName + FilePath;
             if (!System.IO.Directory.Exists(strFilePath))
@@ -120,7 +120,9 @@ HSSF使用于2007之前的xls版本，XSSF适用于2007及其之后的xlsx版本
                 hssfSheet.GetRow(0).GetCell(0).SetCellValue(Title);
                 //合并单元格
                     /*
+
                     * cellRangeAddress可以合并行或列，第一个参数是起始行号，第二个参数是终止行号，第三个参数是起始列号，第三个参数是终止列号
+
                     */
                 CellRangeAddress region = new CellRangeAddress(rowIndex, rowIndex + 2, 0, 6);
                 hssfSheet.AddMergedRegion(region);
@@ -139,3 +141,5 @@ HSSF使用于2007之前的xls版本，XSSF适用于2007及其之后的xlsx版本
                 file.Close();
                 response.Add(ret);
             }
+
+```

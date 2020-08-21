@@ -83,7 +83,7 @@
 <link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="学习笔记,VUE," />
+  <meta name="keywords" content="VUE," />
 
 
 
@@ -112,7 +112,7 @@
 
 
 <meta name="description" content="序言 当前前端三大主流框架：Angular、React、Vue。React前段时间由于许可证风波，使得Vue的热度蹭蹭地上升。另外，Vue友好的API文档更是一大特色。Vue.js是一个非常轻量级的工具，与其说是一个MVVM框架，不如说是一个js库。Vue.js具有响应式编程和组件化的特点。响应式编程，即保持状态和视图的同步，状态也可以说是数据吧；而其组件化的理念与React则一样，即“一切都是组件，组件化思想方便于模块化的开发，是前端领域的一大趋势。">
-<meta name="keywords" content="学习笔记, VUE">
+<meta name="keywords" content="VUE">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vue 2.0入门基础知识">
 <meta property="og:url" content="http://localhost:4000/vue/2017/09/21/Vue-2.0%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
@@ -435,7 +435,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  2183
+                  2182
                 </span>
               
 
@@ -505,26 +505,22 @@
 </ul>
 
 <p>前两者一般配合使用，v-show的效果类似于v-if。</p>
-
-<p><em>code</em> :</p>
-
-<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15</pre></td><td class="code"><pre class="highlight"><code> &lt;body&gt;
- &lt;div id="app"&gt;
- &lt;p v-if="flag"&gt;if&lt;/p&gt;
- &lt;p v-else&gt;else&lt;/p&gt; 
- &lt;p v-show="flag"&gt;show&lt;/p&gt;
- &lt;/div&gt;
- &lt;/body&gt;
- &lt;script&gt;
- var vm= new Vue({
-   el:"#app",
-   data:{
-     flag:true
-   }
- });
- &lt;/script&gt;
-</code></pre></td></tr></tbody></table></div></div>
-
+<div class="language-js highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15</pre></td><td class="code"><pre class="highlight"><code>     <span class="o">&lt;</span><span class="nx">body</span><span class="o">&gt;</span>
+     <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">id</span><span class="o">=</span><span class="s2">"app"</span><span class="o">&gt;</span>
+     <span class="o">&lt;</span><span class="nx">p</span> <span class="nx">v</span><span class="o">-</span><span class="k">if</span><span class="o">=</span><span class="s2">"flag"</span><span class="o">&gt;</span><span class="k">if</span><span class="o">&lt;</span><span class="sr">/p</span><span class="err">&gt;
+</span>     <span class="o">&lt;</span><span class="nx">p</span> <span class="nx">v</span><span class="o">-</span><span class="k">else</span><span class="o">&gt;</span><span class="k">else</span><span class="o">&lt;</span><span class="sr">/p&gt;</span><span class="err"> 
+</span>     <span class="o">&lt;</span><span class="nx">p</span> <span class="nx">v</span><span class="o">-</span><span class="nx">show</span><span class="o">=</span><span class="s2">"flag"</span><span class="o">&gt;</span><span class="nx">show</span><span class="o">&lt;</span><span class="sr">/p</span><span class="err">&gt;
+</span>     <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>     <span class="o">&lt;</span><span class="sr">/body</span><span class="err">&gt;
+</span>     <span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+     <span class="kd">var</span> <span class="nx">vm</span><span class="o">=</span> <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+       <span class="na">el</span><span class="p">:</span><span class="s2">"#app"</span><span class="p">,</span>
+       <span class="na">data</span><span class="p">:{</span>
+         <span class="na">flag</span><span class="p">:</span><span class="kc">true</span>
+       <span class="p">}</span>
+     <span class="p">});</span>
+     <span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
+</span></code></pre></td></tr></tbody></table></div></div>
 <p>DOM结构中，三个p标签中的内容是否显示在页面中取决于flag的布尔值属性。当flag为true时，if和show都会显示，else也不会存在于DOM结构中。v-if和v-show的不同体现在：v-if是根据条件的值判断是否加载，可以减轻服务器的压力，但是缺点是当改变条件的值，页面又要加载一次；v-show则无论条件的值是否为true，都会加载（若条件为true，则display属性设置为其默认属性，反之，设置为none）</p>
 
 <ul>
@@ -928,9 +924,6 @@ var vm = new Vue({
         <div class="post-tags">
           
             
-            <a href="/tag/#/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0" rel="tag"># 学习笔记</a>
-          
-            
             <a href="/tag/#/VUE" rel="tag"># VUE</a>
           
         </div>
@@ -1040,7 +1033,7 @@ var vm = new Vue({
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">82</span>
+                <span class="site-state-item-count">75</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1051,7 +1044,7 @@ var vm = new Vue({
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1062,7 +1055,7 @@ var vm = new Vue({
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

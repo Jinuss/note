@@ -1,12 +1,72 @@
 .site-author-image {
   display: block;
   margin: 0 auto;
+  border-radius: 50%;
   padding: $site-author-image-padding;
   max-width: $site-author-image-width;
   height: $site-author-image-height;
-  border: $site-author-image-border-width solid $site-author-image-border-color;
 }
-
+.site-author-image:hover{
+  animation: rotateAn 1s infinite;
+}
+@keyframes rotateAn{
+  0% {
+    transform:rotate(45deg);
+    -ms-transform:rotate(45deg); 	/* IE 9 */
+    -moz-transform:rotate(45deg); 	/* Firefox */
+    -webkit-transform:rotate(45deg); /* Safari 和 Chrome */
+    -o-transform:rotate(45deg);
+  }
+  10%{
+    transform:rotate(90deg);
+    -ms-transform:rotate(90deg); 	/* IE 9 */
+    -moz-transform:rotate(90deg); 	/* Firefox */
+    -webkit-transform:rotate(90deg); /* Safari 和 Chrome */
+    -o-transform:rotate(90deg);
+  }
+  30%{
+    transform:rotate(135deg);
+    -ms-transform:rotate(135deg); 	/* IE 9 */
+    -moz-transform:rotate(135deg); 	/* Firefox */
+    -webkit-transform:rotate(135deg); /* Safari 和 Chrome */
+    -o-transform:rotate(135deg);
+  }
+  50%{
+    transform:rotate(180deg);
+    -ms-transform:rotate(180deg); 	/* IE 9 */
+    -moz-transform:rotate(180deg); 	/* Firefox */
+    -webkit-transform:rotate(180deg); /* Safari 和 Chrome */
+    -o-transform:rotate(180deg);
+  }
+  70%{
+    transform:rotate(225deg);
+    -ms-transform:rotate(225deg); 	/* IE 9 */
+    -moz-transform:rotate(225deg); 	/* Firefox */
+    -webkit-transform:rotate(225deg); /* Safari 和 Chrome */
+    -o-transform:rotate(225deg);
+  }
+  80%{
+    transform:rotate(270deg);
+    -ms-transform:rotate(270deg); 	/* IE 9 */
+    -moz-transform:rotate(270deg); 	/* Firefox */
+    -webkit-transform:rotate(270deg); /* Safari 和 Chrome */
+    -o-transform:rotate(270deg);
+  }
+  90%{
+    transform:rotate(315deg);
+    -ms-transform:rotate(315deg); 	/* IE 9 */
+    -moz-transform:rotate(315deg); 	/* Firefox */
+    -webkit-transform:rotate(315deg); /* Safari 和 Chrome */
+    -o-transform:rotate(315deg);
+  }
+  100%{
+    transform:rotate(360deg);
+    -ms-transform:rotate(360deg); 	/* IE 9 */
+    -moz-transform:rotate(360deg); 	/* Firefox */
+    -webkit-transform:rotate(360deg); /* Safari 和 Chrome */
+    -o-transform:rotate(360deg);
+  }
+}
 .site-author-name {
   margin: $site-author-name-margin;
   text-align: $site-author-name-align;

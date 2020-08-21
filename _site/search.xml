@@ -2,281 +2,8 @@
 <search>
   
     <entry>
-      <title><![CDATA[面试经验]]></title>
-      <url>/2020/08/20/%E9%9D%A2%E8%AF%95%E7%BB%8F%E9%AA%8C/</url>
-      <content type="text"><![CDATA[【云粒智慧】      http协商缓存和强制缓存        cookie、seesion        js异步        promise、promise.all        js变量提升        js继承的几种方式  ]]></content>
-      <categories>
-        
-      </categories>
-      <tags>
-        
-      </tags>
-      <tags></tags>
-    </entry>
-  
-    <entry>
-      <title><![CDATA[防抖与节流]]></title>
-      <url>/2020/08/20/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/</url>
-      <content type="text"><![CDATA[防抖与节流应用场景绑定某些持续触发的事件，如鼠标点击、滚动、放大缩小等，有时候并不希望在事件持续触发的过程中那么频繁地去执行函数。一般来讲，防抖和节流是比较常用的解决方案。防抖（debounce）  指触发事件后在n秒内函数只能执行一次，如果在n秒内又触发了事件，则会重新计算函数执行时间。防抖函数又分为非立即执行和立即执行版。  非立即执行版 触发事件后函数不会立即执行，而是在n秒后执行，如果在n秒内又触发了事件，则会重新计算函数执行时间function debounce(func,wait){   let timeout;   return ()=&gt;{       let args=arguments;       if(timout){           clearTimeout(timeout);       }       timeout=setTimeout(()=&gt;{           func.apply(context,args);       },wait)   }}  立即执行版 触发事件后函数会立即执行，然后n秒内不触发事件才能继续执行函数的效果function debounce(func,wait){   let timeout;   return ()=&gt;{       let args=arguments;       if(timeout){          clearTimeout(timeout);       }       let callNow=!timeout;       timeout=setTimeout(()=&gt;{           timeout=null;       },wait)       if(callNow){         func.apply(this,args)       }   }}节流（throttle）  指连续触发事件但是在n秒中只执行一次函数。节流会稀释函数的执行频率。节流方式同样有两种，分为时间戳版和定时器版  时间戳版：在时间段内开始的时候触发函数function throttle(func,wait){    let previous=0;    return function(){        let now=Date.now();        let contxt=this;        let args=arguments;        if(now-previous&gt;wait){           func.apply.(contxt,args);           previous=now;        }    }}  定时器版：在时间段结束时触发function throttle(func,wait){    let timeout;    return function(){        let context=this;        let args=arguments;        if(!timeout){            timeout=setTimeout(()=&gt;{              timeout=null;             func.apply.(context,args);            },wait)        }    }}]]></content>
-      <categories>
-        
-      </categories>
-      <tags>
-        
-      </tags>
-      <tags></tags>
-    </entry>
-  
-    <entry>
-      <title><![CDATA[闭包]]></title>
-      <url>/2020/08/20/%E9%97%AD%E5%8C%85/</url>
-      <content type="text"><![CDATA[闭包从函数A里返回函数B，函数B使用函数A中的变量，会引起内存泄露问题]]></content>
-      <categories>
-        
-      </categories>
-      <tags>
-        
-      </tags>
-      <tags></tags>
-    </entry>
-  
-    <entry>
-      <title><![CDATA[路由守卫]]></title>
-      <url>/2020/08/20/%E8%B7%AF%E7%94%B1%E5%AE%88%E5%8D%AB/</url>
-      <content type="text"><![CDATA[一、全局前置守卫 beforEach  守卫方法接收三个参数  router.beforEach((to,from,next)=&gt;{    //dosomething  })    to：即将要进入的目标路由对象  from：当前导航正要离开的路由  next：执行下一步二、全局后置钩子 afterEach (少用)  全局后置钩子与全局前置守卫类似，然而和守卫不同的是，这些钩子不会接收next函数，也不会改变导航本身三、路由独享的守卫 beforeEnter  使用方法与全局守卫相同  不同的是：全局守卫可以作用于全局，路由独享守卫只作用于被设置守卫的路由四、组件内的守卫      可以在路由组件内直接定义以下路由导航守卫                            beforeRouteEnter                          在渲染该组件的对应路由被confirm调用          不能获取组件实例 this ，因为当守卫执行前，组件实例还没被创建          可以通过next获取data中的数据                    2.beforeRouteUpdate                  在当前路由改变，但是该组件被复用时调用                            3.beforeRouteLeave                  这个离开守卫通常用来禁止用户在还未保存修改前突然离开。该导航可以通过next(false)来取消          可以访问组件实例this                    ]]></content>
-      <categories>
-        
-      </categories>
-      <tags>
-        
-      </tags>
-      <tags></tags>
-    </entry>
-  
-    <entry>
-      <title><![CDATA[跨域]]></title>
-      <url>/2020/08/20/%E8%B7%A8%E5%9F%9F/</url>
-      <content type="text"><![CDATA[  协议、IP、端口其中一个不同都会存在跨域情况jsonp  一种轻量级的数据传输格式，允许用户传递一个callback参数给服务端，然后服务端返回数据时会将这个callback参数作为函数名来包裹着JSON数据，由客户端随意定制函数来自动处理返回数据。  本质是动态创建script标签,然后通过src属性发送跨域请求，在发送请求前必须声明一个与参数中传递的名字一致的同名函数  优点          兼容性好        缺点          只支持GET请求，而不支持POST等其它类型的HTTP请求      只支持跨域HTTP请求这种情况，而不能解决不同域的两个页面之间如何进行JavaScript调用的问题。      服务端处理  设置服务器的ResponseHeader,如Access-Control-Allow-]]></content>
-      <categories>
-        
-      </categories>
-      <tags>
-        
-      </tags>
-      <tags></tags>
-    </entry>
-  
-    <entry>
-      <title><![CDATA[虚拟dom]]></title>
-      <url>/2020/08/20/%E8%99%9A%E6%8B%9FDOM/</url>
-      <content type="text"><![CDATA[  Vue 2.0中引入了虚拟DOM，初始渲染速度比Vue1.0提升了2～4倍模版转换成视图的过程  Vue.js通过编译complie将模版转换成渲染函数render，执行渲染函数就可以得到一个虚拟DOM  在对模型进行操作时，会触发对应的Dep中的Watcher对象。Watcher对象会调用对应的update来修改视图。这个过程主要是将虚拟DOM进行差异对比，然后根据结果进行对比。即在Vue的实现上，Vue将模版编译成虚拟DOM渲染函数，结合Vue的响应式系统，在状态改变时，Vue能够计算出重新渲染组件的最小代价并应用更新到真实DOM上。Virtual DOMVirtual DOM本质上是一棵以JavaScript对象(VNode节点：标签名、属性、子元素)作为基础的树，用对象属性来描述节点，对真实DOM的抽象。最终可以通过一系列操作使这棵树映射到真实环境上。Virtual DOM提高渲染速度原因在虚拟节点映射到视图的过程中，将虚拟节点与上一次渲染视图所使用的虚拟节点（oldVnode）作对比，找出真正需要更新的节点来进行DOM操作，从而避免操作其它无任何改动的DOM]]></content>
-      <categories>
-        
-      </categories>
-      <tags>
-        
-      </tags>
-      <tags></tags>
-    </entry>
-  
-    <entry>
-      <title><![CDATA[继承]]></title>
-      <url>/2020/08/20/%E7%BB%A7%E6%89%BF/</url>
-      <content type="text"><![CDATA[JS继承被继承的父类Parentfunction Parent(name){   this.name=name;   this.sum=function(){       console.log(this.name)   }}Parent.prototype.age=10;      原型链继承        实现：新实例的原型等于父类的实例        继承的属性：实例的构造函数的属性、父类构造函数的属性、父类原型的属性    主要缺点：所有新实例都会共享父类实例的属性function Child(){    this.name="jinus";}Child.prototype=new Person();      构造函数继承：          实现：用call、apply将父类构造函数引入子类函数，即在子类函数中做了父类函数的自执行              继承的属性：父类构造函数的属性，可以传参数              主要缺点：无法继承父类原型的属性、无法实现构造函数的复用、每个新实例都有父类构造函数的副本      function Child(name){   Parent.call(this,name);}  组合继承：组合原型链继承和构造函数继承function Child(name){  Parent.call(this,name) }Child.prototype=new Parent();  原型式继承：用一个函数包装一个对象，然后返回这个函数的调用，同object.create()的原理function Child(obj){    function F(){};    F.prototype=obj;    return new Fn();}var P=new Parent();var C=Child(P);  寄生式继承：包装原型式继承function Child(obj){    function F(){};    F.prototype=obj;    return new Fn();}function Wrapper(obj){    var sub=Child(obj);    return sub;}var P=new Parent();var C=Wrapper(P)  寄生组合式继承：结合上述方式function Mid(obj){    function F(){};    F.prototype=obj;    return new F()}var M=Mid(Parent.prototype);function Child(){    Person.call(this);}Child.prototype=M;M.constructor=Child;]]></content>
-      <categories>
-        
-      </categories>
-      <tags>
-        
-      </tags>
-      <tags></tags>
-    </entry>
-  
-    <entry>
-      <title><![CDATA[常见的浏览器兼容性问题]]></title>
-      <url>/2020/08/20/%E5%B8%B8%E8%A7%81%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E6%80%A7%E9%97%AE%E9%A2%98/</url>
-      <content type="text"><![CDATA[常见的浏览器兼容性问题]]></content>
-      <categories>
-        
-      </categories>
-      <tags>
-        
-      </tags>
-      <tags></tags>
-    </entry>
-  
-    <entry>
-      <title><![CDATA[对象拷贝与比较]]></title>
-      <url>/2020/08/20/%E5%AF%B9%E8%B1%A1%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%AF%94%E8%BE%83/</url>
-      <content type="text"><![CDATA[对象拷贝简单来说深拷贝是拷贝储存在栈中的对象，而浅拷贝是从内存中拷贝。基本数据类型存在内存中，另一种引用数据类型如数组和对象是存放在栈中。常用的深拷贝方法：1.Jquery方法,$.extend(targetObj,originObj)2.Object.assign({targetObj,originObj})对象深拷贝的pollyfill示例Object.ptototype.clone=function(obj){    if(obj===null){ return null}    if(typeof obj !=="object"){      return obj;    }    if(obj.constructor===Date){        return new Date(obj);    }    var newObj=new obj.constructor();    for(var key in obj){       if(obj.hasOwnProperty(key)){          var val=obj[key];          newobj[key]=typeof val === "object"?arguments.callee(val):val;       }    }    return neeObj;}]]></content>
-      <categories>
-        
-      </categories>
-      <tags>
-        
-      </tags>
-      <tags></tags>
-    </entry>
-  
-    <entry>
-      <title><![CDATA[原型]]></title>
-      <url>/2020/08/20/%E5%8E%9F%E5%9E%8B/</url>
-      <content type="text"><![CDATA[JS原型函数都有一个prototype(显式原型属性)和一个__proto__或[[Prototype]](隐式原型属性)实例对象的__proto__指向构造函数的prototype最终prototype指向null]]></content>
-      <categories>
-        
-      </categories>
-      <tags>
-        
-      </tags>
-      <tags></tags>
-    </entry>
-  
-    <entry>
-      <title><![CDATA[协商缓存和强制缓存]]></title>
-      <url>/2020/08/20/%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98%E5%92%8C%E5%BC%BA%E5%88%B6%E7%BC%93%E5%AD%98/</url>
-      <content type="text"><![CDATA[缓存的优点：  减少了不必要的数据传输，节省带宽  减少服务器的负担，提升网站性能  加快了客户端加载网页的速度  用户体验友好缺点：  资源如果有更改但是客户端不及时更新会造成用户获取信息滞后强制缓存cache-control:max-age={过期时间},public,immutable  cache-control表示缓存的时间  public表示可以被浏览器和代理服务器缓存  private表示代理服务器不缓存，只有客户端可以缓存资源  no-cache表示跳过设置强缓存，但是不妨碍设置协商缓存；一般如果做了强缓存，只有在强缓存失效了才走协商缓存  no-store表示不缓存，这个会让客户端、服务器都不缓存，也就没有所谓的强缓存、协商缓存  immutable表示用户刷新页面，浏览器也不会发起请求去调取服务，浏览器会直接从本地磁盘或者内存中读取缓存并返回200状态协商缓存协商缓存就是需要客户端和服务器两端进行交互在response header中设置etag和last-modified  etag:每个文件有一个hash值，改动文件hash就会变动  last-modified：文件修改的时间，精确到秒协商缓存的总结：请求资源时，把用户本地该资源的etag同时带到服务端，服务端和最新资源做对比。  如果资源没更改，返回304，浏览器读取本地缓存  如果资源有更改，返回200，返回最新的资源。HTTP 1.1中新增etag是为了解决之前只有If-Modified的缺点，主要问题如下：  1.某些文件也许会周期性更改，但是内容并不改变，仅仅改变文件的修改时间，这个时候我们并不希望客户端认为这个文件被修改了，而重新get      某些文件修改非常频繁，比如在秒以下的时间内修改N次    某些服务器不能精确地得到文件的最后修改时间]]></content>
-      <categories>
-        
-      </categories>
-      <tags>
-        
-      </tags>
-      <tags></tags>
-    </entry>
-  
-    <entry>
-      <title><![CDATA[函数式编程]]></title>
-      <url>/2020/08/20/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/</url>
-      <content type="text"><![CDATA[函数式编程函数与方法的区别  函数是一段可以通过其名称被调用的代码，可以传递参数并有返回值。  方法是一段必须通过其名称及其关联对象的名称被调用的代码。引用透明性  所有函数对于相同的输入都将返回相同的值，不依赖于其他全局变量，因此不会产生改变外部环境变量的副作用。声明式编程  函数式编程是声明式编程范式的一部分，会描述一系列的操作，但不会暴露是如何实现的或是数据流如何穿过它们概念函数式编程的目的是使用函数来抽象作用在数据之上的控制流和操作，从而在系统中消除副作用并减少对状态的改变。通过最小化变化使得代码更容易理解，其核心概念一共有四种：不可变性，纯函数，数据转换，高阶函数以及递归##### 不可变性  数据是不可以改变的，他们永远无法修改，其机制就是对原生数据进行拷贝编辑，然后取代使用  ##### 纯函数  一个返回结果只依赖输入参数的函数，它至少需要接受一个参数并且总是返回一个值或者其它函数，它把参数当作不可变数据使用，不做任何修改。  ##### 数据转换  函数式编程中由于数据的不可变性，它会将一种数据转换成另一种数据，使用函数生成转换后的副本进行状态的转换。  ##### 高阶函数  是可以操作其它函数的函数，它们可以将函数当作参数传递，也可以返回一个函数。  ##### 递归  函数调用自身的一种方案链式  函数式编程就是将具体的业务逻辑拆分成一个个小型简单的纯函数，方便进行功能聚集。最终通过串联或者并联的方式将这些函数合成一起调用，]]></content>
-      <categories>
-        
-      </categories>
-      <tags>
-        
-      </tags>
-      <tags></tags>
-    </entry>
-  
-    <entry>
-      <title><![CDATA[事件循环eventloop]]></title>
-      <url>/2020/08/20/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AFEventLoop/</url>
-      <content type="text"><![CDATA[JS浏览器事件循环EventLoop机制进程、线程  进程是系统分配的独立资源，是CPU资源分配的基本单位。进程是由一个或者多个线程组成  线程是进程的执行流，是CPU调度和分派的基本单位，同个进程之中的多个线程之间是共享该进程的资源。浏览器内核  浏览器是多进程的，每一个tab标签代表一个独立的进程（但是多个空白的tab标签会合并成一个进程）  浏览器内核（浏览器渲染进程）是浏览器多进程中的一种，主要分为：                  GUI渲染线程：                  负责渲染页面，解析Html、CSS构成Render树等。当页面重绘或者回流都会调起该线程。          和JS引擎线程是互斥的。当JS引擎线程在工作的时候，GUI渲染线程会被挂起，GUI更新被放入JS任务队列中，等待JS引擎线程空闲时继续执行。                            JS引擎线程：                  单线程工作，负责解析运行JS脚本。          和GUI渲染线程互斥，JS运行耗时过长会导致页面阻塞。（script标签加 def 和 async ）                            事件触发线程：                  当事件符合触发条件被触发时，该线程会把对应的事件回调函数添加到任务队列的队尾，等待JS引擎处理。                            定时器触发线程：                  浏览器定时计数器并不是由JS引擎技术的，阻塞会导致计时不准确。          开启定时器触发线程来计时并触发计时，计时完成后会被添加到任务队列中，等待JS引擎处理。                            http请求线程：                  http请求的时候会开启一条请求线程          请求完成有了返回结果后，会将请求的回调函数添加到任务队列中，等待JS引擎处理。                    事件循环机制JS事件循环机制分为浏览器和Node事件循环机制，浏览器Event Loop是HTML中定义的规范，后者由libuv库实现。JS有一个主线程（main thread）和调用栈（执行栈，即call-stack），所有的任务都会被放到调用栈中等待主线程执行。  JS调用栈：栈是一种后进先出的数据结构。当函数被调用时，会被添加到栈中的顶部，执行完成之后就从栈顶部移出该函数，直到栈内被清空。  同步任务、异步任务：同步任务会在调用栈中按照顺序排队等待主线程执行，而异步任务则会在异步有了结果后将注册的回调函数添加到任务队列（先进先出的数据结构）中等待主线程空闲，即调用栈被清空时，被调取到栈中等待主线程执行。  事件循环：当调用栈中的同步任务都执行完毕，就会按照顺序去读取任务队列中是否还有任务，有任务就将其读取到调用栈中等待执行，当调用栈再次清空时，会再次读取任务队列是否有任务，这个一直读取-调用执行-读取就形成了事件循环。JS单线程中的任务除了广分为义的同步任务和异步任务，还可分为宏任务和微任务  宏任务(macro-task）：script(全局作用域中的同步代码)、 setTimeout 、 setInterval 、 setImmediate 、 I/O 、 UI rendering微任务(micro-task)： promise 、 process.netTick 、 Object.observe 、 MutainObserver微任务队列的优先级高于宏任务队列]]></content>
-      <categories>
-        
-      </categories>
-      <tags>
-        
-      </tags>
-      <tags></tags>
-    </entry>
-  
-    <entry>
-      <title><![CDATA[事件代理]]></title>
-      <url>/2020/08/20/%E4%BA%8B%E4%BB%B6%E4%BB%A3%E7%90%86/</url>
-      <content type="text"><![CDATA[  事件委托就是利用事件冒泡，只指定一个事件处理程序，就可以管理某一类型的所有事件。JS事件流事件流的全过程如下图：  一个完整的事件流是从window开始，最后回到window的一个过程。  事件流被分为3个阶段：1-5 捕获阶段，5-6:目标阶段，6-10:冒泡阶段]]></content>
-      <categories>
-        
-      </categories>
-      <tags>
-        
-      </tags>
-      <tags></tags>
-    </entry>
-  
-    <entry>
-      <title><![CDATA[Window.onload和$.ready]]></title>
-      <url>/2020/08/20/window.onload%E5%92%8C$.ready/</url>
-      <content type="text"><![CDATA[window.onload  必须等待网页全部加载完毕（包括图片的），然后再执行JS代码  只能执行一次$(document).ready()  只需等待DOM结构加载完毕就能执行JS代码  可以执行多次，且不会覆盖上一次]]></content>
-      <categories>
-        
-      </categories>
-      <tags>
-        
-      </tags>
-      <tags></tags>
-    </entry>
-  
-    <entry>
-      <title><![CDATA[Web安全]]></title>
-      <url>/2020/08/20/web%E5%AE%89%E5%85%A8/</url>
-      <content type="text"><![CDATA[web安全sql注入  后端依赖前端返回的参数直接拼接sql进行查询数据，导致sql不正常的拼接，造成的安全问题  解决方案：层层校验前端传递的信息XSS（Cross Site Scripting，跨站脚本攻击）  注入js代码，常见于表单的提交，伪造上报数据  解决方案：设置cookie的http-only,对输入的内容进行校对、转义、替换等；建立白名单，如          设置HTTP Header的Content-Security-Policy      设置meta标签的方式&lt;meta http-equiv="Content-Security-Policy"&gt;      CSRF（Cross-site request forgery，跨站请求伪造）  借助当前操作这的权限来完成某个操作  解决方案          输入校对      GET请求改为POST请求,GET请求只负责读操作      验证document.refer，判断网页上的页面来源      token时效性机制      验证网络ip      网页嵌套攻击  广告嵌入，诱导或欺骗用户点击  解决方案          header设置不允许嵌套      判断当前界面是否为顶层窗口      中间人攻击  请求被拦截，然后可能被改写，或者被抽取重要信息等  解决方案：升级HTTPS方案]]></content>
-      <categories>
-        
-      </categories>
-      <tags>
-        
-      </tags>
-      <tags></tags>
-    </entry>
-  
-    <entry>
-      <title><![CDATA[Webpack]]></title>
-      <url>/2020/08/20/webpack/</url>
-      <content type="text"><![CDATA[webpack是一款前端打包构建工程化的工具]]></content>
-      <categories>
-        
-      </categories>
-      <tags>
-        
-      </tags>
-      <tags></tags>
-    </entry>
-  
-    <entry>
-      <title><![CDATA[Vue组件间通信的六种方式]]></title>
-      <url>/2020/08/20/vue%E7%BB%84%E4%BB%B6%E9%97%B4%E9%80%9A%E4%BF%A1%E7%9A%84%E5%85%AD%E7%A7%8D%E6%96%B9%E5%BC%8F/</url>
-      <content type="text"><![CDATA[组件是vue最强大的功能之一，但组件实例的作用域是相互独立的，所以不同组件之间的数据无法相互引用。针对不同的场景应该选择不同的方案实现组件之间的通信props/($emit和v-on)  父组件P通过``props的方式向子组件C传递，C to P 通过在C组件中$emit,P组件中v-on`的方式实现。$emit/$on  通过一个空的vue实例作为中央事件总线（事件中心），用它来触发事件和监听事件，实现任何组件间的通信。包括父子、兄弟、跨级。vuex详见vuex介绍$attrs/$listeners  $attrs:包含了父作用域中不被prop所识别（且获取）的特性绑定（class和style除外）。当一个组件没有声明任何prop时，这里会包含所有父作用域的绑定，并且可以通过v-bind="$attrs"传入内部组件。通常配合interitAttrs选项一起使用。  $listeners:包含了父作用域中的（不含.native修饰器）的v-on事件监听器。它可以通过v-on="$liteners"传入内部组件。provide/inject这对选项需要一起使用，以允许一个祖先组件向其所有子孙后代注入一个依赖，无论层次有多深，并在其上下游关系成立的时间里始终生效。一言以蔽之：祖先组件中通过provide来提供变量。然后在子孙组件中通过inject来注入变量。这主要解决了跨级组件间的通信问题，不过使用场景主要是子组件获取上级组件的状态，跨级组件间建立了一种主动提供与依赖注入的关系。provide和inject并不是响应式的，如果传入了一个可监听的对象，那么其对象的属性还是可响应的。可以通过vue.observable实现优化响应式#parent/$children与ref  ref:如果在普通的DOM元素上使用，引用指向的就是DOM元素；如果用在子组件上，引用就指向组件实例  $parent/$children:访问父/子实例这种无法实现跨级或兄弟组件进行通信]]></content>
-      <categories>
-        
-      </categories>
-      <tags>
-        
-      </tags>
-      <tags></tags>
-    </entry>
-  
-    <entry>
-      <title><![CDATA[Vue生命周期]]></title>
-      <url>/2020/08/20/vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</url>
-      <content type="text"><![CDATA[生命周期图示vue的生命周期里有8个钩子函数分别是  beforeCreate()  created()  beforeMount()  mounted()  beforeUpdate()  updated()  beforeDestroy()  destroyed()]]></content>
-      <categories>
-        
-      </categories>
-      <tags>
-        
-      </tags>
-      <tags></tags>
-    </entry>
-  
-    <entry>
-      <title><![CDATA[Vuex]]></title>
-      <url>/2020/08/20/vuex/</url>
-      <content type="text"><![CDATA[Vuex状态管理vuex原理vuex实现了一个单向数据流，在全局拥有一个state存放数据，当组件要更改state中的数据时，必须通过Mutation进行，Mutation同时提供了订阅者模式供外部插件调用获取state数据的更新。而当所有异步操作或批量的同步操作则需要走Action，但Action也是无法直接修改State，同样需要通过Mutation来修改State的数据。vuex中的模块介绍  vue components：vue组件。HTML页面上，负责接收用户操作等交互行为，执行dispatch方法触发对应action进行回应。  dispatch：操作行为触发方法，是唯一能执行action的方法。  actions：操作行为处理模块，通过$store.dispatch('action名称',data)来触发。然后由commit来触发mutation的调用，间接更新state。负责处理vue components接收到的所有交互行为：包含同步/异步操作。且支持多个同名方法，按照注册的顺序依次触发。该模块提供了Promise的封装，以支持action的链式触发。  commit：状态改变提交操作方法。对mutation进行提交，是唯一能执行mutation的方法。  mutations:状态改变操作方法。是vuex修改state的唯一推荐方法。该方法只能进行同步操作，且方法名只能全局唯一。  state：页面状态管理容器对象。集中存储vue components中data对象的零散数据，全局唯一，以进行统一的状态管理。页面显示所需的数据从该对象中进行读取，利用vue的细粒度数据响应机制来进行高效的状态更新。  getters：state对象读取方法。]]></content>
-      <categories>
-        
-      </categories>
-      <tags>
-        
-      </tags>
-      <tags></tags>
-    </entry>
-  
-    <entry>
-      <title><![CDATA[Vue Router路由模式]]></title>
-      <url>/2020/08/20/vue-router%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%BC%8F/</url>
-      <content type="text"><![CDATA[vue-router的model有两种模式：hash模式和history模式  前端路由的核心就在于改变视图的同时不会向后端发出请求两种模式的区别  hash模式          即地址栏URL中的#符号。hash虽然出现在URL中，但不会被包括在HTTP请求中，对后端完全没有影响，因此改变hash不会重新加载页面。      只可修改#后面的部分，因此只能设置与当前URL同文档的URL      hash设置的新值必须与原来不一样才会触发动作将记录添加到栈中      只可添加短字符串        history模式          利用HTML5 History Interface中新增的pushState()和replaceState()方法。这两个方法应用于浏览器的历史记录栈，在当前已有的back、forward、go的基础上，它们提供了对历史记录进行修改的功能。只是当它们执行修改时，虽然改变了当前的URL，但浏览器不会立即向后端发送请求。需搭配前端路由的404页面支持。      pushState()设置的新URL可以与当前URL同源的任意URL      pushState()设置的新URL与当前URL一模一样也会将记录添加到栈中      pushState()通过stateObject参数可以添加任意类型的数据到记录中      pushState()可额外设置title属性供后续使用      ]]></content>
-      <categories>
-        
-      </categories>
-      <tags>
-        
-      </tags>
-      <tags></tags>
-    </entry>
-  
-    <entry>
       <title><![CDATA[Vue Router路由权限控制的实现方案]]></title>
-      <url>/2020/08/20/vue-router%E8%B7%AF%E7%94%B1%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%A1%88/</url>
+      <url>/2020/08/18/vue-router%E8%B7%AF%E7%94%B1%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%A1%88/</url>
       <content type="text"><![CDATA[路由配置按用户类型分为用户路由和基本路由  用户路由：当前用户所持有的路由  基本路由：所有用户均可以访问的路由实现控制方式分两种：  addRoutes方法注入路由实现控制  beforeEach钩子限制路由跳转addRoutes  方式通过请求服务端获取当前用户路由配置，编码为vue-router所支持的基本格式；然后调用this.$router.addRoutes方法将编码好的用户路由注入到现有的vue-router实例中去，以实现用户路由。  addRoutes方法仅仅是注入新的路由，但并没有剔除其它路由。所以路由中可能会存在两种用户类型的路由，解决方法是新建一个全新的Router，然后将新的Router.matcher赋给当前页面的管理Router，从而达到更新路由配置的目的。beforeEach 方式通过请求服务端获取当前用户路由配置，通过注册router.beforeEach钩子对路由的每次跳转进行管理，每次跳转都进行检查。如果目标路由不存在于基本路由和当前用户的用户路由中，则取消跳转，转为跳转至错误页。]]></content>
       <categories>
         
@@ -288,8 +15,21 @@
     </entry>
   
     <entry>
+      <title><![CDATA[Vue Router路由模式]]></title>
+      <url>/2020/08/16/vue-router%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%BC%8F/</url>
+      <content type="text"><![CDATA[vue-router的model有两种模式：hash模式和history模式  前端路由的核心就在于改变视图的同时不会向后端发出请求两种模式的区别  hash模式          即地址栏URL中的#符号。hash虽然出现在URL中，但不会被包括在HTTP请求中，对后端完全没有影响，因此改变hash不会重新加载页面。      只可修改#后面的部分，因此只能设置与当前URL同文档的URL      hash设置的新值必须与原来不一样才会触发动作将记录添加到栈中      只可添加短字符串        history模式          利用HTML5 History Interface中新增的pushState()和replaceState()方法。这两个方法应用于浏览器的历史记录栈，在当前已有的back、forward、go的基础上，它们提供了对历史记录进行修改的功能。只是当它们执行修改时，虽然改变了当前的URL，但浏览器不会立即向后端发送请求。需搭配前端路由的404页面支持。      pushState()设置的新URL可以与当前URL同源的任意URL      pushState()设置的新URL与当前URL一模一样也会将记录添加到栈中      pushState()通过stateObject参数可以添加任意类型的数据到记录中      pushState()可额外设置title属性供后续使用      ]]></content>
+      <categories>
+        
+      </categories>
+      <tags>
+        
+      </tags>
+      <tags></tags>
+    </entry>
+  
+    <entry>
       <title><![CDATA[Sass]]></title>
-      <url>/2020/08/20/sass/</url>
+      <url>/2020/08/14/sass/</url>
       <content type="text"><![CDATA[  Sass是成熟、稳定、强大的CSS预处理器，而SCSS是Sass3版本中引入的新语法特性，完全兼容CSS3的同时继承了Sass强大的动态功能Sass的特性      变量        嵌套        引入        混合        继承        操作符  ]]></content>
       <categories>
         
@@ -301,9 +41,22 @@
     </entry>
   
     <entry>
-      <title><![CDATA[Require和import]]></title>
-      <url>/2020/08/20/require%E5%92%8Cimport/</url>
-      <content type="text"><![CDATA[import和require的区别require只能在运行时确定模块      require是AMD规范引入方式        运行时调用        赋值过程        写法         const fs=require("fs")     exports.fs=fs;     module.exports=fs;        import  import是ES6的一个语法标准  编译时调用  解构过程      写法    import fs from 'fs'import {default as fs} from 'fs'import * as fs from 'fs'import {readFile} from 'fs'import {readFile as read} from 'fs'import fs, {readFile} from 'fs'export default fsexport const fsexport function readFileexport {readFile, read}=fsexport * from 'fs'        ]]></content>
+      <title><![CDATA[Window.onload和$.ready]]></title>
+      <url>/2020/08/10/window.onload%E5%92%8C$.ready/</url>
+      <content type="text"><![CDATA[window.onload  必须等待网页全部加载完毕（包括图片的），然后再执行JS代码  只能执行一次$(document).ready()  只需等待DOM结构加载完毕就能执行JS代码  可以执行多次，且不会覆盖上一次]]></content>
+      <categories>
+        
+      </categories>
+      <tags>
+        
+      </tags>
+      <tags></tags>
+    </entry>
+  
+    <entry>
+      <title><![CDATA[Rxjs observables vs promise比较]]></title>
+      <url>/2020/08/07/RxJS-Observables-vs-Promise%E6%AF%94%E8%BE%83/</url>
+      <content type="text"><![CDATA[单值与多值代码执行顺序不能取消&amp;能取消单个订阅&amp;多个订阅一直异步&amp;可能是异步]]></content>
       <categories>
         
       </categories>
@@ -315,7 +68,7 @@
   
     <entry>
       <title><![CDATA[Ref]]></title>
-      <url>/2020/08/20/ref/</url>
+      <url>/2020/08/02/ref/</url>
       <content type="text"><![CDATA[  vm.$refs:一个对象，持有已注册过ref的所有子组件ref:被用来给元素或子组件注册引用信息。引用信息将会注册在父组件$refs对象上。如果在普通的DOM元素上使用，引用指向的就是DOM元素；如果用在子组件上，引用就指向组件实例]]></content>
       <categories>
         
@@ -327,8 +80,34 @@
     </entry>
   
     <entry>
+      <title><![CDATA[Require和import]]></title>
+      <url>/2020/08/01/require%E5%92%8Cimport/</url>
+      <content type="text"><![CDATA[import和require的区别require只能在运行时确定模块      require是AMD规范引入方式        运行时调用        赋值过程        写法         const fs=require("fs")     exports.fs=fs;     module.exports=fs;        import  import是ES6的一个语法标准  编译时调用  解构过程      写法    import fs from 'fs'import {default as fs} from 'fs'import * as fs from 'fs'import {readFile} from 'fs'import {readFile as read} from 'fs'import fs, {readFile} from 'fs'export default fsexport const fsexport function readFileexport {readFile, read}=fsexport * from 'fs'        ]]></content>
+      <categories>
+        
+      </categories>
+      <tags>
+        
+      </tags>
+      <tags></tags>
+    </entry>
+  
+    <entry>
+      <title><![CDATA[React生命周期]]></title>
+      <url>/2020/07/29/React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</url>
+      <content type="text"><![CDATA[生命周期图示react的生命周期主要分为两个个过程分别是  挂载卸载过程  constructor()  componentWillMount()  componentDidMount()      componentWillUnmount()    更新过程  componentWillReceiveProps(nextProps)  shouldComponentUpdate(nextProps,nextState)  componentWillUpdate(nextProps,nextState)  componentDidUpdate(prevProps,prevState)      render()    新增  getDerivedStateFromProps(nextProps,prevState)  getSnapshotBeforeUpdate(prevProps,prevState)]]></content>
+      <categories>
+        
+      </categories>
+      <tags>
+        
+      </tags>
+      <tags></tags>
+    </entry>
+  
+    <entry>
       <title><![CDATA[Promise]]></title>
-      <url>/2020/08/20/promise/</url>
+      <url>/2020/07/26/promise/</url>
       <content type="text"><![CDATA[异步编程：PromiseJavaScript作为浏览器脚本语言，主要用途是响应用户的交互操作DOM，这决定了它只能是单线程JS的两种编程思想  异步: 不进入主线程，而进入任务队列的任务。当主线程任务执行完毕后，任务队列才通知主线程，请求执行任务，该任务才会进入主线程执行。  同步: 只有前一个任务执行完毕，才能执行后一个任务回调地狱的负面作用：  代码臃肿  可读性差  耦合度过高, 可维护性差  代码复用性差  只能在回调里处理异常Promise 是异步编程解决方案Promise的两个特点  对象的状态不受外界影响。 pending 、 fulfilled 、 rejected  一旦状态改变，就不会再变，任何时候都可以得到这个结果Promise常用方法的polyfill示例ß//构造函数function Promise(executor) {//executor执行器    let that = this;    that.status = "pending";    that.success = undefined;    that.err = undefined;    that.fulFillEventLists = [];    that.rejectEventLists = [];    function resolve(val) {        if (that.status == "pending") {            that.success = val;            that.status = "fulfilled";            setTimeout(() =&gt; {                that.fulFillEventLists.map(fn =&gt; { fn() });            }, 1000)        }    }    function reject(err) {        if (that.status == "pending") {            that.err = err;            that.status = "rejected";            setTimeout(() =&gt; {                that.rejectEventLists.map(fn =&gt; { fn() });            }, 1000)        }    }    try {        executor(resolve, reject);    } catch (e) {        reject(e)    }}then 方法Promise的实例具有 then 方法， then 方法的第一个参数是 resolved 状态的回调函数，第二个参数（可选）是 rejected 状态的回调函数。 then 方法返回一个新的 Promise 实例。//实现then方法Promise.prototype.then = (onFulfilled, onRejected) =&gt; {    //回调函数检测，设置其默认值    onFilfilled = typeof onFulfilled === "function" ? onFulfilled : val =&gt; val;    onRejected = typeof onReject === "function" ? onRejected : err =&gt; { throw err }    const self = this;    return Promise((resolve, reject) =&gt; {        function handle(callback, value) {            try {                const result = callback(value);                if (result instanceof Promise) {                    result.then(resolve, reject);                } else {                    resolve(result);                }            } catch (e) {                reject(e);            }        }        if (self.status == "fulfilled") {            setTimeout(() =&gt; {                handle(onFulfilled, self.success)            }, 1000)        } else if (self.status == "rejected") {            setTimeout(() =&gt; {                handle(onRejected, self.err)            }, 1000)        } else if (self.status == "pending") {            self.fullFillEventLists.push(() =&gt; { handle(onFulfilled, self.success) });            self.rejectEventLists.push(() =&gt; { handle(onFullfilled, self.err) });        }    })}catch 方法catch() 方法用于指定发生错误时的回调函数，返回的还是一个Promise对象。  与 try/catch 代码块不同的是，没有使用 catch 方法指定错误处理的回调函数，Promise对象抛出的错误不会传递到外层代码，不会有任何反应。//实现catch方法Promise.prototype.catch = (onRejected) =&gt; {    return this.then(undefined, onRejected)}finally 方法finally 方法的回调函数不接受任何参数，与前置的Promise状态无关，不依赖Promise的执行结果Promise.prototype.finally = function(callback) {    let P = this.constructor;    return this.then(        value =&gt; P.resolve(callback()).then(() =&gt; value),        reason =&gt; P.resolve(callback()).then(() =&gt; {            throw reason        }));}]]></content>
       <categories>
         
@@ -341,7 +120,7 @@
   
     <entry>
       <title><![CDATA[Position]]></title>
-      <url>/2020/08/20/position/</url>
+      <url>/2020/07/25/position/</url>
       <content type="text"><![CDATA[常见4种1.staticposition定位的默认值，没有定位2.relative生成相对定位的元素，相对于其正常位置进行定位，一般在子元素设置absolute定位时，给父元素设置relative元素的位置通过top、right、bottom、left控制，其值的定位起点都是父元素的左上角(这点和absolute、fixed不一样)3.absolute生成绝对定位的元素，相对于static定位以外的第一个父元素进行定位元素的位置通过top、right、bottom、left控制，top、left的定位起点是包含块左上角,right、bottom的定位起点是包含块的的右下角4.fixed生成绝对定位的元素，相对于浏览器窗口进行定位，和absolute的区别是fixed不会跟随屏幕滚动元素的位置通过top、right、bottom、left控制，top、left的定位起点是包含块左上角,right、bottom的定位起点是包含块的的右下角不常用4种1.inherit规定应该从父元素继承position属性的值inherit关键字可用于任何HTML元素的任何CSS属性2.inital设置position的值为默认值，可用于任何HTML元素上的任何CSS属性，不是position3.unset设置position的值为不设置：如果该属性的默认属性是继承（例如字体相关的默认属性基本都是继承），该值等同于inherit如果该属性的默认属性不是继承属性（例如position的默认属性为static）,该值等同于initial4.stickyCSS3新属性，它的表现就像position:relative和position:fixed的合体1.在目标区域在屏幕中可见时，它的行为就像position:relative;2.页面滚动时当父元素是body时a.滚动距离小于屏幕高度或宽度，它会固定在目标位置b.滚动距离大于屏幕高度或宽度，它的表现就像position:relative和1一样当父元素不是body，在父元素高度内滚动时它会固定在目标位置，就像fixed。在父元素滚动为不可时它的表现就像position:relative和1一样]]></content>
       <categories>
         
@@ -354,7 +133,7 @@
   
     <entry>
       <title><![CDATA[Package.json文件说明]]></title>
-      <url>/2020/08/20/package.json%E6%96%87%E4%BB%B6%E8%AF%B4%E6%98%8E/</url>
+      <url>/2020/07/22/package.json%E6%96%87%E4%BB%B6%E8%AF%B4%E6%98%8E/</url>
       <content type="text"><![CDATA[  模块的描述文件被称为package.json关于版本号的描述  npm模块的完整的版本号一般是【主版本. 次要版本. 补丁版本】      使用 ～ 表示版本范围    补丁版本号缺失，则允许补丁版本号升级      次要版本号+补丁版本号缺失，则允许次要版本号+补丁版本号升级        使用 ^ 表示版本范围    若主版本号不为0，则允许次要版本号+补丁版本号升级  若主版本号为0，次要版本号不为0，则允许补丁版本号升级  若主版本号+次要版本号皆为0，将无法升级模块  若主版本号不为0，补丁版本缺失（将被视作0），那么将允许次要版本+补丁版本升级到最新  若主版本号为0，补丁版本缺失（将被视作0），那么允许补丁版本升级到最新      若次要版本+补丁版本均缺失，此时补丁版本将被视作1，那么将允许次要版本+补丁版本升级到最新        语义版本号          语义版本号分为X. Y. Z，分贝对应主版本号、次版本号、补丁版本号        当代码变更时，按照一下原则更新          如果只是修复bug，需要更新Z为      如果是新增功能，但是向下兼容，需要更新Y位      如果有大变动，向下不兼容，需要更新X位      ]]></content>
       <categories>
         
@@ -367,8 +146,8 @@
   
     <entry>
       <title><![CDATA[Nexttick介绍]]></title>
-      <url>/2020/08/20/nextTick%E4%BB%8B%E7%BB%8D/</url>
-      <content type="text"><![CDATA[##nextTick  vue实现响应式并不是数据发生变化之后DOM立即变化，而是按照一定的策略进行DOM的更新  vue.nextTick()使用场景      在Vue生命周期函数created()中进行DOM操作时一定要放在Vue.nextTick()的回调函数中    在数据变化后要执行的某个操作，而这个操作需要使用随着数据改变而改变的DOM结构的时候，这个操作都应该放进Vue.nextTick()的回调函数中]]></content>
+      <url>/2020/07/18/nextTick%E4%BB%8B%E7%BB%8D/</url>
+      <content type="text"><![CDATA[  vue实现响应式并不是数据发生变化之后DOM立即变化，而是按照一定的策略进行DOM的更新vue.nextTick()使用场景      在Vue生命周期函数 created() 中进行DOM操作时一定要放在 Vue.nextTick() 的回调函数中        在数据变化后要执行的某个操作，而这个操作需要使用随着数据改变而改变的DOM结构的时候，这个操作都应该放进 Vue.nextTick() 的回调函数中  ]]></content>
       <categories>
         
       </categories>
@@ -380,7 +159,7 @@
   
     <entry>
       <title><![CDATA[New操作符做了些什么]]></title>
-      <url>/2020/08/20/new%E6%93%8D%E4%BD%9C%E7%AC%A6%E5%81%9A%E4%BA%86%E4%BA%9B%E4%BB%80%E4%B9%88/</url>
+      <url>/2020/07/14/new%E6%93%8D%E4%BD%9C%E7%AC%A6%E5%81%9A%E4%BA%86%E4%BA%9B%E4%BB%80%E4%B9%88/</url>
       <content type="text"><![CDATA[  new的定义            创建一个新的对象                  将构造函数的 prototype 赋值给新对象的 _proto_                  构造函数中的 this 指向新对象，并且调用构造函数                  如果构造函数无返回值，或者不是引用类型，返回新对象；否则为构造函数的返回值      function Animal(name) {    this.name = name;}Animal.color = "black";Animal.prototype.say = function() {    console.log( `I'm ${this.name}` )}var cat = new Animal("cat");console.log(cat.name, cat.color); //cat undefinedcat.say(); //I'm cat伪代码模拟new Animal(('cat') =&gt; {    var obj = {};    obj.__proto__ = Animal.prototype;    var result = Animal.call(obj, "cat");    return typeof result === 'object' ? result : obj;})流程解析            创建一个空对象obj                  把obj的 __prototype__ 指向构造函数 Animal 的原型对象 prototype ，此时便建立了obj对象的原型链： obj-&gt;Animal.prototypr-&gt;Object.prototype-&gt;null                  在obj对象的执行环境调用Animal函数并传参                  参考第3步的返回值      ]]></content>
       <categories>
         
@@ -392,86 +171,8 @@
     </entry>
   
     <entry>
-      <title><![CDATA[Iterm使用zsh主题]]></title>
-      <url>/2020/08/20/iterm%E4%BD%BF%E7%94%A8zsh%E4%B8%BB%E9%A2%98/</url>
-      <content type="text"><![CDATA[Iterm2终端zsh插件agnoster主题]]></content>
-      <categories>
-        
-      </categories>
-      <tags>
-        
-      </tags>
-      <tags></tags>
-    </entry>
-  
-    <entry>
-      <title><![CDATA[Ivue]]></title>
-      <url>/2020/08/20/iVue/</url>
-      <content type="text"><![CDATA[]]></content>
-      <categories>
-        
-      </categories>
-      <tags>
-        
-      </tags>
-      <tags></tags>
-    </entry>
-  
-    <entry>
-      <title><![CDATA[Http状态码]]></title>
-      <url>/2020/08/20/http%E7%8A%B6%E6%80%81%E7%A0%81/</url>
-      <content type="text"><![CDATA[HTTP状态码信息状态码 （1XX）  100，继续，初始的请求已经接受，请客户端继续发送剩余部分  101，切换协议，请求这要求服务器切换协议，服务器已确定切换成功状态码 （2XX）  200，成功，服务器已成功处理了请求  201，已创建，请求成功并且服务器创建了新的资源  202，已接受，服务器已接受请求，但尚未处理  203，非授权信息，服务器已成功处理请求，但返回的信息可能来自另一个来源  204，无内容，服务器成功处理了请求，但没有返回任何内容  205，重置内容，服务器处理成功，用户终端应重置文档视图  206，部分内容，服务器成功处理了部分GET请求重定向状态码 （3XX）  300，多种选择，针对请求，服务器可执行多种操作  301，永久移动，请求的页面已永久跳转到新的url  302，临时移动，服务器目前从不同的位置的网页响应请求，但请求仍继续使用原有位置来进行以后的请求  303，查看其他位置，请求者应当对不同的位置使用单独的GET请求来检索响应时，服务器返回此代码  304，未修改，自从上次请求后，请求的网页未修改过  305，使用代理，请求者只能使用代理访问请求的网页  307，临时重定向，服务器目前从不同位置的网页响应请求，但请求者因继续使用原有位置来进行以后的请求客户端错误状态码 （4XX）  400，错误请求，服务器不理解请求的语法  401，未授权，请求用户的身份验证  403，禁止，服务器拒绝请求  404，未找到，服务器找不到请求的页面  405，方法禁用，禁用请求中指定的方法  406，不接受，无法使用请求的内容特性响应请求的页面  407，需要代理授权，请求需要代理的身份认证  408，请求超时，服务器等候请求时发生超时  409，冲突，服务器在完成请求时发生冲突  410，已删除，客户端请求的资源已经不存在  411，需要有效长度，服务器不接受不含有效长度表头字段的请求  412，未满足前提条件，服务器未满足请求者在请求中设置的其中一个前提条件  413，请求实体过大，由于请求实体过大，服务器无法处理，因此拒绝请求  414，请求URL过长，请求的URL过长，服务器无法处理  415，不支持格式，服务器无法处理请求中附带的媒体格式  416，范围无效，客户端请求的范围无效  417，未满足期望，服务器无法满足请求表头字段要求服务器错误状态码 （5XX）  500，服务器错误，服务器内部错误，无法完成请求  501，尚未实施，服务器不具备完成请求的功能  502，错误网关，服务器作为网关或代理出现错误  503，服务不可用，服务器目前无法使用  504，网关超时，网关或代理服务器，未及时获取请求  505，不支持版本，服务器不支持请求中使用的HTTP协议版本]]></content>
-      <categories>
-        
-      </categories>
-      <tags>
-        
-      </tags>
-      <tags></tags>
-    </entry>
-  
-    <entry>
-      <title><![CDATA[Axios]]></title>
-      <url>/2020/08/20/axios/</url>
-      <content type="text"><![CDATA[axios是一个基于promise的HTTP库，可以应用于浏览器和node.js特性  从浏览器中创建XMLHttpRequests  从node.js创建http请求  支持Promsie API  拦截请求和响应  转换请求数据和响应数据  取消请求  自动转换JSON数据  客户端支持防御XSRF]]></content>
-      <categories>
-        
-      </categories>
-      <tags>
-        
-      </tags>
-      <tags></tags>
-    </entry>
-  
-    <entry>
-      <title><![CDATA[Rxjs observables vs promise比较]]></title>
-      <url>/2020/08/20/RxJS-Observables-vs-Promise%E6%AF%94%E8%BE%83/</url>
-      <content type="text"><![CDATA[单值与多值代码执行顺序不能取消&amp;能取消单个订阅&amp;多个订阅一直异步&amp;可能是异步]]></content>
-      <categories>
-        
-      </categories>
-      <tags>
-        
-      </tags>
-      <tags></tags>
-    </entry>
-  
-    <entry>
-      <title><![CDATA[React生命周期]]></title>
-      <url>/2020/08/20/React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</url>
-      <content type="text"><![CDATA[生命周期图示react的生命周期主要分为两个个过程分别是  挂载卸载过程  constructor()  componentWillMount()  componentDidMount()      componentWillUnmount()    更新过程  componentWillReceiveProps(nextProps)  shouldComponentUpdate(nextProps,nextState)  componentWillUpdate(nextProps,nextState)  componentDidUpdate(prevProps,prevState)      render()    新增  getDerivedStateFromProps(nextProps,prevState)  getSnapshotBeforeUpdate(prevProps,prevState)]]></content>
-      <categories>
-        
-      </categories>
-      <tags>
-        
-      </tags>
-      <tags></tags>
-    </entry>
-  
-    <entry>
       <title><![CDATA[Linux就该这么学]]></title>
-      <url>/2020/08/20/Linux%E5%B0%B1%E8%AF%A5%E8%BF%99%E4%B9%88%E5%AD%A6/</url>
+      <url>/2020/07/13/Linux%E5%B0%B1%E8%AF%A5%E8%BF%99%E4%B9%88%E5%AD%A6/</url>
       <content type="text"><![CDATA[VT（Virtualization Technology，虚拟化技术）:指的是让单台计算机能够分割出多个独立资源区，并让每个资源区按需模拟出系统的一项技术，其本质就是通过中间层实现计算机资源的管理和再分配，让系统资源的利用率最大化。可以通过BIOS关闭或开启VT  Linux系统内核：由Linus负责维护，提供硬件抽象层、硬盘及文件系统控制及多任务功能的系统核心程序  Linux发行套件系统：即我们通常所说的Linux操作系统，由Linux内核与各种常用软件的集合产品。rpm 红帽软件包管理器：类似于windows操作系统中的控制面板，会建立统一的数据库文件，详细记录软件信息并能够自动分析依赖关系。Yum 软件仓库可以根据用户的要求分析出所需软件包及其相关的依赖关系，然后自动从服务器下载软件包并安装到系统。Linux开机顺序：1.进入BIOS2.进入Boot Loader3.加载系统内核4.内核进行初始化5.启动初始化进程System V init 和 systemdwget命令用于在终端中下载网络文件输入重定向：把文件导入命令中（文件描述符为0）输出重定向：把原本要输出到屏幕的数据信息写入到指定文件中输出重定向分为标准输出重定向（文件描述符为1）和错误输出重定向（文件描述符为2）；另又分为清空写入和追加写入两种模式Ctrl-c 键来强行结束进程普通用户切换至root时，错误为xxx is not the sudoers file… 解决办法：root身份下，运行visudo命令，添加 xxx ALL=(ALL) ALL  chattr  +/-参数  文件或目录 ： 设置/取消隐藏权限lsattr   参数  文件或目录 ： 列出隐藏权限基于普通文件或目录设置ACL(访问控制列表)其实就是针对指定的用户或用户组设置文件或目录的操作权限。另外，如果针对某个目录设置了ACL，则目录中的文件会继承其ACL，若对文件设置了ACL，则文件不再继承其所在目录的ACL。####  常见目录 ####  /boot     开机所需文件 —— 内核、开机菜单以及所需配置文件等  /dev       以文件形式存放任何设备与接口  /etc        配置文件  /home    用户家目录  /bin        存放单用户模式下还可以操作的命令  /lib         开机时用到的函数库，以及/bin与/sbin下面的命令要调用的函数  /sbin       开机过程中的需要的命令  /media    用于挂载设备文件的目录  /opt       放置第三方的软件  /root      系统管理员的家目录  /srv        一些网络服务的数据文件目录  /tmp      任何人均可使用的“共享”的临时目录  /proc      虚拟文件系统，例如系统内核、进程、外部设备及网络状态等  /usr/local 用户自行安装的软件  /usr/sbin  Linux系统开机时不会使用到的软件/命令脚本  /usr/share 帮助与说明文件。也可放置共享文件  /var     主要存放经常变化的文件，如日志  /lost+found   当文件系统发生错误时，将一些丢失的文件片段存放在这里  blkid查看文件系统类型，（ext3、ext4、xfs）挂载：当用户需要使用硬盘设备或分区中的数据时，需要先将其与一个已存在的目录文件进行关联，而这个关联动作就是“挂载”。 永久挂载（重启以后无需再次挂载）需要编辑/etc/fstab文件 #### 硬链接和软链接  文件在Linux中分为两部分：用户数据（user data）和元数据（metadata）。  用户数据：文件数据块（data block），记录文件真实内容的地方  元数据：文件的附加属性，如文件大小、创建时间、所有者等信息。元数据的inode号即索引节点号才是文件的唯一标识而非文件名，且其并不包含文件名。可以用stat或ls -i查看若一个inode号对应多个文件名，则称这些文件为硬链接，换言之，硬链接就是同一个文件使用了多个别名。硬链接的特性：  文件具有相同的inode及data block  只能对已存在的文件进行创建  不能交叉文件系统进行硬链接的创建  不能对目录进行创建，只可对文件创建  删除一个硬链接文件并不影响其它有相同inode号的文件软链接就是一个普通文件，不过是文件用户数据块中存放的内容是另一文件的路径名的指向。软链接有自己的inode号和用户数据块软链接特性：  软链接有自己的文件属性和权限等  可对不存在的文件或目录创建软链接  软链接可交叉系统  软链接可对文件或目录创建  创建软链接时，链接计数i_nlink不会增加  删除软链接并不影响被指向的文件，但若被指向的原文件被删除，则相关软连接被称为死链接（即 dangling link，若被指向路径文件被重新创建，死链接可恢复为正常的软链接）RAID（独立冗余磁盘阵列）：通过把多个硬盘设备组合成一个容量更大、安全性更好的磁盘阵列，并把数据切割成多个区段后分别放在各个不同的物理硬盘设备上，然后利用分散读写技术来提升磁盘阵列整体的性能，同时把多个重要数据的副本同步到不同的物理硬盘设备上，从而起到了非常好的数据冗余备份的效果。]]></content>
       <categories>
         
@@ -483,9 +184,22 @@
     </entry>
   
     <entry>
-      <title><![CDATA[Linux]]></title>
-      <url>/2020/08/20/Linux/</url>
-      <content type="text"><![CDATA[Linuxzombie 僵死的进程命令      grep [-c ,-f file,-i -n ,-A num ,-B num]  字符串  文件名 :在指定文件中查找字符串        rm [-r,-f,-i] 文件或目录：删除文件或目录        touch 文件名：创建文件        ln：在文件或目录之间创建链接，默认产生硬链接          硬链接：是指通过文件的inode来进行链接。在Linux的文件系统中，保存在磁盘的所有类型的文件都会分配一个编号，这个编号称为inode号（Inode Index）。多个文件指向同一个inode在Linux系统中是允许的，这就是所谓的硬链接。硬链接的作用是允许一个文件拥有多个有效的路径名，这样用户就可以对一些重要文件建立硬链接，以防止误删除操作。因为对应该文件的inode有一个以上的链接，所以只删除一个链接并不影像inode本身和其他链接，只有当最后一个链接被删除后，文件的数据块及目录的链接才会释放，也就是说，此时文件才会被真正删除。      符号链接：也叫软链接，软链接类似于Windows中的快捷方式，因此软链接是一个指向真正的文件或者目录位置的符号连接。            file [-b,-L,-z,-i] 文件名：显示文件的类型，长度为0的文件识别为空文件        cp [-a,-r,-d,-p,i] 源文件或目录 目标文件或目录        find：在指定的路径下查找指定的文件        split：用于分割文档，将一个文件分成数个        mv：移动文件  ]]></content>
+      <title><![CDATA[Iterm使用zsh主题]]></title>
+      <url>/2020/07/01/iterm%E4%BD%BF%E7%94%A8zsh%E4%B8%BB%E9%A2%98/</url>
+      <content type="text"><![CDATA[Iterm2终端zsh插件agnoster主题]]></content>
+      <categories>
+        
+      </categories>
+      <tags>
+        
+      </tags>
+      <tags></tags>
+    </entry>
+  
+    <entry>
+      <title><![CDATA[Http状态码]]></title>
+      <url>/2020/06/24/http%E7%8A%B6%E6%80%81%E7%A0%81/</url>
+      <content type="text"><![CDATA[信息状态码 （1XX）  100，继续，初始的请求已经接受，请客户端继续发送剩余部分  101，切换协议，请求这要求服务器切换协议，服务器已确定切换成功状态码 （2XX）  200，成功，服务器已成功处理了请求  201，已创建，请求成功并且服务器创建了新的资源  202，已接受，服务器已接受请求，但尚未处理  203，非授权信息，服务器已成功处理请求，但返回的信息可能来自另一个来源  204，无内容，服务器成功处理了请求，但没有返回任何内容  205，重置内容，服务器处理成功，用户终端应重置文档视图  206，部分内容，服务器成功处理了部分GET请求重定向状态码 （3XX）  300，多种选择，针对请求，服务器可执行多种操作  301，永久移动，请求的页面已永久跳转到新的url  302，临时移动，服务器目前从不同的位置的网页响应请求，但请求仍继续使用原有位置来进行以后的请求  303，查看其他位置，请求者应当对不同的位置使用单独的GET请求来检索响应时，服务器返回此代码  304，未修改，自从上次请求后，请求的网页未修改过  305，使用代理，请求者只能使用代理访问请求的网页  307，临时重定向，服务器目前从不同位置的网页响应请求，但请求者因继续使用原有位置来进行以后的请求客户端错误状态码 （4XX）  400，错误请求，服务器不理解请求的语法  401，未授权，请求用户的身份验证  403，禁止，服务器拒绝请求  404，未找到，服务器找不到请求的页面  405，方法禁用，禁用请求中指定的方法  406，不接受，无法使用请求的内容特性响应请求的页面  407，需要代理授权，请求需要代理的身份认证  408，请求超时，服务器等候请求时发生超时  409，冲突，服务器在完成请求时发生冲突  410，已删除，客户端请求的资源已经不存在  411，需要有效长度，服务器不接受不含有效长度表头字段的请求  412，未满足前提条件，服务器未满足请求者在请求中设置的其中一个前提条件  413，请求实体过大，由于请求实体过大，服务器无法处理，因此拒绝请求  414，请求URL过长，请求的URL过长，服务器无法处理  415，不支持格式，服务器无法处理请求中附带的媒体格式  416，范围无效，客户端请求的范围无效  417，未满足期望，服务器无法满足请求表头字段要求服务器错误状态码 （5XX）  500，服务器错误，服务器内部错误，无法完成请求  501，尚未实施，服务器不具备完成请求的功能  502，错误网关，服务器作为网关或代理出现错误  503，服务不可用，服务器目前无法使用  504，网关超时，网关或代理服务器，未及时获取请求  505，不支持版本，服务器不支持请求中使用的HTTP协议版本]]></content>
       <categories>
         
       </categories>
@@ -497,7 +211,7 @@
   
     <entry>
       <title><![CDATA[Bfc]]></title>
-      <url>/2020/08/20/BFC/</url>
+      <url>/2020/06/20/BFC/</url>
       <content type="text"><![CDATA[BFC  BFC(Block formatting context,块级格式化上下文)是一个独立的渲染区域，只有Block-level Box参与，它规定了内部的Block-level Box如何布局，并且与这个区域外部毫不相干。CSS布局的基本单位：BOX      Box是CSS布局的对象和基本单位。元素的类型和display属性，决定了这个Box的类型。不同类型的Box，会参与不同的Formatting Context(一个决定如何渲染文档的容器)        formatting context是页面中的一块渲染区域，并且有一套渲染规则，它决定了其子元素将如何定位，以及和其他元素的关系和相互作用。最常见的如BFC和IFC，如下：          block-level box：display属性为block、list-item、table的元素会生成block-level box。并且参与block formatting context。      inline-level box：display属性为inline、inline-block的元素会生成inline-level box。并且参与inline formatting context。      BFC的布局规则  内部的Box会在垂直方向，一个接一个地放置  Box垂直方向的距离由margin决定。同属于一个BFC的两个相邻的margin会发生重叠。  每个盒子（块盒和行盒）的margin box的左边，与包含块border box的左边相接触，即使存在浮动也是如此。  BFC的区域不会与float box重叠  BFC内外的元素互不影响  计算BFC的高度时，浮动元素也参与计算。如何创建BFC  float的值不是none  position的值不是static或者relative  display的值是inline-block、table-cell、flex、table-caption或者inline-flex  overflow的值不是visible]]></content>
       <categories>
         
@@ -509,9 +223,9 @@
     </entry>
   
     <entry>
-      <title><![CDATA[代码熟悉]]></title>
-      <url>/2020/08/04/%E4%BB%A3%E7%A0%81%E7%86%9F%E6%82%89/</url>
-      <content type="text"><![CDATA[]]></content>
+      <title><![CDATA[Axios]]></title>
+      <url>/2020/06/15/axios/</url>
+      <content type="text"><![CDATA[axios是一个基于promise的HTTP库，可以应用于浏览器和node.js特性  从浏览器中创建XMLHttpRequests  从node.js创建http请求  支持Promsie API  拦截请求和响应  转换请求数据和响应数据  取消请求  自动转换JSON数据  客户端支持防御XSRF]]></content>
       <categories>
         
       </categories>
@@ -522,9 +236,204 @@
     </entry>
   
     <entry>
-      <title><![CDATA[Mqtt在前端的应用]]></title>
-      <url>/2020/01/02/mqtt%E5%9C%A8%E5%89%8D%E7%AB%AF%E7%9A%84%E5%BA%94%E7%94%A8/</url>
-      <content type="text"><![CDATA[mqtt]]></content>
+      <title><![CDATA[原型]]></title>
+      <url>/2020/06/13/%E5%8E%9F%E5%9E%8B/</url>
+      <content type="text"><![CDATA[函数都有一个prototype(显式原型属性)和一个__proto__或[[Prototype]](隐式原型属性)实例对象的__proto__指向构造函数的prototype最终prototype指向null]]></content>
+      <categories>
+        
+      </categories>
+      <tags>
+        
+      </tags>
+      <tags></tags>
+    </entry>
+  
+    <entry>
+      <title><![CDATA[函数式编程]]></title>
+      <url>/2020/06/09/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/</url>
+      <content type="text"><![CDATA[函数与方法的区别  函数是一段可以通过其名称被调用的代码，可以传递参数并有返回值。  方法是一段必须通过其名称及其关联对象的名称被调用的代码。引用透明性  所有函数对于相同的输入都将返回相同的值，不依赖于其他全局变量，因此不会产生改变外部环境变量的副作用。声明式编程  函数式编程是声明式编程范式的一部分，会描述一系列的操作，但不会暴露是如何实现的或是数据流如何穿过它们概念函数式编程的目的是使用函数来抽象作用在数据之上的控制流和操作，从而在系统中消除副作用并减少对状态的改变。通过最小化变化使得代码更容易理解，其核心概念一共有四种：不可变性，纯函数，数据转换，高阶函数以及递归##### 不可变性  数据是不可以改变的，他们永远无法修改，其机制就是对原生数据进行拷贝编辑，然后取代使用  ##### 纯函数  一个返回结果只依赖输入参数的函数，它至少需要接受一个参数并且总是返回一个值或者其它函数，它把参数当作不可变数据使用，不做任何修改。  ##### 数据转换  函数式编程中由于数据的不可变性，它会将一种数据转换成另一种数据，使用函数生成转换后的副本进行状态的转换。  ##### 高阶函数  是可以操作其它函数的函数，它们可以将函数当作参数传递，也可以返回一个函数。  ##### 递归  函数调用自身的一种方案链式  函数式编程就是将具体的业务逻辑拆分成一个个小型简单的纯函数，方便进行功能聚集。最终通过串联或者并联的方式将这些函数合成一起调用，]]></content>
+      <categories>
+        
+      </categories>
+      <tags>
+        
+      </tags>
+      <tags></tags>
+    </entry>
+  
+    <entry>
+      <title><![CDATA[防抖与节流]]></title>
+      <url>/2020/06/02/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/</url>
+      <content type="text"><![CDATA[应用场景绑定某些持续触发的事件，如鼠标点击、滚动、放大缩小等，有时候并不希望在事件持续触发的过程中那么频繁地去执行函数。一般来讲，防抖和节流是比较常用的解决方案。防抖（debounce）  指触发事件后在n秒内函数只能执行一次，如果在n秒内又触发了事件，则会重新计算函数执行时间。防抖函数又分为非立即执行和立即执行版。  非立即执行版 触发事件后函数不会立即执行，而是在n秒后执行，如果在n秒内又触发了事件，则会重新计算函数执行时间function debounce(func, wait) {    let timeout;    return () =&gt; {        let args = arguments;        if (timout) {            clearTimeout(timeout);        }        timeout = setTimeout(() =&gt; {            func.apply(context, args);        }, wait)    }}  立即执行版 触发事件后函数会立即执行，然后n秒内不触发事件才能继续执行函数的效果function debounce(func, wait) {    let timeout;    return () =&gt; {        let args = arguments;        if (timeout) {            clearTimeout(timeout);        }        let callNow = !timeout;        timeout = setTimeout(() =&gt; {            timeout = null;        }, wait)        if (callNow) {            func.apply(this, args)        }    }}节流（throttle）  指连续触发事件但是在n秒中只执行一次函数。节流会稀释函数的执行频率。节流方式同样有两种，分为时间戳版和定时器版  时间戳版：在时间段内开始的时候触发函数function throttle(func, wait) {    let previous = 0;    return function() {        let now = Date.now();        let contxt = this;        let args = arguments;        if (now - previous &gt; wait) {            func.apply.(contxt, args);            previous = now;        }    }}  定时器版：在时间段结束时触发function throttle(func, wait) {    let timeout;    return function() {        let context = this;        let args = arguments;        if (!timeout) {            timeout = setTimeout(() =&gt; {                timeout = null;                func.apply.(context, args);            }, wait)        }    }}]]></content>
+      <categories>
+        
+      </categories>
+      <tags>
+        
+      </tags>
+      <tags></tags>
+    </entry>
+  
+    <entry>
+      <title><![CDATA[虚拟dom]]></title>
+      <url>/2020/05/27/%E8%99%9A%E6%8B%9FDOM/</url>
+      <content type="text"><![CDATA[  Vue 2.0中引入了虚拟DOM，初始渲染速度比Vue1.0提升了2～4倍模版转换成视图的过程  Vue.js通过编译complie将模版转换成渲染函数render，执行渲染函数就可以得到一个虚拟DOM  在对模型进行操作时，会触发对应的Dep中的Watcher对象。Watcher对象会调用对应的update来修改视图。这个过程主要是将虚拟DOM进行差异对比，然后根据结果进行对比。即在Vue的实现上，Vue将模版编译成虚拟DOM渲染函数，结合Vue的响应式系统，在状态改变时，Vue能够计算出重新渲染组件的最小代价并应用更新到真实DOM上。Virtual DOMVirtual DOM本质上是一棵以JavaScript对象(VNode节点：标签名、属性、子元素)作为基础的树，用对象属性来描述节点，对真实DOM的抽象。最终可以通过一系列操作使这棵树映射到真实环境上。Virtual DOM提高渲染速度原因在虚拟节点映射到视图的过程中，将虚拟节点与上一次渲染视图所使用的虚拟节点（oldVnode）作对比，找出真正需要更新的节点来进行DOM操作，从而避免操作其它无任何改动的DOM]]></content>
+      <categories>
+        
+      </categories>
+      <tags>
+        
+      </tags>
+      <tags></tags>
+    </entry>
+  
+    <entry>
+      <title><![CDATA[协商缓存和强制缓存]]></title>
+      <url>/2020/05/21/%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98%E5%92%8C%E5%BC%BA%E5%88%B6%E7%BC%93%E5%AD%98/</url>
+      <content type="text"><![CDATA[缓存的优点：  减少了不必要的数据传输，节省带宽  减少服务器的负担，提升网站性能  加快了客户端加载网页的速度  用户体验友好缺点：  资源如果有更改但是客户端不及时更新会造成用户获取信息滞后强制缓存cache-control:max-age={过期时间},public,immutable  cache-control表示缓存的时间  public表示可以被浏览器和代理服务器缓存  private表示代理服务器不缓存，只有客户端可以缓存资源  no-cache表示跳过设置强缓存，但是不妨碍设置协商缓存；一般如果做了强缓存，只有在强缓存失效了才走协商缓存  no-store表示不缓存，这个会让客户端、服务器都不缓存，也就没有所谓的强缓存、协商缓存  immutable表示用户刷新页面，浏览器也不会发起请求去调取服务，浏览器会直接从本地磁盘或者内存中读取缓存并返回200状态协商缓存协商缓存就是需要客户端和服务器两端进行交互在response header中设置etag和last-modified  etag:每个文件有一个hash值，改动文件hash就会变动  last-modified：文件修改的时间，精确到秒协商缓存的总结：请求资源时，把用户本地该资源的etag同时带到服务端，服务端和最新资源做对比。  如果资源没更改，返回304，浏览器读取本地缓存  如果资源有更改，返回200，返回最新的资源。HTTP 1.1中新增etag是为了解决之前只有If-Modified的缺点，主要问题如下：  1.某些文件也许会周期性更改，但是内容并不改变，仅仅改变文件的修改时间，这个时候我们并不希望客户端认为这个文件被修改了，而重新get      某些文件修改非常频繁，比如在秒以下的时间内修改N次    某些服务器不能精确地得到文件的最后修改时间]]></content>
+      <categories>
+        
+      </categories>
+      <tags>
+        
+      </tags>
+      <tags></tags>
+    </entry>
+  
+    <entry>
+      <title><![CDATA[事件循环eventloop]]></title>
+      <url>/2020/05/16/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AFEventLoop/</url>
+      <content type="text"><![CDATA[进程、线程  进程是系统分配的独立资源，是CPU资源分配的基本单位。进程是由一个或者多个线程组成  线程是进程的执行流，是CPU调度和分派的基本单位，同个进程之中的多个线程之间是共享该进程的资源。浏览器内核  浏览器是多进程的，每一个tab标签代表一个独立的进程（但是多个空白的tab标签会合并成一个进程）  浏览器内核（浏览器渲染进程）是浏览器多进程中的一种，主要分为：                  GUI渲染线程：                  负责渲染页面，解析Html、CSS构成Render树等。当页面重绘或者回流都会调起该线程。          和JS引擎线程是互斥的。当JS引擎线程在工作的时候，GUI渲染线程会被挂起，GUI更新被放入JS任务队列中，等待JS引擎线程空闲时继续执行。                            JS引擎线程：                  单线程工作，负责解析运行JS脚本。          和GUI渲染线程互斥，JS运行耗时过长会导致页面阻塞。（script标签加 def 和 async ）                            事件触发线程：                  当事件符合触发条件被触发时，该线程会把对应的事件回调函数添加到任务队列的队尾，等待JS引擎处理。                            定时器触发线程：                  浏览器定时计数器并不是由JS引擎技术的，阻塞会导致计时不准确。          开启定时器触发线程来计时并触发计时，计时完成后会被添加到任务队列中，等待JS引擎处理。                            http请求线程：                  http请求的时候会开启一条请求线程          请求完成有了返回结果后，会将请求的回调函数添加到任务队列中，等待JS引擎处理。                    事件循环机制JS事件循环机制分为浏览器和Node事件循环机制，浏览器Event Loop是HTML中定义的规范，后者由libuv库实现。JS有一个主线程（main thread）和调用栈（执行栈，即call-stack），所有的任务都会被放到调用栈中等待主线程执行。  JS调用栈：栈是一种后进先出的数据结构。当函数被调用时，会被添加到栈中的顶部，执行完成之后就从栈顶部移出该函数，直到栈内被清空。  同步任务、异步任务：同步任务会在调用栈中按照顺序排队等待主线程执行，而异步任务则会在异步有了结果后将注册的回调函数添加到任务队列（先进先出的数据结构）中等待主线程空闲，即调用栈被清空时，被调取到栈中等待主线程执行。  事件循环：当调用栈中的同步任务都执行完毕，就会按照顺序去读取任务队列中是否还有任务，有任务就将其读取到调用栈中等待执行，当调用栈再次清空时，会再次读取任务队列是否有任务，这个一直读取-调用执行-读取就形成了事件循环。JS单线程中的任务除了广分为义的同步任务和异步任务，还可分为宏任务和微任务  宏任务(macro-task）：script(全局作用域中的同步代码)、 setTimeout 、 setInterval 、 setImmediate 、 I/O 、 UI rendering微任务(micro-task)： promise 、 process.netTick 、 Object.observe 、 MutainObserver微任务队列的优先级高于宏任务队列]]></content>
+      <categories>
+        
+      </categories>
+      <tags>
+        
+      </tags>
+      <tags></tags>
+    </entry>
+  
+    <entry>
+      <title><![CDATA[事件代理]]></title>
+      <url>/2020/05/08/%E4%BA%8B%E4%BB%B6%E4%BB%A3%E7%90%86/</url>
+      <content type="text"><![CDATA[  事件委托就是利用事件冒泡，只指定一个事件处理程序，就可以管理某一类型的所有事件。JS事件流事件流的全过程如下图：  一个完整的事件流是从window开始，最后回到window的一个过程。  事件流被分为3个阶段：1-5 捕获阶段，5-6:目标阶段，6-10:冒泡阶段]]></content>
+      <categories>
+        
+      </categories>
+      <tags>
+        
+      </tags>
+      <tags></tags>
+    </entry>
+  
+    <entry>
+      <title><![CDATA[路由守卫]]></title>
+      <url>/2020/05/06/%E8%B7%AF%E7%94%B1%E5%AE%88%E5%8D%AB/</url>
+      <content type="text"><![CDATA[一、全局前置守卫 beforEach  守卫方法接收三个参数  router.beforEach((to,from,next)=&gt;{    //dosomething  })    to：即将要进入的目标路由对象  from：当前导航正要离开的路由  next：执行下一步二、全局后置钩子 afterEach (少用)  全局后置钩子与全局前置守卫类似，然而和守卫不同的是，这些钩子不会接收next函数，也不会改变导航本身三、路由独享的守卫 beforeEnter  使用方法与全局守卫相同  不同的是：全局守卫可以作用于全局，路由独享守卫只作用于被设置守卫的路由四、组件内的守卫      可以在路由组件内直接定义以下路由导航守卫                            beforeRouteEnter                          在渲染该组件的对应路由被confirm调用          不能获取组件实例 this ，因为当守卫执行前，组件实例还没被创建          可以通过next获取data中的数据                    2.beforeRouteUpdate                  在当前路由改变，但是该组件被复用时调用                            3.beforeRouteLeave                  这个离开守卫通常用来禁止用户在还未保存修改前突然离开。该导航可以通过next(false)来取消          可以访问组件实例this                    ]]></content>
+      <categories>
+        
+      </categories>
+      <tags>
+        
+      </tags>
+      <tags></tags>
+    </entry>
+  
+    <entry>
+      <title><![CDATA[跨域]]></title>
+      <url>/2020/04/27/%E8%B7%A8%E5%9F%9F/</url>
+      <content type="text"><![CDATA[  协议、IP、端口其中一个不同都会存在跨域情况jsonp  一种轻量级的数据传输格式，允许用户传递一个callback参数给服务端，然后服务端返回数据时会将这个callback参数作为函数名来包裹着JSON数据，由客户端随意定制函数来自动处理返回数据。  本质是动态创建script标签,然后通过src属性发送跨域请求，在发送请求前必须声明一个与参数中传递的名字一致的同名函数  优点          兼容性好        缺点          只支持GET请求，而不支持POST等其它类型的HTTP请求      只支持跨域HTTP请求这种情况，而不能解决不同域的两个页面之间如何进行JavaScript调用的问题。      服务端处理  设置服务器的ResponseHeader,如Access-Control-Allow-]]></content>
+      <categories>
+        
+      </categories>
+      <tags>
+        
+      </tags>
+      <tags></tags>
+    </entry>
+  
+    <entry>
+      <title><![CDATA[继承]]></title>
+      <url>/2020/04/23/%E7%BB%A7%E6%89%BF/</url>
+      <content type="text"><![CDATA[被继承的父类 Parentfunction Parent(name) {    this.name = name;    this.sum = function() {        console.log(this.name)    }}Parent.prototype.age = 10;原型链继承      实现：新实例的原型等于父类的实例        继承的属性：实例的构造函数的属性、父类构造函数的属性、父类原型的属性    主要缺点：所有新实例都会共享父类实例的属性function Child() {    this.name = "jinus";}Child.prototype = new Person();构造函数继承  实现：用 call 、 apply 将父类构造函数引入子类函数，即在子类函数中做了父类函数的自执行  继承的属性：父类构造函数的属性，可以传参数  主要缺点：无法继承父类原型的属性、无法实现构造函数的复用、每个新实例都有父类构造函数的副本function Child(name) {    Parent.call(this, name);}组合继承  组合原型链继承和构造函数继承function Child(name) {    Parent.call(this, name)}Child.prototype = new Parent();原型式继承  用一个函数包装一个对象，然后返回这个函数的调用，同 object.create() 的原理function Child(obj) {    function F() {};    F.prototype = obj;    return new Fn();}var P = new Parent();var C = Child(P);寄生式继承  包装原型式继承function Child(obj) {    function F() {};    F.prototype = obj;    return new Fn();}function Wrapper(obj) {    var sub = Child(obj);    return sub;}var P = new Parent();var C = Wrapper(P)寄生组合式继承  结合上述方式function Mid(obj) {    function F() {};    F.prototype = obj;    return new F()}var M = Mid(Parent.prototype);function Child() {    Person.call(this);}Child.prototype = M;M.constructor = Child;]]></content>
+      <categories>
+        
+      </categories>
+      <tags>
+        
+      </tags>
+      <tags></tags>
+    </entry>
+  
+    <entry>
+      <title><![CDATA[对象拷贝与比较]]></title>
+      <url>/2020/01/12/%E5%AF%B9%E8%B1%A1%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%AF%94%E8%BE%83/</url>
+      <content type="text"><![CDATA[简单来说深拷贝是拷贝储存在栈中的对象，而浅拷贝是从内存中拷贝。基本数据类型存在内存中，另一种引用数据类型如数组和对象是存放在栈中。常用的深拷贝方法：      Jquery 方法, $.extend(targetObj,originObj)        Object.assign({targetObj,originObj})对象深拷贝的pollyfill示例  Object.ptototype.clone = function(obj) {    if (obj === null) {        return null    }    if (typeof obj !== "object") {        return obj;    }    if (obj.constructor === Date) {        return new Date(obj);    }    var newObj = new obj.constructor();    for (var key in obj) {        if (obj.hasOwnProperty(key)) {            var val = obj[key];            newobj[key] = typeof val === "object" ? arguments.callee(val) : val;        }    }    return neeObj;}]]></content>
+      <categories>
+        
+      </categories>
+      <tags>
+        
+      </tags>
+      <tags></tags>
+    </entry>
+  
+    <entry>
+      <title><![CDATA[Web安全]]></title>
+      <url>/2019/12/07/web%E5%AE%89%E5%85%A8/</url>
+      <content type="text"><![CDATA[sql注入  后端依赖前端返回的参数直接拼接sql进行查询数据，导致sql不正常的拼接，造成的安全问题  解决方案：层层校验前端传递的信息XSS（Cross Site Scripting，跨站脚本攻击）  注入js代码，常见于表单的提交，伪造上报数据  解决方案：设置 cookie 的 http-only , 对输入的内容进行校对、转义、替换等；建立白名单，如          设置HTTP Header的 Content-Security-Policy      设置 meta 标签的方式 &lt;meta http-equiv="Content-Security-Policy"&gt;      CSRF（Cross-site request forgery，跨站请求伪造）  借助当前操作这的权限来完成某个操作  解决方案          输入校对      GET 请求改为 POST 请求, GET 请求只负责读操作      验证document.refer，判断网页上的页面来源      token时效性机制      验证网络ip      网页嵌套攻击  广告嵌入，诱导或欺骗用户点击  解决方案          header设置不允许嵌套      判断当前界面是否为顶层窗口      中间人攻击  请求被拦截，然后可能被改写，或者被抽取重要信息等  解决方案：升级HTTPS方案]]></content>
+      <categories>
+        
+      </categories>
+      <tags>
+        
+      </tags>
+      <tags></tags>
+    </entry>
+  
+    <entry>
+      <title><![CDATA[Vuex]]></title>
+      <url>/2019/12/03/vuex/</url>
+      <content type="text"><![CDATA[vuex原理vuex实现了一个单向数据流，在全局拥有一个 state 存放数据，当组件要更改 state 中的数据时，必须通过 Mutation 进行， Mutation 同时提供了订阅者模式供外部插件调用获取 state 数据的更新。而当所有异步操作或批量的同步操作则需要走 Action ，但 Action 也是无法直接修改 State ，同样需要通过 Mutation 来修改 State 的数据。vuex中的模块介绍  vue components ：vue组件。HTML页面上，负责接收用户操作等交互行为，执行 dispatch 方法触发对应 action 进行回应。  dispatch ：操作行为触发方法，是唯一能执行 action 的方法。  actions ：操作行为处理模块，通过 $store.dispatch('action名称',data) 来触发。然后由 commit 来触发 mutation 的调用，间接更新 state 。负责处理vue components接收到的所有交互行为：包含同步/异步操作。且支持多个同名方法，按照注册的顺序依次触发。该模块提供了Promise的封装，以支持 action 的链式触发。  commit ：状态改变提交操作方法。对 mutation 进行提交，是唯一能执行 mutation 的方法。  mutations : 状态改变操作方法。是vuex修改 state 的唯一推荐方法。该方法只能进行同步操作，且方法名只能全局唯一。  state ：页面状态管理容器对象。集中存储vue components中data对象的零散数据，全局唯一，以进行统一的状态管理。页面显示所需的数据从该对象中进行读取，利用vue的细粒度数据响应机制来进行高效的状态更新。  getters ： state 对象读取方法。]]></content>
+      <categories>
+        
+      </categories>
+      <tags>
+        
+      </tags>
+      <tags></tags>
+    </entry>
+  
+    <entry>
+      <title><![CDATA[Vue组件间通信的六种方式]]></title>
+      <url>/2019/11/20/vue%E7%BB%84%E4%BB%B6%E9%97%B4%E9%80%9A%E4%BF%A1%E7%9A%84%E5%85%AD%E7%A7%8D%E6%96%B9%E5%BC%8F/</url>
+      <content type="text"><![CDATA[组件是vue最强大的功能之一，但组件实例的作用域是相互独立的，所以不同组件之间的数据无法相互引用。针对不同的场景应该选择不同的方案实现组件之间的通信props/($emit和v-on)  父组件P通过``props的方式向子组件C传递，C to P 通过在C组件中$emit,P组件中v-on`的方式实现。$emit/$on  通过一个空的vue实例作为中央事件总线（事件中心），用它来触发事件和监听事件，实现任何组件间的通信。包括父子、兄弟、跨级。vuex详见vuex介绍$attrs/$listeners  $attrs:包含了父作用域中不被prop所识别（且获取）的特性绑定（class和style除外）。当一个组件没有声明任何prop时，这里会包含所有父作用域的绑定，并且可以通过v-bind="$attrs"传入内部组件。通常配合interitAttrs选项一起使用。  $listeners:包含了父作用域中的（不含.native修饰器）的v-on事件监听器。它可以通过v-on="$liteners"传入内部组件。provide/inject这对选项需要一起使用，以允许一个祖先组件向其所有子孙后代注入一个依赖，无论层次有多深，并在其上下游关系成立的时间里始终生效。一言以蔽之：祖先组件中通过provide来提供变量。然后在子孙组件中通过inject来注入变量。这主要解决了跨级组件间的通信问题，不过使用场景主要是子组件获取上级组件的状态，跨级组件间建立了一种主动提供与依赖注入的关系。provide和inject并不是响应式的，如果传入了一个可监听的对象，那么其对象的属性还是可响应的。可以通过vue.observable实现优化响应式#parent/$children与ref  ref:如果在普通的DOM元素上使用，引用指向的就是DOM元素；如果用在子组件上，引用就指向组件实例  $parent/$children:访问父/子实例这种无法实现跨级或兄弟组件进行通信]]></content>
+      <categories>
+        
+      </categories>
+      <tags>
+        
+      </tags>
+      <tags></tags>
+    </entry>
+  
+    <entry>
+      <title><![CDATA[Vue生命周期]]></title>
+      <url>/2019/11/15/vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</url>
+      <content type="text"><![CDATA[生命周期图示vue的生命周期里有8个钩子函数分别是  beforeCreate()  created()  beforeMount()  mounted()  beforeUpdate()  updated()  beforeDestroy()  destroyed()]]></content>
+      <categories>
+        
+      </categories>
+      <tags>
+        
+      </tags>
+      <tags></tags>
+    </entry>
+  
+    <entry>
+      <title><![CDATA[闭包]]></title>
+      <url>/2019/10/20/%E9%97%AD%E5%8C%85/</url>
+      <content type="text"><![CDATA[闭包从函数A里返回函数B，函数B使用函数A中的变量，会引起内存泄露问题]]></content>
       <categories>
         
       </categories>
@@ -537,7 +446,7 @@
     <entry>
       <title><![CDATA[如何编写油猴脚本]]></title>
       <url>/2019/10/09/%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99%E6%B2%B9%E7%8C%B4%E8%84%9A%E6%9C%AC/</url>
-      <content type="text"><![CDATA[油猴（Tampermonkey）是一个用户脚本管理器。所谓的用户脚本实际上就是一段代码，它能够优化用户网页浏览体验，安装之后，脚本能为网站添加新的功能或者使网站的界面更加易用。ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDph6IovNtVAO1gDd/sGiRiwsToACk/OcWnIQzJ+Czwpe+cqtL45iAgUPflTgW/xfo++lqd0j1IFQfnSV9yLxZB8ffe3wXvNfnUyPpVaM3y4T65Ndczpqgi0tyuRPxghvysUhjGhRKHyHhfFFB4wrI+OtlAwzSnPxLyfRJzZ9gHprewyriwdpZZWh8/bz0CU6/S6AIGUOtQd/iD29X8tBpRJfDXnHN/tc8t7fjShiTwFwXz3/InVoKnMz9HPNvH0KTPSxVC+B3AiERz8lMut2dL/UO1g6h+HCbu9lOVUADElmoswI/8JbhxaozJQlsJWzF0xJfTBsoYpA+zq1a1r2sL builder@example.com]]></content>
+      <content type="text"><![CDATA[油猴（Tampermonkey）是一个用户脚本管理器。所谓的用户脚本实际上就是一段代码，它能够优化用户网页浏览体验，安装之后，脚本能为网站添加新的功能或者使网站的界面更加易用。]]></content>
       <categories>
         
       </categories>
@@ -602,7 +511,7 @@
     <entry>
       <title><![CDATA[Zoom和scale]]></title>
       <url>/2019/08/26/Zoom%E5%92%8CScale/</url>
-      <content type="text"><![CDATA[前言zoom和scale都可以用于DOM元素在视觉显示效果上放大或缩小。zoom当设置1.0 或 100%时表示不缩放。更大的值放大，更小的值缩小取值  auto 根据viewport来既定当前标签的缩放  &lt;number&gt; 必须是一个非负数，1表示没有缩放，大于1表示放大的倍数，小于1表示缩小的倍数  &lt;percenttage&gt; 必须是一个非负的百分比，以100%为基础进行缩放兼容性scalescale可用于独立地指定css属性transform缩放的比例取值  单一数值 指定了一个缩放系数，同时作用于X轴和Y轴让该元素进行缩放  两个长度/百分比值 分别指定了2D比例的X轴和Y轴的缩放系数  三个长度/百分比值 分别指定了3D比例的X轴、Y轴和Z轴的缩放系数  none 指定不进行缩放兼容性]]></content>
+      <content type="text"><![CDATA[zoom和scale都可以用于DOM元素在视觉显示效果上放大或缩小。zoom当设置 1.0 或 100% 时表示不缩放。更大的值放大，更小的值缩小取值  auto 根据viewport来既定当前标签的缩放  &lt;number&gt; 必须是一个非负数，1表示没有缩放，大于1表示放大的倍数，小于1表示缩小的倍数  &lt;percenttage&gt; 必须是一个非负的百分比，以100%为基础进行缩放scalescale 可用于独立地指定css属性 transform 缩放的比例取值  单一数值 指定了一个缩放系数，同时作用于X轴和Y轴让该元素进行缩放  两个长度/百分比值 分别指定了2D比例的X轴和Y轴的缩放系数  三个长度/百分比值 分别指定了3D比例的X轴、Y轴和Z轴的缩放系数  none 指定不进行缩放兼容性]]></content>
       <categories>
         
       </categories>
@@ -641,7 +550,7 @@
     <entry>
       <title><![CDATA[Linux]]></title>
       <url>/2019/03/11/Linux/</url>
-      <content type="text"><![CDATA[Linuxzombie 僵死的进程命令      grep [-c ,-f file,-i -n ,-A num ,-B num]  字符串  文件名 :在指定文件中查找字符串        rm [-r,-f,-i] 文件或目录：删除文件或目录        touch 文件名：创建文件        ln：在文件或目录之间创建链接，默认产生硬链接          硬链接：是指通过文件的inode来进行链接。在Linux的文件系统中，保存在磁盘的所有类型的文件都会分配一个编号，这个编号称为inode号（Inode Index）。多个文件指向同一个inode在Linux系统中是允许的，这就是所谓的硬链接。硬链接的作用是允许一个文件拥有多个有效的路径名，这样用户就可以对一些重要文件建立硬链接，以防止误删除操作。因为对应该文件的inode有一个以上的链接，所以只删除一个链接并不影像inode本身和其他链接，只有当最后一个链接被删除后，文件的数据块及目录的链接才会释放，也就是说，此时文件才会被真正删除。      符号链接：也叫软链接，软链接类似于Windows中的快捷方式，因此软链接是一个指向真正的文件或者目录位置的符号连接。            file [-b,-L,-z,-i] 文件名：显示文件的类型，长度为0的文件识别为空文件        cp [-a,-r,-d,-p,i] 源文件或目录 目标文件或目录        find：在指定的路径下查找指定的文件        split：用于分割文档，将一个文件分成数个        mv：移动文件  ]]></content>
+      <content type="text"><![CDATA[zombie 僵死的进程命令      grep [-c , -f file, -i -n , -A num , -B num]  字符串  文件名 : 在指定文件中查找字符串        rm [-r, -f, -i] 文件或目录：删除文件或目录        touch 文件名：创建文件        ln：在文件或目录之间创建链接，默认产生硬链接          硬链接：是指通过文件的inode来进行链接。在Linux的文件系统中，保存在磁盘的所有类型的文件都会分配一个编号，这个编号称为inode号（Inode Index）。多个文件指向同一个inode在Linux系统中是允许的，这就是所谓的硬链接。硬链接的作用是允许一个文件拥有多个有效的路径名，这样用户就可以对一些重要文件建立硬链接，以防止误删除操作。因为对应该文件的inode有一个以上的链接，所以只删除一个链接并不影像inode本身和其他链接，只有当最后一个链接被删除后，文件的数据块及目录的链接才会释放，也就是说，此时文件才会被真正删除。      符号链接：也叫软链接，软链接类似于Windows中的快捷方式，因此软链接是一个指向真正的文件或者目录位置的符号连接。            file [-b, -L, -z, -i] 文件名：显示文件的类型，长度为0的文件识别为空文件        cp [-a, -r, -d, -p, i] 源文件或目录 目标文件或目录        find：在指定的路径下查找指定的文件        split：用于分割文档，将一个文件分成数个        mv：移动文件  ]]></content>
       <categories>
         
       </categories>
@@ -666,11 +575,11 @@
   
     <entry>
       <title><![CDATA[无服务器之旅译文]]></title>
-      <url>/%E5%AD%A6%E4%B9%A0/2018/11/01/%E6%97%A0%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B9%8B%E6%97%85%E8%AF%91%E6%96%87/</url>
+      <url>/%E7%BF%BB%E8%AF%91/2018/11/01/%E6%97%A0%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B9%8B%E6%97%85%E8%AF%91%E6%96%87/</url>
       <content type="text"><![CDATA[原文出处：https://blazingedge.io/blog/my-serverless-adventure在React Native的几篇文章后，我想谈谈我构建无服务应用的经历，通过Express/Koa的laaS/PaaS构建标准APIs的经历或者是利用Fass服务模型的不同。如果你想构建一个==lambda==函数，你不需要任何特殊的工具。但是如果你想构建一个真实的应用程序，你可以通过使用工具更容易地管理代码、打包和部署。我们选择的工具是无服务器框架。FaaS 服务模型在了解如何使用无服务器技术前，我们首先需要知道FaaS的含义。FaaS（功能是服务）是一种云计算服务模型（诸如lass，Pass，Saas等等）的方式，它让我们无需担心代码在运行时服务器的基础设施和硬件是否满足条件，一切都在我们的掌控之内。你仅仅是需要支付一笔你函数计算的费用，当需要充值时。它允许我们创建项目，并且无需考虑闲置服务器的成本，如果我们使用其他的服务器模型。AWS LambaAWS Lamba 是亚马逊在2014年发布的一款FaaS产品，7月份的一篇文章中提到，如今它占据着FaaS市场的三分之二。亚马逊凭借早期的策略、免费月度免费计划（价值约6-7美元）以及近乎无敌的价格优势，它将会继续占据着Fass market的霸主地位。免费月度计划允许100万次的请求（调用）和400，000GB秒级的计算时间。例如，如果你使用128MB内存的==Lamba==函数，那就意味着你将拥有大约33天的计算时间。对于你而言，这值得试一试，甚至你可以免费的跑一个或者两个项目。一旦你使用完免费的资源，你需要为每GB秒支付0.00001667美元。使用Node.js的==AWS Lambda==函数例子：module.exports.hello = (event, context, callback) =&gt; {const response = {statusCode: 200,body: JSON.stringify({message: 'Hello world!',input: event,}),}callback(null, response)}当一个HTTP请求通过API网关触发时，==事件==对象的体系就会通过事件源建立起来，它会包含基本的请求头、还有像HTTP请求的路径和方法之类的一些API网关。上下文==对象==包含了==Lambda==的环境值，context.getRemainingTimeInMillis()函数是关键的一个函数，它包含了在函数停止执行的超时之前还有多少毫秒等待执行的信息。==回调==是一个接收错误和成功参数的函数，遵循JS流行的回调设计模式。因此我们采用一种版本比较新的Node（如8.10），我们可以使用同步函数来替代回调的设计模式，它们依赖成功执行返回的语句和在错误情况下抛出异常。超时默认情况下，AWS Lambda有15分钟的超时限制（每次请求最大的持续时间）。这是超时的最高值，作为开发者，如果某个函数由于某些原因而失败并决定继续运行直到超时，我们可以分配较低的超市值来减少潜在的成本。如果你有一个函数运行的时间超过15分钟（或者接近），你应该考虑将它分解成几个可以分步执行的不同函数。如果你不分割函数，你可以为它寻找一个可以提供更长运行时间的供货商或者选择不同的服务器模型。这是AWS Lambda的一份清单。更新：最大持续运行时间过去是5分钟，最近调整为15分钟。保持活动连接当用函数执行代码时，要确保你是在连接着其他的服务器，如Redis、数据库等。因为某些服务器对于连接数有限制，比如一些数据库允许10个连接（可以增加）你的无服务器应用会由于无法连接到服务而结束。如果你的无服务器应用是连接数据库和渲染HTML页面的单个函数，那并不意味着你仅仅只需要一个数据库的连接。单个Lambda函数只关心一个事件，当它繁忙时（执行代码），它不接受其他的调用，然而创造出一个新的函数可以增加面向数据库的连接数目。因此，当编写代码时，可以试图利用缓存服务如Redis，因为她有更高的连接数并且在查询数据时速度更快，并且当你利用连接处理完处理事务时，尽可能快速地断开连接，没有连接应该保持活跃。性能在Linux环境中AWS会管理并执行代码时，你可以通过两种方式提高性能：每个函数分配的内存和函数实际的代码。谈到内存时，你可以分配128MB到3GB的内存给函数。当增加你的函数使用的内存时（如果你过度分配内存给函数，你的函数会被终止），它也会提高你函数的计算能力（CPU）因此你的代码会被更快地执行。如果你发现你的函数比预期的要慢，可以尝试提高分配的内存并且找到速度和费用之间的平衡点。站在函数代码上来讲，也适用于其他任何的软件，如果你编写性能良好的代码也不应该放慢速度，然而已部署代码的大小可以，尤其是如果你使用的环境启动性能可能受到函数包大小的影响。为了避免这种情况，你可以对你的函数分别地打包，更重要的是你可以使用具有优化的插件。幸运的是，Node.js的环境不会受到包大小带来的巨大影响，但优化总是受欢迎的。缩放从你函数使用的情况出发，AWS是理想的因为它们可以无限制地缩放（或者在你达到限制之前，检查超时部分的连接）。如果你的函数正在做图像的优化，从队列中接收消息，我能想到的是保持这部分的连接，一个单函数只能接收一个事件。我们可以举例处理图像的优化，了解它是如何缩放的。例1：用户上传一张图片，第一次触你的函数会触发处理优化。AWS会创建一个新函数，从S3中下咋子啊一个.zip的函数包（你的代码）然后演示必要的操作以便于你的函数能够开始执行，这部分叫做冷启动。它是一个术语/周期。用于表明你的函数不活动，并且它必须被提供以便于对触发它的的事件作出响应。它会持续0.5s到5s，取决于基础设施的复合、代码包的大小、环境等等。另外，它没有计算到你的计算时间。一旦它完成了图片的优化就会返回一个成功的回复，函数将会保持warm一些时间，这个取决于你地区在那个时间点的基础设施的负荷，根据别人的的经历，它会持续5到15分钟。如果当它是warm状态时你的函数被再次触发，它会立即开始执行并且这次没有冷启动。例2：上一个的例子中函数仍然是warm的，在同一个时间有两个用户同事上传图片。我们会得到两次事件触发，从上个例子中可知其中一个事件会被分配到warm函数，而AWS为了处理第二个事件会创建一个的新函数，并分配给它。当它不是warm时，它会有一个冷启动并且图片不会立刻被优化。为了缩放我们的函数，当没有处理任何事件时我们应该分析函数的使用情况并且了解在一个时间点一个单函数会被多少次同时调用，这是否会影响我们优化的性能。如果我们的函数是在执行图像优化，我们不必担心冷启动因为它对我们的用户没有影响。然而，如果我们使用一个Lambda函数去为一个网页服务时，在一天的某些时刻会有一个高峰的请求，为了避免冷启动给性能带来的影响，我们应该使少许的几个，几十个或者几百个函数是warm的，每（毫秒）计数一次，提高用户的体验。如何知道你需要多少函数？你应该在你的应用中做一些分析和监控，以便发现这点。Dashbird.io是一个好的点子，因为它提供监控、错误日志，调试和很多其它实用的功能，它有一个免费月度计划因此你可以没有任何负担地试一下。你可以使用插件来保持函数warm，或者通过制定云监控事件，它允许你创建很多高级的解决方案：调用一个函数，读取前些天的分析，执行计算，并根据当前情况调用X函数而不是盲目地调用Y函数。我也了解到API网关（HTTP路由针对你的解决方案）可以给你的应用增加一些延迟，因为它就是你依赖（我认为延迟是最小化的）另一个服务，可以实现直接从你的SPA中调用函数或者通过AWS SDK调用本地应用。我自己没有尝试过，但是如果你注意到API网关是lazy的，这听起来似乎是一个提高性能的方法。无服务框架我认为在构建一个无服务应用时框架是最复杂的一部分，比如一个项目的配置和部署。正如你所知道的的JAWS（Javascript Amazon Web Services），它是AWS的Javascript AWS Lambda apps的一个框架。它日渐变得复杂，今天它让我们无需选择任何语言。插件无服务框架基于它自己提供的基本功能，但是如果你需要做一些高级的打包优化，本地运行代码，或者是建立具体的事件触发你的函数，那么你是幸运的因为有一个伟大的社区在用他们的插件为这个框架做贡献。大量创建无服务APP的插件模仿API网关功能是无服务离线的，让我们可以通过在无服务上声明的路由本地运行应用。yml就是不必手动地调用函数而可以提供HTTP具体的事件细节。项目结构在单个入口下，serverless.yml文件是我们项目中最重要的文件，它支持基本项目的创建，比如选择一个供货商，声明安全组，资源，项目中用到的插件,环境配置以及项目中最后的函数清单，还有可以触发它们的具体的配置和事件。一个项目可以有全局配置，比如256MB的内存，Node.js 8.10的运行等等。它让我们可以准确地配置每个函数，这显然会覆盖全局的配置。无服务也是事件驱动的体系结构，一个单函数可以监听几个不同类型的事件。我们习惯于创建APIs来监听HTTP请求（某些地方也可以通过应用或者使用网钩），但是使用无服务框架让我们可以监听并且触发事件函数比如内存，数据库，消息队列等等的变化。这里有一个可以应用于项目基本的例子，可以在gihub仓库中找到。有一个名为handlers的文件夹,所有的函数按照功能分为几个文件夹，每个.js文件仅包含一个函数。我正在使用这种方法，它让我可以很容易地浏览项目。文件夹middleware和utils包含了用于代码中的可重用代码（工具函数），middleware函数正在尝试模仿构建Express/Koa中用到的中间件模式。在结构中我们可以看到两个用于环境的文件，.env.example.yml是一个包含需要存在于项目中的体系环境和用于通过process.env对象贯穿整个应用的变量。另外，.env.yml是环境实际的值，在我的例子中本地环境应该总是被git忽略，因此我们不会泄露环境细节/秘密。学习成果没有全局中间件在web上用Express或者相似的框架时，在使用实际的路由级中间件之前，我们可以很容易的配置将被每个路由使用的中间件。这里并不存在这样的一个概念，因为每个函数（路由）可以充当一个完整的分离实体。因此，如果你想将中间件应用到每个函数，你不得不在每个函数文件中指定它。工作区将会创建一个包裹函数，它会被项目中的每个函数使用，并且负责必要的设置。这种中间件的例子像是错误中间件、主体解析中间件、设置响应头中间件等等。慎重地缩进serverless.yml文件配置文件时一个.yml文件，意味着它依赖缩进来分组和构造传递的值。在为每个函数设置HTTP事件时,我总是碰到问题。它似乎是要求两个缩进而不是一个。状态需要存在，使用自定义域当在AWS上部署一个无服务应用时，你项目中的API网关URL将会被构建，类似于 https://my-api-id.execute-api.region-id.amazonaws.com/stage-name/{resourcePath}  状态的名字默认为dev。我发现使用自定义作用域可以更方便工作，因为亚马逊提供的基础url显而易见太长了，并且在TLD后状态名会被混淆。总是将主体字符串化有时候，我忘记将主体字符串化，本地一切运行正常（本地环境由无服务离线插件提供），但是当我部署app后，它就无法工作。这让我花了一段时间意识到我犯了一个愚蠢的错误，因为API网关期望一个字符串化的主体，而路由发送了一个原始对象，没有实际的解释，它将会抛出一个超时的错误。不要使用全局Promise这里有一个我经历的有趣问题。使用pg-promise工作让你可以使用Promise库，所以你可以使用库提供的所有的Promsie功能，我们习惯于这样写global.Promise=require('bluebird')。在Express，Koa或者其他的任何框架中使用没有任何毛病，但是似乎比如Lambdas在它们的环境中有一个自己的Promise库，改变Promise库将会弄乱它。因此永远不要给API网关一个响应，这会导致函数运行长达15分钟，甚至超时，最后还是自己为错误买单。使用AWS Linux环境构建并打包项目在Linux环境中你编写的代码会被AWS执行，这就意味着所有的代码和装载函数的模块得保证在这样一个环境中是可运行的。我使用苹果电脑工作，因此在我添加一个优化图片的模块之前，所有的模块在本地可以运行，在Lambda上也可以。这事你有两个方案：在相似的Linux环境中也配置CI并且构建diamante，把它部署到AWS，或者启动一个EC2 AWS Linuxs实例并在上面安装图片优化模块，本地下载，然后每次部署，都要确保从EC2中复制的实例都存在与你本地的node_modules文件夹中，重写OS-specifc模块。忘记 Sockets如果你计划应用socket.io来处理无服务app的连接，忘记这个，找一个服务来处理这件事。永远运行的无服务函数没有被创建，这是实现套接字是最大的障碍。知道你的局限如果你有利用大量函数构建无服务应用的想法，你需要意识到单个无服务应用（服务）可以在serverless.yml中声明60个函数，部署时如果超过了这个数目，你会得到一个错误。我就碰到这个问题，但是幸运的是我有一些没有用到的函数，因此我可以删除它们便于部署app。然而，如果你有一个项目，超过了60个函数，你将不得不拆分它们到不同的服务中去。我的观点是它都给应用程序增加了新的复杂性，无论是对于开发（必须运行几个不同的服务）还是通过自定义域配置多个网关部署到AWS上去。谷歌是你的朋友当编写软件时，你会碰到各种问题。谷歌真的是你的朋友。无服务框架CLI当错误发生时会给你提供很多反馈，但是当你将应用部署到供货商时（我使用的AWS），你就开始犯错误。它们可能是由于AWS的一些局限，或者你的CloudFormation堆栈处于UPDATE_ROLLBACK_FAILED状态，你实际上必须使用AWS的接口才能再次部署你的堆栈。无服务框架支持不同的商家，并且它们都会提供基本的功能，但是如果你的选择是AWS，当出现问题时你是幸运的，因为它有着最大的社区，有很多人和碰到一样的问题。在我不知道它们有什么社区时我不会尝试其他的供货商。结论函数作为服务在云计算方面是很大的一步，尤其是我们正在寻找创造容易缩放的东西。试想一下，如果你的产品在某些流行的网站上成为特色并且因为无法承载负荷而崩溃，会发生什么。Fass产品就很方便因为它伸缩性好，但是你也必须按照处理此类负载的方式编写产品。我认为对于对于任务来说它是理想的，它不直接涉及用户，因此如果我们有冷启动对我们的用户体验没有影响。如果你决定使用面向前面的函数，确保分析使用情况并且保持某些函数warm来避免冷启动。如果你想在你的服务时上计算的更快，只是不能接受任何缓慢，Fass并不是你的选择。]]></content>
       <categories>
         
-          <category> 学习 </category>
+          <category> 翻译 </category>
         
       </categories>
       <tags>
@@ -683,11 +592,11 @@
   
     <entry>
       <title><![CDATA[Git 学习笔记]]></title>
-      <url>/%E5%AD%A6%E4%B9%A0/2018/10/11/Git-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+      <url>/git/2018/10/11/Git-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
       <content type="text"><![CDATA[git中所有数据在存储前都计算校验和，然后以校验和来引用，这意味着不可能再git不知情情况下更改任何文件内容或目录。  校验和：git用以计算校验和的机制叫做SHA-1散列(hash,哈希)，即由40个十六进制字符（0-9和a-f）组成的字符串 ，基于git中文件的内容或目录结构计算出来。git数据库中保存的信息都是以文件内容的哈希值来索引，而不是文件名。Git克隆      对于”http“和“git”协议，不需要任何权限        对于”https“  URLs，可能需要输入用户名以及密码        对于“ssh” URLs 必须通过一个“SSH 公钥”的认证  git三个工作区概念  git仓库：git用来保存项目的元数据和对象数据库的地方。从其他计算机clone仓库是，拷贝的就是这里数据。  工作目录：对项目的某个版本独立提取出来的内容，即从git仓库的压缩数据库中提取出来的文件，放在磁盘上供用户使用或修改的。  暂存区：是一个文件，保存了下次提交的文件信息列表，即add后形成的文件？文件的状态  未被追踪的文件（untracked）：文件未被纳入版本控制系统中，版本控制系统不能监视或者追踪它的改动。  已追踪的文件（tracked）：所有已经被纳入版本控制系统的项目文件提交记录包括如下的元数据      Commit Hash (唯一的ID，40位字符)        Author Name&amp;email (提交人信息)        Date（提交时间）        Commit message (提交注释)  克隆仓库命令：git clone [url] [可选项：自定义仓库名称]######文件.gitignore的格式规范:  所有空行或者以#开头的行都会被git忽略  可以使用标准的glob模式(shell所使用的简化了的正则表达式)匹配  匹配模式可以以(/)开头防止递归  匹配模式可以以(/)结尾指定目录  要忽略制定模式以外的文件或目录，可以在模式前加上惊叹号(!)取反git diff此命令比较的是工作目录中当前文件和暂存区域快照之间的差异，也就是文件(目录)修改之后还没有暂存起来的变化内容跳过使用暂存区域在提交时，给git commit 加上-a选项，git会自动把所有已经跟踪过的文件暂存起来一并提交。mkdir //创建目录pwd //显示当前目录路径git init // 初始化一个空的仓库所有的版本控制系统只能跟踪文本文件的改动，但无法跟踪视频图片等二进制文件的变化。git status //查看当前仓库的状态git diff  文件名 //查看修改的内容git log //查看日志记录  HEAD： 当前版本    HEAD^：上一版本   HEAD^^：上上一版本git reflog //查看历史命令以及对于的版本号git add是将修改内容添加到暂存区（stage），git commit则是将stage的内容提交到分支上。git管理的是修改而并非文件。git checkout  –  file // 撤销file在工作区的修改，回退到上一次git commit或git add的状态git reset HEAD  –  file //可以吧暂存区的修改撤销掉git checkout -file //用版本库里版本替换工作区的版本git rm //删除一个文件git remote add 分支名 git地址  // 添加关联远程仓库git push -u origin 分支名 // -u将本地仓库和远程仓库关联,初次需要克隆仓库  git clone git地址git支持多种协议，但是ssh支持的原生git协议速度最快git checkout -b 分支名 //创建并切换分支相当于  git branch 分支名  git checkout 分支名git branch //会列出所有的分支，当前分支名标*号git merge  指定分支名//用于合并指定分支到当前分支git branch -d 分支名 //删除分支  bug分支git stash //将当期工作现场存储起来，等以后恢复现场后继续工作git stash list //列出工作现场git stash pop//恢复工作现场并删除stash内容，相当于  git stash apply  git stash dropgit rebase可以将提交历史整理成直线，方便git log –graph查看]]></content>
       <categories>
         
-          <category> 学习 </category>
+          <category> GIT </category>
         
       </categories>
       <tags>
@@ -713,11 +622,11 @@
   
     <entry>
       <title><![CDATA[Shadowsocks配置说明]]></title>
-      <url>/%E5%AD%A6%E4%B9%A0/2018/09/01/shadowsocks%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E/</url>
+      <url>/%E5%85%B6%E5%AE%83/2018/09/01/shadowsocks%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E/</url>
       <content type="text"><![CDATA[下载及介绍适用于PC端  首先点击链接：电脑端软件包下载，下载后解压至D盘或其他盘下，文件夹结构如下：  文件介绍            文件名      说明      作用                  gui-config.json      配置文件      记录服务器的相关信息，如IP、Port、pasword等              pac.txt      本地PAC规则      在系统代理模式为PAC时，vpn的访问通道会遵循它              Shadowsocks.exe      可执行文件      启动项      配置服务器点击 Shadowsocks.exe  启动软件，并双击小图标,出现如下图依次填写，最后点击确定，连接服务器的信息会添加到右侧，如图。鼠标右键单击小图标鼠标移到服务器选项上，如下图  右侧面板            名称      功能                  启用系统代理      只有启用系统代理，才能“越狱”成功              系统代理模式      代理模式分为：全局模式和PAC模式。即全局代表所有应用程序都可以翻墙，而PAC模式只对PAC中的有效网址进行代理              服务器      打开左侧面板，选择对应的方案（或者服务器）进行代理              PAC      可以选择在线PAc或者本地PAC，本地的PAC对应pac.txt              开机启动      顾名思义              允许来自局域网的连接      即当主机处于局域网（内网）时允许访问同一局域网的其他主机              关于      链接到shadowsock的github的地址              退出      退出shadowsock            左侧面板    主要功能介绍                            名称          功能                                      负载均衡          软件自动随机选择服务器                          高可用          根据延迟和丢包率自动选择服务器                          服务器名称          选择指定的服务器作为代理                          编辑服务器          编辑服务器                    ]]></content>
       <categories>
         
-          <category> 学习 </category>
+          <category> 其它 </category>
         
       </categories>
       <tags>
@@ -764,7 +673,7 @@
   
     <entry>
       <title><![CDATA[Js常用的技术]]></title>
-      <url>/javascript/2018/05/20/Js%E5%B8%B8%E7%94%A8%E7%9A%84%E6%8A%80%E6%9C%AF/</url>
+      <url>/javascript/2018/05/20/JS%E5%B8%B8%E7%94%A8%E7%9A%84%E6%8A%80%E6%9C%AF/</url>
       <content type="text"><![CDATA[1.模块化曾看到某大牛说：模块化和组件化是前端开发的一大趋势。所谓的模块化一般是指为了实现一个特定的功能而将所有的代码（对象）封装成一个模块。而AMD就是requireJS为指定模块规范化的一个产出，它具有异步加载、依赖前置、提前执行的特点。CMD则是针对淘宝技术团队开发sea.js提出的一个规范，它具有同步加载、依赖就近、延迟执行的特点。commonJS在后端Node.js就比较常见，以require(module路径)常见、2.数据推送websocket结合socket.io开发在实时通讯方面是非常强大，可以详见前面的博客内容。即基于Node.js的聊天室3.高级函数      惰性函数主要用于第一次调用函数后第二次调用才生效，可以类比XMLHttpRequest，先判断浏览器对其的兼容性，再赋值，此后调用父函数即访问新的值，特点是：一次更改，此后生效。        函数柯里化：主要是合并参数        级联函数：类比jQuery的链式调用。  4.高级技巧      变量作用域以及闭包，这部分主要是理解变量的声明提升，js预处理环境和执行环境。        this：可以使用apply和call方法改变this的指向，apply和call的唯一区别是传参的形式不同。        传递类型分为按值传递和按引用传递。侧重理解按引用传递，包括数组和对象。  5.面向切面编程Aspect Oriented Programming(AOP），即面向切面编程，主要实现的目的是针对业务处理过程中的切面进行提取，它所面对的是处理过程中的某个步骤或阶段，以获得逻辑过程中各部分之间的低耦合性的隔离效果。6.JS多线程记得浏览器有个GUI线程]]></content>
       <categories>
         
@@ -772,10 +681,6 @@
         
       </categories>
       <tags>
-        
-          <tag> 模块化 </tag>
-        
-          <tag> 函数 </tag>
         
       </tags>
       <tags></tags>
@@ -791,8 +696,6 @@
         
       </categories>
       <tags>
-        
-          <tag> 性能 </tag>
         
       </tags>
       <tags></tags>
@@ -877,8 +780,6 @@
       </categories>
       <tags>
         
-          <tag> 学习笔记 </tag>
-        
       </tags>
       <tags></tags>
     </entry>
@@ -893,8 +794,6 @@
         
       </categories>
       <tags>
-        
-          <tag> 成长 </tag>
         
       </tags>
       <tags></tags>
@@ -927,8 +826,6 @@
         
       </categories>
       <tags>
-        
-          <tag> 学习笔记 </tag>
         
       </tags>
       <tags></tags>
@@ -1005,15 +902,13 @@
     <entry>
       <title><![CDATA[Vue 2.0入门基础知识]]></title>
       <url>/vue/2017/09/21/Vue-2.0%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>
-      <content type="text"><![CDATA[序言当前前端三大主流框架：Angular、React、Vue。React前段时间由于许可证风波，使得Vue的热度蹭蹭地上升。另外，Vue友好的API文档更是一大特色。Vue.js是一个非常轻量级的工具，与其说是一个MVVM框架，不如说是一个js库。Vue.js具有响应式编程和组件化的特点。响应式编程，即保持状态和视图的同步，状态也可以说是数据吧；而其组件化的理念与React则一样，即“一切都是组件，组件化思想方便于模块化的开发，是前端领域的一大趋势。  本文主要从VueJS 2.0的内部指令与全局API入门方面内部指令  v-if v-else v-show前两者一般配合使用，v-show的效果类似于v-if。code : &lt;body&gt; &lt;div id="app"&gt; &lt;p v-if="flag"&gt;if&lt;/p&gt; &lt;p v-else&gt;else&lt;/p&gt;  &lt;p v-show="flag"&gt;show&lt;/p&gt; &lt;/div&gt; &lt;/body&gt; &lt;script&gt; var vm= new Vue({   el:"#app",   data:{     flag:true   } }); &lt;/script&gt;DOM结构中，三个p标签中的内容是否显示在页面中取决于flag的布尔值属性。当flag为true时，if和show都会显示，else也不会存在于DOM结构中。v-if和v-show的不同体现在：v-if是根据条件的值判断是否加载，可以减轻服务器的压力，但是缺点是当改变条件的值，页面又要加载一次；v-show则无论条件的值是否为true，都会加载（若条件为true，则display属性设置为其默认属性，反之，设置为none）  v-for 循环指令code :&lt;body&gt;&lt;div id="app"&gt;&lt;ol&gt;&lt;li v-for="b in b"&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;&lt;/body&gt;&lt;script&gt;var vm= new Vue({   el:"#app",     data:{     b:['a','b','c',1,2]    } });&lt;/script&gt;页面会显示5个li，插值的效果是li会显示与数组b一 一对应的元素，v-for有点类似于for in循环  v-text v-html 文本（html字符串）指令code:&lt;body&gt;&lt;div id="app"&gt;&lt;p v-text="msgText"&gt;&lt;/p&gt;  &lt;p v-html="msgHtml"&gt;&lt;/p&gt; &lt;/div&gt;&lt;/body&gt;&lt;script&gt; var vm= new Vue({     el:"#app",   data:{      msgText:"China",      msgHtml:"&lt;span&gt;中国&lt;/span&gt;"    }});&lt;/script&gt;可以联想到jquery的text()、html()。到现在，你会发现前面都是利用插值操作，即，这种做法会在一定程度上影响性能。  v-on 绑定事件监听器code: &lt;body&gt; &lt;div id="app"&gt; &lt;button v-on:click="Hi()"&gt;Button&lt;/button&gt; &lt;/div&gt; &lt;/body&gt; &lt;script&gt; var vm= new Vue({      el:"#app",      methods:{         Hi:function(){             alert("Hello World!")         }     } });&lt;/script&gt;同理，类比jquery的on()方法，绑定事件用的，实例中v-on:click可以简写为@click。click可以替换成鼠标的其他操作，如mouseout、mouseover等等。  v-bind 指令code:&lt;body&gt;&lt;div id="app"&gt;    &lt;a v-bind:style="{color:'red'}" :src="message"&gt;&lt;/a&gt;&lt;/div&gt;&lt;/body&gt;&lt;script&gt;var vm = new Vue({    el: "#app",    data: {        message: "前端工程师"    }});&lt;/script&gt;效果为a标签显示红色，且其src属性为vm.message。v-bind指令主要用于设置html标签的属性，其简写形式为 v-bind：——&gt;：  v-model 数据双向绑定指令code: &lt;body&gt; &lt;div id="app"&gt;    &lt;p&gt;&lt;/p&gt;    &lt;input type="text" v-model="message"&gt; &lt;/div&gt; &lt;/body&gt; &lt;script&gt;  var vm = new Vue({      el: "#app",      data: {          message: "前端工程师"      }  }); &lt;/script&gt;当input输入的值发生变化时，p标签包含的内容也会随之变化，且与前者保持一致。  v-pre 指令code:&lt;body&gt;&lt;div id="app"&gt;      &lt;p&gt;&lt;/p&gt;      &lt;p v-pre&gt;&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;&lt;script&gt;  var vm = new Vue({      el: "#app",      data: {          message: "前端工程师"      }  });&lt;/script&gt;第一个p标签输出“前端工程师”，而第二个p标签则会跳过vue编译，输出原始值，即。      v-cloak 指令    v-cloak指令的作用是当DOM树构建好完成页面的渲染后才执行，且其须要与css一起使用        v-once 指令    v-once指令的作用是只有当DOM树第一次渲染时起作用。  全局API  Vue.directive 自定义指令Vue.directive用于自定义全局的指令code:&lt;body&gt;&lt;div id="app"&gt;    &lt;p v-sq="color"&gt;&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;&lt;script&gt; Vue.directive('sq', function (el, binding, vnode) {      el.style.color = binding.value;  });var vm = new Vue({     el: "#app",     data: {         message: "前端工程师",         color: "red"     } });&lt;/script&gt;效果为p标签显示为红色，directive指令中的参数1（实例中的‘sq’）可以类比前篇文章内部指令的bind、on；参数2是一个回调函数，这个回调函数包含三个参数（el:即指令绑定的元素，实例中的el即为p元素；binding:包含指令的相关信息，可以通过console.log打印出来；vnode:即Vue编译生成的虚拟节点。虚拟节点即vue2.0中引入的新功能，用js对象替代DOM节点，改进直接操作DOM代价大引发的性能问题）。指令都是有生命周期的，同样地，自定义指令有5个生命周期，分别是：bind、inserted、update、componentUpdated、unbind  Vue.extend 构造器的延伸extend中文即延伸、扩展的意思。Vue.extend返回的即是一个“扩展实例构造器，并挂载到自定义元素上。code:&lt;body&gt;&lt;div id="app"&gt;   &lt;p class="gz"&gt;&lt;/p&gt;&lt;/div&gt;&lt;p class="gz"&gt;&lt;/p&gt;&lt;/body&gt;&lt;script&gt; var author=Vue.extend({     template:"&lt;a&gt;最终解释权归作者所有&lt;/a&gt;" }) new author().$mount('.gz');&lt;/script&gt;p标签会替换成template的值，但仅限于第一个p标签，因为只挂载了一次，实例中用的是class，将其换成id或标签同样适用。  Vue.set全局操作Vue.set的作用就是在构造器外部操作构造器内部的数据、属性或者方法。Vue.set存在的意义是弥补js语言的缺陷，因为Vue不能自动检测数组的两种变动：1.利用索引设置一个元素；2.修改数组的长度。用Vue.set更新数据时，依次传入三个参数①数组名称②索引③元素  Vue的生命周期Vue的生命周期即钩子函数。包括10共，按照顺序依次为：beforeCreate、created、beforeMount、mounted、beforeUpdate、updated、activated、deactivated、beforeDastroy、destroyed。详细的结构图可参考vue官网的图例介绍。  Template模板Template模板大致有三种写法：      类似前面讲到Vue.extend挂载时的template写法，但不是双引号包括内容，而是``（英文tab键）        利用template模板：。这个类似于Backbone中模板的写法        在script标签中写入模板内容，不过此时type为”x-tempate”.。这种写法可以将模板从外部导入。  另外需要强调一点、vue2.0中规定模板内容必须要要有一个根元素，一般地用div包裹住整个模板内容。  component组件component组件本质上就是自定义的标签。component组件分为全局化注册组件和局部注册组件，两者的不同之处在于使用的范围（类比于全局变量和局部变量）。  component组件的注册1.1全局化注册组件code:&lt;body&gt;&lt;div id="app"&gt;     &lt;plp&gt;&lt;/plp&gt;&lt;/div&gt;&lt;/body&gt;&lt;script&gt; Vue.component('plp', {       template: `&lt;a&gt;最终解释权归作者所有&lt;/a&gt;`   })  var vm = new Vue({     el: "#app"  })&lt;/script&gt;1.2局部注册组件code:&lt;body&gt;&lt;div id="app"&gt;     &lt;plp&gt;&lt;/plp&gt; &lt;/div&gt;&lt;/body&gt;&lt;script&gt; var vm = new Vue({       el: "#app",       components: {          'plp': {              template: `&lt;p&gt;最终解释权归作者所有&lt;/p&gt;`         }     } })&lt;/script&gt;  component组件的props属性component组件的props属性就是用来设置和获取标签上的属性值。code :&lt;body&gt;&lt;div id="app"&gt;     &lt;plp city="YiChang"&gt;&lt;/plp&gt;&lt;/div&gt;&lt;/body&gt;&lt;script&gt;var vm = new Vue({      el: "#app",      components: {         'plp': {             props:['city'],             template: `&lt;p&gt;I like &lt;/p&gt;`         }     } })&lt;/script&gt;首先component组件的props选项通过[‘city’]获取自定义标签该属性的值，然后在tepmlate中通过插值的方法设置属性值。需要注意的一点是自定义标签的属性取值尽量避免使用’-‘,如有必要使用小驼峰命名，可以联想到通过原生JS设置元素的颜色;elements.style.backgroundColor,而不是element.style.background-colorcomponent组件传值，使用:bind绑定即可。  component父子组件component父子组件就是在一个component组件里再写一个component组件。code: &lt;body&gt; &lt;div id="app"&gt;     &lt;plp :city="like"&gt;&lt;/plp&gt; &lt;/div&gt; &lt;/body&gt; &lt;script&gt;  var vm = new Vue({     el: "#app",     data: {         like: 'YiChang'     },     components: {         'plp': {             props: ['city'],             template: `&lt;p&gt;I like  &lt;ppl&gt;&lt;/ppl&gt;&lt;/p&gt;`,             components: {                 'ppl': {                     template: `&lt;span style="color:red"&gt;very much!&lt;/span&gt;`                 }             }         }     } })&lt;/script&gt;实例中涉及到component组件嵌套，在plp组件中嵌套组件ppl。当然实际开发中组件的嵌套远比这个复杂，必要的时候可以在构造器外部定义声明局部component组件。  component标签标签是Vue框架自定义的标签，它的用途就是可以动态绑定我们的组件，根据数据的不同更换不同的组件。]]></content>
+      <content type="text"><![CDATA[序言当前前端三大主流框架：Angular、React、Vue。React前段时间由于许可证风波，使得Vue的热度蹭蹭地上升。另外，Vue友好的API文档更是一大特色。Vue.js是一个非常轻量级的工具，与其说是一个MVVM框架，不如说是一个js库。Vue.js具有响应式编程和组件化的特点。响应式编程，即保持状态和视图的同步，状态也可以说是数据吧；而其组件化的理念与React则一样，即“一切都是组件，组件化思想方便于模块化的开发，是前端领域的一大趋势。  本文主要从VueJS 2.0的内部指令与全局API入门方面内部指令  v-if v-else v-show前两者一般配合使用，v-show的效果类似于v-if。     &lt;body&gt;     &lt;div id="app"&gt;     &lt;p v-if="flag"&gt;if&lt;/p&gt;     &lt;p v-else&gt;else&lt;/p&gt;      &lt;p v-show="flag"&gt;show&lt;/p&gt;     &lt;/div&gt;     &lt;/body&gt;     &lt;script&gt;     var vm= new Vue({       el:"#app",       data:{         flag:true       }     });     &lt;/script&gt;DOM结构中，三个p标签中的内容是否显示在页面中取决于flag的布尔值属性。当flag为true时，if和show都会显示，else也不会存在于DOM结构中。v-if和v-show的不同体现在：v-if是根据条件的值判断是否加载，可以减轻服务器的压力，但是缺点是当改变条件的值，页面又要加载一次；v-show则无论条件的值是否为true，都会加载（若条件为true，则display属性设置为其默认属性，反之，设置为none）  v-for 循环指令code :&lt;body&gt;&lt;div id="app"&gt;&lt;ol&gt;&lt;li v-for="b in b"&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;&lt;/body&gt;&lt;script&gt;var vm= new Vue({   el:"#app",     data:{     b:['a','b','c',1,2]    } });&lt;/script&gt;页面会显示5个li，插值的效果是li会显示与数组b一 一对应的元素，v-for有点类似于for in循环  v-text v-html 文本（html字符串）指令code:&lt;body&gt;&lt;div id="app"&gt;&lt;p v-text="msgText"&gt;&lt;/p&gt;  &lt;p v-html="msgHtml"&gt;&lt;/p&gt; &lt;/div&gt;&lt;/body&gt;&lt;script&gt; var vm= new Vue({     el:"#app",   data:{      msgText:"China",      msgHtml:"&lt;span&gt;中国&lt;/span&gt;"    }});&lt;/script&gt;可以联想到jquery的text()、html()。到现在，你会发现前面都是利用插值操作，即，这种做法会在一定程度上影响性能。  v-on 绑定事件监听器code: &lt;body&gt; &lt;div id="app"&gt; &lt;button v-on:click="Hi()"&gt;Button&lt;/button&gt; &lt;/div&gt; &lt;/body&gt; &lt;script&gt; var vm= new Vue({      el:"#app",      methods:{         Hi:function(){             alert("Hello World!")         }     } });&lt;/script&gt;同理，类比jquery的on()方法，绑定事件用的，实例中v-on:click可以简写为@click。click可以替换成鼠标的其他操作，如mouseout、mouseover等等。  v-bind 指令code:&lt;body&gt;&lt;div id="app"&gt;    &lt;a v-bind:style="{color:'red'}" :src="message"&gt;&lt;/a&gt;&lt;/div&gt;&lt;/body&gt;&lt;script&gt;var vm = new Vue({    el: "#app",    data: {        message: "前端工程师"    }});&lt;/script&gt;效果为a标签显示红色，且其src属性为vm.message。v-bind指令主要用于设置html标签的属性，其简写形式为 v-bind：——&gt;：  v-model 数据双向绑定指令code: &lt;body&gt; &lt;div id="app"&gt;    &lt;p&gt;&lt;/p&gt;    &lt;input type="text" v-model="message"&gt; &lt;/div&gt; &lt;/body&gt; &lt;script&gt;  var vm = new Vue({      el: "#app",      data: {          message: "前端工程师"      }  }); &lt;/script&gt;当input输入的值发生变化时，p标签包含的内容也会随之变化，且与前者保持一致。  v-pre 指令code:&lt;body&gt;&lt;div id="app"&gt;      &lt;p&gt;&lt;/p&gt;      &lt;p v-pre&gt;&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;&lt;script&gt;  var vm = new Vue({      el: "#app",      data: {          message: "前端工程师"      }  });&lt;/script&gt;第一个p标签输出“前端工程师”，而第二个p标签则会跳过vue编译，输出原始值，即。      v-cloak 指令    v-cloak指令的作用是当DOM树构建好完成页面的渲染后才执行，且其须要与css一起使用        v-once 指令    v-once指令的作用是只有当DOM树第一次渲染时起作用。  全局API  Vue.directive 自定义指令Vue.directive用于自定义全局的指令code:&lt;body&gt;&lt;div id="app"&gt;    &lt;p v-sq="color"&gt;&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;&lt;script&gt; Vue.directive('sq', function (el, binding, vnode) {      el.style.color = binding.value;  });var vm = new Vue({     el: "#app",     data: {         message: "前端工程师",         color: "red"     } });&lt;/script&gt;效果为p标签显示为红色，directive指令中的参数1（实例中的‘sq’）可以类比前篇文章内部指令的bind、on；参数2是一个回调函数，这个回调函数包含三个参数（el:即指令绑定的元素，实例中的el即为p元素；binding:包含指令的相关信息，可以通过console.log打印出来；vnode:即Vue编译生成的虚拟节点。虚拟节点即vue2.0中引入的新功能，用js对象替代DOM节点，改进直接操作DOM代价大引发的性能问题）。指令都是有生命周期的，同样地，自定义指令有5个生命周期，分别是：bind、inserted、update、componentUpdated、unbind  Vue.extend 构造器的延伸extend中文即延伸、扩展的意思。Vue.extend返回的即是一个“扩展实例构造器，并挂载到自定义元素上。code:&lt;body&gt;&lt;div id="app"&gt;   &lt;p class="gz"&gt;&lt;/p&gt;&lt;/div&gt;&lt;p class="gz"&gt;&lt;/p&gt;&lt;/body&gt;&lt;script&gt; var author=Vue.extend({     template:"&lt;a&gt;最终解释权归作者所有&lt;/a&gt;" }) new author().$mount('.gz');&lt;/script&gt;p标签会替换成template的值，但仅限于第一个p标签，因为只挂载了一次，实例中用的是class，将其换成id或标签同样适用。  Vue.set全局操作Vue.set的作用就是在构造器外部操作构造器内部的数据、属性或者方法。Vue.set存在的意义是弥补js语言的缺陷，因为Vue不能自动检测数组的两种变动：1.利用索引设置一个元素；2.修改数组的长度。用Vue.set更新数据时，依次传入三个参数①数组名称②索引③元素  Vue的生命周期Vue的生命周期即钩子函数。包括10共，按照顺序依次为：beforeCreate、created、beforeMount、mounted、beforeUpdate、updated、activated、deactivated、beforeDastroy、destroyed。详细的结构图可参考vue官网的图例介绍。  Template模板Template模板大致有三种写法：      类似前面讲到Vue.extend挂载时的template写法，但不是双引号包括内容，而是``（英文tab键）        利用template模板：。这个类似于Backbone中模板的写法        在script标签中写入模板内容，不过此时type为”x-tempate”.。这种写法可以将模板从外部导入。  另外需要强调一点、vue2.0中规定模板内容必须要要有一个根元素，一般地用div包裹住整个模板内容。  component组件component组件本质上就是自定义的标签。component组件分为全局化注册组件和局部注册组件，两者的不同之处在于使用的范围（类比于全局变量和局部变量）。  component组件的注册1.1全局化注册组件code:&lt;body&gt;&lt;div id="app"&gt;     &lt;plp&gt;&lt;/plp&gt;&lt;/div&gt;&lt;/body&gt;&lt;script&gt; Vue.component('plp', {       template: `&lt;a&gt;最终解释权归作者所有&lt;/a&gt;`   })  var vm = new Vue({     el: "#app"  })&lt;/script&gt;1.2局部注册组件code:&lt;body&gt;&lt;div id="app"&gt;     &lt;plp&gt;&lt;/plp&gt; &lt;/div&gt;&lt;/body&gt;&lt;script&gt; var vm = new Vue({       el: "#app",       components: {          'plp': {              template: `&lt;p&gt;最终解释权归作者所有&lt;/p&gt;`         }     } })&lt;/script&gt;  component组件的props属性component组件的props属性就是用来设置和获取标签上的属性值。code :&lt;body&gt;&lt;div id="app"&gt;     &lt;plp city="YiChang"&gt;&lt;/plp&gt;&lt;/div&gt;&lt;/body&gt;&lt;script&gt;var vm = new Vue({      el: "#app",      components: {         'plp': {             props:['city'],             template: `&lt;p&gt;I like &lt;/p&gt;`         }     } })&lt;/script&gt;首先component组件的props选项通过[‘city’]获取自定义标签该属性的值，然后在tepmlate中通过插值的方法设置属性值。需要注意的一点是自定义标签的属性取值尽量避免使用’-‘,如有必要使用小驼峰命名，可以联想到通过原生JS设置元素的颜色;elements.style.backgroundColor,而不是element.style.background-colorcomponent组件传值，使用:bind绑定即可。  component父子组件component父子组件就是在一个component组件里再写一个component组件。code: &lt;body&gt; &lt;div id="app"&gt;     &lt;plp :city="like"&gt;&lt;/plp&gt; &lt;/div&gt; &lt;/body&gt; &lt;script&gt;  var vm = new Vue({     el: "#app",     data: {         like: 'YiChang'     },     components: {         'plp': {             props: ['city'],             template: `&lt;p&gt;I like  &lt;ppl&gt;&lt;/ppl&gt;&lt;/p&gt;`,             components: {                 'ppl': {                     template: `&lt;span style="color:red"&gt;very much!&lt;/span&gt;`                 }             }         }     } })&lt;/script&gt;实例中涉及到component组件嵌套，在plp组件中嵌套组件ppl。当然实际开发中组件的嵌套远比这个复杂，必要的时候可以在构造器外部定义声明局部component组件。  component标签标签是Vue框架自定义的标签，它的用途就是可以动态绑定我们的组件，根据数据的不同更换不同的组件。]]></content>
       <categories>
         
           <category> vue </category>
         
       </categories>
       <tags>
-        
-          <tag> 学习笔记 </tag>
         
           <tag> VUE </tag>
         
@@ -1041,7 +936,7 @@
     <entry>
       <title><![CDATA[在服务端c#如何利用npoi构建excel模板]]></title>
       <url>/c%23/2017/08/09/%E5%9C%A8%E6%9C%8D%E5%8A%A1%E7%AB%AFC-%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8NPOI%E6%9E%84%E5%BB%BAExcel%E6%A8%A1%E6%9D%BF/</url>
-      <content type="text"><![CDATA[目前我只接触过两种模板导出的方式：      C#利用NPOI接口制作Excel模板，在服务端用数据渲染模板        在前端利用前人搭建好的框架，利用office编写xml制作模板，在客户端进行数据的渲染，导出的格式是word。  在制作报表时两种方式都可以满足的基本需求，但excel模板更加强大，因为xml模板的布局大体在事先就要确定好，扩展性不高，而excel模板就可以根据数据的特点进行自定义布局，拓展性更强。下面介绍如何在服务端利用NPOI构建excel模板。简单来讲，NPOI是一个库，它可以处理多种文件格式如xls、xlsx、doc、ppt、vsd等。除了制作excel模板，也可以读取excel中的数据。本文具体介绍制作excel模板。添加引用NPOI后，在文件的头部引入如下几个接口  using NPOI.HSSF.UserModel;  using NPOI.HSSF;  using NPOI.SS.UserModel  using NPOI.SS.UtilHSSF使用于2007之前的xls版本，XSSF适用于2007及其之后的xlsx版本，它们是excel/doc格式读写库。NPOI.SS是Excel公用接口及Excel公式计算引擎。更多具体的功能以及接口可以自行百度。具体实现(code)如下：     public List&lt;string&gt; GetExcel(string year, string month, string type, out string statusCode, out string errMsg){        statusCode = "0000";        errMsg = "";        List&lt;string&gt; response = new List&lt;string&gt;();        string strFilePath = "";        string strGuid = Guid.NewGuid().ToString();        string FilePath = "\\BufFile\\OutFiles\\DownLoadFiles\\ExportExcel\\" + strGuid;            //构建文件缓存目录        strFilePath = System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.AppDomain.CurrentDomain.BaseDirectory).FullName).FullName + FilePath;        if (!System.IO.Directory.Exists(strFilePath))        {            System.IO.Directory.CreateDirectory(strFilePath);        }        //文件命名        string strFileName = strFilePath + "\\" + "XXXXXX.xls";        string ret = FilePath + "\\" + "XXXXXX.xls";        string uploadPath = System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.AppDomain.CurrentDomain.BaseDirectory).FullName).FullName + "\\BufFile\\OutFiles\\UploadFiles\\";        List&lt;CompletionRateModel&gt; data = GetCompletionRate(year, month, out statusCode, out errMsg);        try        {   //创建工作薄            HSSFWorkbook hssfWorkBook = new HSSFWorkbook();                //编辑文件信息，如文件所属公司、作者、创建日期等            DocumentSummaryInformation dsi = PropertySetFactory.CreateDocumentSummaryInformation();            dsi.Company = "ZondyCyber";            SummaryInformation si = PropertySetFactory.CreateSummaryInformation();            si.Author = "ZondyCyber";            si.LastAuthor = "ZondyCyber";            si.CreateDateTime = DateTime.Now;            hssfWorkBook.DocumentSummaryInformation = dsi;            hssfWorkBook.SummaryInformation = si;                //创建名为YYYYYY的表sheet            HSSFSheet hssfSheet = hssfWorkBook.CreateSheet("YYYYYY") as HSSFSheet;            //设置列宽            for (int c = 0; c &lt; 7; c++)            {                hssfSheet.SetColumnWidth(c, 12 * 266);            }            //设置列头的单元格样式            HSSFCellStyle cellStyle = hssfWorkBook.CreateCellStyle() as HSSFCellStyle;            HSSFFont cellFont = hssfWorkBook.CreateFont() as HSSFFont;            cellFont.Boldweight = Convert.ToInt16(FontBoldWeight.Bold);            cellFont.FontName = "宋体";            cellFont.FontHeightInPoints = 12;            cellStyle.Alignment = HorizontalAlignment.Center;            cellStyle.VerticalAlignment = VerticalAlignment.Center;            cellStyle.WrapText = true;            cellStyle.SetFont(cellFont);            cellStyle.BorderTop = cellStyle.BorderRight = cellStyle.BorderBottom = cellStyle.BorderLeft = BorderStyle.Thin;//BorderStyle.None            //左对齐样式            HSSFCellStyle leftCellStyle = hssfWorkBook.CreateCellStyle() as HSSFCellStyle;            leftCellStyle.CloneStyleFrom(cellStyle);            leftCellStyle.Alignment = HorizontalAlignment.Left;            //居中填充样式            HSSFCellStyle fillCellStyle = hssfWorkBook.CreateCellStyle() as HSSFCellStyle;            fillCellStyle.CloneStyleFrom(cellStyle);            fillCellStyle.FillForegroundColor = NPOI.HSSF.Util.HSSFColor.Grey25Percent.Index;            //fillCellStyle.FillPattern = FillPattern.Diamonds;            //fillCellStyle.FillPattern = FillPattern.FineDots;            fillCellStyle.FillPattern = FillPattern.LeastDots;            fillCellStyle.FillBackgroundColor = NPOI.HSSF.Util.HSSFColor.Grey25Percent.Index;            //居中填充样式(无边框)            HSSFCellStyle fillCellStyle2 = hssfWorkBook.CreateCellStyle() as HSSFCellStyle;            fillCellStyle2.CloneStyleFrom(fillCellStyle);            //fillCellStyle2.FillPattern = FillPattern.NoFill;            fillCellStyle2.BorderTop = fillCellStyle2.BorderRight = fillCellStyle2.BorderBottom = fillCellStyle2.BorderLeft = BorderStyle.None;//BorderStyle.None            //值的样式            HSSFCellStyle valueStyle = hssfWorkBook.CreateCellStyle() as HSSFCellStyle;            HSSFFont valueFont = hssfWorkBook.CreateFont() as HSSFFont;            valueFont.FontName = "宋体";            valueFont.FontHeightInPoints = 10;            valueStyle.BorderTop = valueStyle.BorderRight = valueStyle.BorderBottom = valueStyle.BorderLeft = BorderStyle.Thin;//BorderStyle.None            valueStyle.WrapText = true;            valueStyle.Alignment = HorizontalAlignment.Center;            valueStyle.VerticalAlignment = VerticalAlignment.Center;            valueStyle.SetFont(valueFont);            //值的样式（无边框）            HSSFCellStyle valueStyle2 = hssfWorkBook.CreateCellStyle() as HSSFCellStyle;            valueStyle2.CloneStyleFrom(valueStyle);            valueStyle2.BorderTop = valueStyle2.BorderRight = valueStyle2.BorderBottom = valueStyle2.BorderLeft = BorderStyle.None;//BorderStyle.None            //开始构建表格            int rowIndex = 0;//记录用到第几行            //构建表题            String Title = "XXXXXX(" + type + ")统计     " + year + "年" + month + "月";            //创建表格的第一行的第一个单元格                hssfSheet.CreateRow(0).CreateCell(0).CellStyle = fillCellStyle;                //获取表格的第一行的第一个单元格，并为其赋值            hssfSheet.GetRow(0).GetCell(0).SetCellValue(Title);            //合并单元格                /*                * cellRangeAddress可以合并行或列，第一个参数是起始行号，第二个参数是终止行号，第三个参数是起始列号，第三个参数是终止列号                */            CellRangeAddress region = new CellRangeAddress(rowIndex, rowIndex + 2, 0, 6);            hssfSheet.AddMergedRegion(region);            hssfSheet.SetEnclosedBorderOfRegion(region, BorderStyle.Thin, NPOI.HSSF.Util.HSSFColor.Black.Index);            rowIndex = rowIndex + 3; //3            String Type = "部门";            //构建表头            hssfSheet.CreateRow(rowIndex).CreateCell(0).CellStyle = valueStyle;            hssfSheet.GetRow(rowIndex).GetCell(0).SetCellValue("序号");            /**                ** 构建表格的具体细节省略，无非是合并单元格，填充数据                **/            //表格构建完毕            FileStream file = new FileStream(strFileName, FileMode.Create);            hssfWorkBook.Write(file);            file.Close();            response.Add(ret);        }]]></content>
+      <content type="text"><![CDATA[目前我只接触过两种模板导出的方式：      C#利用NPOI接口制作Excel模板，在服务端用数据渲染模板        在前端利用前人搭建好的框架，利用office编写xml制作模板，在客户端进行数据的渲染，导出的格式是word。  在制作报表时两种方式都可以满足的基本需求，但excel模板更加强大，因为xml模板的布局大体在事先就要确定好，扩展性不高，而excel模板就可以根据数据的特点进行自定义布局，拓展性更强。下面介绍如何在服务端利用NPOI构建excel模板。简单来讲，NPOI是一个库，它可以处理多种文件格式如xls、xlsx、doc、ppt、vsd等。除了制作excel模板，也可以读取excel中的数据。本文具体介绍制作excel模板。添加引用NPOI后，在文件的头部引入如下几个接口using NPOI. HSSF. UserModel; using NPOI. HSSF; using NPOI. SS. UserModelusing NPOI. SS. UtilHSSF使用于2007之前的xls版本，XSSF适用于2007及其之后的xlsx版本，它们是excel/doc格式读写库。NPOI. SS是Excel公用接口及Excel公式计算引擎。更多具体的功能以及接口可以自行百度。具体实现(code)如下：public List&lt;string&gt; GetExcel(string year, string month, string type, out string statusCode, out string errMsg){    statusCode = "0000";    errMsg = "";    List&lt;string&gt; response = new List&lt;string&gt;();    string strFilePath = "";    string strGuid = Guid.NewGuid().ToString();    string FilePath = "\\BufFile\\OutFiles\\DownLoadFiles\\ExportExcel\\" + strGuid;                //构建文件缓存目录            strFilePath = System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.AppDomain.CurrentDomain.BaseDirectory).FullName).FullName + FilePath;            if (!System.IO.Directory.Exists(strFilePath))            {                System.IO.Directory.CreateDirectory(strFilePath);            }            //文件命名            string strFileName = strFilePath + "\\" + "XXXXXX.xls";            string ret = FilePath + "\\" + "XXXXXX.xls";            string uploadPath = System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.AppDomain.CurrentDomain.BaseDirectory).FullName).FullName + "\\BufFile\\OutFiles\\UploadFiles\\";            List&lt;CompletionRateModel&gt; data = GetCompletionRate(year, month, out statusCode, out errMsg);            try            {   //创建工作薄                HSSFWorkbook hssfWorkBook = new HSSFWorkbook();                    //编辑文件信息，如文件所属公司、作者、创建日期等                DocumentSummaryInformation dsi = PropertySetFactory.CreateDocumentSummaryInformation();                dsi.Company = "ZondyCyber";                SummaryInformation si = PropertySetFactory.CreateSummaryInformation();                si.Author = "ZondyCyber";                si.LastAuthor = "ZondyCyber";                si.CreateDateTime = DateTime.Now;                hssfWorkBook.DocumentSummaryInformation = dsi;                hssfWorkBook.SummaryInformation = si;                    //创建名为YYYYYY的表sheet                HSSFSheet hssfSheet = hssfWorkBook.CreateSheet("YYYYYY") as HSSFSheet;                //设置列宽                for (int c = 0; c &lt; 7; c++)                {                    hssfSheet.SetColumnWidth(c, 12 * 266);                }                //设置列头的单元格样式                HSSFCellStyle cellStyle = hssfWorkBook.CreateCellStyle() as HSSFCellStyle;                HSSFFont cellFont = hssfWorkBook.CreateFont() as HSSFFont;                cellFont.Boldweight = Convert.ToInt16(FontBoldWeight.Bold);                cellFont.FontName = "宋体";                cellFont.FontHeightInPoints = 12;                cellStyle.Alignment = HorizontalAlignment.Center;                cellStyle.VerticalAlignment = VerticalAlignment.Center;                cellStyle.WrapText = true;                cellStyle.SetFont(cellFont);                cellStyle.BorderTop = cellStyle.BorderRight = cellStyle.BorderBottom = cellStyle.BorderLeft = BorderStyle.Thin;//BorderStyle.None                //左对齐样式                HSSFCellStyle leftCellStyle = hssfWorkBook.CreateCellStyle() as HSSFCellStyle;                leftCellStyle.CloneStyleFrom(cellStyle);                leftCellStyle.Alignment = HorizontalAlignment.Left;                //居中填充样式                HSSFCellStyle fillCellStyle = hssfWorkBook.CreateCellStyle() as HSSFCellStyle;                fillCellStyle.CloneStyleFrom(cellStyle);                fillCellStyle.FillForegroundColor = NPOI.HSSF.Util.HSSFColor.Grey25Percent.Index;                //fillCellStyle.FillPattern = FillPattern.Diamonds;                //fillCellStyle.FillPattern = FillPattern.FineDots;                fillCellStyle.FillPattern = FillPattern.LeastDots;                fillCellStyle.FillBackgroundColor = NPOI.HSSF.Util.HSSFColor.Grey25Percent.Index;                //居中填充样式(无边框)                HSSFCellStyle fillCellStyle2 = hssfWorkBook.CreateCellStyle() as HSSFCellStyle;                fillCellStyle2.CloneStyleFrom(fillCellStyle);                //fillCellStyle2.FillPattern = FillPattern.NoFill;                fillCellStyle2.BorderTop = fillCellStyle2.BorderRight = fillCellStyle2.BorderBottom = fillCellStyle2.BorderLeft = BorderStyle.None;//BorderStyle.None                //值的样式                HSSFCellStyle valueStyle = hssfWorkBook.CreateCellStyle() as HSSFCellStyle;                HSSFFont valueFont = hssfWorkBook.CreateFont() as HSSFFont;                valueFont.FontName = "宋体";                valueFont.FontHeightInPoints = 10;                valueStyle.BorderTop = valueStyle.BorderRight = valueStyle.BorderBottom = valueStyle.BorderLeft = BorderStyle.Thin;//BorderStyle.None                valueStyle.WrapText = true;                valueStyle.Alignment = HorizontalAlignment.Center;                valueStyle.VerticalAlignment = VerticalAlignment.Center;                valueStyle.SetFont(valueFont);                //值的样式（无边框）                HSSFCellStyle valueStyle2 = hssfWorkBook.CreateCellStyle() as HSSFCellStyle;                valueStyle2.CloneStyleFrom(valueStyle);                valueStyle2.BorderTop = valueStyle2.BorderRight = valueStyle2.BorderBottom = valueStyle2.BorderLeft = BorderStyle.None;//BorderStyle.None                //开始构建表格                int rowIndex = 0;//记录用到第几行                //构建表题                String Title = "XXXXXX(" + type + ")统计     " + year + "年" + month + "月";                //创建表格的第一行的第一个单元格                    hssfSheet.CreateRow(0).CreateCell(0).CellStyle = fillCellStyle;                    //获取表格的第一行的第一个单元格，并为其赋值                hssfSheet.GetRow(0).GetCell(0).SetCellValue(Title);                //合并单元格                    /*                    * cellRangeAddress可以合并行或列，第一个参数是起始行号，第二个参数是终止行号，第三个参数是起始列号，第三个参数是终止列号                    */                CellRangeAddress region = new CellRangeAddress(rowIndex, rowIndex + 2, 0, 6);                hssfSheet.AddMergedRegion(region);                hssfSheet.SetEnclosedBorderOfRegion(region, BorderStyle.Thin, NPOI.HSSF.Util.HSSFColor.Black.Index);                rowIndex = rowIndex + 3; //3                String Type = "部门";                //构建表头                hssfSheet.CreateRow(rowIndex).CreateCell(0).CellStyle = valueStyle;                hssfSheet.GetRow(rowIndex).GetCell(0).SetCellValue("序号");                /**                    ** 构建表格的具体细节省略，无非是合并单元格，填充数据                    **/                //表格构建完毕                FileStream file = new FileStream(strFileName, FileMode.Create);                hssfWorkBook.Write(file);                file.Close();                response.Add(ret);            }]]></content>
       <categories>
         
           <category> C# </category>
@@ -1066,8 +961,6 @@
       </categories>
       <tags>
         
-          <tag> 学习笔记 </tag>
-        
       </tags>
       <tags></tags>
     </entry>
@@ -1075,7 +968,7 @@
     <entry>
       <title><![CDATA[Js操作数组和字符串的那些事儿（方法）]]></title>
       <url>/javascript/2017/04/21/JS%E6%93%8D%E4%BD%9C%E6%95%B0%E7%BB%84%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF-%E6%96%B9%E6%B3%95/</url>
-      <content type="text"><![CDATA[数组  方法及说明  concat(arr1,arr2,…)：  连接数组indexOf(value)：  返回数组中value的第一个索引  join(separator)：  将数组中所有的元素连接由separator分割的字符串，默认为逗号  lastIndexOf(value)：  返回数组中value的最后一个索引  pop()：  删除数组最后一个元素，并将其返回  push()：  将参数添加至数组的末尾，并返回数组的新长度  reverse()：  反转数组中所有元素的顺序  shift()：  删除数组的第一个元素，并将其返回  slice(start,end)：  返回start和end索引之间的元素  sort()：  排序,注意其参数可以为函数用来规定排序规则  splice(index,count,item1,item2,..)：  在index指定的索引处，删除count个条目，然后在index处插入item等  toString()：  返回数组的字符串形式  unshift()：  将新元素添加到数组的开头，并返回数组的新长度  valueOf()：  返回一个数组对象的原始值  示例字符串  方法及说明  charAt(index):  返回指定索引处的字符串  charCodeAt(index):  返回指定索引处的字符的Unicode的值  concat(str1,str2,…):  连接多个字符串，返回连接后的字符串的副本  fromCharCode():  将Unicode值转换成实际的字符串  indexOf(str):  返回str在父串中第一次出现的位置，若没有则返回-1  lastIndexOf(str):  返回str在父串中最后一次出现的位置，若没有则返回-1  match(regex):  搜索字符串，并返回正则表达式的所有匹配  replace(str1,str2):  str1也可以为正则表达式，用str2替换str1  search(regex):  基于正则表达式搜索字符串，并返回第一个匹配的位置  slice(start,end)：  返回字符索引在start和end（不含）之间的子串  split(sep，limit)：  将字符串分割为字符数组，limit为从头开始执行分割的最大数量  substr(start，length)：  从字符索引start的位置开始，返回长度为length的子串  substring(from,to)：  返回字符索引在from和to（不含）之间的子串  toLowerCase()：  将字符串转换为小写  toUpperCase()：  将字符串转换为大写  valueOf()：  返回原始字符串值  示例]]></content>
+      <content type="text"><![CDATA[数组  方法及说明  concat(arr1, arr2, …)：  连接数组indexOf(value)：  返回数组中value的第一个索引  join(separator)：  将数组中所有的元素连接由separator分割的字符串，默认为逗号  lastIndexOf(value)：  返回数组中value的最后一个索引  pop()：  删除数组最后一个元素，并将其返回  push()：  将参数添加至数组的末尾，并返回数组的新长度  reverse()：  反转数组中所有元素的顺序  shift()：  删除数组的第一个元素，并将其返回  slice(start, end)：  返回start和end索引之间的元素  sort()：  排序, 注意其参数可以为函数用来规定排序规则  splice(index, count, item1, item2, ..)：  在index指定的索引处，删除count个条目，然后在index处插入item等  toString()：  返回数组的字符串形式  unshift()：  将新元素添加到数组的开头，并返回数组的新长度  valueOf()：  返回一个数组对象的原始值  示例字符串  方法及说明  charAt(index):  返回指定索引处的字符串  charCodeAt(index):  返回指定索引处的字符的Unicode的值  concat(str1, str2, …):  连接多个字符串，返回连接后的字符串的副本  fromCharCode():  将Unicode值转换成实际的字符串  indexOf(str):  返回str在父串中第一次出现的位置，若没有则返回-1  lastIndexOf(str):  返回str在父串中最后一次出现的位置，若没有则返回-1  match(regex):  搜索字符串，并返回正则表达式的所有匹配  replace(str1, str2):  str1也可以为正则表达式，用str2替换str1  search(regex):  基于正则表达式搜索字符串，并返回第一个匹配的位置  slice(start, end)：  返回字符索引在start和end（不含）之间的子串  split(sep，limit)：  将字符串分割为字符数组，limit为从头开始执行分割的最大数量  substr(start，length)：  从字符索引start的位置开始，返回长度为length的子串  substring(from, to)：  返回字符索引在from和to（不含）之间的子串  toLowerCase()：  将字符串转换为小写  toUpperCase()：  将字符串转换为大写  valueOf()：  返回原始字符串值  示例]]></content>
       <categories>
         
           <category> JavaScript </category>
@@ -1109,7 +1002,7 @@
     <entry>
       <title><![CDATA[Backbonejs中父子view之间的值传递]]></title>
       <url>/backbone/2017/04/06/BackboneJS%E4%B8%AD%E7%88%B6%E5%AD%90View%E4%B9%8B%E9%97%B4%E7%9A%84%E5%80%BC%E4%BC%A0%E9%80%92/</url>
-      <content type="text"><![CDATA[Backbone中，使用最多的莫过于在 view 中进行操作，如模板的渲染以及事件函数的定义。为了提高代码的可维护性，一般地我们会写多个视图( view )，将界面按照功能的不同进行模块化划分，模块与 view 一一对应。首先，我们会定义一个父 view ，在view中控制不同子 view 的渲染，子 view 之间尽量不产生联系。这样，代码之间的耦合度会降低很多，模块的功能明确化，同时降低了开发的难度。最近在项目中遇到父子view传值问题，学习到了一个知识点，比较简单易懂。主要想分享两个内容：父子view是如何传值的和它们之间传值要注意什么。以我实际的项目为例进行说明。  如何传值          项目中利用requireJs按需加载js文件，大大地节约了资源。首先在 global.js 中申明子 view 的路径，方便在父 view 中进行引用。requireJs是通过 define 进行函数的定义以及相关依赖模块的引入，这里不必细说，假设参数定义为 childrenView 。在父 view 中new一个_childrenView_ 对象，这样我们通过自定义事件进行操作就行。此时new的对象包含_view_的_render_方法等。如果在_new childrenView_ (参数1)时，参数1可以为空，此时父子 view 之间没有值传递；当参数2存在时，父子 view 存在值传递，参数1是父 view 传递给子 view 的。在子 view 的 initialize (参数2)中可以接收参数1，即参数1和参数2是对等的。 此外，因为是在父 view 中new的子 view，可以在父 view 可以对子 view 进行操作。        细节问题          通过一我们可以很方便在子 view 中接收父 view 的数据，但是这里有个细节问题。我曾在这里困惑好久。参数最好不要传父 view，即父 view_的this或者 _view 默认的事件函数等。因为这样做，参数会将子_view_默认的事件函数给覆盖，导致子 view 相同的事件函数失效。简单来讲，如果父子 view 都存在的，比如 render ，events 或者其他定义相同的值或者是自定义函数不能作为参数传递      ]]></content>
+      <content type="text"><![CDATA[Backbone中，使用最多的莫过于在 view 中进行操作，如模板的渲染以及事件函数的定义。为了提高代码的可维护性，一般地我们会写多个视图( view )，将界面按照功能的不同进行模块化划分，模块与 view 一一对应。首先，我们会定义一个父 view ，在view中控制不同子 view 的渲染，子 view 之间尽量不产生联系。这样，代码之间的耦合度会降低很多，模块的功能明确化，同时降低了开发的难度。最近在项目中遇到父子view传值问题，学习到了一个知识点，比较简单易懂。主要想分享两个内容：父子view是如何传值的和它们之间传值要注意什么。以我实际的项目为例进行说明。  如何传值  项目中利用requireJs按需加载js文件，大大地节约了资源。首先在 global.js 中申明子 view 的路径，方便在父 view 中进行引用。requireJs是通过 define 进行函数的定义以及相关依赖模块的引入，这里不必细说，假设参数定义为 childrenView 。在父 view 中new一个_childrenView_ 对象，这样我们通过自定义事件进行操作就行。此时new的对象包含_view_的_render_方法等。如果在_new childrenView_ (参数1)时，参数1可以为空，此时父子 view 之间没有值传递；当参数2存在时，父子 view 存在值传递，参数1是父 view 传递给子 view 的。在子 view 的 initialize (参数2)中可以接收参数1，即参数1和参数2是对等的。 此外，因为是在父 view 中new的子 view，可以在父 view 可以对子 view 进行操作。  细节问题  通过一我们可以很方便在子 view 中接收父 view 的数据，但是这里有个细节问题。我曾在这里困惑好久。参数最好不要传父 view，即父 view_的this或者 _view 默认的事件函数等。因为这样做，参数会将子_view_默认的事件函数给覆盖，导致子 view 相同的事件函数失效。简单来讲，如果父子 view 都存在的，比如 render ，events 或者其他定义相同的值或者是自定义函数不能作为参数传递]]></content>
       <categories>
         
           <category> Backbone </category>
@@ -1126,7 +1019,7 @@
     <entry>
       <title><![CDATA[使用node.js开发的一个小技巧]]></title>
       <url>/javascript/2017/03/29/%E4%BD%BF%E7%94%A8Node.js%E5%BC%80%E5%8F%91%E7%9A%84%E4%B8%80%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7/</url>
-      <content type="text"><![CDATA[Node.js作为可以在服务器端运行的一门语言，其处理长连接、多请求的优势受到各大编程爱好者的追捧。但是在开发调试方面却极为不方便，因为每次改动代码后，都需要终止当前进程，重启服务器。而 supervisor 可以帮助我们解决这一问题,它会监视开发人员对代码的改动，并自动重启node.js.通过cmd窗口，可以很容易如下方式进行安装：npm  install   –g   supervisor安装成功后的提示如下]]></content>
+      <content type="text"><![CDATA[Node.js作为可以在服务器端运行的一门语言，其处理长连接、多请求的优势受到各大编程爱好者的追捧。但是在开发调试方面却极为不方便，因为每次改动代码后，都需要终止当前进程，重启服务器。而 supervisor 可以帮助我们解决这一问题,它会监视开发人员对代码的改动，并自动重启node.js.通过cmd窗口，可以很容易如下方式进行安装：    npm  install   –g   supervisor安装成功后的提示如下]]></content>
       <categories>
         
           <category> JavaScript </category>
@@ -1143,7 +1036,7 @@
     <entry>
       <title><![CDATA[Backbonejs中的where和findwhere]]></title>
       <url>/backbone/2017/03/20/BackboneJS%E4%B8%AD%E7%9A%84where%E5%92%8CfindWhere/</url>
-      <content type="text"><![CDATA[BackboneJS算是前端MVC框架的鼻祖，虽已过时，但其思想还是值得研究学习。where 和 findWhere 是该框架中经常用到的两个方法，下面做下笔记予以说明：  where 返回的是一个数组，取值时需要指定 model (模型)的索引号，适用于查找具有相同属性值的多个 model  findWhere 返回的是匹配到的第一个 model ，适用于查找 collection 中某一属性值唯一的集合示例：代码(function($){  var stuModel=Backbone.Model.extend({defaults:{name:"",age:""}});  var collection=Backbone.Collection.extend({model:stuModel});  var stu=[{name:"lihua",age:18},{name:"wangming",age:19},{name:"sunwei",age:18}]  var s1=Stu.where({age:18});  var s2=Stu.findWhere({age:18});  conosle.log(s1);  console.log(s2)})(jQuery);输出]]></content>
+      <content type="text"><![CDATA[BackboneJS算是前端MVC框架的鼻祖，虽已过时，但其思想还是值得研究学习。where 和 findWhere 是该框架中经常用到的两个方法，下面做下笔记予以说明：  where 返回的是一个数组，取值时需要指定 model (模型)的索引号，适用于查找具有相同属性值的多个 model  findWhere 返回的是匹配到的第一个 model ，适用于查找 collection 中某一属性值唯一的集合示例：    (function($) {        var stuModel = Backbone.Model.extend({            defaults: {                name: "",                age: ""            }        });        var collection = Backbone.Collection.extend({            model: stuModel        });        var stu = [{            name: "lihua",            age: 18        }, {            name: "wangming",            age: 19        }, {            name: "sunwei",            age: 18        }]        var s1 = Stu.where({            age: 18        });        var s2 = Stu.findWhere({            age: 18        });        conosle.log(s1);        console.log(s2)    })(jQuery);输出]]></content>
       <categories>
         
           <category> Backbone </category>
@@ -1160,7 +1053,7 @@
     <entry>
       <title><![CDATA[谈谈backbonejs中的el]]></title>
       <url>/backbone/2017/03/18/%E8%B0%88%E8%B0%88BackboneJS%E4%B8%AD%E7%9A%84el/</url>
-      <content type="text"><![CDATA[最近开始接触Backbone.js,这个曾经非常优秀的一款MVC前端框架，在学习的过程中，遇到下图的这样一个问题代码如下： searchView=Backbone.View.extend({         initialzie:function(){          this.render()      },      render:function(){          var template=_.template($("#search_template").html(),{});          this.el.html(template);      }   })只是view了一个实例，然后在 initalize 中调用了 render 方法，再通过 jquery 获取到的内容作为模板 template ，将此模板填充到 view 中绑定 el 属性的容器上，然而浏览器显示 this.el.html 不是一个函数.试着通过 typeof  this.el ,输出的是 object ，所以这个 el 是个对象，但不是一个 jquery 对象。后来查阅官方文档看到有个 el ，它是视图元素的缓存 jQuery 对像，主要是简单的引用；而el属性则是所有的视图都拥有的一个 DOM 元素，所以二者的用法还是有区别的。 el 属性可以指定容器与哪个元素绑定，而绑定过后，视图就通过 el 来进行接下来的操作。当将 this.el.html 替换成 this.$el.html 时，出现如期效果，无报错，如下图]]></content>
+      <content type="text"><![CDATA[最近开始接触Backbone.js, 这个曾经非常优秀的一款MVC前端框架，在学习的过程中，遇到下图的这样一个问题代码如下：     searchView = Backbone.View.extend({         initialzie: function() {             this.render()         },         render: function() {             var template = _.template($("#search_template").html(), {});             this.el.html(template);         }     })只是view了一个实例，然后在 initalize 中调用了 render 方法，再通过 jquery 获取到的内容作为模板 template ，将此模板填充到 view 中绑定 el 属性的容器上，然而浏览器显示 this.el.html 不是一个函数. 试着通过 typeof  this.el , 输出的是 object ，所以这个 el 是个对象，但不是一个 jquery 对象。后来查阅官方文档看到有个 el ，它是视图元素的缓存 jQuery 对像，主要是简单的引用；而el属性则是所有的视图都拥有的一个 DOM 元素，所以二者的用法还是有区别的。 el 属性可以指定容器与哪个元素绑定，而绑定过后，视图就通过 el 来进行接下来的操作。当将 this.el.html替换成 this.$el.html 时，出现如期效果，无报错，如下图]]></content>
       <categories>
         
           <category> Backbone </category>
@@ -1177,7 +1070,7 @@
     <entry>
       <title><![CDATA[模拟机械时钟]]></title>
       <url>/javascript/2017/03/13/%E6%A8%A1%E6%8B%9F%E6%9C%BA%E6%A2%B0%E6%97%B6%E9%92%9F/</url>
-      <content type="text"><![CDATA[Javascript提供了一个对象 Date(),通过这个内置的对象，可以很容易地获取当前系统或设备的时间。此外还可以利用它的许多方法获取到具体的年月日时分秒，甚至是时间累计的字符串，时间戳是距离1970年1月1日00:00:00换算。那么我们如何利用这点模拟机械时钟转动呢？主要分为以下4个步骤：      首先，利用html5的canvas画钟盘，需要画三个半径不等的圆，分别为r1 5px, r2 145px 150px。或许你会疑惑，一个钟盘顶多两个圆足够，一个圆心，一个圆边，另一个圆有何用？山人自有妙计，且往下看。接下来，我们画指针，我们有两种常规的方法，一是用hr，另一个是用div，我们采用第二种，因为hr存在兼容性问题，在不同的浏览器中，上下边距有差异。此时，钟盘和指针都有了，当我们标注上数字，机械钟就有九分像了。         //时针     ctx.save();     ctx.rotate((Math.PI / 6) * hr + (Math.PI / 360) * min + (Math.PI / 21600) * sec);     ctx.lineWidth = 14;     //分针     ctx.save();     ctx.rotate((Math.PI / 30) * min + (Math.PI / 1800) * sec);     ctx.lineWidth = 10;          //秒针     ctx.save();     ctx.rotate(sec * Math.PI / 30);     ctx.strokeStyle = "#D40000";     ctx.fillStyle = "#D40000";     ctx.lineWidth = 6;            接下来，我们利用定时器setInterval()让指针转动起来，这里就要用到小学的数学知识了，每秒钟时针分针秒针各转多少度，当然指针的旋转我们用到了css3的新属性translate。        百里，我们已行九十。我们看界面上的钟还是少了点什么。没错，这个钟没有刻度，不太直观，于是可以for一个旋转的刻度，此时钟盘五花八门，上面那个看似没用的圆此时就派上了用场。利用层级z-index优先级可以达到目的。  总结:至此一个clock就完成了，演示链接   ]]></content>
+      <content type="text"><![CDATA[Javascript提供了一个对象 Date(), 通过这个内置的对象，可以很容易地获取当前系统或设备的时间。此外还可以利用它的许多方法获取到具体的年月日时分秒，甚至是时间累计的字符串，时间戳是距离1970年1月1日00:00:00换算。那么我们如何利用这点模拟机械时钟转动呢？主要分为以下4个步骤：  首先，利用html5的canvas画钟盘，需要画三个半径不等的圆，分别为r1 5px, r2 145px 150px。或许你会疑惑，一个钟盘顶多两个圆足够，一个圆心，一个圆边，另一个圆有何用？山人自有妙计，且往下看。接下来，我们画指针，我们有两种常规的方法，一是用hr，另一个是用div，我们采用第二种，因为hr存在兼容性问题，在不同的浏览器中，上下边距有差异。此时，钟盘和指针都有了，当我们标注上数字，机械钟就有九分像了。//时针ctx.save();ctx.rotate((Math.PI / 6) * hr + (Math.PI / 360) * min + (Math.PI / 21600) * sec);ctx.lineWidth = 14;//分针ctx.save();ctx.rotate((Math.PI / 30) * min + (Math.PI / 1800) * sec);ctx.lineWidth = 10;//秒针ctx.save();ctx.rotate(sec * Math.PI / 30);ctx.strokeStyle = "#D40000";ctx.fillStyle = "#D40000";ctx.lineWidth = 6;      接下来，我们利用定时器setInterval()让指针转动起来，这里就要用到小学的数学知识了，每秒钟时针分针秒针各转多少度，当然指针的旋转我们用到了css3的新属性translate。        百里，我们已行九十。我们看界面上的钟还是少了点什么。没错，这个钟没有刻度，不太直观，于是可以for一个旋转的刻度，此时钟盘五花八门，上面那个看似没用的圆此时就派上了用场。利用层级z-index优先级可以达到目的。    总结:至此一个clock就完成了，演示链接]]></content>
       <categories>
         
           <category> JavaScript </category>

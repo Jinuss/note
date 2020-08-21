@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 /** 1. Set default font family to sans-serif. 2. Prevent iOS text size adjust after orientation change, without disabling user zoom. */
 html { font-family: sans-serif; /* 1 */ -ms-text-size-adjust: 100%; /* 2 */ -webkit-text-size-adjust: 100%; /* 2 */ }
@@ -238,7 +239,7 @@ pre, .highlight { overflow: auto; margin: 20px 0; padding: 0; font-size: 13px; c
 
 pre, code { font-family: consolas, Menlo, "PingFang SC", "Microsoft YaHei", monospace; }
 
-code { padding: 2px 4px; word-wrap: break-word; color: #555; background: #eee; border-radius: 3px; font-size: 13px; }
+code { padding: 2px 4px; word-wrap: break-word; color: #c7254e; background: #eee; border-radius: 3px; font-size: 13px; }
 
 pre code { padding: 0; color: #4d4d4c; background: none; text-shadow: none; }
 
@@ -536,8 +537,66 @@ pre .k, pre .kd, pre .kn, pre .kp, pre .kr, pre .kt, pre .javascript .function {
 .sidebar-toggle-line { position: relative; display: inline-block; vertical-align: top; height: 2px; width: 100%; background: white; margin-top: 3px; }
 .sidebar-toggle-line:first-child { margin-top: 0; }
 
-.site-author-image { display: block; margin: 0 auto; padding: 2px; max-width: 120px; height: auto; border: 1px solid #eee; }
+.site-author-image { display: block; margin: 0 auto; border-radius: 50%; padding: 2px; max-width: 120px; height: auto; }
 
+.site-author-image:hover { animation: rotateAn 1s infinite; }
+
+@keyframes rotateAn { 0% { transform: rotate(45deg); -ms-transform: rotate(45deg);
+    /* IE 9 */
+-moz-transform: rotate(45deg);
+    /* Firefox */
+-webkit-transform: rotate(45deg);
+    /* Safari 和 Chrome */
+-o-transform: rotate(45deg); }
+  10% { transform: rotate(90deg); -ms-transform: rotate(90deg);
+    /* IE 9 */
+-moz-transform: rotate(90deg);
+    /* Firefox */
+-webkit-transform: rotate(90deg);
+    /* Safari 和 Chrome */
+-o-transform: rotate(90deg); }
+  30% { transform: rotate(135deg); -ms-transform: rotate(135deg);
+    /* IE 9 */
+-moz-transform: rotate(135deg);
+    /* Firefox */
+-webkit-transform: rotate(135deg);
+    /* Safari 和 Chrome */
+-o-transform: rotate(135deg); }
+  50% { transform: rotate(180deg); -ms-transform: rotate(180deg);
+    /* IE 9 */
+-moz-transform: rotate(180deg);
+    /* Firefox */
+-webkit-transform: rotate(180deg);
+    /* Safari 和 Chrome */
+-o-transform: rotate(180deg); }
+  70% { transform: rotate(225deg); -ms-transform: rotate(225deg);
+    /* IE 9 */
+-moz-transform: rotate(225deg);
+    /* Firefox */
+-webkit-transform: rotate(225deg);
+    /* Safari 和 Chrome */
+-o-transform: rotate(225deg); }
+  80% { transform: rotate(270deg); -ms-transform: rotate(270deg);
+    /* IE 9 */
+-moz-transform: rotate(270deg);
+    /* Firefox */
+-webkit-transform: rotate(270deg);
+    /* Safari 和 Chrome */
+-o-transform: rotate(270deg); }
+  90% { transform: rotate(315deg); -ms-transform: rotate(315deg);
+    /* IE 9 */
+-moz-transform: rotate(315deg);
+    /* Firefox */
+-webkit-transform: rotate(315deg);
+    /* Safari 和 Chrome */
+-o-transform: rotate(315deg); }
+  100% { transform: rotate(360deg); -ms-transform: rotate(360deg);
+    /* IE 9 */
+-moz-transform: rotate(360deg);
+    /* Firefox */
+-webkit-transform: rotate(360deg);
+    /* Safari 和 Chrome */
+-o-transform: rotate(360deg); } }
 .site-author-name { margin: 0; text-align: center; color: #222; font-weight: 600; }
 
 .site-description { margin-top: 0; text-align: center; font-size: 13px; color: #999; }
@@ -561,7 +620,7 @@ pre .k, pre .kd, pre .kn, pre .kp, pre .kr, pre .kt, pre .javascript .function {
 .links-of-author { margin-top: 20px; }
 
 .links-of-author a { display: inline-block; vertical-align: middle; margin-right: 10px; margin-bottom: 10px; border-bottom-color: #555; font-size: 13px; }
-.links-of-author a:before { display: inline-block; vertical-align: middle; margin-right: 3px; content: " "; width: 4px; height: 4px; border-radius: 50%; background: #0500ff; }
+.links-of-author a:before { display: inline-block; vertical-align: middle; margin-right: 3px; content: " "; width: 4px; height: 4px; border-radius: 50%; background: #9cff00; }
 
 .links-of-blogroll { font-size: 13px; }
 

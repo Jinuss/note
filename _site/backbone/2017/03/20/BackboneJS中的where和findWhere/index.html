@@ -119,11 +119,11 @@
 <meta property="og:site_name" content="Jinus's Blog">
 <meta property="og:description" content="BackboneJS算是前端MVC框架的鼻祖，虽已过时，但其思想还是值得研究学习。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://jinuss.github.io/blog/jinus/img/2017032001.png">
+<meta property="og:image" content="https://jinuss.github.io/note/jinus/img/2017032001.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Backbonejs中的where和findwhere">
 <meta name="twitter:description" content="BackboneJS算是前端MVC框架的鼻祖，虽已过时，但其思想还是值得研究学习。">
-<meta name="twitter:image" content="https://jinuss.github.io/blog/jinus/img/2017032001.png">
+<meta name="twitter:image" content="https://jinuss.github.io/note/jinus/img/2017032001.png">
 
 
 <script type="text/javascript" id="hexo.configurations">
@@ -437,7 +437,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  167
+                  212
                 </span>
               
 
@@ -453,7 +453,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  0
+                  1
                 </span>
               
             </div>
@@ -503,22 +503,40 @@
 
 <p>示例：</p>
 
-<h4 id="代码">代码</h4>
-
-<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9</pre></td><td class="code"><pre class="highlight"><code>(function($){
-  var stuModel=Backbone.Model.extend({defaults:{name:"",age:""}});
-  var collection=Backbone.Collection.extend({model:stuModel});
-  var stu=[{name:"lihua",age:18},{name:"wangming",age:19},{name:"sunwei",age:18}]
-  var s1=Stu.where({age:18});
-  var s2=Stu.findWhere({age:18});
-  conosle.log(s1);
-  console.log(s2)
-})(jQuery);
+<div class="language-js highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25<br/>26<br/>27<br/>28<br/>29</pre></td><td class="code"><pre class="highlight"><code>    <span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">$</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">stuModel</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Model</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+            <span class="na">defaults</span><span class="p">:</span> <span class="p">{</span>
+                <span class="na">name</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
+                <span class="na">age</span><span class="p">:</span> <span class="s2">""</span>
+            <span class="p">}</span>
+        <span class="p">});</span>
+        <span class="kd">var</span> <span class="nx">collection</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Collection</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+            <span class="na">model</span><span class="p">:</span> <span class="nx">stuModel</span>
+        <span class="p">});</span>
+        <span class="kd">var</span> <span class="nx">stu</span> <span class="o">=</span> <span class="p">[{</span>
+            <span class="na">name</span><span class="p">:</span> <span class="s2">"lihua"</span><span class="p">,</span>
+            <span class="na">age</span><span class="p">:</span> <span class="mi">18</span>
+        <span class="p">},</span> <span class="p">{</span>
+            <span class="na">name</span><span class="p">:</span> <span class="s2">"wangming"</span><span class="p">,</span>
+            <span class="na">age</span><span class="p">:</span> <span class="mi">19</span>
+        <span class="p">},</span> <span class="p">{</span>
+            <span class="na">name</span><span class="p">:</span> <span class="s2">"sunwei"</span><span class="p">,</span>
+            <span class="na">age</span><span class="p">:</span> <span class="mi">18</span>
+        <span class="p">}]</span>
+        <span class="kd">var</span> <span class="nx">s1</span> <span class="o">=</span> <span class="nx">Stu</span><span class="p">.</span><span class="nx">where</span><span class="p">({</span>
+            <span class="na">age</span><span class="p">:</span> <span class="mi">18</span>
+        <span class="p">});</span>
+        <span class="kd">var</span> <span class="nx">s2</span> <span class="o">=</span> <span class="nx">Stu</span><span class="p">.</span><span class="nx">findWhere</span><span class="p">({</span>
+            <span class="na">age</span><span class="p">:</span> <span class="mi">18</span>
+        <span class="p">});</span>
+        <span class="nx">conosle</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">s1</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">s2</span><span class="p">)</span>
+    <span class="p">})(</span><span class="nx">jQuery</span><span class="p">);</span>
 </code></pre></td></tr></tbody></table></div></div>
 
 <h4 id="输出">输出</h4>
 
-<p><img src="https://jinuss.github.io/blog/jinus/img/2017032001.png" alt="result" /></p>
+<p><img src="https://jinuss.github.io/note/jinus/img/2017032001.png" alt="result" /></p>
 
 
       
@@ -659,7 +677,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">82</span>
+                <span class="site-state-item-count">75</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -670,7 +688,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -681,7 +699,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -754,7 +772,7 @@
             
               <div class="post-toc-content">
     <ol class=nav>
-      <li class="nav-item nav-level-4"> <a class="nav-link" href="#代码"> <span class="nav-number">1</span> <span class="nav-text">代码</span> </a> </li> <li class="nav-item nav-level-4"> <a class="nav-link" href="#输出"> <span class="nav-number">2</span> <span class="nav-text">输出</span> </a> </li>
+      <li class="nav-item nav-level-4"> <a class="nav-link" href="#输出"> <span class="nav-number">1</span> <span class="nav-text">输出</span> </a> </li>
     </ol>
   </div>
             
