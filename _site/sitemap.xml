@@ -285,6 +285,14 @@
 <lastmod>2020-08-18T00:00:00+08:00</lastmod>
 </url>
 <url>
+<loc>http://localhost:4000/2020/08/24/Vue%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86/</loc>
+<lastmod>2020-08-24T00:00:00+08:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/webpack/2020/08/24/webpack/</loc>
+<lastmod>2020-08-24T00:00:00+08:00</lastmod>
+</url>
+<url>
 <loc>http://localhost:4000/</loc>
 </url>
 <url>
@@ -337,6 +345,9 @@
 </url>
 <url>
 <loc>http://localhost:4000/page9/</loc>
+</url>
+<url>
+<loc>http://localhost:4000/page10/</loc>
 </url>
 <url>
 <loc>http://localhost:4000/jinus/demos/clock.html</loc>
