@@ -7,7 +7,7 @@ tags:
 ---
 
 ### 题目 
- *出处：[https://leetcode.com/problems/happy-number/]*(https://leetcode.com/problems/happy-number/)
+ [leetcode地址](https://leetcode.com/problems/happy-number/)
 
  - 难度
  *简单*
