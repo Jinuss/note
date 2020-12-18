@@ -46,18 +46,18 @@
     -o-transform:rotate(176.4deg);
   }
   80%{
-    transform:rotate(176.4deg);
-    -ms-transform:rotate(176.4deg); 	/* IE 9 */
-    -moz-transform:rotate(176.4deg); 	/* Firefox */
-    -webkit-transform:rotate(176.4deg); /* Safari 和 Chrome */
-    -o-transform:rotate(176.4deg);
-  }
-  90%{
     transform:rotate(230.4deg);
     -ms-transform:rotate(230.4deg); 	/* IE 9 */
     -moz-transform:rotate(230.4deg); 	/* Firefox */
     -webkit-transform:rotate(230.4deg); /* Safari 和 Chrome */
     -o-transform:rotate(230.4deg);
+  }
+  90%{
+    transform:rotate(294.48deg);
+    -ms-transform:rotate(294.48deg); 	/* IE 9 */
+    -moz-transform:rotate(294.48deg); 	/* Firefox */
+    -webkit-transform:rotate(294.48deg); /* Safari 和 Chrome */
+    -o-transform:rotate(294.48deg);
   }
   100%{
     transform:rotate(360deg);
